@@ -2,7 +2,7 @@ from pymongo import MongoClient
 import certifi
 import os
 
-def upload_to_mongo(data, db_name, collection_name):
+def upload_to_mongo(data, collection_name):
     try:
         # Retrieve MongoDB connection details from environment variables
         mongo_user = os.getenv("MONGO_USER")
@@ -19,7 +19,7 @@ def upload_to_mongo(data, db_name, collection_name):
 
         # Connect to MongoDB
         client = MongoClient(mongo_uri,tlsCAFile=certifi.where())
-        db = client[db_name]
+        db = client[mongo_database]
         collection = db[collection_name]
 
         # Optional: Clear old data before inserting

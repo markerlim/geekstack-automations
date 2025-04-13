@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import os
-import sys
 from googlecloudservice import upload_image_to_gcs
 from mongoservice import upload_to_mongo
 
@@ -31,7 +30,7 @@ def scrape_onepiece_cards(series_value):
     if not series_value:
         print("❌ series_value is not provided. Exiting.")
         return
-
+    
     gcs_imgpath_value = os.getenv('GCSIMAGE', 'OPTCG/test/')
     url = f"https://asia-en.onepiece-cardgame.com/cardlist/?series={series_value}"
     source_id = series_value
@@ -129,8 +128,9 @@ def scrape_onepiece_cards(series_value):
         except Exception as e:
             print(f"❌ Error parsing card in {booster_mapped}: {e}")
 
+
+    collection_value = os.getenv('C_ONEPIECE')
     upload_to_mongo(
         data=json_data,
-        db_name="geekstack",
-        collection_name="CL_onepiece_v3"
+        collection_name=collection_value
     )

@@ -33,6 +33,7 @@ jobs:
         MONGO_USER: ${{ secrets.MONGO_USER }}
         MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
         MONGO_CLUSTER: ${{ secrets.MONGO_CLUSTER }}
+        C_ONEPIECE: ${{vars.C_ONEPIECE}}
         GCSIMAGE: ${{ secrets.GCSIMAGE }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |

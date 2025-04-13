@@ -60,7 +60,7 @@ else:
         for val in sorted(missing_in_json):
             print(f"  - {val}")
             # Call the scrape_onepiece_cards function for each missing value (if needed)
-            #scrape_onepiece_cards(val)  # This will trigger the scraping for the missing series value
+            scrape_onepiece_cards(val)  # This will trigger the scraping for the missing series value
 
     if extra_in_json:
         print("Extra in series.json:")
