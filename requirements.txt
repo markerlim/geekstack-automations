@@ -1,0 +1,5 @@
+beautifulsoup4
+requests
+google-cloud-storage
+pymongo
+python-dotenv

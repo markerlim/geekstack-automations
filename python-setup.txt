@@ -1,0 +1,5 @@
+#To create environment folder
+python3 -m venv venv
+
+#To init environment
+source venv/bin/activate
