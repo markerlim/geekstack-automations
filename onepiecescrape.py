@@ -1,7 +1,5 @@
 from bs4 import BeautifulSoup 
 import requests 
-import csv
-import json
 import re
 
 from googlecloudservice import upload_image_to_gcs

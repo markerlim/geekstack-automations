@@ -3,3 +3,5 @@ requests
 google-cloud-storage
 pymongo
 python-dotenv
+pillow
+certifi
