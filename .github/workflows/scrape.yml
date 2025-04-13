@@ -21,13 +21,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Setup GCP Credentials
+      run: |
+        echo '${{ secrets.GCP_CREDENTIALS }}' > gcp-credentials.json
+        echo "GOOGLE_APPLICATION_CREDENTIALS=$(pwd)/gcp-credentials.json" >> $GITHUB_ENV
+
     - name: Run scraper
       env:
-        GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
         MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
         MONGO_USER: ${{ secrets.MONGO_USER }}
         MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
         MONGO_CLUSTER: ${{ secrets.MONGO_CLUSTER }}
       run: |
-        export GOOGLE_APPLICATION_CREDENTIALS="${GCP_CREDENTIALS}"
         python onepiecescrape.py
