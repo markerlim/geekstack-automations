@@ -1,11 +1,11 @@
-from bs4 import BeautifulSoup 
-import requests 
+from bs4 import BeautifulSoup
+import requests
 import re
-
+import os
+import sys
 from googlecloudservice import upload_image_to_gcs
 from mongoservice import upload_to_mongo
 
-# Booster mapping function
 def map_booster(code):
     if code == '556701':
         return 'FDS'
@@ -27,47 +27,26 @@ def map_booster(code):
         else:
             return code
 
-# Master list of URLs
-listofall = [
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556001", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556002",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556003", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556004",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556005", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556006",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556007", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556008",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556009", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556010",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556011", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556012",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556013", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556014",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556015", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556016",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556017", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556018",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556019", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556020",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556101", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556102",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556103", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556104",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556105", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556106",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556107", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556108",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556109", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556110",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556111", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556201",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556202", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556301",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556701", "https://asia-en.onepiece-cardgame.com/cardlist/?series=556801",
-    "https://asia-en.onepiece-cardgame.com/cardlist/?series=556901",
-]
-oneurl = ["https://asia-en.onepiece-cardgame.com/cardlist/?series=556701"]
-csv_data = [["cardname", "cardid", "rarity", "category", "lifecost", "attribute", "power", "counter", "color", "typing", "effects", "trigger", "urlimage", "cardUid", "booster"]]
-json_data = []
+def scrape_onepiece_cards(series_value):
+    if not series_value:
+        print("❌ series_value is not provided. Exiting.")
+        return
 
-for url in oneurl:
-    source_id = url[-6:]  # Last 6 characters
+    gcs_imgpath_value = os.getenv('GCSIMAGE', 'OPTCG/test/')
+    url = f"https://asia-en.onepiece-cardgame.com/cardlist/?series={series_value}"
+    source_id = series_value
     booster_mapped = map_booster(source_id)
     base_url = "https://asia-en.onepiece-cardgame.com"
 
     headers = {
         "User-Agent": "Mozilla/5.0",
         "Accept-Language": "en-US,en;q=0.5",
-        "Referer": "https://asia-en.onepiece-cardgame.com/"
+        "Referer": base_url + "/"
     }
 
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.content, 'html.parser')
 
-    # Extract image URLs
     image_urls = []
     for a_tag in soup.find_all('a'):
         img_tag = a_tag.find('img')
@@ -77,11 +56,12 @@ for url in oneurl:
                 full_url = base_url + img_src if img_src.startswith('/') else img_src
                 image_urls.append(full_url)
 
-    # Extract card info
     dl_elements = soup.find_all('dl', class_='modalCol')
-
     if len(image_urls) != len(dl_elements):
         print(f"⚠️  Mismatch in {source_id}: {len(image_urls)} images vs {len(dl_elements)} cards")
+
+    csv_data = [["cardname", "cardid", "rarity", "category", "lifecost", "attribute", "power", "counter", "color", "typing", "effects", "trigger", "urlimage", "cardUid", "booster"]]
+    json_data = []
 
     for idx, dl_element in enumerate(dl_elements):
         try:
@@ -89,8 +69,7 @@ for url in oneurl:
             filename = raw_url.split('/')[-1].split('?')[0]
             urlforscraping = f"{base_url}/images/cardlist/card/{filename}"
             card_uid = filename.replace('.png', '')
-            urlimage = upload_image_to_gcs(urlforscraping, card_uid, "OPTCG/test/")
-            #urlimage = f"https://storage.googleapis.com/geek-stack.appspot.com/OPTCG/card/{filename}.webp"
+            urlimage = upload_image_to_gcs(urlforscraping, card_uid, gcs_imgpath_value)
 
             cardname = dl_element.find('div', class_='cardName').text.strip()
 
@@ -150,8 +129,8 @@ for url in oneurl:
         except Exception as e:
             print(f"❌ Error parsing card in {booster_mapped}: {e}")
 
-upload_to_mongo(
-    data=json_data,
-    db_name="geekstack",
-    collection_name="CL_onepiece_v3")
-
+    upload_to_mongo(
+        data=json_data,
+        db_name="geekstack",
+        collection_name="CL_onepiece_v3"
+    )
