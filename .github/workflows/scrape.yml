@@ -3,7 +3,7 @@ name: Run One Piece Scraper
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 17 * * *'
+    - cron: '0 15 * * *'
 jobs:
   scrape:
     runs-on: ubuntu-latest
