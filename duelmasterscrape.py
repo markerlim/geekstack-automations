@@ -171,7 +171,7 @@ def process_card(card):
 
         # Extract booster from cardUid
         booster = card_uid.split("-")[0]
-        new_urlimage = upload_image_to_gcs(image_url=image_url,filename=card_uid,filepath=f"DMTCG/test/{booster}/")
+        new_urlimage = upload_image_to_gcs(image_url=image_url,filename=card_uid,filepath=f"DMTCG/{booster}/")
 
         # Add new fields and update
         card_dict = {

@@ -34,15 +34,11 @@ def load_series_json_from_github():
             decoded_content = base64.b64decode(content_base64).decode('utf-8')
             existing_values = json.loads(decoded_content)
 
-            # Normalize
             if isinstance(existing_values, list):
-                if all(isinstance(item, dict) and 'value' in item for item in existing_values):
-                    return [item['value'].strip() for item in existing_values], file_data['sha']
-                elif all(isinstance(item, str) for item in existing_values):
-                    return [item.strip() for item in existing_values], file_data['sha']
-                else:
-                    print("[Warning] JSON format not recognized.")
-                    return [], file_data['sha']
+                return [item.strip() for item in existing_values if isinstance(item, str)], file_data['sha']
+            else:
+                print("[Warning] JSON content is not a list.")
+                return [], file_data['sha']
         except Exception as e:
             print(f"❌ Error decoding file content: {e}")
             return [], None
@@ -82,7 +78,7 @@ def find_missing_values(json_values, website_values):
 def commit_missing_values_to_github(missing_values, current_values, sha):
     print("🚀 Committing updated JSON to GitHub...")
 
-    updated_values = [{"value": val} for val in sorted(current_values + missing_values)]
+    updated_values = sorted(current_values + missing_values)
 
     updated_json_str = json.dumps(updated_values, ensure_ascii=False, indent=2)
     updated_base64 = base64.b64encode(updated_json_str.encode('utf-8')).decode('utf-8')
@@ -102,7 +98,7 @@ def commit_missing_values_to_github(missing_values, current_values, sha):
     }
 
     response = requests.put(commit_url, headers=headers, json=payload)
-    if response.status_code == 200 or response.status_code == 201:
+    if response.status_code in [200, 201]:
         print("✅ Successfully committed updated JSON to GitHub!")
     else:
         print(f"❌ Failed to commit file: {response.status_code}")
@@ -133,12 +129,13 @@ def run_check():
             print(f"- {val}")
 
         # Run scraper
-        startscraping(booster_list=missing_values, collection_name="testdata")
+        collectionval = os.getenv("C_DUELMASTERS")
+        startscraping(booster_list=missing_values, collection_name=collectionval)
 
         # Commit updated list to GitHub
         commit_missing_values_to_github(missing_values, json_values, sha)
 
-        # Optionally save locally too
+        # Save locally
         try:
             with open('missing_series.json', 'w', encoding='utf-8') as f:
                 json.dump(missing_values, f, indent=2, ensure_ascii=False)

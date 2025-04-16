@@ -1,1091 +1,362 @@
 [
-  {
-    "value": "1"
-  },
-  {
-    "value": "10"
-  },
-  {
-    "value": "11"
-  },
-  {
-    "value": "12"
-  },
-  {
-    "value": "13"
-  },
-  {
-    "value": "14"
-  },
-  {
-    "value": "15"
-  },
-  {
-    "value": "16"
-  },
-  {
-    "value": "17"
-  },
-  {
-    "value": "18"
-  },
-  {
-    "value": "19"
-  },
-  {
-    "value": "2"
-  },
-  {
-    "value": "20"
-  },
-  {
-    "value": "21"
-  },
-  {
-    "value": "22"
-  },
-  {
-    "value": "22bd1"
-  },
-  {
-    "value": "22bd2"
-  },
-  {
-    "value": "22bd3"
-  },
-  {
-    "value": "22ex1"
-  },
-  {
-    "value": "22ex2"
-  },
-  {
-    "value": "22rp1"
-  },
-  {
-    "value": "22rp2"
-  },
-  {
-    "value": "22rp2x"
-  },
-  {
-    "value": "22sd1"
-  },
-  {
-    "value": "22sp1"
-  },
-  {
-    "value": "22sp2"
-  },
-  {
-    "value": "23"
-  },
-  {
-    "value": "23bd1"
-  },
-  {
-    "value": "23bd2"
-  },
-  {
-    "value": "23bd3"
-  },
-  {
-    "value": "23bd4"
-  },
-  {
-    "value": "23bd5"
-  },
-  {
-    "value": "23bd6"
-  },
-  {
-    "value": "23bd7"
-  },
-  {
-    "value": "23ex1"
-  },
-  {
-    "value": "23ex2"
-  },
-  {
-    "value": "23ex3"
-  },
-  {
-    "value": "23rp1"
-  },
-  {
-    "value": "23rp2"
-  },
-  {
-    "value": "23rp2x"
-  },
-  {
-    "value": "23rp3"
-  },
-  {
-    "value": "23rp4"
-  },
-  {
-    "value": "23rp4x"
-  },
-  {
-    "value": "23sd1"
-  },
-  {
-    "value": "23sd2"
-  },
-  {
-    "value": "23sd3"
-  },
-  {
-    "value": "23sp1"
-  },
-  {
-    "value": "24"
-  },
-  {
-    "value": "24bd1"
-  },
-  {
-    "value": "24bd2"
-  },
-  {
-    "value": "24bd3"
-  },
-  {
-    "value": "24bd4"
-  },
-  {
-    "value": "24bd5"
-  },
-  {
-    "value": "24bd6"
-  },
-  {
-    "value": "24ex1"
-  },
-  {
-    "value": "24ex2"
-  },
-  {
-    "value": "24ex3"
-  },
-  {
-    "value": "24ex4"
-  },
-  {
-    "value": "24rp1"
-  },
-  {
-    "value": "24rp2"
-  },
-  {
-    "value": "24rp3"
-  },
-  {
-    "value": "24rp4"
-  },
-  {
-    "value": "24sd1"
-  },
-  {
-    "value": "24sd2"
-  },
-  {
-    "value": "24sp1"
-  },
-  {
-    "value": "24sp2"
-  },
-  {
-    "value": "25"
-  },
-  {
-    "value": "25sd1"
-  },
-  {
-    "value": "25sd2"
-  },
-  {
-    "value": "25sp1"
-  },
-  {
-    "value": "26"
-  },
-  {
-    "value": "27"
-  },
-  {
-    "value": "27+1d"
-  },
-  {
-    "value": "28"
-  },
-  {
-    "value": "29"
-  },
-  {
-    "value": "29+1d"
-  },
-  {
-    "value": "3"
-  },
-  {
-    "value": "30"
-  },
-  {
-    "value": "31"
-  },
-  {
-    "value": "32"
-  },
-  {
-    "value": "33"
-  },
-  {
-    "value": "34"
-  },
-  {
-    "value": "34+1s"
-  },
-  {
-    "value": "35"
-  },
-  {
-    "value": "36"
-  },
-  {
-    "value": "37"
-  },
-  {
-    "value": "38"
-  },
-  {
-    "value": "39"
-  },
-  {
-    "value": "4"
-  },
-  {
-    "value": "5"
-  },
-  {
-    "value": "6"
-  },
-  {
-    "value": "7"
-  },
-  {
-    "value": "8"
-  },
-  {
-    "value": "9"
-  },
-  {
-    "value": "art01"
-  },
-  {
-    "value": "art02"
-  },
-  {
-    "value": "art03"
-  },
-  {
-    "value": "art04"
-  },
-  {
-    "value": "art05"
-  },
-  {
-    "value": "art06"
-  },
-  {
-    "value": "art07"
-  },
-  {
-    "value": "art08"
-  },
-  {
-    "value": "art09"
-  },
-  {
-    "value": "art10"
-  },
-  {
-    "value": "art11"
-  },
-  {
-    "value": "art12"
-  },
-  {
-    "value": "art13"
-  },
-  {
-    "value": "art14"
-  },
-  {
-    "value": "art15"
-  },
-  {
-    "value": "art16"
-  },
-  {
-    "value": "art17"
-  },
-  {
-    "value": "art18"
-  },
-  {
-    "value": "art19"
-  },
-  {
-    "value": "bd01"
-  },
-  {
-    "value": "bd02"
-  },
-  {
-    "value": "bd03"
-  },
-  {
-    "value": "bd04"
-  },
-  {
-    "value": "bd05"
-  },
-  {
-    "value": "bd06"
-  },
-  {
-    "value": "bd07"
-  },
-  {
-    "value": "bd08"
-  },
-  {
-    "value": "bd09"
-  },
-  {
-    "value": "bd10"
-  },
-  {
-    "value": "bd11"
-  },
-  {
-    "value": "bd12"
-  },
-  {
-    "value": "bd13"
-  },
-  {
-    "value": "bd14"
-  },
-  {
-    "value": "bd15"
-  },
-  {
-    "value": "bd16"
-  },
-  {
-    "value": "bd17"
-  },
-  {
-    "value": "bd18"
-  },
-  {
-    "value": "bd19"
-  },
-  {
-    "value": "bd20"
-  },
-  {
-    "value": "bd21"
-  },
-  {
-    "value": "bd22"
-  },
-  {
-    "value": "c27"
-  },
-  {
-    "value": "c34"
-  },
-  {
-    "value": "c36"
-  },
-  {
-    "value": "c37"
-  },
-  {
-    "value": "c38"
-  },
-  {
-    "value": "c39"
-  },
-  {
-    "value": "c40"
-  },
-  {
-    "value": "c41"
-  },
-  {
-    "value": "c42"
-  },
-  {
-    "value": "c43"
-  },
-  {
-    "value": "c44"
-  },
-  {
-    "value": "c45"
-  },
-  {
-    "value": "c46"
-  },
-  {
-    "value": "c47"
-  },
-  {
-    "value": "c48"
-  },
-  {
-    "value": "c49"
-  },
-  {
-    "value": "c50"
-  },
-  {
-    "value": "c51"
-  },
-  {
-    "value": "c52"
-  },
-  {
-    "value": "c53"
-  },
-  {
-    "value": "c54"
-  },
-  {
-    "value": "c55"
-  },
-  {
-    "value": "c56"
-  },
-  {
-    "value": "c57"
-  },
-  {
-    "value": "c58"
-  },
-  {
-    "value": "c59"
-  },
-  {
-    "value": "c60"
-  },
-  {
-    "value": "c61"
-  },
-  {
-    "value": "c62"
-  },
-  {
-    "value": "c63"
-  },
-  {
-    "value": "c64"
-  },
-  {
-    "value": "c65"
-  },
-  {
-    "value": "c66"
-  },
-  {
-    "value": "c67"
-  },
-  {
-    "value": "c68"
-  },
-  {
-    "value": "corocoroy14"
-  },
-  {
-    "value": "corocoroy15"
-  },
-  {
-    "value": "corocoroy16"
-  },
-  {
-    "value": "corocoroy17"
-  },
-  {
-    "value": "corocoroy18"
-  },
-  {
-    "value": "corocoroy19"
-  },
-  {
-    "value": "d01"
-  },
-  {
-    "value": "d02"
-  },
-  {
-    "value": "d03"
-  },
-  {
-    "value": "d04"
-  },
-  {
-    "value": "d05"
-  },
-  {
-    "value": "d06"
-  },
-  {
-    "value": "d07"
-  },
-  {
-    "value": "d08"
-  },
-  {
-    "value": "d09"
-  },
-  {
-    "value": "d10"
-  },
-  {
-    "value": "d11"
-  },
-  {
-    "value": "d12"
-  },
-  {
-    "value": "d13"
-  },
-  {
-    "value": "d14"
-  },
-  {
-    "value": "d15"
-  },
-  {
-    "value": "d16"
-  },
-  {
-    "value": "d17"
-  },
-  {
-    "value": "d18"
-  },
-  {
-    "value": "d19"
-  },
-  {
-    "value": "d20"
-  },
-  {
-    "value": "d21"
-  },
-  {
-    "value": "d22"
-  },
-  {
-    "value": "d23"
-  },
-  {
-    "value": "d24"
-  },
-  {
-    "value": "d25"
-  },
-  {
-    "value": "d26"
-  },
-  {
-    "value": "d27"
-  },
-  {
-    "value": "d28"
-  },
-  {
-    "value": "d29"
-  },
-  {
-    "value": "d30"
-  },
-  {
-    "value": "d31"
-  },
-  {
-    "value": "d32"
-  },
-  {
-    "value": "d33"
-  },
-  {
-    "value": "d34"
-  },
-  {
-    "value": "d35"
-  },
-  {
-    "value": "ex01"
-  },
-  {
-    "value": "ex02"
-  },
-  {
-    "value": "ex03"
-  },
-  {
-    "value": "ex04"
-  },
-  {
-    "value": "ex05"
-  },
-  {
-    "value": "ex06"
-  },
-  {
-    "value": "ex07"
-  },
-  {
-    "value": "ex08"
-  },
-  {
-    "value": "ex09"
-  },
-  {
-    "value": "ex10"
-  },
-  {
-    "value": "ex11"
-  },
-  {
-    "value": "ex12"
-  },
-  {
-    "value": "ex13"
-  },
-  {
-    "value": "ex14"
-  },
-  {
-    "value": "ex15"
-  },
-  {
-    "value": "ex16"
-  },
-  {
-    "value": "ex17"
-  },
-  {
-    "value": "ex18"
-  },
-  {
-    "value": "ex19"
-  },
-  {
-    "value": "gum1"
-  },
-  {
-    "value": "gum2"
-  },
-  {
-    "value": "pcd01"
-  },
-  {
-    "value": "pcd02"
-  },
-  {
-    "value": "pcd03"
-  },
-  {
-    "value": "promoy1"
-  },
-  {
-    "value": "promoy10"
-  },
-  {
-    "value": "promoy11"
-  },
-  {
-    "value": "promoy12"
-  },
-  {
-    "value": "promoy13"
-  },
-  {
-    "value": "promoy14"
-  },
-  {
-    "value": "promoy15"
-  },
-  {
-    "value": "promoy16"
-  },
-  {
-    "value": "promoy17"
-  },
-  {
-    "value": "promoy18"
-  },
-  {
-    "value": "promoy19"
-  },
-  {
-    "value": "promoy2"
-  },
-  {
-    "value": "promoy20"
-  },
-  {
-    "value": "promoy21"
-  },
-  {
-    "value": "promoy22"
-  },
-  {
-    "value": "promoy23"
-  },
-  {
-    "value": "promoy24"
-  },
-  {
-    "value": "promoy3"
-  },
-  {
-    "value": "promoy4"
-  },
-  {
-    "value": "promoy5"
-  },
-  {
-    "value": "promoy6"
-  },
-  {
-    "value": "promoy7"
-  },
-  {
-    "value": "promoy8"
-  },
-  {
-    "value": "promoy9"
-  },
-  {
-    "value": "r01"
-  },
-  {
-    "value": "r02"
-  },
-  {
-    "value": "r03"
-  },
-  {
-    "value": "r04"
-  },
-  {
-    "value": "r05"
-  },
-  {
-    "value": "r06"
-  },
-  {
-    "value": "r07"
-  },
-  {
-    "value": "r08"
-  },
-  {
-    "value": "r08s"
-  },
-  {
-    "value": "r09"
-  },
-  {
-    "value": "r10"
-  },
-  {
-    "value": "r11"
-  },
-  {
-    "value": "r12"
-  },
-  {
-    "value": "r13"
-  },
-  {
-    "value": "r14"
-  },
-  {
-    "value": "r15"
-  },
-  {
-    "value": "r16g"
-  },
-  {
-    "value": "r16s"
-  },
-  {
-    "value": "r17"
-  },
-  {
-    "value": "r18"
-  },
-  {
-    "value": "r19"
-  },
-  {
-    "value": "r20"
-  },
-  {
-    "value": "r21"
-  },
-  {
-    "value": "r22"
-  },
-  {
-    "value": "r23"
-  },
-  {
-    "value": "rp01"
-  },
-  {
-    "value": "rp02"
-  },
-  {
-    "value": "rp03"
-  },
-  {
-    "value": "rp04m"
-  },
-  {
-    "value": "rp04s"
-  },
-  {
-    "value": "rp05"
-  },
-  {
-    "value": "rp06"
-  },
-  {
-    "value": "rp07"
-  },
-  {
-    "value": "rp08"
-  },
-  {
-    "value": "rp09"
-  },
-  {
-    "value": "rp10"
-  },
-  {
-    "value": "rp11"
-  },
-  {
-    "value": "rp12"
-  },
-  {
-    "value": "rp13"
-  },
-  {
-    "value": "rp14"
-  },
-  {
-    "value": "rp15"
-  },
-  {
-    "value": "rp16"
-  },
-  {
-    "value": "rp17"
-  },
-  {
-    "value": "rp18"
-  },
-  {
-    "value": "rp19"
-  },
-  {
-    "value": "rp20"
-  },
-  {
-    "value": "rp21"
-  },
-  {
-    "value": "rp22"
-  },
-  {
-    "value": "sd01"
-  },
-  {
-    "value": "sd02"
-  },
-  {
-    "value": "sd03"
-  },
-  {
-    "value": "sd04"
-  },
-  {
-    "value": "sd05"
-  },
-  {
-    "value": "sd06"
-  },
-  {
-    "value": "sd07"
-  },
-  {
-    "value": "sd08"
-  },
-  {
-    "value": "sd09"
-  },
-  {
-    "value": "sd10"
-  },
-  {
-    "value": "sd11"
-  },
-  {
-    "value": "sd12"
-  },
-  {
-    "value": "sd13"
-  },
-  {
-    "value": "sd14"
-  },
-  {
-    "value": "sd15"
-  },
-  {
-    "value": "sd16"
-  },
-  {
-    "value": "sd17"
-  },
-  {
-    "value": "sd18"
-  },
-  {
-    "value": "sd19"
-  },
-  {
-    "value": "sd20"
-  },
-  {
-    "value": "sd21"
-  },
-  {
-    "value": "si"
-  },
-  {
-    "value": "sp01"
-  },
-  {
-    "value": "sp02"
-  },
-  {
-    "value": "sp04"
-  },
-  {
-    "value": "spdeck10"
-  },
-  {
-    "value": "spdeck11"
-  },
-  {
-    "value": "spdeck7"
-  },
-  {
-    "value": "spdeck8"
-  },
-  {
-    "value": "spdeck9"
-  },
-  {
-    "value": "x01"
-  },
-  {
-    "value": "x02"
-  },
-  {
-    "value": "x03"
-  },
-  {
-    "value": "x04"
-  },
-  {
-    "value": "x05"
-  },
-  {
-    "value": "x06"
-  },
-  {
-    "value": "x07"
-  },
-  {
-    "value": "x08"
-  },
-  {
-    "value": "x09"
-  },
-  {
-    "value": "x10"
-  },
-  {
-    "value": "x11"
-  },
-  {
-    "value": "x12"
-  },
-  {
-    "value": "x13"
-  },
-  {
-    "value": "x14"
-  },
-  {
-    "value": "x15"
-  },
-  {
-    "value": "x16"
-  },
-  {
-    "value": "x17"
-  },
-  {
-    "value": "x18"
-  },
-  {
-    "value": "x19"
-  },
-  {
-    "value": "x20"
-  },
-  {
-    "value": "x21"
-  },
-  {
-    "value": "x22"
-  },
-  {
-    "value": "x23"
-  },
-  {
-    "value": "x24"
-  },
-  {
-    "value": "x25"
-  },
-  {
-    "value": "x26"
-  }
+  "24ex4",
+  "24bd6",
+  "24bd5",
+  "24ex3",
+  "24rp4",
+  "24bd4",
+  "24bd3",
+  "24ex2",
+  "24sp2",
+  "24rp3",
+  "24bd2",
+  "24bd1",
+  "24ex1",
+  "24rp2",
+  "24rp1",
+  "24sp1",
+  "24sd2",
+  "24sd1",
+  "23ex3",
+  "23bd7",
+  "23bd6",
+  "23bd5",
+  "23bd4",
+  "23rp4x",
+  "23rp4",
+  "23bd3",
+  "23bd2",
+  "23ex2",
+  "23rp3",
+  "23sd3",
+  "23bd1",
+  "23ex1",
+  "23rp2x",
+  "23rp2",
+  "23sd2",
+  "23sp1",
+  "23rp1",
+  "23sd1",
+  "22bd3",
+  "22bd2",
+  "22ex2",
+  "pcd03",
+  "22sp2",
+  "22rp2x",
+  "22rp2",
+  "22bd1",
+  "22ex1",
+  "22sp1",
+  "22rp1",
+  "22sd1",
+  "bd22",
+  "bd21",
+  "ex19",
+  "rp22",
+  "bd20",
+  "bd19",
+  "rp21",
+  "sd21",
+  "sd20",
+  "ex18",
+  "pcd02",
+  "rp20",
+  "bd18",
+  "ex17",
+  "rp19",
+  "sd19",
+  "bd17",
+  "bd16",
+  "ex16",
+  "sp04",
+  "rp18",
+  "ex15",
+  "rp17",
+  "sd18",
+  "sd17",
+  "sp02",
+  "ex14",
+  "pcd01",
+  "rp16",
+  "bd15",
+  "ex13",
+  "rp15",
+  "sd16",
+  "bd14",
+  "bd13",
+  "ex12",
+  "rp14",
+  "ex11",
+  "ex10",
+  "ex09",
+  "rp13",
+  "sd15",
+  "sd14",
+  "ex08",
+  "rp12",
+  "bd12",
+  "bd11",
+  "ex07",
+  "rp11",
+  "sd13",
+  "bd10",
+  "bd09",
+  "ex06",
+  "rp10",
+  "sd12",
+  "sd11",
+  "sd10",
+  "ex05",
+  "rp09",
+  "sd09",
+  "sd08",
+  "ex04",
+  "rp08",
+  "bd08",
+  "bd07",
+  "ex03",
+  "rp07",
+  "sd07",
+  "bd06",
+  "bd05",
+  "ex02",
+  "rp06",
+  "sd06",
+  "rp05",
+  "sd05",
+  "sd04",
+  "si",
+  "rp04m",
+  "rp04s",
+  "ex01",
+  "rp03",
+  "sp01",
+  "rp02",
+  "rp01",
+  "x26",
+  "x25",
+  "r23",
+  "x24",
+  "r22",
+  "x23",
+  "r21",
+  "r20",
+  "x22",
+  "r19",
+  "x21",
+  "r18",
+  "x20",
+  "r17",
+  "x19",
+  "r16s",
+  "r16g",
+  "r15",
+  "x18",
+  "r14",
+  "x17",
+  "r13",
+  "x16",
+  "r12",
+  "r11",
+  "x15",
+  "r10",
+  "r09",
+  "x14",
+  "r08s",
+  "x12",
+  "r08",
+  "x13",
+  "r07",
+  "x11",
+  "r06",
+  "r05",
+  "x08",
+  "r04",
+  "x07",
+  "x06",
+  "r03",
+  "x05",
+  "x04",
+  "r02",
+  "r01",
+  "x01",
+  "39",
+  "c68",
+  "c67",
+  "38",
+  "c66",
+  "37",
+  "c64",
+  "36",
+  "c61",
+  "35",
+  "34+1s",
+  "34",
+  "c55",
+  "33",
+  "32",
+  "c54",
+  "c53",
+  "c52",
+  "c51",
+  "31",
+  "c48",
+  "c47",
+  "30",
+  "29+1d",
+  "29",
+  "28",
+  "c42",
+  "27+1d",
+  "27",
+  "26",
+  "25",
+  "24",
+  "c34",
+  "23",
+  "22",
+  "21",
+  "20",
+  "19",
+  "18",
+  "c27",
+  "17",
+  "16",
+  "15",
+  "14",
+  "13",
+  "12",
+  "11",
+  "10",
+  "9",
+  "8",
+  "7",
+  "6",
+  "5",
+  "4",
+  "3",
+  "2",
+  "1",
+  "bd04",
+  "bd03",
+  "bd02",
+  "bd01",
+  "sd03",
+  "sd02",
+  "sd01",
+  "d35",
+  "d34",
+  "d33",
+  "d32",
+  "d31",
+  "d30",
+  "d29",
+  "d28",
+  "d27",
+  "d26",
+  "d25",
+  "d24",
+  "d23",
+  "d22",
+  "d21",
+  "d20",
+  "d18",
+  "d19",
+  "d15",
+  "d16",
+  "d17",
+  "d14",
+  "d13",
+  "d12",
+  "d11",
+  "d10",
+  "d09",
+  "d08",
+  "d07",
+  "x10",
+  "x09",
+  "d06",
+  "d05",
+  "d04",
+  "d03",
+  "x03",
+  "x02",
+  "d02",
+  "d01",
+  "c65",
+  "c63",
+  "c62",
+  "c60",
+  "c59",
+  "c58",
+  "c57",
+  "c56",
+  "c50",
+  "c49",
+  "c46",
+  "c45",
+  "c44",
+  "c43",
+  "c41",
+  "c40",
+  "c39",
+  "c38",
+  "c37",
+  "c36",
+  "art19",
+  "art18",
+  "art17",
+  "art16",
+  "art15",
+  "art14",
+  "art13",
+  "art12",
+  "art11",
+  "art10",
+  "art09",
+  "art08",
+  "art07",
+  "art06",
+  "art05",
+  "art04",
+  "art03",
+  "art02",
+  "art01",
+  "gum2",
+  "gum1",
+  "spdeck11",
+  "spdeck10",
+  "spdeck9",
+  "spdeck8",
+  "spdeck7",
+  "corocoroy19",
+  "corocoroy18",
+  "corocoroy17",
+  "corocoroy16",
+  "corocoroy15",
+  "corocoroy14",
+  "promoy24",
+  "promoy23",
+  "promoy22",
+  "promoy21",
+  "promoy20",
+  "promoy19",
+  "promoy18",
+  "promoy17",
+  "promoy16",
+  "promoy15",
+  "promoy14",
+  "promoy13",
+  "promoy12",
+  "promoy11",
+  "promoy10",
+  "promoy9",
+  "promoy8",
+  "promoy7",
+  "promoy6",
+  "promoy5",
+  "promoy4",
+  "promoy3",
+  "promoy2",
+  "promoy1"
 ]
