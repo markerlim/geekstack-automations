@@ -1,3 +1,4 @@
 .env
 /credentials
 .vscode
+venv

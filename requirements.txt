@@ -5,3 +5,5 @@ pymongo
 python-dotenv
 pillow
 certifi
+selenium
+webdriver_manager
