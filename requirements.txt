@@ -8,3 +8,4 @@ certifi
 deep_translator
 selenium
 webdriver_manager
+tqdm
