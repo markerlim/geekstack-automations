@@ -1,51 +1,59 @@
 import json
-import requests
-import base64
 import os
+import base64
+import requests
 from bs4 import BeautifulSoup
 from duelmasterscrape import startscraping
 
-# GitHub configuration
+# GitHub config
 REPO_OWNER = "markerlim"
 REPO_NAME = "geekstack-automations"
 FILE_PATH = "duelmasterdb/seriesdm.json"
 BRANCH = "main"
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-
-# GitHub API URL for content
 GITHUB_API_URL = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}?ref={BRANCH}"
 
-def load_json_values_from_github():
-    """Load values from seriesdm.json on GitHub"""
+
+def load_series_json_from_github():
+    print("🔄 Loading JSON values from GitHub...")
     headers = {
-        "Authorization": f"token {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github.v3.raw"
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github.v3+json"
     }
 
-    try:
-        response = requests.get(GITHUB_API_URL, headers=headers)
-        response.raise_for_status()
-        content_json = response.json()
+    response = requests.get(GITHUB_API_URL, headers=headers)
+    if response.status_code == 200:
+        file_data = response.json()
 
-        # Decode content
-        content = base64.b64decode(content_json['content']).decode('utf-8')
-        data = json.loads(content)
+        if isinstance(file_data, list):
+            print("❌ GitHub path is a directory, not a file.")
+            return [], None
 
-        # Normalize
-        if isinstance(data, list):
-            if all(isinstance(item, dict) and 'value' in item for item in data):
-                return [item['value'].strip() for item in data], content_json['sha']
-            elif all(isinstance(item, str) for item in data):
-                return [item.strip() for item in data], content_json['sha']
+        try:
+            content_base64 = file_data['content']
+            decoded_content = base64.b64decode(content_base64).decode('utf-8')
+            existing_values = json.loads(decoded_content)
 
-        print("[Warning] JSON format not recognized.")
-        return [], content_json['sha']
-    except Exception as e:
-        print(f"[Error] Failed to load JSON from GitHub: {e}")
+            # Normalize
+            if isinstance(existing_values, list):
+                if all(isinstance(item, dict) and 'value' in item for item in existing_values):
+                    return [item['value'].strip() for item in existing_values], file_data['sha']
+                elif all(isinstance(item, str) for item in existing_values):
+                    return [item.strip() for item in existing_values], file_data['sha']
+                else:
+                    print("[Warning] JSON format not recognized.")
+                    return [], file_data['sha']
+        except Exception as e:
+            print(f"❌ Error decoding file content: {e}")
+            return [], None
+    else:
+        print(f"❌ Error fetching file from GitHub: {response.status_code}")
+        print(response.text)
         return [], None
 
+
 def scrape_website_values():
-    """Scrape series values from the official Duel Masters site"""
+    print("🌐 Scraping website values...")
     url = "https://dm.takaratomy.co.jp/card/"
     try:
         response = requests.get(url)
@@ -54,49 +62,55 @@ def scrape_website_values():
 
         select = soup.find('select', {'name': 'products'})
         if not select:
-            print("[Error] Could not find 'products' dropdown.")
+            print("❌ Could not find the 'products' dropdown.")
             return []
 
-        options = [opt.get('value').strip() for opt in select.find_all('option') if opt.get('value')]
-        return options
+        return [opt.get('value').strip() for opt in select.find_all('option') if opt.get('value')]
     except Exception as e:
-        print(f"[Error] Failed to scrape website: {e}")
+        print(f"❌ Failed to scrape website: {e}")
         return []
+
 
 def find_missing_values(json_values, website_values):
     json_set = set(json_values)
     website_set = set(website_values)
+
     print(f"\n🧪 Debug: {len(json_set)} JSON values vs {len(website_set)} website values")
     return sorted(website_set - json_set)
 
-def update_json_and_commit(missing_values, existing_values, sha):
-    updated_data = [{"value": val} for val in sorted(existing_values + missing_values)]
 
+def commit_missing_values_to_github(missing_values, current_values, sha):
+    print("🚀 Committing updated JSON to GitHub...")
+
+    updated_values = [{"value": val} for val in sorted(current_values + missing_values)]
+
+    updated_json_str = json.dumps(updated_values, ensure_ascii=False, indent=2)
+    updated_base64 = base64.b64encode(updated_json_str.encode('utf-8')).decode('utf-8')
+
+    commit_url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}"
+    commit_message = "🔁 Update seriesdm.json with new series from website"
     payload = {
-        "message": "🔄 Auto-update seriesdm.json with new booster series",
-        "content": base64.b64encode(json.dumps(updated_data, indent=2, ensure_ascii=False).encode('utf-8')).decode('utf-8'),
-        "branch": BRANCH,
-        "sha": sha
+        "message": commit_message,
+        "content": updated_base64,
+        "sha": sha,
+        "branch": BRANCH
     }
 
     headers = {
-        "Authorization": f"token {GITHUB_TOKEN}",
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
         "Accept": "application/vnd.github.v3+json"
     }
 
-    try:
-        res = requests.put(GITHUB_API_URL, headers=headers, json=payload)
-        res.raise_for_status()
-        print("✅ Successfully updated seriesdm.json on GitHub.")
-    except Exception as e:
-        print(f"❌ Failed to update GitHub file: {e}")
-        print("Response:", res.text)
+    response = requests.put(commit_url, headers=headers, json=payload)
+    if response.status_code == 200 or response.status_code == 201:
+        print("✅ Successfully committed updated JSON to GitHub!")
+    else:
+        print(f"❌ Failed to commit file: {response.status_code}")
+        print(response.text)
 
-def run_scraper_and_update():
-    print("🔄 Loading JSON values from GitHub...")
-    json_values, sha = load_json_values_from_github()
 
-    print("🌐 Scraping website values...")
+def run_check():
+    json_values, sha = load_series_json_from_github()
     website_values = scrape_website_values()
 
     if not json_values:
@@ -106,25 +120,34 @@ def run_scraper_and_update():
         print("❌ No data scraped from website.")
         return
 
-    print("🔍 Finding missing values...")
     missing_values = find_missing_values(json_values, website_values)
 
-    print(f"\n📋 JSON total: {len(json_values)} | Website total: {len(website_values)} | Missing: {len(missing_values)}")
+    print("\n=== 📋 Missing Values Report ===")
+    print(f"📦 Total series in GitHub JSON: {len(json_values)}")
+    print(f"🌍 Total series on website: {len(website_values)}")
+    print(f"❓ Missing series count: {len(missing_values)}")
+
     if missing_values:
-        print("\n⚠️ Missing booster series:")
+        print("\n⚠️ Missing series:")
         for val in missing_values:
             print(f"- {val}")
-        
-        collection = os.getenv('C_DUELMASTERS')
 
-        # ✅ Scrape missing data
-        startscraping(booster_list=missing_values, collection_name=collection)
+        # Run scraper
+        startscraping(booster_list=missing_values, collection_name="testdata")
 
-        # ✅ Update and commit JSON to GitHub
-        update_json_and_commit(missing_values, json_values, sha)
+        # Commit updated list to GitHub
+        commit_missing_values_to_github(missing_values, json_values, sha)
 
+        # Optionally save locally too
+        try:
+            with open('missing_series.json', 'w', encoding='utf-8') as f:
+                json.dump(missing_values, f, indent=2, ensure_ascii=False)
+            print("\n💾 Saved missing series to 'missing_series.json'")
+        except Exception as e:
+            print(f"[Error] Could not save locally: {e}")
     else:
-        print("✅ All booster series from the site are already in the JSON!")
+        print("✅ All series in JSON exist on the website!")
+
 
 if __name__ == "__main__":
-    run_scraper_and_update()
+    run_check()
