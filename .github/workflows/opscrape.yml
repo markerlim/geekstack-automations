@@ -37,4 +37,4 @@ jobs:
         GCSIMAGE: ${{ secrets.GCSIMAGE }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        python opcheckscrape.py
+        python scrapers/onepiece/opcheckscrape.py

@@ -36,4 +36,4 @@ jobs:
         C_DUELMASTERS: ${{vars.C_DUELMASTERS}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        python dmcheckscrape.py
+        python scrapers/duelmasters/dmcheckscrape.py

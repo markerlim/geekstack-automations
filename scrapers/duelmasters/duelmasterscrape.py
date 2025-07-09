@@ -10,9 +10,9 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
-from googlecloudservice import upload_image_to_gcs
-from mongoservice import upload_to_mongo
-from translationservice import translate_data
+from service.googlecloudservice import upload_image_to_gcs
+from service.mongoservice import upload_to_mongo
+from service.translationservice import translate_data
 
 def get_total_pages(driver, booster):
     url = f"https://dm.takaratomy.co.jp/card/?v=%7B%22suggest%22:%22on%22,%22keyword_type%22:%5B%22card_name%22,%22card_ruby%22,%22card_text%22%5D,%22culture_cond%22:%5B%22%E5%8D%98%E8%89%B2%22,%22%E5%A4%9A%E8%89%B2%22%5D,%22pagenum%22:%221%22,%22samename%22:%22show%22,%22products%22:%22{booster}%22,%22sort%22:%22release_new%22%7D"
@@ -187,7 +187,7 @@ def process_card(card):
 
     return card_dict
 
-def save_to_json(detailed_cards, filename="duelmasters_cards_data.json"):
+def save_to_json(detailed_cards, filename="../../duelmasterdb/duelmasters_cards_data.json"):
     """Save the detailed card data to a JSON file."""
     import json
     with open(filename, mode='w', encoding='utf-8') as file:

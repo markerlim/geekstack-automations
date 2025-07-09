@@ -2,8 +2,8 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import os
-from googlecloudservice import upload_image_to_gcs
-from mongoservice import upload_to_mongo
+from service.googlecloudservice import upload_image_to_gcs
+from service.mongoservice import upload_to_mongo
 
 def map_booster(code):
     if code == '556701':
