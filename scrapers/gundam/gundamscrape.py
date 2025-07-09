@@ -1,9 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
 import os
+import sys
 from urllib.parse import urljoin
-from geekstack-automations.service.googlecloudservice import upload_image_to_gcs
-from geekstack-automations.service.mongoservice import upload_to_mongo
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
+from service.googlecloudservice import upload_image_to_gcs
+from service.mongoservice import upload_to_mongo
 
 def scrape_gundam_cards(package_value):
     """Scrape Gundam cards for a specific package value and upload to MongoDB/GCS"""

@@ -2,6 +2,10 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import os
+import sys
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
 from service.googlecloudservice import upload_image_to_gcs
 from service.mongoservice import upload_to_mongo
 
