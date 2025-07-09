@@ -39,4 +39,4 @@ jobs:
         GCSIMAGE: ${{ secrets.GCSIMAGE }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        python scrapers/gundam/gundamscrape.py
+        python scrapers/gundam/gcgcheckscrape.py
