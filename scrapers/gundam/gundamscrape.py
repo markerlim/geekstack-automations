@@ -17,7 +17,7 @@ def scrape_gundam_cards(package_value):
     
     gcs_imgpath_value = f'GUNDAM/{package_value}/'
     url = f"https://www.gundam-gcg.com/asia-en/cards/?package={package_value}"
-    base_url = "https://www.gundam-gcg.com"
+    base_url = "https://www.gundam-gcg.com/asia-en/cards"
 
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
@@ -43,7 +43,7 @@ def scrape_gundam_cards(package_value):
                 # Extract basic card info
                 detail_url = card_link.get('data-src', '')
                 card_id = detail_url.split('detailSearch=')[-1] if 'detailSearch=' in detail_url else ''
-                image_url = card_link.find('img').get('data-src', '')
+                image_url = card_link.find('img').get('data-src', '') or card_link.find('img').get('src', '')
                 alt_text = card_link.find('img').get('alt', '')
 
                 # Process image
@@ -69,24 +69,69 @@ def scrape_gundam_cards(package_value):
                         detail_response = requests.get(urljoin(base_url, detail_url), headers=headers)
                         detail_soup = BeautifulSoup(detail_response.content, 'html.parser')
                         
-                        # Extract card stats - adjust selectors based on actual page structure
-                        stats = detail_soup.select('.cardInfo .infoRow')
-                        for stat in stats:
-                            label = stat.find(class_='infoLabel').text.strip() if stat.find(class_='infoLabel') else ''
-                            value = stat.find(class_='infoValue').text.strip() if stat.find(class_='infoValue') else ''
+                        # Extract card number and rarity
+                        card_no_element = detail_soup.select_one('.cardNoCol .cardNo')
+                        if card_no_element:
+                            card_data['cardNumber'] = card_no_element.get_text(strip=True)
+                        
+                        rarity_element = detail_soup.select_one('.cardNoCol .rarity')
+                        if rarity_element:
+                            card_data['rarity'] = rarity_element.get_text(strip=True)
+                        
+                        # Extract level, cost, color, type
+                        side_data = detail_soup.select('.cardDataRow.side .dataBox')
+                        for data in side_data:
+                            label = data.select_one('.dataTit').get_text(strip=True) if data.select_one('.dataTit') else ''
+                            value = data.select_one('.dataTxt').get_text(strip=True) if data.select_one('.dataTxt') else ''
                             
-                            if 'Rarity' in label:
-                                card_data['rarity'] = value
-                            elif 'Type' in label:
-                                card_data['cardType'] = value
-                            elif 'Cost' in label:
+                            if label == 'Lv.':
+                                card_data['level'] = value
+                            elif label == 'COST':
                                 card_data['cost'] = value
-                            elif 'Power' in label:
-                                card_data['power'] = value
-                            elif 'Armor' in label:
-                                card_data['armor'] = value
-                            elif 'Effect' in label:
-                                card_data['effects'] = value
+                            elif label == 'COLOR':
+                                card_data['color'] = value
+                            elif label == 'TYPE':
+                                card_data['cardType'] = value
+                        
+                        # Extract overview/effect text
+                        overview_element = detail_soup.select_one('.cardDataRow.overview .dataTxt')
+                        if overview_element:
+                            card_data['effect'] = overview_element.get_text(strip=True)
+                        
+                        # Extract zone, trait, link
+                        other_data = detail_soup.select('.cardDataRow:not(.side) .dataBox')
+                        for data in other_data:
+                            label = data.select_one('.dataTit').get_text(strip=True) if data.select_one('.dataTit') else ''
+                            value = data.select_one('.dataTxt').get_text(strip=True) if data.select_one('.dataTxt') else ''
+                            
+                            if label == 'Zone':
+                                card_data['zone'] = value
+                            elif label == 'Trait':
+                                card_data['trait'] = value
+                            elif label == 'Link':
+                                card_data['link'] = value
+                        
+                        # Extract AP and HP if available
+                        ap_hp_data = detail_soup.select('.cardDataRow.side .dataBox')
+                        for data in ap_hp_data:
+                            label = data.select_one('.dataTit').get_text(strip=True) if data.select_one('.dataTit') else ''
+                            value = data.select_one('.dataTxt').get_text(strip=True) if data.select_one('.dataTxt') else ''
+                            
+                            if label == 'AP':
+                                card_data['attackPower'] = value
+                            elif label == 'HP':
+                                card_data['hitPoints'] = value
+                        
+                        # Extract source title
+                        source_element = detail_soup.select_one('.cardDataRow dl:has(.dataTit:contains("Source Title")) .dataTxt')
+                        if source_element:
+                            card_data['sourceTitle'] = source_element.get_text(strip=True)
+                        
+                        # Extract where to get it
+                        where_element = detail_soup.select_one('.cardDataRow dl:has(.dataTit:contains("Where to get it")) .dataTxt')
+                        if where_element:
+                            card_data['obtainedFrom'] = where_element.get_text(strip=True)
+
                     except Exception as e:
                         print(f"⚠️ Couldn't fetch details for {card_id}: {str(e)}")
 
