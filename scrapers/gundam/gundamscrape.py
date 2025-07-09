@@ -17,7 +17,7 @@ def scrape_gundam_cards(package_value):
     
     gcs_imgpath_value = f'GUNDAM/{package_value}/'
     url = f"https://www.gundam-gcg.com/asia-en/cards/?package={package_value}"
-    base_url = "https://www.gundam-gcg.com/asia-en/cards"
+    base_url = "https://www.gundam-gcg.com/asia-en/cards/"
 
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
