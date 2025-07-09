@@ -15,7 +15,7 @@ def scrape_gundam_cards(package_value):
         print("❌ package_value is not provided. Exiting.")
         return
     
-    gcs_imgpath_value = 'GUNDAM/test/'
+    gcs_imgpath_value = f'GUNDAM/{package_value}/'
     url = f"https://www.gundam-gcg.com/asia-en/cards/?package={package_value}"
     base_url = "https://www.gundam-gcg.com"
 
