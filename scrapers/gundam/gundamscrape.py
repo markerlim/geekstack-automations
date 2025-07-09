@@ -97,7 +97,7 @@ def scrape_gundam_cards(package_value):
                 print(f"❌ Error processing card: {str(e)}")
 
         # Upload to MongoDB
-        collection_value = os.getenv('C_GUNDAM', 'gundam_cards')  # Default collection name
+        collection_value = os.getenv('C_GUNDAM')  # Default collection name
         upload_to_mongo(
             data=json_data,
             collection_name=collection_value
