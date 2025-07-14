@@ -55,7 +55,6 @@ def scrape_gundam_cards(package_value):
                 # Initialize card data structure
                 card_data = {
                     "cardName": alt_text,
-                    "cardId": card_id,
                     "package": package_value,
                     "series": card_id.split('-')[0] if '-' in card_id else '',
                     "urlimage": urlimage,
@@ -72,7 +71,7 @@ def scrape_gundam_cards(package_value):
                         # Extract card number and rarity
                         card_no_element = detail_soup.select_one('.cardNoCol .cardNo')
                         if card_no_element:
-                            card_data['cardNumber'] = card_no_element.get_text(strip=True)
+                            card_data['cardId'] = card_no_element.get_text(strip=True)
                         
                         rarity_element = detail_soup.select_one('.cardNoCol .rarity')
                         if rarity_element:
