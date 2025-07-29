@@ -97,8 +97,7 @@ def scrape_onepiece_cards(series_value):
             counter = dl_element.find('div', class_='counter').text.replace('Counter', '').strip()
             color = dl_element.find('div', class_='color').text.replace('Color', '').strip()
             typing = dl_element.find('div', class_='feature').text.replace('Type', '').strip()
-            effect = dl_element.find('div', class_='text').decode_contents().replace('Effect', '').strip()
-
+            effect = dl_element.find('div', class_='text').get_text().replace('Effect', '').strip()
             try:
                 trigger = dl_element.find('div', class_='trigger').text.replace('Trigger', '').strip()
             except:
