@@ -4,12 +4,12 @@ import os
 import base64
 from bs4 import BeautifulSoup
 
-from gundamscrape import scrape_gundam_cards
+from dragonballzfwscrape import scrape_dragonballzfw_cards
 
 # GitHub repository details
 REPO_OWNER = "markerlim"
 REPO_NAME = "geekstack-automations"
-FILE_PATH = "gundamtcgdb/series.json"
+FILE_PATH = "dragonballzdb/series.json"
 BRANCH = "main"
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
@@ -17,13 +17,13 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}?ref={BRANCH}"
 
 # Step 1: Scrape the current list of series values from the Gundam site
-series_url = "https://www.gundam-gcg.com/asia-en/cards"
+series_url = "https://www.dbs-cardgame.com/fw/asia-en/cardlist"
 response = requests.get(series_url)
 soup = BeautifulSoup(response.content, 'html.parser')
 
-# Find all package links in the filter list
-package_links = soup.select('.filterListItems.js-add--toggleElem a.js-selectBtn-package')
-scraped_values = [link['data-val'] for link in package_links if link['data-val']]  # Get non-empty data-val values
+# Find all package links in the filter list (ignore "ALL" which has empty data-val)
+package_links = soup.select('ul.filterListItems.js-add--toggleElem.js-toggle--selectBox a[data-val]')
+scraped_values = [link['data-val'] for link in package_links if link['data-val'].strip()]
 
 # Step 2: Get the existing series.json file from GitHub via API
 response = requests.get(url, headers={"Authorization": f"Bearer {GITHUB_TOKEN}"})
@@ -60,7 +60,7 @@ else:
         for val in sorted(missing_in_json):
             print(f"  - {val}")
             # Call the scrape_gundam_cards function for each missing value
-            scrape_gundam_cards(val)  # Changed from scrape_onepiece_cards to scrape_gundam_cards
+            scrape_dragonballzfw_cards(val)  # Changed from scrape_onepiece_cards to scrape_gundam_cards
 
     if extra_in_json:
         print("Extra in series.json:")
