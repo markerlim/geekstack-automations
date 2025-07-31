@@ -50,7 +50,6 @@ def upload_image_to_gcs(image_url, filename, filepath, bucket_name="geek-stack.a
         blob = bucket.blob(f"{filepath}{filename}.webp")
         print(f"Uploading to GCS at: {filepath}{filename}.webp")
         blob.upload_from_filename(webp_file_path)
-        blob.make_public()
 
         os.remove(webp_file_path)  # Clean up WebP temp file
 
