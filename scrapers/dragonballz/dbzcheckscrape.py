@@ -17,7 +17,7 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}?ref={BRANCH}"
 
 # Step 1: Scrape the current list of series values from the Gundam site
-series_url = "https://www.dbs-cardgame.com/fw/asia-en/cardlist"
+series_url = "https://www.dbs-cardgame.com/fw/en/cardlist"
 response = requests.get(series_url)
 soup = BeautifulSoup(response.content, 'html.parser')
 

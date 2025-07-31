@@ -10,16 +10,16 @@ from service.googlecloudservice import upload_image_to_gcs
 from service.mongoservice import upload_to_mongo
 
 def map_booster(code):
-    if code == '595901':
+    if code == '583901':
         return 'PROMO'
     else:
         prefix = code[:4]
         suffix = code[-2:]
-        if prefix == '5951':
+        if prefix == '5831':
             return f"ST{suffix}"
-        elif prefix == '5950':
+        elif prefix == '5830':
             return f"FB{suffix}"
-        elif prefix == '5952':
+        elif prefix == '5832':
             return f"SD{suffix}"
         else:
             return code
@@ -31,8 +31,8 @@ def scrape_dragonballzfw_cards(package_value):
         return
     
     gcs_imgpath_value = f'DBZFW/{package_value}/'
-    url = f"https://www.dbs-cardgame.com/fw/asia-en/cardlist/?search=true&category%5B0%5D={package_value}"
-    base_url = "https://www.dbs-cardgame.com/fw/asia-en/cardlist/"
+    url = f"https://www.dbs-cardgame.com/fw/en/cardlist/?search=true&category%5B0%5D={package_value}"
+    base_url = "https://www.dbs-cardgame.com/fw/en/cardlist/"
 
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",

@@ -33,7 +33,7 @@ jobs:
         MONGO_USER: ${{ secrets.MONGO_USER }}
         MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
         MONGO_CLUSTER: ${{ secrets.MONGO_CLUSTER }}
-        C_DUELMASTERS: ${{vars.C_DUELMASTERS}}
+        C_DRAGONBALLZFW: ${{vars.C_DRAGONBALLZFW}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         python scrapers/dragonballz/dbzcheckscrape.py
