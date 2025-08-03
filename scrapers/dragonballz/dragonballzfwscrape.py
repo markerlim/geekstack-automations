@@ -16,7 +16,7 @@ def map_booster(code):
         prefix = code[:4]
         suffix = code[-2:]
         if prefix == '5831':
-            return f"ST{suffix}"
+            return f"FS{suffix}"
         elif prefix == '5830':
             return f"FB{suffix}"
         elif prefix == '5832':
@@ -55,14 +55,11 @@ def scrape_dragonballzfw_cards(package_value):
                 if not card_link:
                     continue
 
-                # Extract card number from alt text or data-src
                 img_tag = card_link.find('img')
                 alt_text = img_tag.get('alt', '') if img_tag else ''
-                # Example alt_text: "FS01-01 Son Goku"
                 card_no = alt_text.split(' ')[0] if alt_text else ''
                 card_name = ' '.join(alt_text.split(' ')[1:]) if alt_text else ''
 
-                # Build detail URL
                 detail_url = f"https://dbs-cardgame.com/fw/en/cardlist/detail.php?card_no={card_no}"
 
                 # Image handling
@@ -72,83 +69,116 @@ def scrape_dragonballzfw_cards(package_value):
                 card_uid = filename.replace('.webp', '')
                 urlimage = upload_image_to_gcs(full_image_url, card_uid, gcs_imgpath_value)
 
-                # Initialize card data structure
+                # Initialize base card data structure
                 card_data = {
                     "cardNo": card_no,
                     "cardName": card_name,
                     "urlimage": urlimage,
                     "cardUid": card_uid,
                     "detail_url": detail_url,
-                    "package": package_value
+                    "booster": map_booster(package_value)
                 }
 
-                # Get additional details from new detail page
+                # Get additional details from detail page
                 try:
                     detail_response = requests.get(detail_url, headers=headers)
                     detail_soup = BeautifulSoup(detail_response.content, 'html.parser')
 
+                    # Extract common card details
                     card_data['cardNo'] = detail_soup.find('div', class_='cardNo').text.strip() if detail_soup.find('div', class_='cardNo') else ''
                     card_data['rarity'] = detail_soup.find('div', class_='rarity').text.strip() if detail_soup.find('div', class_='rarity') else ''
                     card_data['cardName'] = detail_soup.find('h1', class_='cardName').text.strip() if detail_soup.find('h1', class_='cardName') else ''
 
                     cardDataRows = detail_soup.find('div', class_='cardData').find_all('div', class_='cardDataRow') if detail_soup.find('div', class_='cardData') else []
-                    # Initialize variables
-                    cardtype = color = cost = specifiedcost = power = combopower = features = effects = setFrom = ''
+                    
+                    # Initialize card attributes
+                    card_attributes = {
+                        'cardType': '',
+                        'color': '',
+                        'cost': '',
+                        'specifiedCost': '',
+                        'power': '',
+                        'comboPower': '',
+                        'features': '',
+                        'effect': '',
+                        'obtainedFrom': ''
+                    }
 
                     for cardDataRow in cardDataRows:
                         cardDataCells = cardDataRow.find_all('div', class_='cardDataCell')
                         for cardDataCell in cardDataCells:
                             heading = cardDataCell.find('h6').decode_contents().strip() if cardDataCell.find('h6') else ''
                             data = cardDataCell.find('div', class_='data').text.strip() if cardDataCell.find('div', class_='data') else ''
+                            
                             if heading == 'Card type':
-                                cardtype = data
+                                card_attributes['cardType'] = data
                             elif heading == 'Color':
-                                color = data
+                                card_attributes['color'] = data
                             elif heading == 'Cost':
-                                cost = data
+                                card_attributes['cost'] = data
                             elif heading == 'Specified cost':
-                                specifiedcost = data
+                                card_attributes['specifiedCost'] = data
                             elif heading == 'Power':
-                                power = data
+                                card_attributes['power'] = data
                             elif heading == 'Combo power':
-                                combopower = data
+                                card_attributes['comboPower'] = data
                             elif heading == 'Features':
-                                features = data
+                                card_attributes['features'] = data
                             elif heading == 'Effect':
-                                effects = data
+                                card_attributes['effect'] = data
                             elif heading == 'Where to get it':
-                                setFrom = data
+                                card_attributes['obtainedFrom'] = data
 
-                    # Add extracted fields to card_data
-                    card_data.update({
-                        "cardType": cardtype,
-                        "color": color,
-                        "cost": cost,
-                        "specifiedCost": specifiedcost,
-                        "power": power,
-                        "comboPower": combopower,
-                        "features": features,
-                        "effect": effects,
-                        "obtainedFrom": setFrom
-                    })
+                    card_data.update(card_attributes)
 
-                    print([
-                        card_data.get('cardNo', ''), card_data.get('rarity', ''), card_data.get('cardName', ''),
-                        cardtype, color, cost, specifiedcost, power, combopower, features, effects, setFrom
-                    ])
-                    print(detail_url, "completed")
+                    # Check if it's a leader card
+                    is_leader = 'LEADER' in card_attributes['cardType'].upper()
+                    
+                    if is_leader:
+                        # Process both front and back sides for leader cards
+                        for side in ['front', 'back']:
+                            side_class = f'is-{side}'
+                            img_div_class = f'img-{side}'
+                            
+                            card_data_side = card_data.copy()
+                            
+                            # Get side-specific name
+                            card_name_tag = detail_soup.find('h1', class_=f'cardName {side_class}')
+                            if card_name_tag:
+                                card_data_side['cardName'] = card_name_tag.text.strip()
+                            
+                            # Get side-specific attributes
+                            for attr in ['power', 'features', 'effect']:
+                                data_tag = detail_soup.find('div', class_=f'data {side_class}')
+                                if data_tag:
+                                    card_data_side[attr] = data_tag.text.strip()
+                            
+                            # Get side-specific image
+                            image_div = detail_soup.find('div', class_=img_div_class)
+                            if image_div:
+                                image_tag = image_div.find('img')
+                                if image_tag:
+                                    image_url = image_tag.get('data-src', '') or image_tag.get('src', '')
+                                    if image_url:
+                                        full_image_url = urljoin(base_url, image_url)
+                                        filename = f"{card_uid}_{side}.webp"
+                                        card_data_side['urlimage'] = upload_image_to_gcs(full_image_url, filename, gcs_imgpath_value)
+                            
+                            card_data_side['side'] = side
+                            json_data.append(card_data_side)
+                            print(f"Stored {side} side for leader card: {card_data_side['cardNo']}")
+                    else:
+                        # Normal card, store as is
+                        json_data.append(card_data)
 
                 except Exception as e:
                     print(f"⚠️ Couldn't fetch details for {card_no}: {str(e)}")
-
-                json_data.append(card_data)
-                print(f"✅ Success: {card_data['cardName']} ({card_no})")
 
             except Exception as e:
                 print(f"❌ Error processing card: {str(e)}")
 
         # Upload to MongoDB
-        collection_value = os.getenv('C_DRAGONBALLZFW')  # Default collection name
+        collection_value = os.getenv('C_DRAGONBALLZFW')
         upload_to_mongo(
             data=json_data,
             collection_name=collection_value
