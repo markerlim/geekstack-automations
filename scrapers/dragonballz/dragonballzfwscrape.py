@@ -62,7 +62,7 @@ def scrape_dragonballzfw_cards(package_value):
 
                 detail_url = f"https://dbs-cardgame.com/fw/en/cardlist/detail.php?card_no={card_no}"
 
-                # Image handling
+                # Image handling - initial card image (front side for leaders)
                 image_url = img_tag.get('data-src', '') or img_tag.get('src', '')
                 full_image_url = urljoin(base_url, image_url) if image_url else ''
                 filename = image_url.split('/')[-1].split('?')[0] if image_url else ''
@@ -139,8 +139,10 @@ def scrape_dragonballzfw_cards(package_value):
                         for side in ['front', 'back']:
                             side_class = f'is-{side}'
                             img_div_class = f'img-{side}'
+                            side_suffix = '_f' if side == 'front' else '_b'
                             
                             card_data_side = card_data.copy()
+                            card_data_side['cardUid'] = f"{card_uid}{side_suffix}"
                             
                             # Get side-specific name
                             card_name_tag = detail_soup.find('h1', class_=f'cardName {side_class}')
@@ -161,12 +163,12 @@ def scrape_dragonballzfw_cards(package_value):
                                     image_url = image_tag.get('data-src', '') or image_tag.get('src', '')
                                     if image_url:
                                         full_image_url = urljoin(base_url, image_url)
-                                        filename = f"{card_uid}_{side}.webp"
+                                        filename = f"{card_uid}{side_suffix}"
                                         card_data_side['urlimage'] = upload_image_to_gcs(full_image_url, filename, gcs_imgpath_value)
                             
                             card_data_side['side'] = side
                             json_data.append(card_data_side)
-                            print(f"Stored {side} side for leader card: {card_data_side['cardNo']}")
+                            print(f"Stored {side} side for leader card: {card_data_side['cardNo']} with UID {card_data_side['cardUid']}")
                     else:
                         # Normal card, store as is
                         json_data.append(card_data)
