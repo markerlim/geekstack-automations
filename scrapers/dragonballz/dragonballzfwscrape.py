@@ -60,8 +60,7 @@ def scrape_dragonballzfw_cards(package_value):
                 card_no = alt_text.split(' ')[0] if alt_text else ''
                 card_name = ' '.join(alt_text.split(' ')[1:]) if alt_text else ''
 
-                detail_url = f"https://dbs-cardgame.com/fw/en/cardlist/detail.php?card_no={card_no}"
-
+                detail_url = urljoin(base_url, card_link.get('data-src', '')) if card_link.get('data-src') else ''
                 # Image handling - initial card image (front side for leaders)
                 image_url = img_tag.get('data-src', '') or img_tag.get('src', '')
                 full_image_url = urljoin(base_url, image_url) if image_url else ''
