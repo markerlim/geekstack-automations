@@ -230,7 +230,7 @@ def startscraping(booster_list, collection_name):
 
             translated_data = translate_data(
                 data=detailed_card_data,
-                fields_to_translate=['cardName', 'cardName2', 'effects', 'effects2'],
+                fields_to_translate=['cardName', 'cardName2', 'effects', 'effects2', 'race', 'race2'],
                 src_lang='ja',
                 dest_lang='en',
                 batch_size=100,
