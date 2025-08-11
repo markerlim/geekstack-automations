@@ -24,8 +24,23 @@ def get_total_pages(driver, booster):
     time.sleep(3)
 
     try:
-        pagination = driver.find_elements(By.CSS_SELECTOR, "ul.pagination li a")
-        page_numbers = [int(p.text) for p in pagination if p.text.isdigit()]
+        pagination = driver.find_elements(By.CSS_SELECTOR, "div.wp-pagenavi a.page")
+        page_numbers = []
+        
+        for p in pagination:
+            try:
+                page_num = int(p.text)
+                page_numbers.append(page_num)
+            except ValueError:
+                continue
+        
+        current_page = driver.find_element(By.CSS_SELECTOR, "div.wp-pagenavi span.current")
+        if current_page:
+            try:
+                page_numbers.append(int(current_page.text))
+            except ValueError:
+                pass
+        
         if page_numbers:
             max_page = max(page_numbers)
             print(f"🔢 Total pages for booster '{booster}': {max_page}")
