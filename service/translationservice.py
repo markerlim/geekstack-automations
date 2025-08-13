@@ -1,4 +1,3 @@
-import json
 from deep_translator import GoogleTranslator
 import time
 from tqdm import tqdm
@@ -41,8 +40,18 @@ def translate_data(data,
                     item[f"{field}JP"] = original
 
                     # Translate and assign
-                    translated = translator.translate(str(original))
-                    item[field] = translated
+                    if isinstance(original, list):
+                        translated_list = []
+                        for text in original:
+                            if not text or str(text).strip() == "":
+                                translated_list.append("")
+                                continue
+                            translated = translator.translate(str(text))
+                            translated_list.append(translated)
+                        item[field] = translated_list
+                    # Handle string fields
+                    elif str(original).strip() != "":
+                        item[field] = translator.translate(str(original))
 
                 break  # Success, break retry loop
             except Exception as e:
@@ -58,25 +67,3 @@ def translate_data(data,
             time.sleep(1)
 
     return data  # Return translated data
-
-
-# Example usage
-if __name__ == "__main__":
-    # Example input JSON data (can be loaded from anywhere, e.g., a database or API)
-    input_data = [
-        {"cardName": "カード1", "cardName2": "カード2", "effects": "効果1", "effects2": "効果2"},
-        {"cardName": "カード3", "cardName2": "カード4", "effects": "効果3", "effects2": "効果4"}
-    ]
-
-    # Translate the data
-    translated_data = translate_data(
-        data=input_data,
-        fields_to_translate=['cardName', 'cardName2', 'effects', 'effects2'],
-        src_lang='ja',
-        dest_lang='en',
-        batch_size=100,
-        max_retries=3
-    )
-
-    # Print the translated data
-    print(json.dumps(translated_data, ensure_ascii=False, indent=2))

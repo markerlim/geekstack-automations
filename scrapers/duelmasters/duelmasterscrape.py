@@ -52,6 +52,20 @@ def get_total_pages(driver, booster):
         print(f"⚠️ Error detecting total pages: {e}")
         return 1
 
+def split_race(race_string):
+    """Splits a race string by '/' and returns a list of cleaned race names.
+    
+    Args:
+        race_string: The race string to process (e.g., "ドラゴン/デーモン")
+    
+    Returns:
+        List[str]: List of race names (empty list if input is empty/None)
+    """
+    if not race_string:
+        return []
+    
+    return [r.strip() for r in race_string.split("/") if r.strip()]
+
 def scrape_all_pages(driver, booster):
     total_pages = get_total_pages(driver, booster)
     all_card_data = []
@@ -152,7 +166,7 @@ def scrape_card_details(card_data):
                 "power": main.get("パワー"),
                 "cost": main.get("コスト"),
                 "mana": main.get("マナ"),
-                "race": main.get("種族"),
+                "race": split_race(main.get("種族")),
                 "illustrator": main.get("イラストレーター"),
                 "effects": effects_main,
                 "type2JP": alt.get("カードの種類"),
@@ -163,7 +177,7 @@ def scrape_card_details(card_data):
                 "power2": alt.get("パワー"),
                 "cost2": alt.get("コスト"),
                 "mana2": alt.get("マナ"),
-                "race2": alt.get("種族"),
+                "race2": split_race(alt.get("種族")),
                 "effects2": effects_alt
             })
         except Exception as e:
@@ -182,16 +196,13 @@ def split_card_name(full_name):
 
 def process_card(card):
     try:
-        # Extract cardUid and detailUrl from the card list
         card_uid = card[0]
         image_url= card[1]
-        detail_url = card[2]  # The third element is the detail URL
+        detail_url = card[2]
 
-        # Extract booster from cardUid
         booster = card_uid.split("-")[0]
         new_urlimage = upload_image_to_gcs(image_url=image_url,filename=card_uid,filepath=f"DMTCG/{booster}/")
 
-        # Add new fields and update
         card_dict = {
             "cardUid": card_uid,
             "booster": booster,
@@ -254,7 +265,6 @@ def startscraping(booster_list, collection_name):
 
             all_translated_data.extend(translated_data)
 
-        # Upload all collected data
         upload_to_mongo(
             data=all_translated_data,
             collection_name=collection_name
