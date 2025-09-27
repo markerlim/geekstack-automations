@@ -5,7 +5,7 @@ import tempfile
 import os
 from PIL import Image
 
-def upload_image_to_gcs(image_url, filename, filepath, bucket_name="geek-stack.appspot.com"):
+def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geekstack.dev"):
     try:
         print(f"Attempting to download image from: {image_url}")
         
@@ -53,8 +53,14 @@ def upload_image_to_gcs(image_url, filename, filepath, bucket_name="geek-stack.a
 
         os.remove(webp_file_path)  # Clean up WebP temp file
 
-        print(f"✅ File uploaded successfully. Public URL: {blob.public_url}")
-        return blob.public_url
+        gcs_url = blob.public_url
+        custom_url = gcs_url.replace(
+            f"https://storage.googleapis.com/{bucket_name}/",
+            f"https://{bucket_name}/"
+        )
+
+        print(f"✅ File uploaded successfully. Public URL: {custom_url}")
+        return custom_url
     except Exception as e:
         print(f"❌ Failed to upload {filename} to GCS: {e}")
         return image_url  # fallback to original
