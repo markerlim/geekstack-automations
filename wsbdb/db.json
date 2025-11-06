@@ -1,6 +1,13 @@
 {
   "expansions": [
     {
+      "expansion_code": "NTM/01S",
+      "title": "スタートデッキ『夏目友人帳』",
+      "category": "デッキ商品",
+      "release_date": "2025-10-24",
+      "url": "/cardlist/cardsearch/?expansion=NTM/01S"
+    },
+    {
       "expansion_code": "NTM/01B",
       "title": "ブースターパック『夏目友人帳』",
       "category": "パック商品",
