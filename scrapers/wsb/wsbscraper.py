@@ -7,7 +7,6 @@ from urllib.parse import urljoin
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from service.googlecloudservice import upload_image_to_gcs
-from service.mongoservice import upload_to_mongo
 from service.translationservice import translate_data
 
 def scrape_wsb_card(cardno, expansion_code, translate=True):
@@ -53,7 +52,7 @@ def scrape_wsb_card(cardno, expansion_code, translate=True):
                     filename = image_url.split('/')[-1].split('.')[0]
                     card_data['cardUid'] = filename
                     try:
-                        card_data['urlimage'] = upload_image_to_gcs(full_image_url, filename, gcs_imgpath_value)
+                        card_data['urlimage'] = upload_image_to_gcs(image_url=full_image_url, filename=filename, filepath=gcs_imgpath_value)
                     except Exception as e:
                         print(f"⚠️ Image upload failed for {cardno}: {str(e)}")
                         card_data['urlimage'] = full_image_url

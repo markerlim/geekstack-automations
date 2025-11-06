@@ -6,10 +6,22 @@ import os
 from PIL import Image
 
 def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geekstack.dev"):
+
     try:
         print(f"Attempting to download image from: {image_url}")
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+            "Accept": "image/webp,image/apng,image/*,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept-Encoding": "gzip, deflate, br",
+            "DNT": "1",
+            "Connection": "keep-alive",
+            "Upgrade-Insecure-Requests": "1",
+        }
         
-        response = requests.get(image_url, stream=True)
+        response = requests.get(image_url, stream=True, headers=headers, timeout=30)
+        print(f"Response status code: {response.status_code}")
+        
         if response.status_code != 200:
             raise Exception(f"Image not accessible: {image_url}")
         
