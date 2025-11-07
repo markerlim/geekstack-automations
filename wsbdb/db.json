@@ -1,0 +1,445 @@
+{
+  "expansions": [
+    {
+      "expansion_code": "NTM/01S",
+      "title": "スタートデッキ『夏目友人帳』",
+      "category": "デッキ商品",
+      "release_date": "2025-10-24",
+      "url": "/cardlist/cardsearch/?expansion=NTM/01S"
+    },
+    {
+      "expansion_code": "NTM/01B",
+      "title": "ブースターパック『夏目友人帳』",
+      "category": "パック商品",
+      "release_date": "2025-10-24",
+      "url": "/cardlist/cardsearch/?expansion=NTM/01B"
+    },
+    {
+      "expansion_code": "KSJ/01S",
+      "title": "スタートデッキ「TVアニメ『黒執事 -寄宿学校編-』」",
+      "category": "デッキ商品",
+      "release_date": "2025-09-26",
+      "url": "/cardlist/cardsearch/?expansion=KSJ/01S"
+    },
+    {
+      "expansion_code": "KSJ/01B",
+      "title": "ブースターパック「TVアニメ『黒執事 -寄宿学校編-』」",
+      "category": "パック商品",
+      "release_date": "2025-09-26",
+      "url": "/cardlist/cardsearch/?expansion=KSJ/01B"
+    },
+    {
+      "expansion_code": "AOEX/01S",
+      "title": "スタートデッキ「『青の祓魔師』シリーズ （島根啓明結社篇/雪ノ果篇/終夜篇）」",
+      "category": "デッキ商品",
+      "release_date": "2025-08-29",
+      "url": "/cardlist/cardsearch/?expansion=AOEX/01S"
+    },
+    {
+      "expansion_code": "AOEX/01B",
+      "title": "ブースターパック「『青の祓魔師』シリーズ （島根啓明結社篇/雪ノ果篇/終夜篇）」",
+      "category": "パック商品",
+      "release_date": "2025-08-29",
+      "url": "/cardlist/cardsearch/?expansion=AOEX/01B"
+    },
+    {
+      "expansion_code": "KSR/01S",
+      "title": "スタートデッキ「TVアニメ『薬屋のひとりごと』」",
+      "category": "デッキ商品",
+      "release_date": "2025-06-20",
+      "url": "/cardlist/cardsearch/?expansion=KSR/01S"
+    },
+    {
+      "expansion_code": "KSR/01B",
+      "title": "ブースターパック「TVアニメ『薬屋のひとりごと』」",
+      "category": "パック商品",
+      "release_date": "2025-06-20",
+      "url": "/cardlist/cardsearch/?expansion=KSR/01B"
+    },
+    {
+      "expansion_code": "ISM/02B",
+      "title": "ブースターパック『アイドルマスター SideM BLAU NEW P@SSION!!!』",
+      "category": "パック商品",
+      "release_date": "2025-06-20",
+      "url": "/cardlist/cardsearch/?expansion=ISM/02B"
+    },
+    {
+      "expansion_code": "CNN/01E",
+      "title": "プレミアムセット『名探偵コナン』",
+      "category": "デッキ商品",
+      "release_date": "2025-04-18",
+      "url": "/cardlist/cardsearch/?expansion=CNN/01E"
+    },
+    {
+      "expansion_code": "CIKW/02B",
+      "title": "ブースターパック『ちいかわ Vol.2』",
+      "category": "パック商品",
+      "release_date": "2025-04-11",
+      "url": "/cardlist/cardsearch/?expansion=CIKW/02B"
+    },
+    {
+      "expansion_code": "BLK/02B",
+      "title": "ブースターパック『ブルーロック Vol.2』",
+      "category": "パック商品",
+      "release_date": "2025-03-28",
+      "url": "/cardlist/cardsearch/?expansion=BLK/02B"
+    },
+    {
+      "expansion_code": "BNST/01S",
+      "title": "スタートデッキ『文豪ストレイドッグス』",
+      "category": "デッキ商品",
+      "release_date": "2025-02-21",
+      "url": "/cardlist/cardsearch/?expansion=BNST/01S"
+    },
+    {
+      "expansion_code": "BNST/01B",
+      "title": "ブースターパック『文豪ストレイドッグス』",
+      "category": "パック商品",
+      "release_date": "2025-02-21",
+      "url": "/cardlist/cardsearch/?expansion=BNST/01B"
+    },
+    {
+      "expansion_code": "RBN/01B",
+      "title": "ブースターパック『家庭教師ヒットマンREBORN!』",
+      "category": "パック商品",
+      "release_date": "2025-01-31",
+      "url": "/cardlist/cardsearch/?expansion=RBN/01B"
+    },
+    {
+      "expansion_code": "RBN/01S",
+      "title": "スタートデッキ『家庭教師ヒットマンREBORN!』",
+      "category": "デッキ商品",
+      "release_date": "2024-12-20",
+      "url": "/cardlist/cardsearch/?expansion=RBN/01S"
+    },
+    {
+      "expansion_code": "DTM/01S",
+      "title": "スタートデッキ / ディズニー ツムツム",
+      "category": "デッキ商品",
+      "release_date": "2024-11-15",
+      "url": "/cardlist/cardsearch/?expansion=DTM/01S"
+    },
+    {
+      "expansion_code": "DTM/01B",
+      "title": "ブースターパック / ディズニー ツムツム",
+      "category": "パック商品",
+      "release_date": "2024-11-15",
+      "url": "/cardlist/cardsearch/?expansion=DTM/01B"
+    },
+    {
+      "expansion_code": "TWST/01E",
+      "title": "ハーフデッキパック/ディズニー ツイステッドワンダーランド",
+      "category": "その他",
+      "release_date": "2024-10-25",
+      "url": "/cardlist/cardsearch/?expansion=TWST/01E"
+    },
+    {
+      "expansion_code": "HNW/01S",
+      "title": "スタートデッキ『HoneyWorks ～告白実行委員会～』",
+      "category": "デッキ商品",
+      "release_date": "2024-10-18",
+      "url": "/cardlist/cardsearch/?expansion=HNW/01S"
+    },
+    {
+      "expansion_code": "HNW/01B",
+      "title": "ブースターパック『HoneyWorks ～告白実行委員会～』",
+      "category": "パック商品",
+      "release_date": "2024-10-18",
+      "url": "/cardlist/cardsearch/?expansion=HNW/01B"
+    },
+    {
+      "expansion_code": "SRIO/01S",
+      "title": "スタートデッキ『サンリオキャラクターズ』",
+      "category": "デッキ商品",
+      "release_date": "2024-09-20",
+      "url": "/cardlist/cardsearch/?expansion=SRIO/01S"
+    },
+    {
+      "expansion_code": "SRIO/01B",
+      "title": "ブースターパック『サンリオキャラクターズ』",
+      "category": "パック商品",
+      "release_date": "2024-09-20",
+      "url": "/cardlist/cardsearch/?expansion=SRIO/01B"
+    },
+    {
+      "expansion_code": "STPR/01E",
+      "title": "はじめようデッキ『すとぷり』",
+      "category": "デッキ商品",
+      "release_date": "2024-07-05",
+      "url": "/cardlist/cardsearch/?expansion=STPR/01E"
+    },
+    {
+      "expansion_code": "STPR/02B",
+      "title": "ブースターパック『すとぷり Vol.2』",
+      "category": "パック商品",
+      "release_date": "2024-07-05",
+      "url": "/cardlist/cardsearch/?expansion=STPR/02B"
+    },
+    {
+      "expansion_code": "CFP/01S",
+      "title": "スタートデッキ 『カラフルピーチ』",
+      "category": "デッキ商品",
+      "release_date": "2024-06-28",
+      "url": "/cardlist/cardsearch/?expansion=CFP/01S"
+    },
+    {
+      "expansion_code": "CFP/01B",
+      "title": "ブースターパック『カラフルピーチ』",
+      "category": "パック商品",
+      "release_date": "2024-06-28",
+      "url": "/cardlist/cardsearch/?expansion=CFP/01B"
+    },
+    {
+      "expansion_code": "TNPR/01S",
+      "title": "スタートデッキ『新テニスの王子様』",
+      "category": "デッキ商品",
+      "release_date": "2024-05-10",
+      "url": "/cardlist/cardsearch/?expansion=TNPR/01S"
+    },
+    {
+      "expansion_code": "TNPR/01B",
+      "title": "ブースターパック『新テニスの王子様』",
+      "category": "パック商品",
+      "release_date": "2024-05-10",
+      "url": "/cardlist/cardsearch/?expansion=TNPR/01B"
+    },
+    {
+      "expansion_code": "DSY/01E",
+      "title": "スリーブ＆カードセット ラプンツェル アート コレクション BY 中川翔子",
+      "category": "その他",
+      "release_date": "2024-05-10",
+      "url": "/cardlist/cardsearch/?expansion=DSY/01E"
+    },
+    {
+      "expansion_code": "CNN/02B",
+      "title": "ブースターパック『名探偵コナン Vol.2』",
+      "category": "パック商品",
+      "release_date": "2024-04-12",
+      "url": "/cardlist/cardsearch/?expansion=CNN/02B"
+    },
+    {
+      "expansion_code": "TWST/01S",
+      "title": "スタートデッキ / ディズニー ツイステッドワンダーランド",
+      "category": "デッキ商品",
+      "release_date": "2024-03-22",
+      "url": "/cardlist/cardsearch/?expansion=TWST/01S"
+    },
+    {
+      "expansion_code": "TWST/01B",
+      "title": "ブースターパック / ディズニー ツイステッドワンダーランド",
+      "category": "パック商品",
+      "release_date": "2024-03-22",
+      "url": "/cardlist/cardsearch/?expansion=TWST/01B"
+    },
+    {
+      "expansion_code": "HOS/01S",
+      "title": "スタートデッキ『ホロスターズ』",
+      "category": "デッキ商品",
+      "release_date": "2024-02-16",
+      "url": "/cardlist/cardsearch/?expansion=HOS/01S"
+    },
+    {
+      "expansion_code": "HOS/01B",
+      "title": "ブースターパック『ホロスターズ』",
+      "category": "パック商品",
+      "release_date": "2024-02-16",
+      "url": "/cardlist/cardsearch/?expansion=HOS/01B"
+    },
+    {
+      "expansion_code": "TRVS/01S",
+      "title": "スタートデッキ『東京リベンジャーズ 聖夜決戦編』",
+      "category": "デッキ商品",
+      "release_date": "2023-12-15",
+      "url": "/cardlist/cardsearch/?expansion=TRVS/01S"
+    },
+    {
+      "expansion_code": "TRVS/01B",
+      "title": "ブースターパック『東京リベンジャーズ 聖夜決戦編』",
+      "category": "パック商品",
+      "release_date": "2023-12-15",
+      "url": "/cardlist/cardsearch/?expansion=TRVS/01B"
+    },
+    {
+      "expansion_code": "BLK/01S",
+      "title": "スタートデッキ『ブルーロック』",
+      "category": "デッキ商品",
+      "release_date": "2023-11-03",
+      "url": "/cardlist/cardsearch/?expansion=BLK/01S"
+    },
+    {
+      "expansion_code": "BLK/01B",
+      "title": "ブースターパック『ブルーロック』",
+      "category": "パック商品",
+      "release_date": "2023-11-03",
+      "url": "/cardlist/cardsearch/?expansion=BLK/01B"
+    },
+    {
+      "expansion_code": "HPMI/01B",
+      "title": "ブースターパック『ヒプノシスマイク -Division Rap Battle-』",
+      "category": "パック商品",
+      "release_date": "2023-10-06",
+      "url": "/cardlist/cardsearch/?expansion=HPMI/01B"
+    },
+    {
+      "expansion_code": "HPMI/01Ssd1",
+      "title": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- Buster Bros!!!』",
+      "category": "デッキ商品",
+      "release_date": "2023-09-22",
+      "url": "/cardlist/cardsearch/?expansion=HPMI/01Ssd1"
+    },
+    {
+      "expansion_code": "HPMI/01Ssd2",
+      "title": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- MAD TRIGGER CREW』",
+      "category": "デッキ商品",
+      "release_date": "2023-09-22",
+      "url": "/cardlist/cardsearch/?expansion=HPMI/01Ssd2"
+    },
+    {
+      "expansion_code": "HPMI/01Ssd3",
+      "title": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- Fling Posse』",
+      "category": "デッキ商品",
+      "release_date": "2023-09-22",
+      "url": "/cardlist/cardsearch/?expansion=HPMI/01Ssd3"
+    },
+    {
+      "expansion_code": "HPMI/01Ssd4",
+      "title": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- 麻天狼』",
+      "category": "デッキ商品",
+      "release_date": "2023-09-22",
+      "url": "/cardlist/cardsearch/?expansion=HPMI/01Ssd4"
+    },
+    {
+      "expansion_code": "HPMI/01Ssd5",
+      "title": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- どついたれ本舗』",
+      "category": "デッキ商品",
+      "release_date": "2023-09-22",
+      "url": "/cardlist/cardsearch/?expansion=HPMI/01Ssd5"
+    },
+    {
+      "expansion_code": "HPMI/01Ssd6",
+      "title": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- Bad Ass Temple』",
+      "category": "デッキ商品",
+      "release_date": "2023-09-22",
+      "url": "/cardlist/cardsearch/?expansion=HPMI/01Ssd6"
+    },
+    {
+      "expansion_code": "fARG/01B",
+      "title": "ブースターパック『from ARGONAVIS』",
+      "category": "パック商品",
+      "release_date": "2023-07-14",
+      "url": "/cardlist/cardsearch/?expansion=fARG/01B"
+    },
+    {
+      "expansion_code": "DSY/01B",
+      "title": "ブースターパック / Disney CHARACTERS",
+      "category": "パック商品",
+      "release_date": "2023-06-09",
+      "url": "/cardlist/cardsearch/?expansion=DSY/01B"
+    },
+    {
+      "expansion_code": "DSY/03S",
+      "title": "スタートデッキ『リトル・マーメイド』",
+      "category": "デッキ商品",
+      "release_date": "2023-05-26",
+      "url": "/cardlist/cardsearch/?expansion=DSY/03S"
+    },
+    {
+      "expansion_code": "UTPR/01B",
+      "title": "ブースターパック『劇場版 うたの☆プリンスさまっ♪ マジLOVEキングダム』",
+      "category": "パック商品",
+      "release_date": "2023-05-26",
+      "url": "/cardlist/cardsearch/?expansion=UTPR/01B"
+    },
+    {
+      "expansion_code": "DSY/02S",
+      "title": "スタートデッキ『塔の上のラプンツェル』",
+      "category": "デッキ商品",
+      "release_date": "2023-04-21",
+      "url": "/cardlist/cardsearch/?expansion=DSY/02S"
+    },
+    {
+      "expansion_code": "CNN/01S",
+      "title": "スタートデッキ『名探偵コナン』",
+      "category": "デッキ商品",
+      "release_date": "2023-04-14",
+      "url": "/cardlist/cardsearch/?expansion=CNN/01S"
+    },
+    {
+      "expansion_code": "CNN/01B",
+      "title": "ブースターパック『名探偵コナン』",
+      "category": "パック商品",
+      "release_date": "2023-04-14",
+      "url": "/cardlist/cardsearch/?expansion=CNN/01B"
+    },
+    {
+      "expansion_code": "DSY/01S",
+      "title": "スタートデッキ『アナと雪の女王』",
+      "category": "デッキ商品",
+      "release_date": "2023-03-31",
+      "url": "/cardlist/cardsearch/?expansion=DSY/01S"
+    },
+    {
+      "expansion_code": "STPR/01B",
+      "title": "ブースターパック『すとぷり』",
+      "category": "パック商品",
+      "release_date": "2023-03-24",
+      "url": "/cardlist/cardsearch/?expansion=STPR/01B"
+    },
+    {
+      "expansion_code": "ISM/01B",
+      "title": "ブースターパック『アイドルマスター SideM』",
+      "category": "パック商品",
+      "release_date": "2023-03-15",
+      "url": "/cardlist/cardsearch/?expansion=ISM/01B"
+    },
+    {
+      "expansion_code": "A3!/01B",
+      "title": "ブースターパック『A3!』",
+      "category": "パック商品",
+      "release_date": "2023-02-24",
+      "url": "/cardlist/cardsearch/?expansion=A3!/01B"
+    },
+    {
+      "expansion_code": "fARG/01Sa",
+      "title": "スタートデッキ『Argonavis』",
+      "category": "デッキ商品",
+      "release_date": "2023-02-17",
+      "url": "/cardlist/cardsearch/?expansion=fARG/01Sa"
+    },
+    {
+      "expansion_code": "fARG/01Sg",
+      "title": "スタートデッキ『GYROAXIA』",
+      "category": "デッキ商品",
+      "release_date": "2023-02-17",
+      "url": "/cardlist/cardsearch/?expansion=fARG/01Sg"
+    },
+    {
+      "expansion_code": "ISM/01S",
+      "title": "スタートデッキ『アイドルマスター SideM』",
+      "category": "デッキ商品",
+      "release_date": "2023-02-03",
+      "url": "/cardlist/cardsearch/?expansion=ISM/01S"
+    },
+    {
+      "expansion_code": "CIKW/01B",
+      "title": "ブースターパック『ちいかわ』",
+      "category": "パック商品",
+      "release_date": "2023-01-27",
+      "url": "/cardlist/cardsearch/?expansion=CIKW/01B"
+    },
+    {
+      "expansion_code": "Eve/01B",
+      "title": "ブースターパック『Eve ～ZINGAI/Card Collection～』",
+      "category": "パック商品",
+      "release_date": "2022-12-23",
+      "url": "/cardlist/cardsearch/?expansion=Eve/01B"
+    },
+    {
+      "expansion_code": "STPR/01S",
+      "title": "スタートデッキ『すとぷり』",
+      "category": "デッキ商品",
+      "release_date": "2022-11-19",
+      "url": "/cardlist/cardsearch/?expansion=STPR/01S"
+    } ],
+  "total_count": 74
+}
