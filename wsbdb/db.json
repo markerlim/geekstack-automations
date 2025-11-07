@@ -440,6 +440,84 @@
       "category": "デッキ商品",
       "release_date": "2022-11-19",
       "url": "/cardlist/cardsearch/?expansion=STPR/01S"
-    } ],
+    },
+    {
+      "expansion_code": "A3!/01Ssp",
+      "title": "スタートデッキ『A3! 春組』",
+      "category": "デッキ商品",
+      "release_date": "2022-11-19",
+      "url": "/cardlist/cardsearch/?expansion=A3!/01Ssp"
+    },
+    {
+      "expansion_code": "A3!/01Ssu",
+      "title": "スタートデッキ『A3! 夏組』",
+      "category": "デッキ商品",
+      "release_date": "2022-11-19",
+      "url": "/cardlist/cardsearch/?expansion=A3!/01Ssu"
+    },
+    {
+      "expansion_code": "A3!/01Sau",
+      "title": "スタートデッキ『A3! 秋組』",
+      "category": "デッキ商品",
+      "release_date": "2022-11-19",
+      "url": "/cardlist/cardsearch/?expansion=A3!/01Sau"
+    },
+    {
+      "expansion_code": "A3!/01Swi",
+      "title": "スタートデッキ『A3! 冬組』",
+      "category": "デッキ商品",
+      "release_date": "2022-11-19",
+      "url": "/cardlist/cardsearch/?expansion=A3!/01Swi"
+    },
+    {
+      "expansion_code": "UTPR/01S",
+      "title": "スタートデッキ『劇場版 うたの☆プリンスさまっ♪ マジLOVEスターリッシュツアーズ』",
+      "category": "デッキ商品",
+      "release_date": "2022-11-19",
+      "url": "/cardlist/cardsearch/?expansion=UTPR/01S"
+    },
+    {
+      "expansion_code": "Eve/01S",
+      "title": "スタートデッキ『Eve ～ZINGAI_Card Collection～』",
+      "category": "デッキ商品",
+      "release_date": "2022-11-19",
+      "url": "/cardlist/cardsearch/?expansion=Eve/01S"
+    },
+    {
+      "expansion_code": "CIKW/01S",
+      "title": "スタートデッキ『ちいかわ』",
+      "category": "デッキ商品",
+      "release_date": "2022-11-19",
+      "url": "/cardlist/cardsearch/?expansion=CIKW/01S"
+    },
+    {
+      "expansion_code": "PR2025",
+      "title": "PRカード（2025年）",
+      "category": "PRカード",
+      "release_date": "",
+      "url": "/cardlist/cardsearch/?expansion=PR2025"
+    },
+    {
+      "expansion_code": "PR2024",
+      "title": "PRカード（2024年）",
+      "category": "PRカード",
+      "release_date": "",
+      "url": "/cardlist/cardsearch/?expansion=PR2024"
+    },
+    {
+      "expansion_code": "PR2023",
+      "title": "PRカード（2023年）",
+      "category": "PRカード",
+      "release_date": "",
+      "url": "/cardlist/cardsearch/?expansion=PR2023"
+    },
+    {
+      "expansion_code": "PR2022",
+      "title": "PRカード（2022年）",
+      "category": "PRカード",
+      "release_date": "",
+      "url": "/cardlist/cardsearch/?expansion=PR2022"
+    }
+  ],
   "total_count": 74
 }
