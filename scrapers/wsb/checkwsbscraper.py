@@ -123,6 +123,34 @@ def parse_japanese_date(date_str):
     # If parsing fails, return original
     return date_str
 
+def upload_expansion_image(expansion_code, image_url):
+    """Upload expansion/booster pack image to GCS"""
+    try:
+        from service.googlecloudservice import upload_image_to_gcs
+        
+        if not image_url:
+            return None
+            
+        # Create filename based on expansion code
+        filename = f"wsbCover{expansion_code.replace('/', '_')}"
+        filepath = "boostercover/"
+        
+        gcs_url = upload_image_to_gcs(image_url, filename, filepath)
+        print(f"✅ Uploaded expansion image for {expansion_code}: {filename}")
+        return gcs_url
+        
+    except Exception as e:
+        print(f"⚠️ Failed to upload expansion image for {expansion_code}: {str(e)}")
+        return image_url  # Return original URL as fallback
+
+def enable_expansion_image_uploads():
+    """Enable expansion image uploads to GCS by modifying the scraper"""
+    print("🔧 To enable expansion image uploads, uncomment the lines in check_and_scrape_new_expansions():")
+    print("   # if expansion_image:")
+    print("   #     gcs_url = upload_expansion_image(expansion_code, expansion_image)")
+    print("   #     if gcs_url:")
+    print("   #         expansion_data['expansion_image_gcs'] = gcs_url")
+
 def scrape_wsb_series():
     """Scrape WSB series list and save to db.json"""
     url = "https://ws-blau.com/cardlist/"
@@ -375,6 +403,25 @@ def check_and_scrape_new_expansions():
             title_div = item.find('div', class_='ttl')
             title = title_div.text.strip() if title_div else ''
             
+            # Extract expansion/booster pack image
+            thumb_div = item.find('div', class_='thumb')
+            expansion_image = ''
+            expansion_image_alt = ''
+            if thumb_div:
+                img_tag = thumb_div.find('img')
+                if img_tag:
+                    expansion_image = img_tag.get('src', '')
+                    expansion_image_alt = img_tag.get('alt', '')
+                    # Convert relative URL to absolute
+                    if expansion_image and not expansion_image.startswith('http'):
+                        base_url = "https://ws-blau.com"
+                        expansion_image = urljoin(base_url, expansion_image)
+                        print(f"  🖼️  Found expansion image: {expansion_image}")
+                else:
+                    print(f"  ⚠️  No image tag found in thumb div for {expansion_code}")
+            else:
+                print(f"  ⚠️  No thumb div found for {expansion_code}")
+            
             # Extract category
             cat_item = item.find('div', class_='cat-item')
             category = cat_item.text.strip() if cat_item else ''
@@ -385,13 +432,25 @@ def check_and_scrape_new_expansions():
             # Parse Japanese date to ISO format
             release_date = parse_japanese_date(release_date_raw) or release_date_raw
             
-            current_expansions.append({
+            # Prepare expansion data
+            expansion_data = {
                 "expansion_code": expansion_code,
                 "title": title,
                 "category": category,
                 "release_date": release_date,
-                "url": href
-            })
+                "url": href,
+                "expansion_image": expansion_image,
+                "expansion_image_alt": expansion_image_alt
+            }
+            
+            # Optional: Upload expansion image to GCS (currently disabled)
+            # Uncomment the lines below to enable expansion image uploads
+            if expansion_image:
+                 gcs_url = upload_expansion_image(expansion_code, expansion_image)
+                 if gcs_url:
+                     expansion_data["expansion_image_gcs"] = gcs_url
+            
+            current_expansions.append(expansion_data)
         
         print(f"🔍 Found {len(current_expansions)} expansions on website")
         

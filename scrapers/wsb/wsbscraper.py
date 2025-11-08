@@ -37,7 +37,7 @@ def scrape_wsb_card(cardno, expansion_code, translate=True):
 
         # Initialize card data
         card_data = {
-            "cardNo": cardno,
+            "cardId": cardno,
             "detail_url": url
         }
 
@@ -84,7 +84,7 @@ def scrape_wsb_card(cardno, expansion_code, translate=True):
                     field_name = dt.text.strip()
                     
                     if field_name == '収録商品':
-                        card_data['product'] = dd.text.strip()
+                        card_data['booster'] = dd.text.strip()
                     elif field_name == '作品区分':
                         card_data['series'] = dd.text.strip()
                     elif field_name == 'カード種類':
@@ -140,7 +140,7 @@ def scrape_wsb_card(cardno, expansion_code, translate=True):
         if translate:
             print(f"🔄 Translating card data...")
             fields_to_translate = [
-                'cardName', 'product', 'series', 'cardType', 
+                'cardName', 'booster', 'series', 'cardType', 
                 'color', 'features', 'effect', 'specifications'
             ]
             translated_data = translate_data([card_data], fields_to_translate)
