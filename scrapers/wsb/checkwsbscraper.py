@@ -448,15 +448,13 @@ def check_and_scrape_new_expansions():
                 "alt": expansion_image_alt
             }
             
-            # Optional: Upload expansion image to GCS (currently disabled)
-            # Uncomment the lines below to enable expansion image uploads
+            # Store expansion image URL for later processing (don't upload yet)
             if expansion_image:
-                 gcs_url = upload_expansion_image(expansion_code, expansion_image)
-                 if gcs_url:
-                     expansion_data["urlimage"] = gcs_url
-
-            translatedvalue = translate_data([expansion_data], fields_to_translate=['title', 'category', 'alt'])
-            current_expansions.append(translatedvalue)
+                expansion_data["expansion_image"] = expansion_image
+                expansion_data["expansion_image_alt"] = expansion_image_alt
+            
+            # Don't translate yet - defer until we know it's new
+            current_expansions.append(expansion_data)
         
         print(f"🔍 Found {len(current_expansions)} expansions on website")
         
@@ -503,6 +501,16 @@ def check_and_scrape_new_expansions():
                 print("✅ No new expansions found. Database is up to date.")
             return []
     
+    # Merge existing urlimage data with current expansions to preserve urlimage fields
+    if github_data and 'expansions' in github_data:
+        existing_expansions = {exp.get('booster', exp.get('expansion_code', '')): exp for exp in github_data['expansions']}
+        for i, expansion in enumerate(current_expansions):
+            booster_code = expansion['booster']
+            if booster_code in existing_expansions and 'urlimage' in existing_expansions[booster_code]:
+                # Preserve existing urlimage if new expansion doesn't have one
+                if 'urlimage' not in expansion:
+                    current_expansions[i]['urlimage'] = existing_expansions[booster_code]['urlimage']
+    
     # Save the complete expansions list both locally and to GitHub
     expansions_db = {
         "expansions": current_expansions,
@@ -523,11 +531,31 @@ def check_and_scrape_new_expansions():
     if expansions_to_scrape:  # Only update GitHub if there were new expansions
         update_github_db(expansions_db)
     
-    # Scrape cards for each new expansion
+    # Process and scrape cards for each new expansion
     all_cards_data = []
     for expansion in expansions_to_scrape:
-        print(f"\n🎴 Scraping expansion: {expansion['title']} (code: {expansion['booster']})")
-        cards_data = scrape_cards_for_expansion(expansion['booster'], expansion['title'])
+        print(f"\n🎴 Processing new expansion: {expansion['title']} (code: {expansion['booster']})")
+        
+        # Now translate and upload expansion metadata for new expansions only
+        print(f"🔄 Translating expansion metadata...")
+        translated_expansion = translate_data([expansion], fields_to_translate=['title', 'category', 'alt'])[0]
+        
+        # Upload expansion image for new expansions only
+        expansion_image = expansion.get('expansion_image')
+        if expansion_image:
+            print(f"📤 Uploading expansion image...")
+            gcs_url = upload_expansion_image(expansion['booster'], expansion_image)
+            if gcs_url:
+                translated_expansion["urlimage"] = gcs_url
+        
+        # Update the expansion in current_expansions with translated data and urlimage
+        for i, exp in enumerate(current_expansions):
+            if exp['booster'] == expansion['booster']:
+                current_expansions[i] = translated_expansion
+                break
+        
+        print(f"🎴 Scraping cards for: {translated_expansion['title']}")
+        cards_data = scrape_cards_for_expansion(expansion['booster'], translated_expansion['title'])
         all_cards_data.extend(cards_data)
         
         # Display sample data for review
