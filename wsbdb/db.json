@@ -1,16 +1,6 @@
 {
   "expansions": [
     {
-      "booster": "NTM/01S",
-      "title": "スタートデッキ『夏目友人帳』",
-      "category": "deck",
-      "release_date": "2025-10-24",
-      "url": "/cardlist/cardsearch/?expansion=NTM/01S",
-      "alt": "スタートデッキ『夏目友人帳』",
-      "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/06/05172238/sdpackage_ntm-1.png",
-      "expansion_image_alt": "スタートデッキ『夏目友人帳』"
-    },
-    {
       "booster": "NTM/01B",
       "title": "ブースターパック『夏目友人帳』",
       "category": "expansion",

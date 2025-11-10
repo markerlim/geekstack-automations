@@ -156,14 +156,6 @@ def upload_expansion_image(expansion_code, image_url):
         print(f"⚠️ Failed to upload expansion image for {expansion_code}: {str(e)}")
         return image_url  # Return original URL as fallback
 
-def enable_expansion_image_uploads():
-    """Enable expansion image uploads to GCS by modifying the scraper"""
-    print("🔧 To enable expansion image uploads, uncomment the lines in check_and_scrape_new_expansions():")
-    print("   # if expansion_image:")
-    print("   #     gcs_url = upload_expansion_image(expansion_code, expansion_image)")
-    print("   #     if gcs_url:")
-    print("   #         expansion_data['expansion_image_gcs'] = gcs_url")
-
 def load_series_db():
     """Load series data from db.json"""
     db_file = os.path.join(os.path.dirname(__file__), '..', '..', 'wsbdb', 'db.json')
@@ -228,7 +220,7 @@ def scrape_cards_for_expansion(expansion_code, expansion_title, max_pages=10):
                 try:
                     print(f"    🎴 Scraping card: {card_no}")
                     # Try scraping without translation first to isolate issues
-                    card_data = scrape_wsb_card(card_no, expansion_code, translate=False)
+                    card_data = scrape_wsb_card(card_no, expansion_code, translate=True)
                     print(f"📋 Card data: {card_data}")
                     if card_data:
                         card_data['booster'] = expansion_code
@@ -429,26 +421,6 @@ def check_and_scrape_new_expansions():
                 if 'urlimage' not in expansion:
                     current_expansions[i]['urlimage'] = existing_expansions[booster_code]['urlimage']
     
-    # Save the complete expansions list both locally and to GitHub
-    expansions_db = {
-        "expansions": current_expansions,
-        "total_count": len(current_expansions)
-    }
-    
-    # Save locally
-    db_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'wsbdb')
-    os.makedirs(db_dir, exist_ok=True)
-    db_file = os.path.join(db_dir, 'db.json')
-    
-    with open(db_file, 'w', encoding='utf-8') as f:
-        json.dump(expansions_db, f, indent=2, ensure_ascii=False)
-    
-    print(f"💾 Updated local expansions database with {len(current_expansions)} total expansions")
-    
-    # Update GitHub
-    if expansions_to_scrape:  # Only update GitHub if there were new expansions
-        update_github_db(expansions_db)
-    
     # Process and scrape cards for each new expansion
     all_cards_data = []
     for expansion in expansions_to_scrape:
@@ -486,6 +458,26 @@ def check_and_scrape_new_expansions():
             if len(sample_card) > 5:
                 print(f"   ... and {len(sample_card) - 5} more fields")
             print()
+    
+    # Save the complete expansions list both locally and to GitHub AFTER image uploads
+    expansions_db = {
+        "expansions": current_expansions,
+        "total_count": len(current_expansions)
+    }
+    
+    # Save locally
+    db_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'wsbdb')
+    os.makedirs(db_dir, exist_ok=True)
+    db_file = os.path.join(db_dir, 'db.json')
+    
+    with open(db_file, 'w', encoding='utf-8') as f:
+        json.dump(expansions_db, f, indent=2, ensure_ascii=False)
+    
+    print(f"💾 Updated local expansions database with {len(current_expansions)} total expansions (including urlimage fields)")
+    
+    # Update GitHub with complete data including urlimage fields
+    if expansions_to_scrape:  # Only update GitHub if there were new expansions
+        update_github_db(expansions_db)
     
     # Show summary but don't upload yet
     if all_cards_data:
