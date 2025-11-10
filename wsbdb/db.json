@@ -1,6 +1,20 @@
 {
   "expansions": [
     {
+      "booster": "NTM/01S",
+      "title": "Start deck “Natsume’s Book of Friends”",
+      "category": "deck",
+      "release_date": "2025-10-24",
+      "url": "/cardlist/cardsearch/?expansion=NTM/01S",
+      "alt": "Start deck “Natsume’s Book of Friends”",
+      "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/06/05172238/sdpackage_ntm-1.png",
+      "expansion_image_alt": "スタートデッキ『夏目友人帳』",
+      "titleJP": "スタートデッキ『夏目友人帳』",
+      "categoryJP": "deck",
+      "altJP": "スタートデッキ『夏目友人帳』",
+      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverNTM_01S.webp"
+    },
+    {
       "booster": "NTM/01B",
       "title": "ブースターパック『夏目友人帳』",
       "category": "expansion",
