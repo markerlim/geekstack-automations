@@ -15,6 +15,7 @@ from wsbscraper import scrape_wsb_card
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 from service.mongoservice import upload_to_mongo
+from service.translationservice import translate_data
 
 # GitHub repository details
 REPO_OWNER = "markerlim"
@@ -344,7 +345,7 @@ def scrape_cards_for_expansion(expansion_code, expansion_title, max_pages=10):
                     card_data = scrape_wsb_card(card_no, expansion_code, translate=True)
                     print(f"📋 Card data: {card_data}")
                     if card_data:
-                        card_data['expansionCode'] = expansion_code
+                        card_data['booster'] = expansion_code
                         card_data['expansionTitle'] = expansion_title
                         cards_data.append(card_data)
                     
@@ -431,16 +432,20 @@ def check_and_scrape_new_expansions():
             release_date_raw = release_detail.text.strip() if release_detail else ''
             # Parse Japanese date to ISO format
             release_date = parse_japanese_date(release_date_raw) or release_date_raw
-            
+            if(category == 'デッキ商品'):
+                category = 'deck'
+            elif(category == 'パック商品'):
+                category = 'expansion'
+            else:
+                category = 'extra'
             # Prepare expansion data
             expansion_data = {
-                "expansion_code": expansion_code,
+                "booster": expansion_code,
                 "title": title,
                 "category": category,
                 "release_date": release_date,
                 "url": href,
-                "expansion_image": expansion_image,
-                "expansion_image_alt": expansion_image_alt
+                "alt": expansion_image_alt
             }
             
             # Optional: Upload expansion image to GCS (currently disabled)
@@ -448,9 +453,10 @@ def check_and_scrape_new_expansions():
             if expansion_image:
                  gcs_url = upload_expansion_image(expansion_code, expansion_image)
                  if gcs_url:
-                     expansion_data["expansion_image_gcs"] = gcs_url
-            
-            current_expansions.append(expansion_data)
+                     expansion_data["urlimage"] = gcs_url
+
+            translatedvalue = translate_data([expansion_data], fields_to_translate=['title', 'category', 'alt'])
+            current_expansions.append(translatedvalue)
         
         print(f"🔍 Found {len(current_expansions)} expansions on website")
         
@@ -459,7 +465,7 @@ def check_and_scrape_new_expansions():
         return
     
     # Compare with GitHub and local data
-    current_codes = {exp['expansion_code'] for exp in current_expansions}
+    current_codes = {exp['booster'] for exp in current_expansions}
     github_data, github_codes = compare_with_github()
     existing_data = load_series_db()
     

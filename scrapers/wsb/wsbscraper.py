@@ -9,6 +9,31 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 from service.googlecloudservice import upload_image_to_gcs
 from service.translationservice import translate_data
 
+def process_effect_with_icons(detail_div):
+    """Process the effect div to convert icon images to bracketed alt text"""
+    # Clone the div to avoid modifying the original
+    div_copy = BeautifulSoup(str(detail_div), 'html.parser')
+    
+    # Find all icon images in the detail div
+    icon_imgs = div_copy.find_all('img', class_='icon-img')
+    
+    # Replace each icon image with its alt text in brackets
+    for img in icon_imgs:
+        alt_text = img.get('alt', '')
+        if alt_text:
+            bracketed_text = f"[{alt_text}]"
+            # Replace the img tag with bracketed text
+            img.replace_with(bracketed_text)
+    
+    # Get the processed text content
+    effect_text = div_copy.get_text(separator=' ', strip=True)
+    
+    # Clean up any extra whitespace
+    import re
+    effect_text = re.sub(r'\s+', ' ', effect_text)
+    
+    return effect_text
+
 def scrape_wsb_card(cardno, expansion_code, translate=True):
     """Scrape WSB card data for a specific card number with optional translation"""
     if not cardno:
@@ -84,7 +109,7 @@ def scrape_wsb_card(cardno, expansion_code, translate=True):
                     field_name = dt.text.strip()
                     
                     if field_name == '収録商品':
-                        card_data['booster'] = dd.text.strip()
+                        card_data['product'] = dd.text.strip()
                     elif field_name == '作品区分':
                         card_data['series'] = dd.text.strip()
                     elif field_name == 'カード種類':
@@ -123,8 +148,10 @@ def scrape_wsb_card(cardno, expansion_code, translate=True):
         # Extract card effect/detail
         detail_div = detail_box.find('div', class_='detail')
         if detail_div:
-            # Get text content, preserving some structure
-            card_data['effect'] = detail_div.get_text(strip=True)
+            # Process the detail div to convert icon images to bracketed alt text
+            effect_text = process_effect_with_icons(detail_div)
+            card_data['effect'] = effect_text
+            print(f"🎯 Effect with icons: {effect_text[:100]}..." if len(effect_text) > 100 else f"🎯 Effect with icons: {effect_text}")
 
         # Extract supplementary info
         sup_div = detail_box.find('div', class_='sup')
