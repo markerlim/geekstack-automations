@@ -406,7 +406,22 @@ def check_and_scrape_new_expansions():
     
     # Merge existing urlimage data with current expansions to preserve urlimage fields
     if github_data and 'expansions' in github_data:
-        existing_expansions = {exp.get('booster', exp.get('expansion_code', '')): exp for exp in github_data['expansions']}
+        existing_expansions = {}
+        # Handle nested list structure in GitHub data
+        for item in github_data['expansions']:
+            if isinstance(item, list) and len(item) > 0:
+                exp = item[0]  # Get the actual expansion object from nested list
+            elif isinstance(item, dict):
+                exp = item  # Direct object
+            else:
+                continue
+            
+            # Get booster code as key
+            booster_key = exp.get('booster', exp.get('expansion_code', ''))
+            if booster_key:
+                existing_expansions[booster_key] = exp
+        
+        # Preserve existing urlimage fields
         for i, expansion in enumerate(current_expansions):
             booster_code = expansion['booster']
             if booster_code in existing_expansions and 'urlimage' in existing_expansions[booster_code]:
