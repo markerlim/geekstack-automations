@@ -478,17 +478,18 @@ def check_and_scrape_new_expansions():
         # Combine existing sources
         known_codes = set()
         if existing_data:
-            known_codes.update(str(s.get('expansion_code', s.get('value', ''))) for s in existing_data.get('expansions', existing_data.get('series', [])))
+            # Try both 'booster' (new format) and 'expansion_code'/'value' (legacy formats)
+            known_codes.update(str(s.get('booster', s.get('expansion_code', s.get('value', '')))) for s in existing_data.get('expansions', existing_data.get('series', [])))
         if github_codes:
             known_codes.update(github_codes)
         
-        # Find new expansions
-        expansions_to_scrape = [e for e in current_expansions if e['expansion_code'] not in known_codes]
+        # Find new expansions (using 'booster' field which is the actual field name)
+        expansions_to_scrape = [e for e in current_expansions if e['booster'] not in known_codes]
         
         if expansions_to_scrape:
             print(f"📚 Found {len(expansions_to_scrape)} new expansions to scrape:")
             for expansion in expansions_to_scrape:
-                print(f"  - {expansion['title']} (code: {expansion['expansion_code']})")
+                print(f"  - {expansion['title']} (code: {expansion['booster']})")
         else:
             # Check if we need to update GitHub even without new expansions
             if github_codes and current_codes != github_codes:
@@ -525,8 +526,8 @@ def check_and_scrape_new_expansions():
     # Scrape cards for each new expansion
     all_cards_data = []
     for expansion in expansions_to_scrape:
-        print(f"\n🎴 Scraping expansion: {expansion['title']} (code: {expansion['expansion_code']})")
-        cards_data = scrape_cards_for_expansion(expansion['expansion_code'], expansion['title'])
+        print(f"\n🎴 Scraping expansion: {expansion['title']} (code: {expansion['booster']})")
+        cards_data = scrape_cards_for_expansion(expansion['booster'], expansion['title'])
         all_cards_data.extend(cards_data)
         
         # Display sample data for review
