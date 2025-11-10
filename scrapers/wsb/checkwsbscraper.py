@@ -87,10 +87,22 @@ def compare_with_github():
             decoded_content = base64.b64decode(content_base64).decode('utf-8')
             github_data = json.loads(decoded_content)
             
-            # Get GitHub expansion codes
+            # Get GitHub expansion codes from booster field
             github_codes = set()
             if 'expansions' in github_data:
-                github_codes = {exp.get('expansion_code', '') for exp in github_data['expansions']}
+                for item in github_data['expansions']:
+                    # Handle nested list structure
+                    if isinstance(item, list) and len(item) > 0:
+                        expansion_obj = item[0]
+                    elif isinstance(item, dict):
+                        expansion_obj = item
+                    else:
+                        continue
+                    
+                    # Get booster code (preferred) or fallback to expansion_code
+                    booster_code = expansion_obj.get('booster', expansion_obj.get('expansion_code', ''))
+                    if booster_code:
+                        github_codes.add(booster_code)
             
             return github_data, github_codes
         else:
@@ -476,8 +488,22 @@ def check_and_scrape_new_expansions():
         # Combine existing sources
         known_codes = set()
         if existing_data:
-            # Try both 'booster' (new format) and 'expansion_code'/'value' (legacy formats)
-            known_codes.update(str(s.get('booster', s.get('expansion_code', s.get('value', '')))) for s in existing_data.get('expansions', existing_data.get('series', [])))
+            # Handle db.json structure: get expansions field and extract booster codes
+            expansions_list = existing_data.get('expansions', [])
+            for item in expansions_list:
+                # Handle nested list structure (each expansion is wrapped in a list)
+                if isinstance(item, list) and len(item) > 0:
+                    expansion_obj = item[0]  # Get the actual expansion object
+                elif isinstance(item, dict):
+                    expansion_obj = item  # Direct object
+                else:
+                    continue
+                
+                # Get booster code from the expansion object
+                booster_code = expansion_obj.get('booster', '')
+                if booster_code:
+                    known_codes.add(str(booster_code))
+                    
         if github_codes:
             known_codes.update(github_codes)
         
