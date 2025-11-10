@@ -164,67 +164,6 @@ def enable_expansion_image_uploads():
     print("   #     if gcs_url:")
     print("   #         expansion_data['expansion_image_gcs'] = gcs_url")
 
-def scrape_wsb_series():
-    """Scrape WSB series list and save to db.json"""
-    url = "https://ws-blau.com/cardlist/"
-    
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-        "Accept-Language": "en-US,en;q=0.9"
-    }
-    
-    try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        # Find the select element with series options
-        select_element = soup.find('select', {'name': 'title', 'class': 'saerchform-Select'})
-        
-        if not select_element:
-            print("❌ Could not find series select element")
-            return
-        
-        series_data = []
-        options = select_element.find_all('option')
-        
-        for option in options:
-            value = option.get('value', '').strip()
-            text = option.text.strip()
-            
-            # Skip empty "すべて" option
-            if not value:
-                continue
-                
-            series_data.append({
-                "value": value,
-                "name": text
-            })
-        
-        # Create wsbdb directory if it doesn't exist
-        db_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'wsbdb')
-        os.makedirs(db_dir, exist_ok=True)
-        
-        # Save to db.json
-        db_file = os.path.join(db_dir, 'db.json')
-        with open(db_file, 'w', encoding='utf-8') as f:
-            json.dump({
-                "series": series_data,
-                "total_count": len(series_data)
-            }, f, indent=2, ensure_ascii=False)
-        
-        print(f"✅ Scraped {len(series_data)} series and saved to {db_file}")
-        
-        # Print summary
-        for series in series_data:
-            print(f"Value: {series['value']} - Name: {series['name']}")
-            
-        return series_data
-        
-    except Exception as e:
-        print(f"❌ Error scraping WSB series: {str(e)}")
-        return None
-
 def load_series_db():
     """Load series data from db.json"""
     db_file = os.path.join(os.path.dirname(__file__), '..', '..', 'wsbdb', 'db.json')
@@ -239,72 +178,6 @@ def load_series_db():
     except Exception as e:
         print(f"❌ Error loading db.json: {str(e)}")
         return None
-
-def scrape_cards_for_series(series_value, series_name, max_pages=10):
-    """Scrape all cards for a specific series (legacy function)"""
-    base_url = "https://ws-blau.com/cardlist/cardsearch/"
-    cards_data = []
-    
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-        "Accept-Language": "en-US,en;q=0.9"
-    }
-    
-    print(f"🔍 Scraping cards for series: {series_name} (value: {series_value})")
-    
-    page = 1
-    while page <= max_pages:
-        try:
-            url = f"{base_url}?title={series_value}&page={page}"
-            response = requests.get(url, headers=headers)
-            response.raise_for_status()
-            
-            soup = BeautifulSoup(response.content, 'html.parser')
-            
-            # Find card links
-            card_links = soup.find_all('a', href=True)
-            card_nos = []
-            
-            for link in card_links:
-                href = link.get('href', '')
-                if '/cardlist/?cardno=' in href:
-                    # Extract card number from URL
-                    card_no = href.split('cardno=')[-1]
-                    if card_no and card_no not in card_nos:
-                        card_nos.append(card_no)
-            
-            if not card_nos:
-                print(f"  📄 No more cards found on page {page}, stopping")
-                break
-            
-            print(f"  📄 Page {page}: Found {len(card_nos)} cards")
-            
-            # Scrape each card
-            for card_no in card_nos:
-                try:
-                    print(f"    🎴 Scraping card: {card_no}")
-                    card_data = scrape_wsb_card(card_no)
-                    if card_data:
-                        card_data['seriesValue'] = series_value
-                        card_data['seriesName'] = series_name
-                        cards_data.append(card_data)
-                    
-                    # Small delay to be respectful
-                    time.sleep(0.5)
-                    
-                except Exception as e:
-                    print(f"    ❌ Error scraping card {card_no}: {str(e)}")
-                    continue
-            
-            page += 1
-            time.sleep(1)  # Delay between pages
-            
-        except Exception as e:
-            print(f"❌ Error scraping page {page} for series {series_name}: {str(e)}")
-            break
-    
-    print(f"✅ Completed scraping {len(cards_data)} cards for {series_name}")
-    return cards_data
 
 def scrape_cards_for_expansion(expansion_code, expansion_title, max_pages=10):
     """Scrape all cards for a specific expansion"""
@@ -354,7 +227,8 @@ def scrape_cards_for_expansion(expansion_code, expansion_title, max_pages=10):
             for card_no in card_nos:
                 try:
                     print(f"    🎴 Scraping card: {card_no}")
-                    card_data = scrape_wsb_card(card_no, expansion_code, translate=True)
+                    # Try scraping without translation first to isolate issues
+                    card_data = scrape_wsb_card(card_no, expansion_code, translate=False)
                     print(f"📋 Card data: {card_data}")
                     if card_data:
                         card_data['booster'] = expansion_code
@@ -366,6 +240,9 @@ def scrape_cards_for_expansion(expansion_code, expansion_title, max_pages=10):
                     
                 except Exception as e:
                     print(f"    ❌ Error scraping card {card_no}: {str(e)}")
+                    import traceback
+                    print(f"    📋 Full error traceback:")
+                    traceback.print_exc()
                     continue
             
             page += 1
@@ -665,39 +542,6 @@ def scrape_specific_expansion(expansion_code):
                  collection_name=collection_value
              )
              print(f"📤 Uploaded {len(cards_data)} cards to MongoDB")
-    
-    return cards_data
-
-def scrape_specific_series(series_value):
-    """Scrape cards for a specific series by value (legacy function for backward compatibility)"""
-    series_data = load_series_db()
-    if not series_data:
-        print("❌ Series data not found. Run check_and_scrape_new_expansions() first.")
-        return
-    
-    # Find the series
-    series_info = None
-    for series in series_data.get('series', []):
-        if str(series['value']) == str(series_value):
-            series_info = series
-            break
-    
-    if not series_info:
-        print(f"❌ Series with value {series_value} not found")
-        return
-    
-    # Scrape cards for this series
-    cards_data = scrape_cards_for_series(series_info['value'], series_info['name'])
-    
-    # Upload to MongoDB
-    if cards_data:
-        collection_value = os.getenv('C_WSB')
-        if collection_value:
-            upload_to_mongo(
-                data=cards_data,
-                collection_name=collection_value
-            )
-            print(f"📤 Uploaded {len(cards_data)} cards to MongoDB")
     
     return cards_data
 

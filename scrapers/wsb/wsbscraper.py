@@ -11,28 +11,34 @@ from service.translationservice import translate_data
 
 def process_effect_with_icons(detail_div):
     """Process the effect div to convert icon images to bracketed alt text"""
-    # Clone the div to avoid modifying the original
-    div_copy = BeautifulSoup(str(detail_div), 'html.parser')
-    
-    # Find all icon images in the detail div
-    icon_imgs = div_copy.find_all('img', class_='icon-img')
-    
-    # Replace each icon image with its alt text in brackets
-    for img in icon_imgs:
-        alt_text = img.get('alt', '')
-        if alt_text:
-            bracketed_text = f"[{alt_text}]"
-            # Replace the img tag with bracketed text
-            img.replace_with(bracketed_text)
-    
-    # Get the processed text content
-    effect_text = div_copy.get_text(separator=' ', strip=True)
-    
-    # Clean up any extra whitespace
-    import re
-    effect_text = re.sub(r'\s+', ' ', effect_text)
-    
-    return effect_text
+    try:
+        # Clone the div to avoid modifying the original
+        div_copy = BeautifulSoup(str(detail_div), 'html.parser')
+        
+        # Find all icon images in the detail div
+        icon_imgs = div_copy.find_all('img', class_='icon-img')
+        
+        # Replace each icon image with its alt text in brackets
+        for img in icon_imgs:
+            alt_text = img.get('alt', '')
+            if alt_text:
+                bracketed_text = f"[{alt_text}]"
+                # Replace the img tag with bracketed text
+                img.replace_with(bracketed_text)
+        
+        # Get the processed text content
+        effect_text = div_copy.get_text(separator=' ', strip=True)
+        
+        # Clean up any extra whitespace
+        import re
+        effect_text = re.sub(r'\s+', ' ', effect_text)
+        
+        return effect_text
+        
+    except Exception as e:
+        print(f"⚠️ Error processing effect with icons: {str(e)}")
+        # Fallback to simple text extraction
+        return detail_div.get_text(separator=' ', strip=True)
 
 def scrape_wsb_card(cardno, expansion_code, translate=True):
     """Scrape WSB card data for a specific card number with optional translation"""
