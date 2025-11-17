@@ -1,0 +1,24 @@
+{
+  "available_sets": [
+    {
+      "code": "SFD",
+      "name": "Spiritforged",
+      "detected_at": "2025-11-17T11:12:16.005281",
+      "card_count": 18
+    },
+    {
+      "code": "OGN",
+      "name": "Origins - Main Set",
+      "detected_at": "2025-11-17T11:12:16.005328",
+      "card_count": 352
+    },
+    {
+      "code": "OGS",
+      "name": "Origins - Proving Grounds",
+      "detected_at": "2025-11-17T11:12:16.005334",
+      "card_count": 24
+    }
+  ],
+  "sets": {
+  }
+}
