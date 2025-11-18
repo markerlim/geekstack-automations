@@ -634,7 +634,7 @@ def main():
                     all_scraped_cards.extend(cards)
         
         # Save updated database
-        save_riftbound_db(db)
+        update_github_db(db)
         
         # Display summary
         print(f"\n🎯 SCRAPING COMPLETE")
@@ -669,6 +669,55 @@ def main():
         if driver:
             driver.quit()
             print("\n🔐 Browser closed")
+
+def update_github_db(data):
+    """Update the Riftbound database on GitHub"""
+    if not GITHUB_TOKEN:
+        print("⚠️ GITHUB_TOKEN not found, skipping GitHub update")
+        return False
+    
+    try:
+        print("📤 Updating GitHub database...")
+        
+        # Get current file from GitHub to get the SHA
+        response = requests.get(url, headers={"Authorization": f"Bearer {GITHUB_TOKEN}"})
+        
+        if response.status_code != 200:
+            print(f"❌ Error fetching current file from GitHub: {response.status_code}")
+            return False
+        
+        file_data = response.json()
+        current_sha = file_data['sha']
+        
+        # Prepare updated content
+        updated_content = json.dumps(data, indent=2, ensure_ascii=False)
+        
+        # Update file on GitHub
+        update_data = {
+            "message": "Update Riftbound TCG database with newly scraped cards",
+            "content": base64.b64encode(updated_content.encode('utf-8')).decode('utf-8'),
+            "sha": current_sha,
+            "branch": BRANCH
+        }
+        
+        update_url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}"
+        response = requests.put(
+            update_url,
+            headers={"Authorization": f"Bearer {GITHUB_TOKEN}"},
+            json=update_data
+        )
+        
+        if response.status_code in [200, 201]:
+            print("  ✅ Successfully updated GitHub database")
+            return True
+        else:
+            print(f"❌ Error updating GitHub: {response.status_code}")
+            print(response.text)
+            return False
+    
+    except Exception as e:
+        print(f"❌ Error updating GitHub: {str(e)}")
+        return False
 
 if __name__ == "__main__":
     main()
