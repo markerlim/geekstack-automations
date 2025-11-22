@@ -3,19 +3,19 @@
     {
       "code": "SFD",
       "name": "Spiritforged",
-      "detected_at": "2025-11-18T05:30:16.741059",
-      "card_count": 18
+      "detected_at": "2025-11-22T15:17:08.345657",
+      "card_count": 45
     },
     {
       "code": "OGN",
       "name": "Origins - Main Set",
-      "detected_at": "2025-11-18T05:30:16.741081",
+      "detected_at": "2025-11-22T15:17:08.345680",
       "card_count": 352
     },
     {
       "code": "OGS",
       "name": "Origins - Proving Grounds",
-      "detected_at": "2025-11-18T05:30:16.741088",
+      "detected_at": "2025-11-22T15:17:08.345687",
       "card_count": 24
     }
   ],
@@ -396,10 +396,513 @@
           "ability": "When you recycle a rune, you may exhaust me to play a Gold gear token exhausted.When one or more enemy units die, ready me.",
           "booster": "SFD",
           "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-T03",
+          "scraped_at": "2025-11-22T15:17:25.604579",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-T03.webp",
+          "alt": "Riftbound Gear: Gold. Kill this, [T]: [Reaction] — [Add] [A]. (Abilities that add resources can't be reacted to.)",
+          "domain": "Colorless",
+          "card_type": [
+            "Gear",
+            "Token"
+          ],
+          "rarity": "Common",
+          "artist": "Kudos Productions",
+          "card_set": "SFD",
+          "ability": "Kill this,: [Reaction] — [Add].(Abilities that add resources can't be reacted to.)",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-057-221",
+          "scraped_at": "2025-11-22T15:17:29.640680",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-057-221.webp",
+          "alt": "Riftbound Unit: Irelia, Fervent. [Deflect] (Opponents must pay [A] to choose me with a spell or ability.)\nWhen you choose or ready me, give me +1 [S] this turn.",
+          "might": "4",
+          "domain": "Calm",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Irelia, Ionia",
+          "rarity": "Epic",
+          "artist": "Six More Vodka",
+          "card_set": "SFD",
+          "ability": "[Deflect](Opponents must payto choose me with a spell or ability.)When you choose or ready me, give me +1this turn.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-057A-221",
+          "scraped_at": "2025-11-22T15:17:33.391173",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-057A-221.webp",
+          "alt": "Riftbound Unit: Irelia, Fervent. [Deflect] (Opponents must pay [A] to choose me with a spell or ability.)\nWhen you choose or ready me, give me +1 [S] this turn.",
+          "might": "4",
+          "domain": "Calm",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Irelia, Ionia",
+          "rarity": "Showcase",
+          "artist": "League Splash Team",
+          "card_set": "SFD",
+          "ability": "[Deflect](Opponents must payto choose me with a spell or ability.)When you choose or ready me, give me +1this turn.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-095-221",
+          "scraped_at": "2025-11-22T15:17:37.547482",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-095-221.webp",
+          "alt": "Riftbound Gear: Doran's Blade. [Equip] [C] ([C]: Attach this to a unit you control.)",
+          "might": "2",
+          "domain": "Body",
+          "card_type": "Gear",
+          "tags": "Equipment",
+          "rarity": "Common",
+          "artist": "黯荧岛Dark Glow",
+          "card_set": "SFD",
+          "ability": "[Equip](: Attach this to a unit you control.)",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-111-221",
+          "scraped_at": "2025-11-22T15:17:41.664564",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-111-221.webp",
+          "alt": "Riftbound Spell: Here to Help. [Hidden] (Hide now for [A] to react with later for [0].)\n[Action] (Play on your turn or in showdowns.)\nYou may play a unit from hand to a battlefield you control, reducing its cost by [3].",
+          "power": "1",
+          "domain": "Body",
+          "card_type": "Spell",
+          "rarity": "Rare",
+          "artist": "Kudos Productions",
+          "card_set": "SFD",
+          "ability": "[Hidden](Hide now forto react with later for.)[Action](Play on your turn or in showdowns.)You may play a unit from hand to a battlefield you control, reducing its cost by.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-124-221",
+          "scraped_at": "2025-11-22T15:17:45.463477",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-124-221.webp",
+          "alt": "Riftbound Gear: Doran's Ring. [Equip] [C] ([C]: Attach this to a unit you control.)",
+          "might": "1",
+          "domain": "Chaos",
+          "card_type": "Gear",
+          "tags": "Equipment",
+          "rarity": "Common",
+          "artist": "黯荧岛Dark Glow",
+          "card_set": "SFD",
+          "ability": "[Equip](: Attach this to a unit you control.)",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-141A-221",
+          "scraped_at": "2025-11-22T15:17:49.200601",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-141A-221.webp",
+          "alt": "Riftbound Unit: Irelia, Graceful. Your spells that choose me cost [1] or [A] less.",
+          "power": "1",
+          "might": "4",
+          "domain": "Chaos",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Irelia, Ionia",
+          "rarity": "Showcase",
+          "artist": "League Splash Team",
+          "card_set": "SFD",
+          "ability": "Your spells that choose me costorless.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-141-221",
+          "scraped_at": "2025-11-22T15:17:53.287832",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-141-221.webp",
+          "alt": "Riftbound Unit: Irelia, Graceful. Your spells that choose me cost [1] or [A] less.",
+          "power": "1",
+          "might": "4",
+          "domain": "Chaos",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Irelia, Ionia",
+          "rarity": "Rare",
+          "artist": "League Splash Team",
+          "card_set": "SFD",
+          "ability": "Your spells that choose me costorless.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-181-221",
+          "scraped_at": "2025-11-22T15:17:57.033867",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-181-221.webp",
+          "alt": "Riftbound Legend: Mechanized Menace. Your Mechs have [Shield]. (+1 [S] while they're defenders.)",
+          "domain": [
+            "Fury",
+            "Mind"
+          ],
+          "card_type": "Legend",
+          "tags": "Rumble",
+          "rarity": "Rare",
+          "artist": "Pandart Studio",
+          "card_set": "SFD",
+          "ability": "Your Mechs have [Shield].(+1while they're defenders.)",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-182-221",
+          "scraped_at": "2025-11-22T15:18:01.322283",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-182-221.webp",
+          "alt": "Riftbound Spell: Danger Zone. [Reaction] (Play any time, even before spells and abilities resolve.)\n[Repeat] [1][C] (You may pay the additional cost to repeat this spell's effect.)\nGive your Mechs +1 [S] this turn.",
+          "power": "1",
+          "domain": [
+            "Fury",
+            "Mind"
+          ],
+          "card_type": [
+            "Spell",
+            "Signature"
+          ],
+          "tags": "Rumble",
+          "rarity": "Epic",
+          "artist": "Kudos Productions",
+          "card_set": "SFD",
+          "ability": "[Reaction](Play any time, even before spells and abilities resolve.)[Repeat](You may pay the additional cost to repeat this spell's effect.)Give your Mechs +1this turn.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-183-221",
+          "scraped_at": "2025-11-22T15:18:05.144866",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-183-221.webp",
+          "alt": "Riftbound Legend: Purifier. Your Equipment each give [Assault]. (+1 [S] while equipped unit is an attacker.)",
+          "domain": [
+            "Fury",
+            "Body"
+          ],
+          "card_type": "Legend",
+          "tags": "Lucian",
+          "rarity": "Rare",
+          "artist": "Pandart Studio",
+          "card_set": "SFD",
+          "ability": "Your Equipment each give [Assault].(+1while equipped unit is an attacker.)",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-184-221",
+          "scraped_at": "2025-11-22T15:18:09.188978",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-184-221.webp",
+          "alt": "Riftbound Spell: Relentless Pursuit. [Action] (Play on your turn or in showdowns.)\nMove a friendly unit. You may attach an Equipment with the same controller to it. This turn, that unit has \"When I conquer, you may move me to my base.\"",
+          "power": "1",
+          "domain": [
+            "Fury",
+            "Body"
+          ],
+          "card_type": [
+            "Spell",
+            "Signature"
+          ],
+          "tags": "Lucian",
+          "rarity": "Epic",
+          "artist": "Max Grecke",
+          "card_set": "SFD",
+          "ability": "[Action](Play on your turn or in showdowns.)Move a friendly unit. You may attach an Equipment with the same controller to it. This turn, that unit has \"When I conquer, you may move me to my base.\"",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-187-221",
+          "scraped_at": "2025-11-22T15:18:12.965448",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-187-221.webp",
+          "alt": "Riftbound Legend: Void Burrower. When you conquer, you may exhaust me to reveal the top 2 cards of your Main Deck. You may play one. Then recycle the rest.",
+          "domain": [
+            "Fury",
+            "Order"
+          ],
+          "card_type": "Legend",
+          "tags": "Rek'Sai",
+          "rarity": "Rare",
+          "artist": "Pandart Studio",
+          "card_set": "SFD",
+          "ability": "When you conquer, you may exhaust me to reveal the top 2 cards of your Main Deck. You may play one. Then recycle the rest.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-188-221",
+          "scraped_at": "2025-11-22T15:18:17.298421",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-188-221.webp",
+          "alt": "Riftbound Spell: Void Rush. Reveal the top 2 cards of your Main Deck. You may play one of them, reducing its cost by [2]. Draw any you did not play this way.",
+          "power": "1",
+          "domain": [
+            "Fury",
+            "Order"
+          ],
+          "card_type": [
+            "Spell",
+            "Signature"
+          ],
+          "tags": "Rek'Sai",
+          "rarity": "Epic",
+          "artist": "Kudos Productions",
+          "card_set": "SFD",
+          "ability": "Reveal the top 2 cards of your Main Deck. You may play one of them, reducing its cost by. Draw any you did not play this way.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-189-221",
+          "scraped_at": "2025-11-22T15:18:21.139988",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-189-221.webp",
+          "alt": "Riftbound Legend: Fire Below the Mountain. [T]: [Reaction] — [Add] [A]. Use only to play gear or use gear abilities. (Abilities that add resources can't be reacted to.)",
+          "domain": [
+            "Calm",
+            "Mind"
+          ],
+          "card_type": "Legend",
+          "tags": "Ornn",
+          "rarity": "Rare",
+          "artist": "Pandart Studio",
+          "card_set": "SFD",
+          "ability": ": [Reaction] — [Add]. Use only to play gear or use gear abilities.(Abilities that add resources can't be reacted to.)",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-193-221",
+          "scraped_at": "2025-11-22T15:18:25.126617",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-193-221.webp",
+          "alt": "Riftbound Legend: Grandmaster at Arms. [1], [T]: Attach a detached Equipment you control to a unit you control.\n[T]: Attach an attached Equipment you control to a unit you control.",
+          "domain": [
+            "Calm",
+            "Body"
+          ],
+          "card_type": "Legend",
+          "tags": "Jax",
+          "rarity": "Rare",
+          "artist": "Pandart Studio",
+          "card_set": "SFD",
+          "ability": ",: Attach a detached Equipment you control to a unit you control.: Attach an attached Equipment you control to a unit you control.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-196-221",
+          "scraped_at": "2025-11-22T15:18:29.145103",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-196-221.webp",
+          "alt": "Riftbound Spell: Defiant Dance. [Reaction] (Play any time, even before spells and abilities resolve.)\nGive a unit +2 [S] this turn and another unit -2 [S] this turn.",
+          "power": "1",
+          "domain": [
+            "Calm",
+            "Chaos"
+          ],
+          "card_type": [
+            "Spell",
+            "Signature"
+          ],
+          "tags": "Irelia",
+          "rarity": "Epic",
+          "artist": "Kudos Productions",
+          "card_set": "SFD",
+          "ability": "[Reaction](Play any time, even before spells and abilities resolve.)Give a unit +2this turn and another unit -2this turn.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-199-221",
+          "scraped_at": "2025-11-22T15:18:32.914020",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-199-221.webp",
+          "alt": "Riftbound Legend: Prodigal Explorer. [T]: [Reaction] — Draw 1. Use only if you've chosen enemy units and/or gear twice this turn with spells or unit abilities.",
+          "domain": [
+            "Mind",
+            "Chaos"
+          ],
+          "card_type": "Legend",
+          "tags": "Ezreal",
+          "rarity": "Rare",
+          "artist": "Pandart Studio",
+          "card_set": "SFD",
+          "ability": ": [Reaction] — Draw 1. Use only if you've chosen enemy units and/or gear twice this turn with spells or unit abilities.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-205-221",
+          "scraped_at": "2025-11-22T15:18:36.906403",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-205-221.webp",
+          "alt": "Riftbound Legend: Grand Duelist. When one of your units becomes [Mighty], you may exhaust me to channel 1 rune exhausted. (A unit is Mighty while it has 5+ [S].)",
+          "domain": [
+            "Body",
+            "Order"
+          ],
+          "card_type": "Legend",
+          "tags": "Fiora",
+          "rarity": "Rare",
+          "artist": "Pandart Studio",
+          "card_set": "SFD",
+          "ability": "When one of your units becomes [Mighty], you may exhaust me to channel 1 rune exhausted.(A unit is Mighty while it has 5+.)",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-225-STAR-221",
+          "scraped_at": "2025-11-22T15:18:40.969949",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-225-STAR-221.webp",
+          "alt": "Riftbound Unit: Irelia, Fervent. [Deflect] (Opponents must pay [A] to choose me with a spell or ability.)\nWhen you choose or ready me, give me +1 [S] this turn.",
+          "might": "4",
+          "domain": "Calm",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Irelia, Ionia",
+          "rarity": "Showcase",
+          "artist": "Bo Chen",
+          "card_set": "SFD",
+          "ability": "[Deflect](Opponents must payto choose me with a spell or ability.)When you choose or ready me, give me +1this turn.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-225-221",
+          "scraped_at": "2025-11-22T15:18:44.781835",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-225-221.webp",
+          "alt": "Riftbound Unit: Irelia, Fervent. [Deflect] (Opponents must pay [A] to choose me with a spell or ability.)\nWhen you choose or ready me, give me +1 [S] this turn.",
+          "might": "4",
+          "domain": "Calm",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Irelia, Ionia",
+          "rarity": "Showcase",
+          "artist": "Bo Chen",
+          "card_set": "SFD",
+          "ability": "[Deflect](Opponents must payto choose me with a spell or ability.)When you choose or ready me, give me +1this turn.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-227-221",
+          "scraped_at": "2025-11-22T15:18:48.581695",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-227-221.webp",
+          "alt": "Riftbound Unit: Ahri, Inquisitive. When I attack or defend, give an enemy unit here -2 [S] this turn, to a minimum of 1 [S].",
+          "power": "1",
+          "might": "3",
+          "domain": "Mind",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Ahri",
+          "rarity": "Showcase",
+          "artist": "Shawn Tan",
+          "card_set": "SFD",
+          "ability": "When I attack or defend, give an enemy unit here -2this turn, to a minimum of 1.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-227-STAR-221",
+          "scraped_at": "2025-11-22T15:18:52.773750",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-227-STAR-221.webp",
+          "alt": "Riftbound Unit: Ahri, Inquisitive. When I attack or defend, give an enemy unit here -2 [S] this turn, to a minimum of 1 [S].",
+          "power": "1",
+          "might": "3",
+          "domain": "Mind",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Ahri",
+          "rarity": "Showcase",
+          "artist": "Shawn Tan",
+          "card_set": "SFD",
+          "ability": "When I attack or defend, give an enemy unit here -2this turn, to a minimum of 1.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-234-221",
+          "scraped_at": "2025-11-22T15:18:57.015347",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-234-221.webp",
+          "alt": "Riftbound Gear: Seal of Discord. [T]: [Reaction] — [Add] [C]. (Abilities that add resources can't be reacted to.)",
+          "power": "1",
+          "domain": "Chaos",
+          "card_type": "Gear",
+          "rarity": "Showcase",
+          "artist": "Envar Studio",
+          "card_set": "SFD",
+          "ability": ": [Reaction] — [Add].(Abilities that add resources can't be reacted to.)",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-240-221",
+          "scraped_at": "2025-11-22T15:19:00.914149",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-240-221.webp",
+          "alt": "Riftbound Legend: Mechanized Menace. Your Mechs have [Shield]. (+1 [S] while they're defenders.)",
+          "domain": [
+            "Fury",
+            "Mind"
+          ],
+          "card_type": "Legend",
+          "tags": "Rumble",
+          "rarity": "Showcase",
+          "artist": "Envar Studio",
+          "card_set": "SFD",
+          "ability": "Your Mechs have [Shield].(+1while they're defenders.)",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-244-221",
+          "scraped_at": "2025-11-22T15:19:05.097381",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-244-221.webp",
+          "alt": "Riftbound Legend: Fire Below the Mountain. [T]: [Reaction] — [Add] [A]. Use only to play gear or use gear abilities. (Abilities that add resources can't be reacted to.)",
+          "domain": [
+            "Calm",
+            "Mind"
+          ],
+          "card_type": "Legend",
+          "tags": "Ornn",
+          "rarity": "Showcase",
+          "artist": "叫我小董就好了",
+          "card_set": "SFD",
+          "ability": ": [Reaction] — [Add]. Use only to play gear or use gear abilities.(Abilities that add resources can't be reacted to.)",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-246-221",
+          "scraped_at": "2025-11-22T15:19:09.303295",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-246-221.webp",
+          "alt": "Riftbound Legend: Blade Dancer. When you choose a friendly unit, you may exhaust me and pay [A] to ready it.\nWhen you conquer, you may pay [1] to ready me.",
+          "domain": [
+            "Calm",
+            "Chaos"
+          ],
+          "card_type": "Legend",
+          "tags": "Irelia",
+          "rarity": "Showcase",
+          "artist": "Grafit Studio",
+          "card_set": "SFD",
+          "ability": "When you choose a friendly unit, you may exhaust me and payto ready it.When you conquer, you may payto ready me.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
         }
       ],
-      "scraped_at": "2025-11-18T05:31:43.191040",
-      "card_count": 18
+      "scraped_at": "2025-11-22T15:19:12.082073",
+      "card_count": 45
     },
     "OGN": {
       "name": "Origins - Main Set",
