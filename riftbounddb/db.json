@@ -3,19 +3,19 @@
     {
       "code": "SFD",
       "name": "Spiritforged",
-      "detected_at": "2025-12-04T15:23:19.048046",
-      "card_count": 280
+      "detected_at": "2025-12-06T15:17:45.086055",
+      "card_count": 288
     },
     {
       "code": "OGN",
       "name": "Origins - Main Set",
-      "detected_at": "2025-12-04T15:23:19.048067",
+      "detected_at": "2025-12-06T15:17:45.086077",
       "card_count": 352
     },
     {
       "code": "OGS",
       "name": "Origins - Proving Grounds",
-      "detected_at": "2025-12-04T15:23:19.048074",
+      "detected_at": "2025-12-06T15:17:45.086085",
       "card_count": 24
     }
   ],
@@ -4890,10 +4890,170 @@
           "ability": "When you recycle a rune, you may exhaust me to play a Gold gear token exhausted.When one or more enemy units die, ready me.",
           "booster": "SFD",
           "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-228-STAR-221",
+          "scraped_at": "2025-12-06T15:18:03.896552",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-228-STAR-221.webp",
+          "alt": "Riftbound Unit: Bard, Mercurial. You may exhaust your legend as an additional cost to play me.\nWhen you play me, if you paid the additional cost, move any number of your units to an open battlefield.",
+          "power": "1",
+          "might": "4",
+          "domain": "Mind",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Bard",
+          "rarity": "Showcase",
+          "artist": "Felicia Chen",
+          "card_set": "SFD",
+          "ability": "You may exhaust your legend as an additional cost to play me.When you play me, if you paid the additional cost, move any number of your units to an open battlefield.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-228-221",
+          "scraped_at": "2025-12-06T15:18:08.699668",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-228-221.webp",
+          "alt": "Riftbound Unit: Bard, Mercurial. You may exhaust your legend as an additional cost to play me.\nWhen you play me, if you paid the additional cost, move any number of your units to an open battlefield.",
+          "power": "1",
+          "might": "4",
+          "domain": "Mind",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Bard",
+          "rarity": "Showcase",
+          "artist": "Felicia Chen",
+          "card_set": "SFD",
+          "ability": "You may exhaust your legend as an additional cost to play me.When you play me, if you paid the additional cost, move any number of your units to an open battlefield.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-230-STAR-221",
+          "scraped_at": "2025-12-06T15:18:14.034795",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-230-STAR-221.webp",
+          "alt": "Riftbound Unit: Teemo, Strategist. [Hidden] (Hide now for [A] to react with later for [0].)\nWhen I defend or I'm played from [Hidden], reveal the top 5 cards of your Main Deck. Deal 1 to an enemy unit here for each card with [Hidden], then recycle them.",
+          "power": "1",
+          "might": "2",
+          "domain": "Mind",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Yordle, Teemo",
+          "rarity": "Showcase",
+          "artist": "Mo Yan",
+          "card_set": "SFD",
+          "ability": "[Hidden](Hide now forto react with later for.)When I defend or I'm played from [Hidden], reveal the top 5 cards of your Main Deck. Deal 1 to an enemy unit here for each card with [Hidden], then recycle them.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-230-221",
+          "scraped_at": "2025-12-06T15:18:19.205270",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-230-221.webp",
+          "alt": "Riftbound Unit: Teemo, Strategist. [Hidden] (Hide now for [A] to react with later for [0].)\nWhen I defend or I'm played from [Hidden], reveal the top 5 cards of your Main Deck. Deal 1 to an enemy unit here for each card with [Hidden], then recycle them.",
+          "power": "1",
+          "might": "2",
+          "domain": "Mind",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Yordle, Teemo",
+          "rarity": "Showcase",
+          "artist": "Mo Yan",
+          "card_set": "SFD",
+          "ability": "[Hidden](Hide now forto react with later for.)When I defend or I'm played from [Hidden], reveal the top 5 cards of your Main Deck. Deal 1 to an enemy unit here for each card with [Hidden], then recycle them.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-235-221",
+          "scraped_at": "2025-12-06T15:18:24.344478",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-235-221.webp",
+          "alt": "Riftbound Unit: Yasuo, Windrider. [Ganking] (I can move from battlefield to battlefield.)\nThe third time I move in a turn, you score 1 point.",
+          "power": "1",
+          "might": "4",
+          "domain": "Chaos",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Yasuo",
+          "rarity": "Showcase",
+          "artist": "Jennifer Wuestling",
+          "card_set": "SFD",
+          "ability": "[Ganking](I can move from battlefield to battlefield.)The third time I move in a turn, you score 1 point.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-235-STAR-221",
+          "scraped_at": "2025-12-06T15:18:29.901699",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-235-STAR-221.webp",
+          "alt": "Riftbound Unit: Yasuo, Windrider. [Ganking] (I can move from battlefield to battlefield.)\nThe third time I move in a turn, you score 1 point.",
+          "power": "1",
+          "might": "4",
+          "domain": "Chaos",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Yasuo",
+          "rarity": "Showcase",
+          "artist": "Jennifer Wuestling",
+          "card_set": "SFD",
+          "ability": "[Ganking](I can move from battlefield to battlefield.)The third time I move in a turn, you score 1 point.",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-237-221",
+          "scraped_at": "2025-12-06T15:18:34.946844",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-237-221.webp",
+          "alt": "Riftbound Unit: Karma, Channeler. [Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.)\nWhen you recycle one or more cards, buff a friendly unit. (If it doesn't have a buff, it gets a +1 [S] buff. Runes aren't cards.)",
+          "power": "1",
+          "might": "6",
+          "domain": "Order",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Karma",
+          "rarity": "Showcase",
+          "artist": "Andres Blanco",
+          "card_set": "SFD",
+          "ability": "[Vision](When you play me, look at the top card of your Main Deck. You may recycle it.)When you recycle one or more cards, buff a friendly unit.(If it doesn't have a buff, it gets a +1buff. Runes aren't cards.)",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
+        },
+        {
+          "code": "SFD-237-STAR-221",
+          "scraped_at": "2025-12-06T15:18:39.923519",
+          "urlimage": "https://images.geekstack.dev/riftbound/SFD/SFD-237-STAR-221.webp",
+          "alt": "Riftbound Unit: Karma, Channeler. [Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.)\nWhen you recycle one or more cards, buff a friendly unit. (If it doesn't have a buff, it gets a +1 [S] buff. Runes aren't cards.)",
+          "power": "1",
+          "might": "6",
+          "domain": "Order",
+          "card_type": [
+            "Unit",
+            "Champion"
+          ],
+          "tags": "Karma",
+          "rarity": "Showcase",
+          "artist": "Andres Blanco",
+          "card_set": "SFD",
+          "ability": "[Vision](When you play me, look at the top card of your Main Deck. You may recycle it.)When you recycle one or more cards, buff a friendly unit.(If it doesn't have a buff, it gets a +1buff. Runes aren't cards.)",
+          "booster": "SFD",
+          "boosterfull": "Spiritforged"
         }
       ],
-      "scraped_at": "2025-12-04T15:30:26.349801",
-      "card_count": 280
+      "scraped_at": "2025-12-06T15:18:43.764011",
+      "card_count": 288
     },
     "OGN": {
       "name": "Origins - Main Set",
