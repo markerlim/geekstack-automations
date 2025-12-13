@@ -1,4 +1,4 @@
-name: Run Cookeirun Scraper
+name: Run Cookierun Scraper
 
 on:
   workflow_dispatch:
