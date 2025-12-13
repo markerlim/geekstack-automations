@@ -128,8 +128,13 @@ def process_card_data(card):
                 card_uid = card_no
         
         # Extract booster series from card ID (e.g., BS4-012 -> bs4)
+        # Special case: if field_grade is "PROMOTION", booster should be "promo"
         booster = ""
-        if card_id:
+        field_grade = card.get("field_grade", "")
+        
+        if field_grade == "PROMOTION":
+            booster = "promo"
+        elif card_id:
             parts = card_id.split("-")
             if len(parts) > 0:
                 booster = parts[0].lower()  # BS4 -> bs4
