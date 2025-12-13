@@ -145,16 +145,12 @@ def process_card_data(card):
             "field_rare_tzsrperf": card.get("field_rare_tzsrperf", ""),
             "field_hp_zbxcocvx": card.get("field_hp_zbxcocvx", ""),
             "field_grade": card.get("field_grade", ""),
-            "productCategory": card.get("productCategory", ""),
-            "productCategoryTitle": card.get("productCategoryTitle", ""),
-            "postDate": card.get("postDate", 0),
             "cardType": card.get("cardType", ""),
             "cardTypeTitle": card.get("cardTypeTitle", ""),
             "energyType": card.get("energyType", ""),
             "energyTypeTitle": card.get("energyTypeTitle", ""),
             "cardLevel": card.get("cardLevel", ""),
             "cardLevelTitle": card.get("cardLevelTitle", ""),
-            # Transformed fields for MongoDB structure
             "cardUid": card_uid,
             "cardId": card_id,
             "booster": booster
@@ -184,20 +180,13 @@ def process_card_data(card):
                 print(f"⚠️ Image upload failed for {processed_card['cardUid']}: {str(e)}")
                 processed_card["urlimage"] = card_image_url
         
-        # Convert postDate to readable format
-        if processed_card["postDate"]:
-            try:
-                processed_card["postDateReadable"] = datetime.fromtimestamp(processed_card["postDate"]).strftime('%Y-%m-%d %H:%M:%S')
-            except:
-                processed_card["postDateReadable"] = "Invalid Date"
-        
         return processed_card
         
     except Exception as e:
         print(f"❌ Error processing card: {str(e)}")
         return None
 
-def check_and_scrape_new_cards(upload_to_db=False):
+def check_and_scrape_new_cards(upload_to_db=True):
     """Check for new Cookie Run cards and scrape them"""
     print("🍪 Starting Cookie Run card check...")
     
@@ -277,8 +266,7 @@ def check_and_scrape_new_cards(upload_to_db=False):
     
     # Upload to MongoDB if requested
     if upload_to_db and processed_cards:
-        # collection_value = os.getenv('C_COOKIERUN')
-        collection_value = "test"
+        collection_value = os.getenv('C_COOKIERUN')
         if collection_value:
             try:
                 upload_to_mongo(
@@ -322,90 +310,7 @@ def scrape_specific_card(card_id):
     except Exception as e:
         print(f"❌ Error fetching card {card_id}: {str(e)}")
         return None
-
-def test_card_transformation():
-    """Test the card data transformation logic"""
-    print("🧪 Testing card data transformation...")
-    
-    # Test cases for card number transformations
-    test_cases = [
-        "BS4-012@1",  # Should become cardId: BS4-012, cardUid: BS4-012_ALT, booster: bs4
-        "BS4-012@2",  # Should become cardId: BS4-012, cardUid: BS4-012_ALT2, booster: bs4
-        "BS8-120@1",  # Should become cardId: BS8-120, cardUid: BS8-120_ALT, booster: bs8
-        "BS5-001",    # Should become cardId: BS5-001, cardUid: BS5-001, booster: bs5
-    ]
-    
-    for card_no in test_cases:
-        # Simulate card data
-        test_card = {"field_cardNo_suyeowsc": card_no}
-        
-        # Apply transformation logic
-        card_id = ""
-        card_uid = ""
-        if card_no:
-            if "@" in card_no:
-                card_id = card_no.split("@")[0]
-                variant = card_no.split("@")[1]
-                if variant == "1":
-                    card_uid = f"{card_id}_ALT"
-                else:
-                    card_uid = f"{card_id}_ALT{variant}"
-            else:
-                card_id = card_no
-                card_uid = card_no
-        
-        # Extract booster
-        booster = ""
-        if card_id:
-            parts = card_id.split("-")
-            if len(parts) > 0:
-                booster = parts[0].lower()
-        
-        print(f"  {card_no} -> cardId: {card_id}, cardUid: {card_uid}, booster: {booster}")
-
-def test_date_filtering():
-    """Test function to check date filtering logic"""
-    print("🧪 Testing date filtering logic...")
-    
-    # Get current latest date
-    local_latest = get_latest_date_local()
-    print(f"Current latestdate.txt value: {local_latest}")
-    if local_latest > 0:
-        readable = datetime.fromtimestamp(local_latest).strftime('%Y-%m-%d %H:%M:%S')
-        print(f"Readable date: {readable}")
-    
-    # Fetch a few cards to see their postDates
-    try:
-        api_url = "https://cookierunbraverse.com/en/cardList/card.json"
-        response = requests.get(api_url, timeout=30)
-        cards = response.json()
-        
-        print(f"\n📊 Sample of recent cards:")
-        # Sort by postDate and show the newest 5
-        recent_cards = sorted(cards, key=lambda x: x.get("postDate", 0), reverse=True)[:5]
-        
-        for card in recent_cards:
-            post_date = card.get("postDate", 0)
-            title = card.get("title", "Unknown")
-            card_no = card.get("field_cardNo_suyeowsc", "Unknown")
-            readable = datetime.fromtimestamp(post_date).strftime('%Y-%m-%d %H:%M:%S')
-            is_new = post_date > local_latest
-            status = "🆕 NEW" if is_new else "⏰ OLD"
-            print(f"  {status} {title} ({card_no}) - postDate: {post_date} ({readable})")
-        
-    except Exception as e:
-        print(f"❌ Error in test: {str(e)}")
-
 if __name__ == "__main__":
-    # Test data transformation logic first
-    test_card_transformation()
-    
-    print("\n" + "="*40 + "\n")
-    
-    # Run test to see what cards are available
-    test_date_filtering()
-    
-    print("\n" + "="*60 + "\n")
-    
+    print("🍪 Cookie Run Card Scraper Initialized")
     # Run the actual check with upload disabled for review
-    check_and_scrape_new_cards(upload_to_db=False)
+    check_and_scrape_new_cards()
