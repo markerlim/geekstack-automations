@@ -2,6 +2,7 @@ from google.cloud import storage
 import requests
 import tempfile
 import os
+import json
 from PIL import Image
 from service.googlecredentials import get_google_credentials
 
@@ -67,3 +68,67 @@ def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geeks
     except Exception as e:
         print(f"❌ Failed to upload {filename} to GCS: {e}")
         return image_url  # fallback to original
+
+def upload_data_to_gcs(data, file_name, folder_path="backups", bucket_name="images.geekstack.dev", data_type='json'):
+    """
+    Upload data directly to Google Cloud Storage (without creating a local file)
+    
+    Args:
+        data: Data to upload (dict for JSON, string for text, list for JSON array)
+        file_name: Name for the file in GCS
+        folder_path: Folder path in GCS (default: 'backups')
+        bucket_name: GCS bucket name (default: 'images.geekstack.dev')
+        data_type: Type of data ('json' or 'text')
+    
+    Returns:
+        Dictionary with file_name, gcs_path, and public_url, or None if failed
+    """
+    try:
+        credentials = get_google_credentials()
+        if not credentials:
+            print("⚠️ GCS upload failed - no credentials found")
+            return None
+        
+        # Determine MIME type and format content
+        if data_type == 'json':
+            mime_type = 'application/json'
+            content = json.dumps(data, indent=2, ensure_ascii=False)
+        else:
+            mime_type = 'text/plain'
+            content = str(data)
+        
+        # Create GCS client and get bucket
+        client = storage.Client(credentials=credentials)
+        bucket = client.bucket(bucket_name)
+        
+        # Create full blob path
+        blob_path = f"{folder_path}/{file_name}"
+        blob = bucket.blob(blob_path)
+        
+        print(f"Uploading to GCS: gs://{bucket_name}/{blob_path}")
+        
+        # Upload data
+        blob.upload_from_string(
+            content,
+            content_type=mime_type
+        )
+        
+        # Get public URL
+        public_url = blob.public_url
+        custom_url = public_url.replace(
+            f"https://storage.googleapis.com/{bucket_name}/",
+            f"https://{bucket_name}/"
+        )
+        
+        print(f"✅ Data uploaded to GCS: {custom_url}")
+        return {
+            'file_name': file_name,
+            'gcs_path': f"gs://{bucket_name}/{blob_path}",
+            'public_url': custom_url,
+            'blob_path': blob_path
+        }
+    
+    except Exception as e:
+        print(f"❌ GCS upload failed: {e}")
+        return None
+
