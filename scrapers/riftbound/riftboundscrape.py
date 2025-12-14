@@ -647,7 +647,8 @@ def main():
             print(f"\n📤 Uploading to MongoDB...")
             upload_to_mongo(
                 data=all_scraped_cards,
-                collection_name=collection_value
+                collection_name=collection_value,
+                backup_before_upload=True
             )
             print(f"✅ Uploaded {len(all_scraped_cards)} cards to MongoDB")
         else:

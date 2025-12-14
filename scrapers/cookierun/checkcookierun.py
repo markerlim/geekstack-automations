@@ -277,7 +277,8 @@ def check_and_scrape_new_cards(upload_to_db=True):
                 # Upload new cards to MongoDB
                 upload_to_mongo(
                     data=processed_cards,
-                    collection_name=collection_value
+                    collection_name=collection_value,
+                    backup_before_upload=True
                 )
                 print(f"📤 Uploaded {len(processed_cards)} cards to MongoDB")
             except Exception as e:

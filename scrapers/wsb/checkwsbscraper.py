@@ -544,11 +544,16 @@ def scrape_specific_expansion(expansion_code):
         print(f"💾 Data ready for upload (currently disabled for review)")
         collection_value = os.getenv('C_WSB')
         if collection_value:
-             upload_to_mongo(
-                 data=cards_data,
-                 collection_name=collection_value
-             )
-             print(f"📤 Uploaded {len(cards_data)} cards to MongoDB")
+            try:
+                upload_to_mongo(
+                    data=cards_data,
+                    collection_name=collection_value,
+                    backup_before_upload=True
+                )
+            except Exception as e:
+                print(f"❌ MongoDB operation failed: {str(e)}")
+        else:
+            print("⚠️ MongoDB collection name not found in environment variables")
     
     return cards_data
 

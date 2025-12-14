@@ -129,8 +129,7 @@ def run_check():
             print(f"- {val}")
 
         # Run scraper
-        collectionval = os.getenv("C_DUELMASTERS")
-        startscraping(booster_list=missing_values, collection_name=collectionval)
+        startscraping(booster_list=missing_values)
 
         # Commit updated list to GitHub
         commit_missing_values_to_github(missing_values, json_values, sha)

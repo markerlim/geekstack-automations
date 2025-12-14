@@ -20,8 +20,13 @@ def _get_mongo_uri():
     """Get MongoDB connection URI"""
     return f"mongodb+srv://{MONGO_USER}:{MONGO_PASSWORD}@{MONGO_CLUSTER}/{MONGO_DATABASE}?retryWrites=true&w=majority"
 
-def upload_to_mongo(data, collection_name):
+def upload_to_mongo(data, collection_name, backup_before_upload=False):
     try:
+        if backup_before_upload:
+            # Backup current MongoDB collection before upload
+            print("💾 Creating backup before upload...")
+            backup_from_mongo(collection_name)
+
         _validate_mongo_config()
         
         # Construct the MongoDB URI

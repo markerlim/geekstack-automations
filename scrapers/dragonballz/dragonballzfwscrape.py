@@ -180,10 +180,17 @@ def scrape_dragonballzfw_cards(package_value):
 
         # Upload to MongoDB
         collection_value = os.getenv('C_DRAGONBALLZFW')
-        upload_to_mongo(
-            data=json_data,
-            collection_name=collection_value
-        )
+        if collection_value:
+            try:
+                upload_to_mongo(
+                    data=json_data,
+                    collection_name=collection_value,
+                    backup_before_upload=True
+                )
+            except Exception as e:
+                print(f"❌ MongoDB operation failed: {str(e)}")
+        else:
+            print("⚠️ MongoDB collection name not found in environment variables")  
 
         return json_data
 

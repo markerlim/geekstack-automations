@@ -135,16 +135,10 @@ def scrape_onepiece_cards(series_value):
     collection_value = os.getenv('C_ONEPIECE')
     if collection_value:
         try:
-            # Backup current MongoDB collection before upload
-            print("💾 Creating backup before upload...")
-            backup_result = backup_from_mongo(collection_value)
-            if backup_result.get('drive_info'):
-                print(f"✅ Backup created: {backup_result['drive_info'].get('file_link')}")
-            else:
-                print("⚠️ Backup creation failed or no data to backup")
             upload_to_mongo(
                 data=json_data,
-                collection_name=collection_value
+                collection_name=collection_value,
+                backup_before_upload=True
             )
         except Exception as e:
                     print(f"❌ MongoDB operation failed: {str(e)}")

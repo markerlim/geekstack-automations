@@ -238,7 +238,7 @@ def match_civilization(japanese_civilization, civilization_mapping):
 def match_type(japanese_type,type_mapping):
     return type_mapping.get(japanese_type, japanese_type)
 
-def startscraping(booster_list, collection_name):
+def startscraping(booster_list):
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--disable-gpu")
@@ -264,11 +264,19 @@ def startscraping(booster_list, collection_name):
             )
 
             all_translated_data.extend(translated_data)
+        collection_value = os.getenv("C_DUELMASTERS")
+        if collection_value:
+            try:
+                upload_to_mongo(
+                    data=all_translated_data,
+                    collection_name=collection_value,
+                    backup_before_upload=True
+                )
+            except Exception as e:
+                print(f"❌ MongoDB operation failed: {str(e)}")
+        else:
+            print("⚠️ MongoDB collection name not found in environment variables")  
 
-        upload_to_mongo(
-            data=all_translated_data,
-            collection_name=collection_name
-        )
     finally:
         driver.quit()
 
