@@ -7,7 +7,7 @@ from datetime import datetime
 
 # Add parent directories to path for imports
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
-from service.mongoservice import upload_to_mongo
+from service.mongoservice import upload_to_mongo, backup_from_mongo
 from service.googlecloudservice import upload_image_to_gcs
 
 # GitHub repository details
@@ -274,13 +274,14 @@ def check_and_scrape_new_cards(upload_to_db=True):
         collection_value = os.getenv('C_COOKIERUN')
         if collection_value:
             try:
+                # Upload new cards to MongoDB
                 upload_to_mongo(
                     data=processed_cards,
                     collection_name=collection_value
                 )
                 print(f"📤 Uploaded {len(processed_cards)} cards to MongoDB")
             except Exception as e:
-                print(f"❌ MongoDB upload failed: {str(e)}")
+                print(f"❌ MongoDB operation failed: {str(e)}")
         else:
             print("⚠️ MongoDB collection name not found in environment variables")
     

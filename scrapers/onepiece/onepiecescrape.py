@@ -7,7 +7,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from service.googlecloudservice import upload_image_to_gcs
-from service.mongoservice import upload_to_mongo
+from service.mongoservice import backup_from_mongo, upload_to_mongo
 
 def map_booster(code):
     if code == '556701':
@@ -133,7 +133,20 @@ def scrape_onepiece_cards(series_value):
 
 
     collection_value = os.getenv('C_ONEPIECE')
-    upload_to_mongo(
-        data=json_data,
-        collection_name=collection_value
-    )
+    if collection_value:
+        try:
+            # Backup current MongoDB collection before upload
+            print("💾 Creating backup before upload...")
+            backup_result = backup_from_mongo(collection_value)
+            if backup_result.get('drive_info'):
+                print(f"✅ Backup created: {backup_result['drive_info'].get('file_link')}")
+            else:
+                print("⚠️ Backup creation failed or no data to backup")
+            upload_to_mongo(
+                data=json_data,
+                collection_name=collection_value
+            )
+        except Exception as e:
+                    print(f"❌ MongoDB operation failed: {str(e)}")
+    else:
+        print("⚠️ MongoDB collection name not found in environment variables")

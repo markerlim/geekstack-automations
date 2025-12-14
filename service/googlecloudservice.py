@@ -1,9 +1,9 @@
 from google.cloud import storage
-from google.oauth2 import service_account
 import requests
 import tempfile
 import os
 from PIL import Image
+from googlecredentials import get_google_credentials
 
 def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geekstack.dev"):
 
@@ -42,18 +42,9 @@ def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geeks
         print(f"Converted WebP image saved at: {webp_file_path}")
         os.remove(temp_file_path)  # Clean up original PNG
 
-        # Determine credentials source (file or environment variable)
-        credentials = None
-        if "GOOGLE_APPLICATION_CREDENTIALS" in os.environ:
-            # Use credentials from environment variable (GCP service account file path)
-            credentials_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-            print(f"Using GCP credentials from environment variable: {credentials_path}")
-            credentials = service_account.Credentials.from_service_account_file(credentials_path)
-        elif os.path.exists("credentials/service-accountkey.json"):
-            # Fallback to credentials file in the project directory
-            print(f"Using GCP credentials from file: credentials/service-accountkey.json")
-            credentials = service_account.Credentials.from_service_account_file("credentials/service-accountkey.json")
-        else:
+        # Get credentials using centralized service
+        credentials = get_google_credentials()
+        if not credentials:
             raise Exception("No GCP credentials found. Set GOOGLE_APPLICATION_CREDENTIALS environment variable or provide a credentials file.")
 
         # Upload to GCS

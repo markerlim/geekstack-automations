@@ -1,6 +1,9 @@
 beautifulsoup4
 requests
 google-cloud-storage
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client
 pymongo
 python-dotenv
 pillow
