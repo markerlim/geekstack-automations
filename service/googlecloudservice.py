@@ -3,7 +3,7 @@ import requests
 import tempfile
 import os
 from PIL import Image
-from googlecredentials import get_google_credentials
+from service.googlecredentials import get_google_credentials
 
 def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geekstack.dev"):
 

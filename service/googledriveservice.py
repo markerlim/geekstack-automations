@@ -3,7 +3,7 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload, MediaIoBaseUpload
 import io
 import json
-from googlecredentials import get_google_credentials
+from service.googlecredentials import get_google_credentials
 
 # Google Drive API scopes
 SCOPES = ['https://www.googleapis.com/auth/drive.file']
