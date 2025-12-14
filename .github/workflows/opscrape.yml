@@ -35,6 +35,7 @@ jobs:
         MONGO_CLUSTER: ${{ secrets.MONGO_CLUSTER }}
         C_ONEPIECE: ${{vars.C_ONEPIECE}}
         GCSIMAGE: ${{ secrets.GCSIMAGE }}
+        GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         python scrapers/onepiece/opcheckscrape.py

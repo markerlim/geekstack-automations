@@ -10,6 +10,7 @@ MONGO_USER = os.getenv("MONGO_USER")
 MONGO_PASSWORD = os.getenv("MONGO_PASSWORD")
 MONGO_CLUSTER = os.getenv("MONGO_CLUSTER")
 MONGO_DATABASE = os.getenv("MONGO_DATABASE")
+GOOGLE_DRIVE_FOLDER_ID = os.getenv("GOOGLE_DRIVE_FOLDER_ID")
 
 def _validate_mongo_config():
     """Validate that all required MongoDB environment variables are set"""
@@ -111,7 +112,7 @@ def backup_from_mongo(collection_name):
         
         # Upload data to Google Drive
         if folder_id:
-            result = upload_data_to_drive(serializable_data, file_name, folder_id=folder_id, data_type='json')
+            result = upload_data_to_drive(serializable_data, file_name, folder_id=GOOGLE_DRIVE_FOLDER_ID, data_type='json')
             if result:
                 print(f"✅ Backup uploaded to Google Drive: {result.get('file_link')}")
                 return {
