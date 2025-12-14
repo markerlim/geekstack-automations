@@ -3,7 +3,7 @@ import certifi
 import os
 import json
 from datetime import datetime
-from googledriveservice import upload_data_to_drive, get_drive_service
+from service.googledriveservice import upload_data_to_drive, get_drive_service
 
 # Global MongoDB environment variables
 MONGO_USER = os.getenv("MONGO_USER")
