@@ -1,31 +1,67 @@
 {
   "expansions": [
     {
+      "booster": "TAL/01S",
+      "title": "Start deck “Tales of” series",
+      "category": "deck",
+      "release_date": "2025-12-19",
+      "url": "/cardlist/cardsearch/?expansion=TAL/01S",
+      "alt": "Start deck “Tales of” series",
+      "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/10/27111310/sdpackage_tal_01s.png",
+      "expansion_image_alt": "スタートデッキ「『テイルズ オブ』シリーズ」",
+      "titleJP": "スタートデッキ「『テイルズ オブ』シリーズ」",
+      "categoryJP": "deck",
+      "altJP": "スタートデッキ「『テイルズ オブ』シリーズ」",
+      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverTAL_01S.webp"
+    },
+    {
+      "booster": "TAL/01B",
+      "title": "Booster pack “Tales of” series",
+      "category": "expansion",
+      "release_date": "2025-12-19",
+      "url": "/cardlist/cardsearch/?expansion=TAL/01B",
+      "alt": "Booster pack “Tales of” series",
+      "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/10/27111152/bppackage_tal_01b.png",
+      "expansion_image_alt": "ブースターパック「『テイルズ オブ』シリーズ」",
+      "titleJP": "ブースターパック「『テイルズ オブ』シリーズ」",
+      "categoryJP": "expansion",
+      "altJP": "ブースターパック「『テイルズ オブ』シリーズ」",
+      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverTAL_01B.webp"
+    },
+    {
+      "booster": "DSY/02E",
+      "title": "Sleeve & Card Set Disney Frozen Art Collection BY Shoko Nakagawa",
+      "category": "extra",
+      "release_date": "2025-12-19",
+      "url": "/cardlist/cardsearch/?expansion=DSY/02E",
+      "alt": "Sleeve & Card Set Disney Frozen Art Collection BY Shoko Nakagawa",
+      "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/10/31132755/scpackage_DSY_02-.png",
+      "expansion_image_alt": "スリーブ＆カードセット ディズニー フローズン アート コレクション BY 中川翔子",
+      "titleJP": "スリーブ＆カードセット ディズニー フローズン アート コレクション BY 中川翔子",
+      "categoryJP": "extra",
+      "altJP": "スリーブ＆カードセット ディズニー フローズン アート コレクション BY 中川翔子",
+      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverDSY_02E.webp"
+    },
+    {
       "booster": "NTMR/01S",
-      "title": "Start Deck “Theatrical Version Nintama Rantaro Dokutake Ninja Team’s Strongest Tactician”",
+      "title": "スタートデッキ『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
       "category": "deck",
       "release_date": "2025-11-21",
       "url": "/cardlist/cardsearch/?expansion=NTMR/01S",
-      "alt": "Start Deck “Theatrical Version Nintama Rantaro Dokutake Ninja Team’s Strongest Tactician”",
+      "alt": "スタートデッキ『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/09/03161124/sdpackage_ntmr.png",
       "expansion_image_alt": "スタートデッキ『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
-      "titleJP": "スタートデッキ『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
-      "categoryJP": "deck",
-      "altJP": "スタートデッキ『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
       "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverNTMR_01S.webp"
     },
     {
       "booster": "NTMR/01B",
-      "title": "Booster pack “Nintama Rantaro the Movie: Dotake Ninja Team’s Strongest Tactician”",
+      "title": "ブースターパック『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
       "category": "expansion",
       "release_date": "2025-11-21",
       "url": "/cardlist/cardsearch/?expansion=NTMR/01B",
-      "alt": "Booster pack “Nintama Rantaro the Movie: Dotake Ninja Team’s Strongest Tactician”",
+      "alt": "ブースターパック『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/09/03161003/bppackage_ntmr.png",
       "expansion_image_alt": "ブースターパック『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
-      "titleJP": "ブースターパック『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
-      "categoryJP": "expansion",
-      "altJP": "ブースターパック『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
       "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverNTMR_01B.webp"
     },
     {
@@ -843,5 +879,5 @@
       "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverPR2022.webp"
     }
   ],
-  "total_count": 76
+  "total_count": 79
 }
