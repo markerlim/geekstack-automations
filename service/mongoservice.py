@@ -92,3 +92,30 @@ def backup_from_mongo(collection_name):
     except Exception as e:
         print(f"❌ MongoDB backup failed: {e}")
         return {'data': [], 'gcs_info': None}
+
+def validate_from_mongo(collection_name, field_name, field_value):
+    try:
+        _validate_mongo_config()
+        
+        # Construct the MongoDB URI
+        mongo_uri = _get_mongo_uri()
+
+        # Connect to MongoDB
+        client = MongoClient(mongo_uri,tlsCAFile=certifi.where())
+        db = client[MONGO_DATABASE]
+        collection = db[collection_name]
+
+        # Check if documents with the specified field-value combination exist
+        query = {field_name: field_value}
+        count = collection.count_documents(query)
+        
+        print(f"🔍 Searching for documents where '{field_name}' = '{field_value}'")
+        print(f"✅ Found {count} documents matching the criteria.")
+        
+        return {
+            'exists': count > 0,
+            'count': count
+        }
+    except Exception as e:
+        print(f"❌ MongoDB validation failed: {e}")
+        return None

@@ -40,7 +40,7 @@ def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geeks
             image.save(webp_file.name, format="WEBP")
             webp_file_path = webp_file.name
 
-        print(f"Converted WebP image saved at: {webp_file_path}")
+        #print(f"Converted WebP image saved at: {webp_file_path}")
         os.remove(temp_file_path)  # Clean up original PNG
 
         # Get credentials using centralized service

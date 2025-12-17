@@ -4,6 +4,7 @@ import base64
 import requests
 from bs4 import BeautifulSoup
 from duelmasterscrape import startscraping
+from scrapers.duelmasters.dmcovercheckscrape import duelmaster_cover_scrape
 
 # GitHub config
 REPO_OWNER = "markerlim"
@@ -146,4 +147,5 @@ def run_check():
 
 
 if __name__ == "__main__":
+    duelmaster_cover_scrape()
     run_check()
