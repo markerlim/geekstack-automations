@@ -10,7 +10,10 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 from duelmasterscrape import startscraping
 from scrapers.duelmasters.dmcovercheckscrape import duelmaster_cover_scrape
 from service.utils_service import find_missing_values
-from service.mongoservice import check_unique_sets
+from service.github_service import GitHubService
+
+github_service = GitHubService()
+FILE_PATH = "duelmasterdb/series.json"
 
 def scrape_website_values():
     print("🌐 Scraping website values...")
@@ -31,26 +34,20 @@ def scrape_website_values():
         return []
 
 def run_check():
-    # Get unique boosters from MongoDB (source of truth)
-    collection_name = os.getenv("C_DUELMASTERS")
-    if not collection_name:
-        print("❌ MongoDB collection name not found in environment variables")
-        return
-        
-    mongo_values = check_unique_sets(collection_name, "booster")
+    json_data,file_sha = github_service.load_json_file(FILE_PATH)
     website_values = scrape_website_values()
 
-    if not mongo_values:
-        print("❌ No data loaded from MongoDB.")
+    if not json_data:
+        print("❌ No data loaded from series.json.")
         return
     if not website_values:
         print("❌ No data scraped from website.")
         return
 
-    missing_values = find_missing_values(mongo_values, website_values)
+    missing_values = find_missing_values(json_data, website_values)
 
     print("\n=== 📋 Missing Values Report ===")
-    print(f"📦 Total series in MongoDB: {len(mongo_values)}")
+    print(f"📦 Total series in JSON: {len(json_data)}")
     print(f"🌍 Total series on website: {len(website_values)}")
     print(f"❓ Missing series count: {len(missing_values)}")
 
@@ -62,9 +59,20 @@ def run_check():
         # Run scraper for missing boosters
         startscraping(booster_list=missing_values)
 
+        # Step 7: Update series.json with the new scraped values
+        updated_series = list(set(json_data) | set(website_values))
+        updated_content = json.dumps(updated_series, indent=4)  
+        # Step 8: Commit the change to GitHub using GitHubService
+        commit_message = "Update series.json with latest Duel Masters series"
+        success = github_service.update_file(FILE_PATH, updated_content, commit_message, file_sha)
+        if success:
+            print("\n🎯 PROCESSING COMPLETE")
+            print(f"📊 New series added: {len(missing_values)}")
+        else:
+            print("Error updating file on GitHub.")
 
     else:
-        print("✅ All series from website already exist in MongoDB!")
+        print("✅ All series from website already exist in series.json!")
 
 
 if __name__ == "__main__":
