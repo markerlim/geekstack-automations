@@ -1,3 +1,9 @@
+import requests
+import os
+import sys
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
 from service.googlecloudservice import upload_image_to_gcs
 
 def process_card_data(card):

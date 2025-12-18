@@ -3,6 +3,8 @@ import requests
 import os
 import sys
 
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
 from cookierunscrape import process_card_data
 from service.github_service import GitHubService
 from datetime import datetime

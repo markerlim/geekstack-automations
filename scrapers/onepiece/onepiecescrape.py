@@ -7,7 +7,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from service.googlecloudservice import upload_image_to_gcs
-from service.mongoservice import backup_from_mongo, upload_to_mongo
+from service.mongoservice import upload_to_mongo
 
 def map_booster(code):
     if code == '556701':
@@ -29,6 +29,31 @@ def map_booster(code):
             return f"PRB{suffix}"
         else:
             return code
+
+def reverse_map_booster(booster_code):
+    """Reverse mapping from booster code back to numeric series value"""
+    if booster_code == 'FDS':
+        return '556701'
+    elif booster_code == 'LIMITED':
+        return '556801'
+    elif booster_code == 'PROMO':
+        return '556901'
+    else:
+        # Handle pattern-based codes
+        if booster_code.startswith('ST') and len(booster_code) == 4:
+            suffix = booster_code[2:]  # Extract the number part
+            return f"5560{suffix}"
+        elif booster_code.startswith('OP') and len(booster_code) == 4:
+            suffix = booster_code[2:]  # Extract the number part
+            return f"5561{suffix}"
+        elif booster_code.startswith('EB') and len(booster_code) == 4:
+            suffix = booster_code[2:]  # Extract the number part
+            return f"5562{suffix}"
+        elif booster_code.startswith('PRB') and len(booster_code) == 5:
+            suffix = booster_code[3:]  # Extract the number part
+            return f"5563{suffix}"
+        else:
+            return booster_code  # Return as-is if no mapping found
 
 def scrape_onepiece_cards(series_value):
     if not series_value:
