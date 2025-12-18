@@ -7,7 +7,7 @@ from urllib.parse import urljoin
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from service.googlecloudservice import upload_image_to_gcs
-from service.mongoservice import backup_from_mongo, upload_to_mongo
+from service.mongoservice import upload_to_mongo
 
 def scrape_gundam_cards(package_value):
     """Scrape Gundam cards for a specific package value and upload to MongoDB/GCS"""

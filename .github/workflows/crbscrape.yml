@@ -36,4 +36,4 @@ jobs:
         C_COOKIERUN: ${{vars.C_COOKIERUN}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        python scrapers/cookierun/checkcookierun.py
+        python scrapers/cookierun/crbcheckscrape.py

@@ -5,6 +5,7 @@ import re
 import json
 import os
 import sys
+import base64
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -14,8 +15,12 @@ from webdriver_manager.chrome import ChromeDriverManager
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from service.googlecloudservice import upload_image_to_gcs
-from service.mongoservice import upload_to_mongo
+from service.mongoservice import find_specific_object_in_mongo, modify_object_by_id, upload_to_mongo
 from service.translationservice import translate_data
+from service.github_service import GitHubService
+
+# Initialize GitHub service
+github_service = GitHubService()
 
 def get_total_pages(driver, booster):
     url = f"https://dm.takaratomy.co.jp/card/?v=%7B%22suggest%22:%22on%22,%22keyword_type%22:%5B%22card_name%22,%22card_ruby%22,%22card_text%22%5D,%22culture_cond%22:%5B%22%E5%8D%98%E8%89%B2%22,%22%E5%A4%9A%E8%89%B2%22%5D,%22pagenum%22:%221%22,%22samename%22:%22show%22,%22products%22:%22{booster}%22,%22sort%22:%22release_new%22%7D"
@@ -104,8 +109,8 @@ def scrape_all_pages(driver, booster):
 def scrape_card_details(card_data):
     """Scrapes the detailed information for each card and processes it."""
     detailed_cards = []
-    civilization_mapping = load_mapping("duelmasterdb/civilization.json")
-    type_mapping = load_mapping("duelmasterdb/type.json")
+    civilization_mapping = load_mapping_from_github("duelmasterdb/civilization.json")
+    type_mapping = load_mapping_from_github("duelmasterdb/type.json")
     for card in card_data:
         try:
             card = process_card(card)  # Process the card to extract booster, cardUid, and urlimage
@@ -216,20 +221,18 @@ def process_card(card):
 
     return card_dict
 
-def save_to_json(detailed_cards, filename="../../duelmasterdb/duelmasters_cards_data.json"):
-    """Save the detailed card data to a JSON file."""
-    import json
-    with open(filename, mode='w', encoding='utf-8') as file:
-        json.dump(detailed_cards, file, ensure_ascii=False, indent=2)
-    print(f"Saved {len(detailed_cards)} detailed cards to {filename}")
-
-def load_mapping(json_file):
+def load_mapping_from_github(file_path):
+    """Load mapping JSON from GitHub using GitHubService"""
     try:
-        with open(json_file, 'r', encoding='utf-8') as file:
-            mapping = json.load(file)
-        return mapping
+        mapping, _ = github_service.load_json_file(file_path)
+        if mapping is not None:
+            print(f"✅ Loaded mapping from GitHub: {file_path}")
+            return mapping
+        else:
+            print(f"⚠️ Mapping file not found on GitHub: {file_path}")
+            return {}
     except Exception as e:
-        print(f"❌ Error loading JSON file: {e}")
+        print(f"❌ Error loading mapping file {file_path}: {e}")
         return {}
 
 def match_civilization(japanese_civilization, civilization_mapping):
@@ -264,16 +267,25 @@ def startscraping(booster_list):
             )
 
             all_translated_data.extend(translated_data)
-        collection_value = os.getenv("C_DUELMASTERS")
-        if collection_value:
-            try:
-                upload_to_mongo(
-                    data=all_translated_data,
-                    collection_name=collection_value,
-                    backup_before_upload=True
-                )
-            except Exception as e:
-                print(f"❌ MongoDB operation failed: {str(e)}")
+            collection_value = os.getenv("C_DUELMASTERS")
+            if collection_value:
+                try:
+                    upload_to_mongo(
+                        data=all_translated_data,
+                        collection_name=collection_value,
+                        backup_before_upload=True
+                    )
+                    json_obj = find_specific_object_in_mongo(collection_name="NewList", field_name="booster", field_value=booster)
+                    
+                    # Modify category field by splitting on underscore and taking first part
+                    if json_obj and 'category' in json_obj:
+                        original_category = json_obj['category']
+                        json_obj['category'] = original_category.split('_')[0]
+                        modify_object_by_id(collection_name="NewList", object_id=json_obj['_id'], update_data={'category': json_obj['category']})
+                        print(f"📝 Updated category from '{original_category}' to '{json_obj['category']}'")
+                    
+                except Exception as e:
+                    print(f"❌ MongoDB operation failed: {str(e)}")
         else:
             print("⚠️ MongoDB collection name not found in environment variables")  
 

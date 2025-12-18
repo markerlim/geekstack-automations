@@ -1,53 +1,19 @@
 import json
 import os
-import base64
-import requests
+import sys
 from bs4 import BeautifulSoup
+import requests
+
+# Add parent directories to path for imports
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
+
 from duelmasterscrape import startscraping
 from scrapers.duelmasters.dmcovercheckscrape import duelmaster_cover_scrape
+from service.utils_service import find_missing_values
+from service.github_service import GitHubService
 
-# GitHub config
-REPO_OWNER = "markerlim"
-REPO_NAME = "geekstack-automations"
-FILE_PATH = "duelmasterdb/seriesdm.json"
-BRANCH = "main"
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-GITHUB_API_URL = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}?ref={BRANCH}"
-
-
-def load_series_json_from_github():
-    print("🔄 Loading JSON values from GitHub...")
-    headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github.v3+json"
-    }
-
-    response = requests.get(GITHUB_API_URL, headers=headers)
-    if response.status_code == 200:
-        file_data = response.json()
-
-        if isinstance(file_data, list):
-            print("❌ GitHub path is a directory, not a file.")
-            return [], None
-
-        try:
-            content_base64 = file_data['content']
-            decoded_content = base64.b64decode(content_base64).decode('utf-8')
-            existing_values = json.loads(decoded_content)
-
-            if isinstance(existing_values, list):
-                return [item.strip() for item in existing_values if isinstance(item, str)], file_data['sha']
-            else:
-                print("[Warning] JSON content is not a list.")
-                return [], file_data['sha']
-        except Exception as e:
-            print(f"❌ Error decoding file content: {e}")
-            return [], None
-    else:
-        print(f"❌ Error fetching file from GitHub: {response.status_code}")
-        print(response.text)
-        return [], None
-
+github_service = GitHubService()
+FILE_PATH = "duelmasterdb/series.json"
 
 def scrape_website_values():
     print("🌐 Scraping website values...")
@@ -67,60 +33,21 @@ def scrape_website_values():
         print(f"❌ Failed to scrape website: {e}")
         return []
 
-
-def find_missing_values(json_values, website_values):
-    json_set = set(json_values)
-    website_set = set(website_values)
-
-    print(f"\n🧪 Debug: {len(json_set)} JSON values vs {len(website_set)} website values")
-    return sorted(website_set - json_set)
-
-
-def commit_missing_values_to_github(missing_values, current_values, sha):
-    print("🚀 Committing updated JSON to GitHub...")
-
-    updated_values = sorted(current_values + missing_values)
-
-    updated_json_str = json.dumps(updated_values, ensure_ascii=False, indent=2)
-    updated_base64 = base64.b64encode(updated_json_str.encode('utf-8')).decode('utf-8')
-
-    commit_url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}"
-    commit_message = "🔁 Update seriesdm.json with new series from website"
-    payload = {
-        "message": commit_message,
-        "content": updated_base64,
-        "sha": sha,
-        "branch": BRANCH
-    }
-
-    headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github.v3+json"
-    }
-
-    response = requests.put(commit_url, headers=headers, json=payload)
-    if response.status_code in [200, 201]:
-        print("✅ Successfully committed updated JSON to GitHub!")
-    else:
-        print(f"❌ Failed to commit file: {response.status_code}")
-        print(response.text)
-
-
 def run_check():
-    json_values, sha = load_series_json_from_github()
+    json_data,file_sha = github_service.load_json_file(FILE_PATH)
     website_values = scrape_website_values()
 
-    if not json_values:
-        print("❌ No data loaded from GitHub.")
+    if not json_data:
+        print("❌ No data loaded from series.json.")
         return
     if not website_values:
         print("❌ No data scraped from website.")
         return
 
-    missing_values = find_missing_values(json_values, website_values)
+    missing_values = find_missing_values(json_data, website_values)
 
     print("\n=== 📋 Missing Values Report ===")
-    print(f"📦 Total series in GitHub JSON: {len(json_values)}")
+    print(f"📦 Total series in JSON: {len(json_data)}")
     print(f"🌍 Total series on website: {len(website_values)}")
     print(f"❓ Missing series count: {len(missing_values)}")
 
@@ -129,21 +56,23 @@ def run_check():
         for val in missing_values:
             print(f"- {val}")
 
-        # Run scraper
+        # Run scraper for missing boosters
         startscraping(booster_list=missing_values)
 
-        # Commit updated list to GitHub
-        commit_missing_values_to_github(missing_values, json_values, sha)
+        # Step 7: Update series.json with the new scraped values
+        updated_series = list(set(json_data) | set(website_values))
+        updated_content = json.dumps(updated_series, indent=4)  
+        # Step 8: Commit the change to GitHub using GitHubService
+        commit_message = "Update series.json with latest Duel Masters series"
+        success = github_service.update_file(FILE_PATH, updated_content, commit_message, file_sha)
+        if success:
+            print("\n🎯 PROCESSING COMPLETE")
+            print(f"📊 New series added: {len(missing_values)}")
+        else:
+            print("Error updating file on GitHub.")
 
-        # Save locally
-        try:
-            with open('missing_series.json', 'w', encoding='utf-8') as f:
-                json.dump(missing_values, f, indent=2, ensure_ascii=False)
-            print("\n💾 Saved missing series to 'missing_series.json'")
-        except Exception as e:
-            print(f"[Error] Could not save locally: {e}")
     else:
-        print("✅ All series in JSON exist on the website!")
+        print("✅ All series from website already exist in series.json!")
 
 
 if __name__ == "__main__":
