@@ -17,8 +17,8 @@ class GitHubService:
         
         # Load environment variables
         self.github_token = os.getenv("GITHUB_TOKEN")
-        self.github_username = os.getenv("GITHUB_USERNAME")
-        self.github_email = os.getenv("GITHUB_EMAIL")
+        #self.github_username = os.getenv("GITHUB_USERNAME")
+        #self.github_email = os.getenv("GITHUB_EMAIL")
         
         print(f"🔧 GitHub service initialized for {repo_owner}/{repo_name}")
     
