@@ -2,45 +2,33 @@
   "expansions": [
     {
       "booster": "TAL/01S",
-      "title": "Start deck “Tales of” series",
+      "title": "スタートデッキ「『テイルズ オブ』シリーズ」",
       "category": "deck",
       "release_date": "2025-12-19",
       "url": "/cardlist/cardsearch/?expansion=TAL/01S",
-      "alt": "Start deck “Tales of” series",
+      "alt": "スタートデッキ「『テイルズ オブ』シリーズ」",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/10/27111310/sdpackage_tal_01s.png",
-      "expansion_image_alt": "スタートデッキ「『テイルズ オブ』シリーズ」",
-      "titleJP": "スタートデッキ「『テイルズ オブ』シリーズ」",
-      "categoryJP": "deck",
-      "altJP": "スタートデッキ「『テイルズ オブ』シリーズ」",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverTAL_01S.webp"
+      "expansion_image_alt": "スタートデッキ「『テイルズ オブ』シリーズ」"
     },
     {
       "booster": "TAL/01B",
-      "title": "Booster pack “Tales of” series",
+      "title": "ブースターパック「『テイルズ オブ』シリーズ」",
       "category": "expansion",
       "release_date": "2025-12-19",
       "url": "/cardlist/cardsearch/?expansion=TAL/01B",
-      "alt": "Booster pack “Tales of” series",
+      "alt": "ブースターパック「『テイルズ オブ』シリーズ」",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/10/27111152/bppackage_tal_01b.png",
-      "expansion_image_alt": "ブースターパック「『テイルズ オブ』シリーズ」",
-      "titleJP": "ブースターパック「『テイルズ オブ』シリーズ」",
-      "categoryJP": "expansion",
-      "altJP": "ブースターパック「『テイルズ オブ』シリーズ」",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverTAL_01B.webp"
+      "expansion_image_alt": "ブースターパック「『テイルズ オブ』シリーズ」"
     },
     {
       "booster": "DSY/02E",
-      "title": "Sleeve & Card Set Disney Frozen Art Collection BY Shoko Nakagawa",
+      "title": "スリーブ＆カードセット ディズニー フローズン アート コレクション BY 中川翔子",
       "category": "extra",
       "release_date": "2025-12-19",
       "url": "/cardlist/cardsearch/?expansion=DSY/02E",
-      "alt": "Sleeve & Card Set Disney Frozen Art Collection BY Shoko Nakagawa",
+      "alt": "スリーブ＆カードセット ディズニー フローズン アート コレクション BY 中川翔子",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/10/31132755/scpackage_DSY_02-.png",
-      "expansion_image_alt": "スリーブ＆カードセット ディズニー フローズン アート コレクション BY 中川翔子",
-      "titleJP": "スリーブ＆カードセット ディズニー フローズン アート コレクション BY 中川翔子",
-      "categoryJP": "extra",
-      "altJP": "スリーブ＆カードセット ディズニー フローズン アート コレクション BY 中川翔子",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverDSY_02E.webp"
+      "expansion_image_alt": "スリーブ＆カードセット ディズニー フローズン アート コレクション BY 中川翔子"
     },
     {
       "booster": "NTMR/01S",
@@ -50,8 +38,7 @@
       "url": "/cardlist/cardsearch/?expansion=NTMR/01S",
       "alt": "スタートデッキ『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/09/03161124/sdpackage_ntmr.png",
-      "expansion_image_alt": "スタートデッキ『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverNTMR_01S.webp"
+      "expansion_image_alt": "スタートデッキ『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』"
     },
     {
       "booster": "NTMR/01B",
@@ -61,8 +48,7 @@
       "url": "/cardlist/cardsearch/?expansion=NTMR/01B",
       "alt": "ブースターパック『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/09/03161003/bppackage_ntmr.png",
-      "expansion_image_alt": "ブースターパック『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverNTMR_01B.webp"
+      "expansion_image_alt": "ブースターパック『劇場版 忍たま乱太郎 ドクタケ忍者隊最強の軍師』"
     },
     {
       "booster": "NTM/01S",
@@ -72,8 +58,7 @@
       "url": "/cardlist/cardsearch/?expansion=NTM/01S",
       "alt": "スタートデッキ『夏目友人帳』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/06/05172238/sdpackage_ntm-1.png",
-      "expansion_image_alt": "スタートデッキ『夏目友人帳』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverNTM_01S.webp"
+      "expansion_image_alt": "スタートデッキ『夏目友人帳』"
     },
     {
       "booster": "NTM/01B",
@@ -83,8 +68,7 @@
       "url": "/cardlist/cardsearch/?expansion=NTM/01B",
       "alt": "ブースターパック『夏目友人帳』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/06/05172348/bppackage_ntm.png",
-      "expansion_image_alt": "ブースターパック『夏目友人帳』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverNTM_01B.webp"
+      "expansion_image_alt": "ブースターパック『夏目友人帳』"
     },
     {
       "booster": "KSJ/01S",
@@ -94,8 +78,7 @@
       "url": "/cardlist/cardsearch/?expansion=KSJ/01S",
       "alt": "スタートデッキ「TVアニメ『黒執事 -寄宿学校編-』」",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/08/27104937/sdpackage_ksj_01s.png",
-      "expansion_image_alt": "スタートデッキ「TVアニメ『黒執事 -寄宿学校編-』」",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverKSJ_01S.webp"
+      "expansion_image_alt": "スタートデッキ「TVアニメ『黒執事 -寄宿学校編-』」"
     },
     {
       "booster": "KSJ/01B",
@@ -105,8 +88,7 @@
       "url": "/cardlist/cardsearch/?expansion=KSJ/01B",
       "alt": "ブースターパック「TVアニメ『黒執事 -寄宿学校編-』」",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/08/27104933/bppackage_ksj_01s.png",
-      "expansion_image_alt": "ブースターパック「TVアニメ『黒執事 -寄宿学校編-』」",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverKSJ_01B.webp"
+      "expansion_image_alt": "ブースターパック「TVアニメ『黒執事 -寄宿学校編-』」"
     },
     {
       "booster": "AOEX/01S",
@@ -116,8 +98,7 @@
       "url": "/cardlist/cardsearch/?expansion=AOEX/01S",
       "alt": "スタートデッキ「『青の祓魔師』シリーズ （島根啓明結社篇/雪ノ果篇/終夜篇）」",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/06/01175731/wsb_aoex_sd01.png",
-      "expansion_image_alt": "スタートデッキ「『青の祓魔師』シリーズ （島根啓明結社篇/雪ノ果篇/終夜篇）」",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverAOEX_01S.webp"
+      "expansion_image_alt": "スタートデッキ「『青の祓魔師』シリーズ （島根啓明結社篇/雪ノ果篇/終夜篇）」"
     },
     {
       "booster": "AOEX/01B",
@@ -127,8 +108,7 @@
       "url": "/cardlist/cardsearch/?expansion=AOEX/01B",
       "alt": "ブースターパック「『青の祓魔師』シリーズ （島根啓明結社篇/雪ノ果篇/終夜篇）」",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/06/01180006/wsb_aoex_bp01-e1754038820119.png",
-      "expansion_image_alt": "ブースターパック「『青の祓魔師』シリーズ （島根啓明結社篇/雪ノ果篇/終夜篇）」",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverAOEX_01B.webp"
+      "expansion_image_alt": "ブースターパック「『青の祓魔師』シリーズ （島根啓明結社篇/雪ノ果篇/終夜篇）」"
     },
     {
       "booster": "KSR/01S",
@@ -138,8 +118,7 @@
       "url": "/cardlist/cardsearch/?expansion=KSR/01S",
       "alt": "スタートデッキ「TVアニメ『薬屋のひとりごと』」",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/03/12164344/sdpackage_ksr_01s.png",
-      "expansion_image_alt": "スタートデッキ「TVアニメ『薬屋のひとりごと』」",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverKSR_01S.webp"
+      "expansion_image_alt": "スタートデッキ「TVアニメ『薬屋のひとりごと』」"
     },
     {
       "booster": "KSR/01B",
@@ -149,8 +128,7 @@
       "url": "/cardlist/cardsearch/?expansion=KSR/01B",
       "alt": "ブースターパック「TVアニメ『薬屋のひとりごと』」",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/03/20150154/WSB_組立BOX_薬屋結合-2.png",
-      "expansion_image_alt": "ブースターパック「TVアニメ『薬屋のひとりごと』」",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverKSR_01B.webp"
+      "expansion_image_alt": "ブースターパック「TVアニメ『薬屋のひとりごと』」"
     },
     {
       "booster": "ISM/02B",
@@ -160,8 +138,7 @@
       "url": "/cardlist/cardsearch/?expansion=ISM/02B",
       "alt": "ブースターパック『アイドルマスター SideM BLAU NEW P@SSION!!!』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/02/23145254/WSB_組立BOX_sideM結合.png",
-      "expansion_image_alt": "ブースターパック『アイドルマスター SideM BLAU NEW P@SSION!!!』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverISM_02B.webp"
+      "expansion_image_alt": "ブースターパック『アイドルマスター SideM BLAU NEW P@SSION!!!』"
     },
     {
       "booster": "CNN/01E",
@@ -171,8 +148,7 @@
       "url": "/cardlist/cardsearch/?expansion=CNN/01E",
       "alt": "プレミアムセット『名探偵コナン』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/01/07090753/CNN-01E_box.png",
-      "expansion_image_alt": "プレミアムセット『名探偵コナン』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverCNN_01E.webp"
+      "expansion_image_alt": "プレミアムセット『名探偵コナン』"
     },
     {
       "booster": "CIKW/02B",
@@ -182,8 +158,7 @@
       "url": "/cardlist/cardsearch/?expansion=CIKW/02B",
       "alt": "ブースターパック『ちいかわ Vol.2』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/01/31155811/bppackage_cikw_02b.png",
-      "expansion_image_alt": "ブースターパック『ちいかわ Vol.2』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverCIKW_02B.webp"
+      "expansion_image_alt": "ブースターパック『ちいかわ Vol.2』"
     },
     {
       "booster": "BLK/02B",
@@ -193,8 +168,7 @@
       "url": "/cardlist/cardsearch/?expansion=BLK/02B",
       "alt": "ブースターパック『ブルーロック Vol.2』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/12/24174852/パッケージ組み立て.png",
-      "expansion_image_alt": "ブースターパック『ブルーロック Vol.2』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverBLK_02B.webp"
+      "expansion_image_alt": "ブースターパック『ブルーロック Vol.2』"
     },
     {
       "booster": "BNST/01S",
@@ -204,8 +178,7 @@
       "url": "/cardlist/cardsearch/?expansion=BNST/01S",
       "alt": "スタートデッキ『文豪ストレイドッグス』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/09/23155029/sdpackage_bnst_01s.png",
-      "expansion_image_alt": "スタートデッキ『文豪ストレイドッグス』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverBNST_01S.webp"
+      "expansion_image_alt": "スタートデッキ『文豪ストレイドッグス』"
     },
     {
       "booster": "BNST/01B",
@@ -215,8 +188,7 @@
       "url": "/cardlist/cardsearch/?expansion=BNST/01B",
       "alt": "ブースターパック『文豪ストレイドッグス』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/09/23154854/bppackage_bnst_01b.png",
-      "expansion_image_alt": "ブースターパック『文豪ストレイドッグス』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverBNST_01B.webp"
+      "expansion_image_alt": "ブースターパック『文豪ストレイドッグス』"
     },
     {
       "booster": "RBN/01B",
@@ -226,8 +198,7 @@
       "url": "/cardlist/cardsearch/?expansion=RBN/01B",
       "alt": "ブースターパック『家庭教師ヒットマンREBORN!』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/10/18160518/bppackage_rbn_01b.png",
-      "expansion_image_alt": "ブースターパック『家庭教師ヒットマンREBORN!』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverRBN_01B.webp"
+      "expansion_image_alt": "ブースターパック『家庭教師ヒットマンREBORN!』"
     },
     {
       "booster": "RBN/01S",
@@ -237,8 +208,7 @@
       "url": "/cardlist/cardsearch/?expansion=RBN/01S",
       "alt": "スタートデッキ『家庭教師ヒットマンREBORN!』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/10/18160456/sdpackage_rbn_01s.png",
-      "expansion_image_alt": "スタートデッキ『家庭教師ヒットマンREBORN!』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverRBN_01S.webp"
+      "expansion_image_alt": "スタートデッキ『家庭教師ヒットマンREBORN!』"
     },
     {
       "booster": "DTM/01S",
@@ -248,8 +218,7 @@
       "url": "/cardlist/cardsearch/?expansion=DTM/01S",
       "alt": "スタートデッキ / ディズニー ツムツム",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/10/22180351/sdpackage_dtm_01s.png",
-      "expansion_image_alt": "スタートデッキ / ディズニー ツムツム",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverDTM_01S.webp"
+      "expansion_image_alt": "スタートデッキ / ディズニー ツムツム"
     },
     {
       "booster": "DTM/01B",
@@ -259,8 +228,7 @@
       "url": "/cardlist/cardsearch/?expansion=DTM/01B",
       "alt": "ブースターパック / ディズニー ツムツム",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/07/31103634/bppackage_dtm_01b.png",
-      "expansion_image_alt": "ブースターパック / ディズニー ツムツム",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverDTM_01B.webp"
+      "expansion_image_alt": "ブースターパック / ディズニー ツムツム"
     },
     {
       "booster": "TWST/01E",
@@ -270,8 +238,7 @@
       "url": "/cardlist/cardsearch/?expansion=TWST/01E",
       "alt": "ハーフデッキパック/ディズニー ツイステッドワンダーランド",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/08/22144649/hdppackage_twst_01e.png",
-      "expansion_image_alt": "ハーフデッキパック/ディズニー ツイステッドワンダーランド",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverTWST_01E.webp"
+      "expansion_image_alt": "ハーフデッキパック/ディズニー ツイステッドワンダーランド"
     },
     {
       "booster": "HNW/01S",
@@ -281,8 +248,7 @@
       "url": "/cardlist/cardsearch/?expansion=HNW/01S",
       "alt": "スタートデッキ『HoneyWorks ～告白実行委員会～』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/03/09152230/sdpackage_hnw.png",
-      "expansion_image_alt": "スタートデッキ『HoneyWorks ～告白実行委員会～』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverHNW_01S.webp"
+      "expansion_image_alt": "スタートデッキ『HoneyWorks ～告白実行委員会～』"
     },
     {
       "booster": "HNW/01B",
@@ -292,8 +258,7 @@
       "url": "/cardlist/cardsearch/?expansion=HNW/01B",
       "alt": "ブースターパック『HoneyWorks ～告白実行委員会～』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/03/09152332/bppackage_hnw.png",
-      "expansion_image_alt": "ブースターパック『HoneyWorks ～告白実行委員会～』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverHNW_01B.webp"
+      "expansion_image_alt": "ブースターパック『HoneyWorks ～告白実行委員会～』"
     },
     {
       "booster": "SRIO/01S",
@@ -303,8 +268,7 @@
       "url": "/cardlist/cardsearch/?expansion=SRIO/01S",
       "alt": "スタートデッキ『サンリオキャラクターズ』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/03/23155024/sdpackage_srio_01s.png",
-      "expansion_image_alt": "スタートデッキ『サンリオキャラクターズ』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverSRIO_01S.webp"
+      "expansion_image_alt": "スタートデッキ『サンリオキャラクターズ』"
     },
     {
       "booster": "SRIO/01B",
@@ -314,8 +278,7 @@
       "url": "/cardlist/cardsearch/?expansion=SRIO/01B",
       "alt": "ブースターパック『サンリオキャラクターズ』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/03/23155025/bppackage_srio_01b.png",
-      "expansion_image_alt": "ブースターパック『サンリオキャラクターズ』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverSRIO_01B.webp"
+      "expansion_image_alt": "ブースターパック『サンリオキャラクターズ』"
     },
     {
       "booster": "STPR/01E",
@@ -325,8 +288,7 @@
       "url": "/cardlist/cardsearch/?expansion=STPR/01E",
       "alt": "はじめようデッキ『すとぷり』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/03/17102705/expackage_stpr_01e.png",
-      "expansion_image_alt": "はじめようデッキ『すとぷり』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverSTPR_01E.webp"
+      "expansion_image_alt": "はじめようデッキ『すとぷり』"
     },
     {
       "booster": "STPR/02B",
@@ -336,8 +298,7 @@
       "url": "/cardlist/cardsearch/?expansion=STPR/02B",
       "alt": "ブースターパック『すとぷり Vol.2』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/03/17102627/bppackage_stpr_02b.png",
-      "expansion_image_alt": "ブースターパック『すとぷり Vol.2』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverSTPR_02B.webp"
+      "expansion_image_alt": "ブースターパック『すとぷり Vol.2』"
     },
     {
       "booster": "CFP/01S",
@@ -347,8 +308,7 @@
       "url": "/cardlist/cardsearch/?expansion=CFP/01S",
       "alt": "スタートデッキ 『カラフルピーチ』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/03/22104215/sdpackage_cfp_01s.png",
-      "expansion_image_alt": "スタートデッキ 『カラフルピーチ』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverCFP_01S.webp"
+      "expansion_image_alt": "スタートデッキ 『カラフルピーチ』"
     },
     {
       "booster": "CFP/01B",
@@ -358,8 +318,7 @@
       "url": "/cardlist/cardsearch/?expansion=CFP/01B",
       "alt": "ブースターパック『カラフルピーチ』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/03/22105014/bppackage_cfp_01b.png",
-      "expansion_image_alt": "ブースターパック『カラフルピーチ』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverCFP_01B.webp"
+      "expansion_image_alt": "ブースターパック『カラフルピーチ』"
     },
     {
       "booster": "TNPR/01S",
@@ -369,8 +328,7 @@
       "url": "/cardlist/cardsearch/?expansion=TNPR/01S",
       "alt": "スタートデッキ『新テニスの王子様』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/03/15112628/sdpackage_tnpr_01s.png",
-      "expansion_image_alt": "スタートデッキ『新テニスの王子様』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverTNPR_01S.webp"
+      "expansion_image_alt": "スタートデッキ『新テニスの王子様』"
     },
     {
       "booster": "TNPR/01B",
@@ -380,8 +338,7 @@
       "url": "/cardlist/cardsearch/?expansion=TNPR/01B",
       "alt": "ブースターパック『新テニスの王子様』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/03/20141055/bppackage_tnpr.png",
-      "expansion_image_alt": "ブースターパック『新テニスの王子様』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverTNPR_01B.webp"
+      "expansion_image_alt": "ブースターパック『新テニスの王子様』"
     },
     {
       "booster": "DSY/01E",
@@ -391,8 +348,7 @@
       "url": "/cardlist/cardsearch/?expansion=DSY/01E",
       "alt": "スリーブ＆カードセット ラプンツェル アート コレクション BY 中川翔子",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/04/02193050/expackage_dsy_01e.png",
-      "expansion_image_alt": "スリーブ＆カードセット ラプンツェル アート コレクション BY 中川翔子",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverDSY_01E.webp"
+      "expansion_image_alt": "スリーブ＆カードセット ラプンツェル アート コレクション BY 中川翔子"
     },
     {
       "booster": "CNN/02B",
@@ -402,8 +358,7 @@
       "url": "/cardlist/cardsearch/?expansion=CNN/02B",
       "alt": "ブースターパック『名探偵コナン Vol.2』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2024/02/19135514/bppackage_cnn_02b.png",
-      "expansion_image_alt": "ブースターパック『名探偵コナン Vol.2』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverCNN_02B.webp"
+      "expansion_image_alt": "ブースターパック『名探偵コナン Vol.2』"
     },
     {
       "booster": "TWST/01S",
@@ -413,8 +368,7 @@
       "url": "/cardlist/cardsearch/?expansion=TWST/01S",
       "alt": "スタートデッキ / ディズニー ツイステッドワンダーランド",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/10/26092609/sdpackage_twst_01.png",
-      "expansion_image_alt": "スタートデッキ / ディズニー ツイステッドワンダーランド",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverTWST_01S.webp"
+      "expansion_image_alt": "スタートデッキ / ディズニー ツイステッドワンダーランド"
     },
     {
       "booster": "TWST/01B",
@@ -424,8 +378,7 @@
       "url": "/cardlist/cardsearch/?expansion=TWST/01B",
       "alt": "ブースターパック / ディズニー ツイステッドワンダーランド",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/12/20131824/bppackage_twst.png",
-      "expansion_image_alt": "ブースターパック / ディズニー ツイステッドワンダーランド",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverTWST_01B.webp"
+      "expansion_image_alt": "ブースターパック / ディズニー ツイステッドワンダーランド"
     },
     {
       "booster": "HOS/01S",
@@ -435,8 +388,7 @@
       "url": "/cardlist/cardsearch/?expansion=HOS/01S",
       "alt": "スタートデッキ『ホロスターズ』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/11/24144752/HOS_SD_pack.png",
-      "expansion_image_alt": "スタートデッキ『ホロスターズ』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverHOS_01S.webp"
+      "expansion_image_alt": "スタートデッキ『ホロスターズ』"
     },
     {
       "booster": "HOS/01B",
@@ -446,8 +398,7 @@
       "url": "/cardlist/cardsearch/?expansion=HOS/01B",
       "alt": "ブースターパック『ホロスターズ』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/11/14172129/bppackage_hos_01b.png",
-      "expansion_image_alt": "ブースターパック『ホロスターズ』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverHOS_01B.webp"
+      "expansion_image_alt": "ブースターパック『ホロスターズ』"
     },
     {
       "booster": "TRVS/01S",
@@ -457,8 +408,7 @@
       "url": "/cardlist/cardsearch/?expansion=TRVS/01S",
       "alt": "スタートデッキ『東京リベンジャーズ 聖夜決戦編』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/09/24165523/WSB_東リベ_組立結合.png",
-      "expansion_image_alt": "スタートデッキ『東京リベンジャーズ 聖夜決戦編』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverTRVS_01S.webp"
+      "expansion_image_alt": "スタートデッキ『東京リベンジャーズ 聖夜決戦編』"
     },
     {
       "booster": "TRVS/01B",
@@ -468,8 +418,7 @@
       "url": "/cardlist/cardsearch/?expansion=TRVS/01B",
       "alt": "ブースターパック『東京リベンジャーズ 聖夜決戦編』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/09/24165527/東リベ_組立BOX結合.png",
-      "expansion_image_alt": "ブースターパック『東京リベンジャーズ 聖夜決戦編』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverTRVS_01B.webp"
+      "expansion_image_alt": "ブースターパック『東京リベンジャーズ 聖夜決戦編』"
     },
     {
       "booster": "BLK/01S",
@@ -479,8 +428,7 @@
       "url": "/cardlist/cardsearch/?expansion=BLK/01S",
       "alt": "スタートデッキ『ブルーロック』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/04/14141301/WSB_ブルーロック_組立結合_SDFIX.png",
-      "expansion_image_alt": "スタートデッキ『ブルーロック』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverBLK_01S.webp"
+      "expansion_image_alt": "スタートデッキ『ブルーロック』"
     },
     {
       "booster": "BLK/01B",
@@ -490,8 +438,7 @@
       "url": "/cardlist/cardsearch/?expansion=BLK/01B",
       "alt": "ブースターパック『ブルーロック』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/04/10143027/ブルーロック_組立BOX結合.png",
-      "expansion_image_alt": "ブースターパック『ブルーロック』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverBLK_01B.webp"
+      "expansion_image_alt": "ブースターパック『ブルーロック』"
     },
     {
       "booster": "HPMI/01B",
@@ -501,8 +448,7 @@
       "url": "/cardlist/cardsearch/?expansion=HPMI/01B",
       "alt": "ブースターパック『ヒプノシスマイク -Division Rap Battle-』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/08/15150603/ヒプノシ_組立BOXA_基本使用.png",
-      "expansion_image_alt": "ブースターパック『ヒプノシスマイク -Division Rap Battle-』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverHPMI_01B.webp"
+      "expansion_image_alt": "ブースターパック『ヒプノシスマイク -Division Rap Battle-』"
     },
     {
       "booster": "HPMI/01Ssd1",
@@ -512,8 +458,7 @@
       "url": "/cardlist/cardsearch/?expansion=HPMI/01Ssd1",
       "alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- Buster Bros!!!』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/08/15112527/WSB_ヒプノシ_組立作り直し01.png",
-      "expansion_image_alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- Buster Bros!!!』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverHPMI_01Ssd1.webp"
+      "expansion_image_alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- Buster Bros!!!』"
     },
     {
       "booster": "HPMI/01Ssd2",
@@ -523,8 +468,7 @@
       "url": "/cardlist/cardsearch/?expansion=HPMI/01Ssd2",
       "alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- MAD TRIGGER CREW』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/08/15112531/WSB_ヒプノシ_組立作り直し02.png",
-      "expansion_image_alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- MAD TRIGGER CREW』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverHPMI_01Ssd2.webp"
+      "expansion_image_alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- MAD TRIGGER CREW』"
     },
     {
       "booster": "HPMI/01Ssd3",
@@ -534,8 +478,7 @@
       "url": "/cardlist/cardsearch/?expansion=HPMI/01Ssd3",
       "alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- Fling Posse』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/08/15112552/WSB_ヒプノシ_組立作り直し03-1.png",
-      "expansion_image_alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- Fling Posse』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverHPMI_01Ssd3.webp"
+      "expansion_image_alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- Fling Posse』"
     },
     {
       "booster": "HPMI/01Ssd4",
@@ -545,8 +488,7 @@
       "url": "/cardlist/cardsearch/?expansion=HPMI/01Ssd4",
       "alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- 麻天狼』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/08/15112602/WSB_ヒプノシ_組立作り直し06.png",
-      "expansion_image_alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- 麻天狼』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverHPMI_01Ssd4.webp"
+      "expansion_image_alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- 麻天狼』"
     },
     {
       "booster": "HPMI/01Ssd5",
@@ -556,8 +498,7 @@
       "url": "/cardlist/cardsearch/?expansion=HPMI/01Ssd5",
       "alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- どついたれ本舗』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/08/15112558/WSB_ヒプノシ_組立作り直し05.png",
-      "expansion_image_alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- どついたれ本舗』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverHPMI_01Ssd5.webp"
+      "expansion_image_alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- どついたれ本舗』"
     },
     {
       "booster": "HPMI/01Ssd6",
@@ -567,8 +508,7 @@
       "url": "/cardlist/cardsearch/?expansion=HPMI/01Ssd6",
       "alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- Bad Ass Temple』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/08/15112555/WSB_ヒプノシ_組立作り直し04.png",
-      "expansion_image_alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- Bad Ass Temple』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverHPMI_01Ssd6.webp"
+      "expansion_image_alt": "スタートデッキ『ヒプノシスマイク -Division Rap Battle- Bad Ass Temple』"
     },
     {
       "booster": "fARG/01B",
@@ -578,8 +518,7 @@
       "url": "/cardlist/cardsearch/?expansion=fARG/01B",
       "alt": "ブースターパック『from ARGONAVIS』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/03/10093628/アルゴ_組立BOX結合.png",
-      "expansion_image_alt": "ブースターパック『from ARGONAVIS』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverfARG_01B.webp"
+      "expansion_image_alt": "ブースターパック『from ARGONAVIS』"
     },
     {
       "booster": "DSY/01B",
@@ -589,8 +528,7 @@
       "url": "/cardlist/cardsearch/?expansion=DSY/01B",
       "alt": "ブースターパック / Disney CHARACTERS",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/03/12152640/Disny_組立BOX結合.png",
-      "expansion_image_alt": "ブースターパック / Disney CHARACTERS",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverDSY_01B.webp"
+      "expansion_image_alt": "ブースターパック / Disney CHARACTERS"
     },
     {
       "booster": "DSY/03S",
@@ -600,8 +538,7 @@
       "url": "/cardlist/cardsearch/?expansion=DSY/03S",
       "alt": "スタートデッキ『リトル・マーメイド』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/01/21115011/DSY_03S_pack.png",
-      "expansion_image_alt": "スタートデッキ『リトル・マーメイド』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverDSY_03S.webp"
+      "expansion_image_alt": "スタートデッキ『リトル・マーメイド』"
     },
     {
       "booster": "UTPR/01B",
@@ -611,8 +548,7 @@
       "url": "/cardlist/cardsearch/?expansion=UTPR/01B",
       "alt": "ブースターパック『劇場版 うたの☆プリンスさまっ♪ マジLOVEキングダム』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/11/08165206/うたぷり_組立BOX_パース修正結合.png",
-      "expansion_image_alt": "ブースターパック『劇場版 うたの☆プリンスさまっ♪ マジLOVEキングダム』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverUTPR_01B.webp"
+      "expansion_image_alt": "ブースターパック『劇場版 うたの☆プリンスさまっ♪ マジLOVEキングダム』"
     },
     {
       "booster": "DSY/02S",
@@ -622,8 +558,7 @@
       "url": "/cardlist/cardsearch/?expansion=DSY/02S",
       "alt": "スタートデッキ『塔の上のラプンツェル』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/01/02132024/20221227_WSB_ラプンツェル_組立.png",
-      "expansion_image_alt": "スタートデッキ『塔の上のラプンツェル』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverDSY_02S.webp"
+      "expansion_image_alt": "スタートデッキ『塔の上のラプンツェル』"
     },
     {
       "booster": "CNN/01S",
@@ -633,8 +568,7 @@
       "url": "/cardlist/cardsearch/?expansion=CNN/01S",
       "alt": "スタートデッキ『名探偵コナン』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/12/27173201/WSB_コナン_組立結合.png",
-      "expansion_image_alt": "スタートデッキ『名探偵コナン』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverCNN_01S.webp"
+      "expansion_image_alt": "スタートデッキ『名探偵コナン』"
     },
     {
       "booster": "CNN/01B",
@@ -644,8 +578,7 @@
       "url": "/cardlist/cardsearch/?expansion=CNN/01B",
       "alt": "ブースターパック『名探偵コナン』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/12/31110220/コナン_BPBOX組立画像-2.png",
-      "expansion_image_alt": "ブースターパック『名探偵コナン』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverCNN_01B.webp"
+      "expansion_image_alt": "ブースターパック『名探偵コナン』"
     },
     {
       "booster": "DSY/01S",
@@ -655,8 +588,7 @@
       "url": "/cardlist/cardsearch/?expansion=DSY/01S",
       "alt": "スタートデッキ『アナと雪の女王』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/01/08110103/20230208_WSB_アナ雪_組立.png",
-      "expansion_image_alt": "スタートデッキ『アナと雪の女王』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverDSY_01S.webp"
+      "expansion_image_alt": "スタートデッキ『アナと雪の女王』"
     },
     {
       "booster": "STPR/01B",
@@ -666,8 +598,7 @@
       "url": "/cardlist/cardsearch/?expansion=STPR/01B",
       "alt": "ブースターパック『すとぷり』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/12/21194438/stpr_package.png",
-      "expansion_image_alt": "ブースターパック『すとぷり』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverSTPR_01B.webp"
+      "expansion_image_alt": "ブースターパック『すとぷり』"
     },
     {
       "booster": "ISM/01B",
@@ -677,8 +608,7 @@
       "url": "/cardlist/cardsearch/?expansion=ISM/01B",
       "alt": "ブースターパック『アイドルマスター SideM』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2023/02/02134159/アイマスM_組立BOX.png",
-      "expansion_image_alt": "ブースターパック『アイドルマスター SideM』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverISM_01B.webp"
+      "expansion_image_alt": "ブースターパック『アイドルマスター SideM』"
     },
     {
       "booster": "A3!/01B",
@@ -688,8 +618,7 @@
       "url": "/cardlist/cardsearch/?expansion=A3!/01B",
       "alt": "ブースターパック『A3!』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/11/26134346/A3_組立BOX.png",
-      "expansion_image_alt": "ブースターパック『A3!』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverA3%21_01B.webp"
+      "expansion_image_alt": "ブースターパック『A3!』"
     },
     {
       "booster": "fARG/01Sa",
@@ -699,8 +628,7 @@
       "url": "/cardlist/cardsearch/?expansion=fARG/01Sa",
       "alt": "スタートデッキ『Argonavis』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/10/27174002/20221227_WSB_Argonavis_組立.png",
-      "expansion_image_alt": "スタートデッキ『Argonavis』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverfARG_01Sa.webp"
+      "expansion_image_alt": "スタートデッキ『Argonavis』"
     },
     {
       "booster": "fARG/01Sg",
@@ -710,8 +638,7 @@
       "url": "/cardlist/cardsearch/?expansion=fARG/01Sg",
       "alt": "スタートデッキ『GYROAXIA』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/10/04181745/20221227_WSB_GYROAXIA_組立-1.png",
-      "expansion_image_alt": "スタートデッキ『GYROAXIA』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverfARG_01Sg.webp"
+      "expansion_image_alt": "スタートデッキ『GYROAXIA』"
     },
     {
       "booster": "ISM/01S",
@@ -721,8 +648,7 @@
       "url": "/cardlist/cardsearch/?expansion=ISM/01S",
       "alt": "スタートデッキ『アイドルマスター SideM』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/12/27111627/WSB_sideM_組立01-1.png",
-      "expansion_image_alt": "スタートデッキ『アイドルマスター SideM』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverISM_01S.webp"
+      "expansion_image_alt": "スタートデッキ『アイドルマスター SideM』"
     },
     {
       "booster": "CIKW/01B",
@@ -732,8 +658,7 @@
       "url": "/cardlist/cardsearch/?expansion=CIKW/01B",
       "alt": "ブースターパック『ちいかわ』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/08/05153309/ちいかわ_組立BOX.png",
-      "expansion_image_alt": "ブースターパック『ちいかわ』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverCIKW_01B.webp"
+      "expansion_image_alt": "ブースターパック『ちいかわ』"
     },
     {
       "booster": "Eve/01B",
@@ -743,8 +668,7 @@
       "url": "/cardlist/cardsearch/?expansion=Eve/01B",
       "alt": "ブースターパック『Eve ～ZINGAI/Card Collection～』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/09/28161022/Eve_組立BOX.png",
-      "expansion_image_alt": "ブースターパック『Eve ～ZINGAI/Card Collection～』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverEve_01B.webp"
+      "expansion_image_alt": "ブースターパック『Eve ～ZINGAI/Card Collection～』"
     },
     {
       "booster": "STPR/01S",
@@ -754,8 +678,7 @@
       "url": "/cardlist/cardsearch/?expansion=STPR/01S",
       "alt": "スタートデッキ『すとぷり』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/10/28220456/すとぷり_1個箱組み立て画像.png",
-      "expansion_image_alt": "スタートデッキ『すとぷり』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverSTPR_01S.webp"
+      "expansion_image_alt": "スタートデッキ『すとぷり』"
     },
     {
       "booster": "A3!/01Ssp",
@@ -765,8 +688,7 @@
       "url": "/cardlist/cardsearch/?expansion=A3!/01Ssp",
       "alt": "スタートデッキ『A3! 春組』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/10/13184157/20221006ss_WSB_組立02-1.png",
-      "expansion_image_alt": "スタートデッキ『A3! 春組』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverA3%21_01Ssp.webp"
+      "expansion_image_alt": "スタートデッキ『A3! 春組』"
     },
     {
       "booster": "A3!/01Ssu",
@@ -776,8 +698,7 @@
       "url": "/cardlist/cardsearch/?expansion=A3!/01Ssu",
       "alt": "スタートデッキ『A3! 夏組』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/10/13184200/20221006ss_WSB_組立03-1.png",
-      "expansion_image_alt": "スタートデッキ『A3! 夏組』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverA3%21_01Ssu.webp"
+      "expansion_image_alt": "スタートデッキ『A3! 夏組』"
     },
     {
       "booster": "A3!/01Sau",
@@ -787,8 +708,7 @@
       "url": "/cardlist/cardsearch/?expansion=A3!/01Sau",
       "alt": "スタートデッキ『A3! 秋組』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/10/13184150/20221006ss_WSB_組立01-1.png",
-      "expansion_image_alt": "スタートデッキ『A3! 秋組』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverA3%21_01Sau.webp"
+      "expansion_image_alt": "スタートデッキ『A3! 秋組』"
     },
     {
       "booster": "A3!/01Swi",
@@ -798,8 +718,7 @@
       "url": "/cardlist/cardsearch/?expansion=A3!/01Swi",
       "alt": "スタートデッキ『A3! 冬組』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/10/13184202/20221006ss_WSB_組立04-1.png",
-      "expansion_image_alt": "スタートデッキ『A3! 冬組』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverA3%21_01Swi.webp"
+      "expansion_image_alt": "スタートデッキ『A3! 冬組』"
     },
     {
       "booster": "UTPR/01S",
@@ -809,8 +728,7 @@
       "url": "/cardlist/cardsearch/?expansion=UTPR/01S",
       "alt": "スタートデッキ『劇場版 うたの☆プリンスさまっ♪ マジLOVEスターリッシュツアーズ』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/10/13183528/スタートデッキ組み立てイメージ.png",
-      "expansion_image_alt": "スタートデッキ『劇場版 うたの☆プリンスさまっ♪ マジLOVEスターリッシュツアーズ』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverUTPR_01S.webp"
+      "expansion_image_alt": "スタートデッキ『劇場版 うたの☆プリンスさまっ♪ マジLOVEスターリッシュツアーズ』"
     },
     {
       "booster": "Eve/01S",
@@ -820,8 +738,7 @@
       "url": "/cardlist/cardsearch/?expansion=Eve/01S",
       "alt": "スタートデッキ『Eve ～ZINGAI_Card Collection～』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/09/06173612/20221006_WSB_Eve_組立01.png",
-      "expansion_image_alt": "スタートデッキ『Eve ～ZINGAI_Card Collection～』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverEve_01S.webp"
+      "expansion_image_alt": "スタートデッキ『Eve ～ZINGAI_Card Collection～』"
     },
     {
       "booster": "CIKW/01S",
@@ -831,8 +748,7 @@
       "url": "/cardlist/cardsearch/?expansion=CIKW/01S",
       "alt": "スタートデッキ『ちいかわ』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2022/09/17133601/20221006_WSB_ちいかわ_組立01.png",
-      "expansion_image_alt": "スタートデッキ『ちいかわ』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverCIKW_01S.webp"
+      "expansion_image_alt": "スタートデッキ『ちいかわ』"
     },
     {
       "booster": "PR2025",
@@ -842,8 +758,7 @@
       "url": "/cardlist/cardsearch/?expansion=PR2025",
       "alt": "PRカード（2025年）",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/themes/blau_v0/assets/images/common/thumb_default.png",
-      "expansion_image_alt": "PRカード（2025年）",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverPR2025.webp"
+      "expansion_image_alt": "PRカード（2025年）"
     },
     {
       "booster": "PR2024",
@@ -853,8 +768,7 @@
       "url": "/cardlist/cardsearch/?expansion=PR2024",
       "alt": "PRカード（2024年）",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/themes/blau_v0/assets/images/common/thumb_default.png",
-      "expansion_image_alt": "PRカード（2024年）",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverPR2024.webp"
+      "expansion_image_alt": "PRカード（2024年）"
     },
     {
       "booster": "PR2023",
@@ -864,8 +778,7 @@
       "url": "/cardlist/cardsearch/?expansion=PR2023",
       "alt": "PRカード（2023年）",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/themes/blau_v0/assets/images/common/thumb_default.png",
-      "expansion_image_alt": "PRカード（2023年）",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverPR2023.webp"
+      "expansion_image_alt": "PRカード（2023年）"
     },
     {
       "booster": "PR2022",
@@ -875,8 +788,7 @@
       "url": "/cardlist/cardsearch/?expansion=PR2022",
       "alt": "PRカード（2022年）",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/themes/blau_v0/assets/images/common/thumb_default.png",
-      "expansion_image_alt": "PRカード（2022年）",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverPR2022.webp"
+      "expansion_image_alt": "PRカード（2022年）"
     }
   ],
   "total_count": 79
