@@ -24,7 +24,7 @@ class GitHubService:
     
     def _validate_github_config(self):
         """Validate that all required GitHub environment variables are set"""
-        if not all([self.github_token, self.github_username, self.github_email]):
+        if not all([self.github_token]):#, self.github_username, self.github_email]):
             raise ValueError("Missing one or more required GitHub environment variables: GITHUB_TOKEN, GITHUB_USERNAME, GITHUB_EMAIL")
     
     def set_file_path(self, file_path):
