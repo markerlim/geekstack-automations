@@ -11,15 +11,12 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from service.googlecloudservice import upload_image_to_gcs
 from service.mongoservice import upload_to_mongo, validate_from_mongo
+from service.github_service import GitHubService
 import base64
 
 # GitHub config
-REPO_OWNER = "markerlim"
-REPO_NAME = "geekstack-automations"
+github_service = GitHubService()
 DATE_FILE_PATH = "duelmasterdb/last_pdt_date.json"
-BRANCH = "main"
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-DATE_API_URL = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{DATE_FILE_PATH}?ref={BRANCH}"
 
 # Function to scrape a single page
 def scrape_page(url, category_key):
@@ -147,91 +144,6 @@ def scrape_page(url, category_key):
 
     return product_data, has_next_page
 
-# Function to get last processed date from GitHub
-def get_last_pdt_date(category_key):
-    """Get the last processed date for a specific category from GitHub last_pdt_date.json"""
-    try:
-        # Get the existing last_pdt_date.json file from GitHub via API
-        response = requests.get(DATE_API_URL, headers={"Authorization": f"Bearer {GITHUB_TOKEN}"})
-        
-        if response.status_code == 200:
-            file_data = response.json()
-            # Decode the base64 content of the existing file
-            content_base64 = file_data['content']
-            decoded_content = base64.b64decode(content_base64).decode('utf-8')
-            # Load the decoded content as JSON
-            date_data = json.loads(decoded_content)
-        elif response.status_code == 404:
-            # File doesn't exist yet, return None
-            print(f"📄 last_pdt_date.json not found on GitHub, will create new one")
-            return None
-        else:
-            print(f"⚠️ Error fetching last_pdt_date.json from GitHub: {response.status_code}")
-            return None
-            
-        if category_key in date_data and 'last_date' in date_data[category_key]:
-            date_str = date_data[category_key]['last_date']
-            # Handle empty strings
-            if date_str and date_str.strip():
-                return datetime.fromisoformat(date_str)
-        return None
-    except Exception as e:
-        print(f"⚠️ Error reading last date: {str(e)}")
-        return None
-
-# Function to save last processed date for a category to GitHub
-def save_last_pdt_date(category_key, date_obj):
-    """Save the latest processed date for a category to GitHub last_pdt_date.json"""
-    try:
-        # Get the existing last_pdt_date.json file from GitHub via API
-        response = requests.get(DATE_API_URL, headers={"Authorization": f"Bearer {GITHUB_TOKEN}"})
-        
-        if response.status_code == 200:
-            file_data = response.json()
-            # Decode the base64 content of the existing file
-            content_base64 = file_data['content']
-            decoded_content = base64.b64decode(content_base64).decode('utf-8')
-            # Load the decoded content as JSON
-            date_data = json.loads(decoded_content)
-            file_sha = file_data['sha']
-        elif response.status_code == 404:
-            # File doesn't exist yet, create new structure
-            date_data = {}
-            file_sha = None  # No SHA for new file
-        else:
-            print(f"❌ Error fetching last_pdt_date.json from GitHub: {response.status_code}")
-            return
-        
-        # Update or create the category entry
-        if category_key not in date_data:
-            date_data[category_key] = {}
-        
-        date_data[category_key]['last_date'] = date_obj.isoformat()
-        
-        # Prepare the updated content
-        updated_content = json.dumps(date_data, indent=2)
-        
-        # Commit the change to GitHub using the API
-        update_url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{DATE_FILE_PATH}"
-        data = {
-            "message": f"feat(dm): Update last processed date for {category_key} to {date_obj.isoformat()}",
-            "content": base64.b64encode(updated_content.encode('utf-8')).decode('utf-8'),
-            "branch": BRANCH
-        }
-        
-        if file_sha:
-            data["sha"] = file_sha  # Include SHA for existing file update
-        
-        response = requests.put(update_url, headers={"Authorization": f"Bearer {GITHUB_TOKEN}"}, json=data)
-        
-        if response.status_code == 200 or response.status_code == 201:
-            print(f"💾 Updated last date for '{category_key}' on GitHub: {date_obj.isoformat()}")
-        else:
-            print(f"❌ Error updating last_pdt_date.json on GitHub: {response.status_code}")
-            print(f"Response: {response.text}")
-    except Exception as e:
-        print(f"❌ Error saving last date: {str(e)}")
-
 # Main scraping loop for multiple pages
 def duelmaster_cover_scrape():
     product_categories = [
@@ -241,10 +153,17 @@ def duelmaster_cover_scrape():
     ]
 
     total_new_products = 0
+    json_object, file_sha = github_service.load_json_file(DATE_FILE_PATH)
 
     for category in product_categories:
-        # Get last processed date for this category
-        last_date = get_last_pdt_date(category['key'])
+        # Get last processed date for this category from GitHubService loaded data
+        last_date = None
+        if json_object and category['key'] in json_object:
+            date_str = json_object[category['key']].get('last_date')
+            # Handle empty strings
+            if date_str and date_str.strip():
+                last_date = datetime.fromisoformat(date_str)
+        
         category_latest_date = last_date
         category_new_products = []
         
@@ -328,13 +247,21 @@ def duelmaster_cover_scrape():
         
         # Combine new data with existing data for this category
         if category_new_products:
-            category_new_products
-            
-            upload_to_mongo(category_new_products, "NewList")
+            upload_to_mongo(category_new_products, "NewList", backup_before_upload=True)
             
             # Update last date for this category
             if category_latest_date and category_latest_date != last_date:
-                save_last_pdt_date(category['key'], category_latest_date)
+                # Update json_object with new date
+                if json_object is None:
+                    json_object = {}
+                if category['key'] not in json_object:
+                    json_object[category['key']] = {}
+                json_object[category['key']]['last_date'] = category_latest_date.isoformat()
+                
+                # Convert to JSON string and update via GitHubService
+                updated_content = json.dumps(json_object, indent=2)
+                commit_message = f"feat(dm): Update last processed date for {category['key']} to {category_latest_date.isoformat()}"
+                github_service.update_file(DATE_FILE_PATH, updated_content, commit_message, file_sha)
             
             print(f"  📈 Total products for {category['name']}: {len(category_new_products)}")
             

@@ -119,3 +119,25 @@ def validate_from_mongo(collection_name, field_name, field_value):
     except Exception as e:
         print(f"❌ MongoDB validation failed: {e}")
         return None
+    
+def check_unique_sets(collection_name,field_name):
+    try:
+        _validate_mongo_config()
+        
+        # Construct the MongoDB URI
+        mongo_uri = _get_mongo_uri()
+
+        # Connect to MongoDB
+        client = MongoClient(mongo_uri,tlsCAFile=certifi.where())
+        db = client[MONGO_DATABASE]
+        collection = db[collection_name]
+
+        # Fetch all unique values for the specified field
+        unique_values = collection.distinct(field_name)
+        
+        print(f"✅ Found {len(unique_values)} unique values for field '{field_name}'.")
+        
+        return unique_values
+    except Exception as e:
+        print(f"❌ MongoDB unique set check failed: {e}")
+        return None
