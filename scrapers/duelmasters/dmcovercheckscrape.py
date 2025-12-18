@@ -10,12 +10,14 @@ from datetime import datetime
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from service.googlecloudservice import upload_image_to_gcs
-from service.mongoservice import upload_to_mongo, validate_from_mongo
+from service.mongo_service import MongoService
 from service.github_service import GitHubService
-import base64
 
-# GitHub config
+# Initialize Service Layer
 github_service = GitHubService()
+mongo_service = MongoService()
+
+# Variables
 DATE_FILE_PATH = "duelmasterdb/last_pdt_date.json"
 
 # Function to scrape a single page
@@ -205,7 +207,7 @@ def duelmaster_cover_scrape():
                     if last_date is None or release_date > last_date:
 
                         collection_value = os.getenv("C_DUELMASTERS")
-                        if not validate_from_mongo(collection_value, "booster", booster_name)['exists']:
+                        if not mongo_service.validate_field(collection_value, "booster", booster_name)['exists']:
                             print(f"DEBUG booster '{booster_name}' not found in MongoDB, marking as unreleased")
                             product['category'] = f"{category['key']}_unreleased"
                         # Upload image to GCS now that we know this product is new
@@ -247,7 +249,7 @@ def duelmaster_cover_scrape():
         
         # Combine new data with existing data for this category
         if category_new_products:
-            upload_to_mongo(category_new_products, "NewList", backup_before_upload=True)
+            mongo_service.upload_data(category_new_products, "NewList", backup_before_upload=True)
             
             # Update last date for this category
             if category_latest_date and category_latest_date != last_date:

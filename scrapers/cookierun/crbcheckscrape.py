@@ -2,19 +2,19 @@ import requests
 
 import os
 import sys
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
-
 from cookierunscrape import process_card_data
-from service.github_service import GitHubService
 from datetime import datetime
 
 # Add parent directories to path for imports
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
-from service.mongoservice import upload_to_mongo
+from service.github_service import GitHubService
+from service.mongo_service import MongoService
 
-# Initialize GitHub service
+# Initialize Service Layer
 github_service = GitHubService()
+mongo_service = MongoService()
+
+# Variables
 FILE_PATH = "cookierundb/latestdate.json"
 
 existing_values, file_sha = github_service.load_json_file(FILE_PATH)
@@ -87,7 +87,7 @@ if processed_cards:
     if collection_value:
         try:
         # Upload new cards to MongoDB
-            upload_to_mongo(
+            mongo_service.upload_data(
                 data=processed_cards,
                 collection_name=collection_value,
                 backup_before_upload=True

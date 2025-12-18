@@ -139,22 +139,3 @@ class GitHubService:
         json_data, _ = self.load_json_file(file_path)
         return json_data if json_data is not None else {}
 
-
-# Backward compatibility functions
-def init_github_config(repo_owner="markerlim", repo_name="geekstack-automations", file_path=None, branch="main"):
-    """Backward compatibility function - creates and returns GitHubService instance"""
-    service = GitHubService(repo_owner, repo_name, branch)
-    if file_path:
-        return service.set_file_path(file_path)
-    return service
-
-def load_series_json_from_github(api_url=None):
-    """Backward compatibility function"""
-    # This requires a global service instance, which isn't ideal
-    # Users should migrate to using GitHubService class directly
-    raise NotImplementedError("Please use GitHubService class directly: service = GitHubService(); service.load_series_json()")
-
-def update_file_on_github(repo_owner, repo_name, file_path, content, commit_message, file_sha, branch="main"):
-    """Backward compatibility function"""
-    service = GitHubService(repo_owner, repo_name, branch)
-    return service.update_file(file_path, content, commit_message, file_sha, branch)

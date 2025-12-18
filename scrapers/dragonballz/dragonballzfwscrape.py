@@ -7,7 +7,10 @@ from urllib.parse import urljoin
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from service.googlecloudservice import upload_image_to_gcs
-from service.mongoservice import upload_to_mongo
+from service.mongo_service import MongoService
+
+# Initialize Service Layer
+mongo_service = MongoService
 
 def map_booster(code):
     if code == '583901':
@@ -182,7 +185,7 @@ def scrape_dragonballzfw_cards(package_value):
         collection_value = os.getenv('C_DRAGONBALLZFW')
         if collection_value:
             try:
-                upload_to_mongo(
+                mongo_service.upload_data(
                     data=json_data,
                     collection_name=collection_value,
                     backup_before_upload=True

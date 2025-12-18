@@ -15,12 +15,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from service.googlecloudservice import upload_image_to_gcs
-from service.mongoservice import find_specific_object_in_mongo, modify_object_by_id, upload_to_mongo
+from service.mongo_service import MongoService
 from service.translationservice import translate_data
 from service.github_service import GitHubService
 
-# Initialize GitHub service
+# Initialize Service Layer
 github_service = GitHubService()
+mongo_service = MongoService()
 
 def get_total_pages(driver, booster):
     url = f"https://dm.takaratomy.co.jp/card/?v=%7B%22suggest%22:%22on%22,%22keyword_type%22:%5B%22card_name%22,%22card_ruby%22,%22card_text%22%5D,%22culture_cond%22:%5B%22%E5%8D%98%E8%89%B2%22,%22%E5%A4%9A%E8%89%B2%22%5D,%22pagenum%22:%221%22,%22samename%22:%22show%22,%22products%22:%22{booster}%22,%22sort%22:%22release_new%22%7D"
@@ -270,18 +271,18 @@ def startscraping(booster_list):
             collection_value = os.getenv("C_DUELMASTERS")
             if collection_value:
                 try:
-                    upload_to_mongo(
+                    mongo_service.upload_data(
                         data=all_translated_data,
                         collection_name=collection_value,
                         backup_before_upload=True
                     )
-                    json_obj = find_specific_object_in_mongo(collection_name="NewList", field_name="booster", field_value=booster)
+                    json_obj = mongo_service.find_by_field(collection_name="NewList", field_name="booster", field_value=booster)
                     
                     # Modify category field by splitting on underscore and taking first part
                     if json_obj and 'category' in json_obj:
                         original_category = json_obj['category']
                         json_obj['category'] = original_category.split('_')[0]
-                        modify_object_by_id(collection_name="NewList", object_id=json_obj['_id'], update_data={'category': json_obj['category']})
+                        mongo_service.update_by_id(collection_name="NewList", object_id=json_obj['_id'], update_data={'category': json_obj['category']})
                         print(f"📝 Updated category from '{original_category}' to '{json_obj['category']}'")
                     
                 except Exception as e:

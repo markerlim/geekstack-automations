@@ -15,21 +15,15 @@ import requests
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 from service.googlecloudservice import upload_image_to_gcs
-from service.mongoservice import upload_to_mongo
+from service.mongo_service import MongoService
+from service.github_service import GitHubService
 
+# Initialize Service Layer
+github_service = GitHubService()
+mongo_service = MongoService()
 
-# GitHub repository details
-REPO_OWNER = "markerlim"
-REPO_NAME = "geekstack-automations"
+# Variables
 FILE_PATH = "riftbounddb/db.json"
-BRANCH = "main"
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-
-# GitHub API URL for file content
-url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}?ref={BRANCH}"
-
-
-# Riftbound API and database paths
 BASE_URL = "https://riftbound.leagueoflegends.com/en-us/card-gallery/"
 DB_FILE = os.path.join(os.path.dirname(__file__), '..', '..', 'riftbounddb', 'db.json')
 
@@ -39,50 +33,6 @@ CARD_SETS = {
     'OGN': 'Origins - Main Set',
     'OGS': 'Origins - Proving Grounds'
 }
-
-def load_riftbound_db():
-    """Load the Riftbound database from GitHub, fallback to local file"""
-    os.makedirs(os.path.dirname(DB_FILE), exist_ok=True)
-    
-    # Try to load from GitHub first
-    if GITHUB_TOKEN:
-        try:
-            print("📥 Fetching database from GitHub...")
-            response = requests.get(url, headers={"Authorization": f"Bearer {GITHUB_TOKEN}"})
-            
-            if response.status_code == 200:
-                file_data = response.json()
-                content_base64 = file_data['content']
-                decoded_content = base64.b64decode(content_base64).decode('utf-8')
-                db = json.loads(decoded_content)
-                print("  ✅ Loaded from GitHub")
-                return db
-            else:
-                print(f"  ⚠️ Could not fetch from GitHub (status: {response.status_code}), falling back to local")
-        except Exception as e:
-            print(f"  ⚠️ Error fetching from GitHub: {str(e)}, falling back to local")
-    
-    # Fallback to local file
-    if os.path.exists(DB_FILE):
-        try:
-            with open(DB_FILE, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except Exception as e:
-            print(f"⚠️ Error loading local DB: {str(e)}")
-            return {'available_sets': [], 'sets': {}}
-    
-    return {'available_sets': [], 'sets': {}}
-
-def save_riftbound_db(data):
-    """Save the local Riftbound database"""
-    os.makedirs(os.path.dirname(DB_FILE), exist_ok=True)
-    
-    try:
-        with open(DB_FILE, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
-        print(f"💾 Saved Riftbound database")
-    except Exception as e:
-        print(f"❌ Error saving DB: {str(e)}")
 
 def detect_available_sets(driver):
     """Detect all available sets from the website with card counts"""
@@ -132,7 +82,7 @@ def detect_available_sets(driver):
 
 def get_sets_to_scrape(available_sets):
     """Determine which sets need scraping based on card count comparison"""
-    db = load_riftbound_db()
+    db = github_service.load_json_file(FILE_PATH)[0]
     scraped_sets_data = db.get('sets', {})
     
     sets_to_scrape = []
@@ -574,13 +524,15 @@ def main():
             time.sleep(0.5)
         
         # Load existing database
-        db = load_riftbound_db()
+        db,filesha = github_service.load_json_file(FILE_PATH)
         if 'sets' not in db:
             db['sets'] = {}
         
         # Update available sets in database with current detection
         db['available_sets'] = available_sets
-        save_riftbound_db(db)
+        updated_content = json.dumps(db, indent=2, ensure_ascii=False)
+        commit_message = "Update available sets with latest detection"
+        github_service.update_file(FILE_PATH, updated_content, commit_message , filesha)
         
         # Determine which sets need scraping
         print("\n🔍 Checking which sets need scraping...")
@@ -634,7 +586,9 @@ def main():
                     all_scraped_cards.extend(cards)
         
         # Save updated database
-        update_github_db(db)
+        updated_content = json.dumps(db, indent=2, ensure_ascii=False)
+        commit_message = "Update Riftbound TCG database with newly scraped cards"
+        github_service.update_file(FILE_PATH, updated_content, commit_message, filesha)
         
         # Display summary
         print(f"\n🎯 SCRAPING COMPLETE")
@@ -645,7 +599,7 @@ def main():
         collection_value = os.getenv("C_RIFTBOUND")
         if collection_value and all_scraped_cards:
             print(f"\n📤 Uploading to MongoDB...")
-            upload_to_mongo(
+            mongo_service.upload_data(
                 data=all_scraped_cards,
                 collection_name=collection_value,
                 backup_before_upload=True
@@ -670,55 +624,6 @@ def main():
         if driver:
             driver.quit()
             print("\n🔐 Browser closed")
-
-def update_github_db(data):
-    """Update the Riftbound database on GitHub"""
-    if not GITHUB_TOKEN:
-        print("⚠️ GITHUB_TOKEN not found, skipping GitHub update")
-        return False
-    
-    try:
-        print("📤 Updating GitHub database...")
-        
-        # Get current file from GitHub to get the SHA
-        response = requests.get(url, headers={"Authorization": f"Bearer {GITHUB_TOKEN}"})
-        
-        if response.status_code != 200:
-            print(f"❌ Error fetching current file from GitHub: {response.status_code}")
-            return False
-        
-        file_data = response.json()
-        current_sha = file_data['sha']
-        
-        # Prepare updated content
-        updated_content = json.dumps(data, indent=2, ensure_ascii=False)
-        
-        # Update file on GitHub
-        update_data = {
-            "message": "Update Riftbound TCG database with newly scraped cards",
-            "content": base64.b64encode(updated_content.encode('utf-8')).decode('utf-8'),
-            "sha": current_sha,
-            "branch": BRANCH
-        }
-        
-        update_url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}"
-        response = requests.put(
-            update_url,
-            headers={"Authorization": f"Bearer {GITHUB_TOKEN}"},
-            json=update_data
-        )
-        
-        if response.status_code in [200, 201]:
-            print("  ✅ Successfully updated GitHub database")
-            return True
-        else:
-            print(f"❌ Error updating GitHub: {response.status_code}")
-            print(response.text)
-            return False
-    
-    except Exception as e:
-        print(f"❌ Error updating GitHub: {str(e)}")
-        return False
 
 if __name__ == "__main__":
     main()

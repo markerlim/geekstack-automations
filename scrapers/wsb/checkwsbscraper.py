@@ -8,106 +8,42 @@ import re
 import base64
 from datetime import datetime
 from urllib.parse import urljoin
-
-# Import the WSB card scraper
-sys.path.append(os.path.dirname(__file__))
 from wsbscraper import scrape_wsb_card
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
-from service.mongoservice import upload_to_mongo
+from service.mongo_service import MongoService
 from service.translationservice import translate_data
+from service.googlecloudservice import upload_image_to_gcs
+from service.github_service import GitHubService
 
-# GitHub repository details
-REPO_OWNER = "markerlim"
-REPO_NAME = "geekstack-automations"
+#Initialize Service Layer
+github_service = GitHubService()
+mongo_service = MongoService()
+
+# Variables
 FILE_PATH = "wsbdb/db.json"
-BRANCH = "main"
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-
-def update_github_db(expansions_data):
-    """Update the WSB database on GitHub with new expansions data"""
-    if not GITHUB_TOKEN:
-        print("⚠️ GITHUB_TOKEN not found, skipping GitHub update")
-        return False
-    
-    # GitHub API URL for file content
-    api_url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}?ref={BRANCH}"
-    
-    try:
-        # Get current file from GitHub
-        response = requests.get(api_url, headers={"Authorization": f"Bearer {GITHUB_TOKEN}"})
-        
-        if response.status_code == 200:
-            file_data = response.json()
-            
-            # Prepare updated content
-            updated_content = json.dumps(expansions_data, indent=2, ensure_ascii=False)
-            
-            # Update file on GitHub
-            update_url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}"
-            data = {
-                "message": "Update WSB expansions database with new data",
-                "content": base64.b64encode(updated_content.encode('utf-8')).decode('utf-8'),
-                "sha": file_data['sha'],
-                "branch": BRANCH
-            }
-            
-            response = requests.put(update_url, headers={"Authorization": f"Bearer {GITHUB_TOKEN}"}, json=data)
-            
-            if response.status_code == 200:
-                print("✅ Successfully updated WSB database on GitHub")
-                return True
-            else:
-                print(f"❌ Error updating GitHub file: {response.status_code}")
-                print(response.text)
-                return False
-        else:
-            print(f"❌ Error fetching file from GitHub: {response.status_code}")
-            return False
-            
-    except Exception as e:
-        print(f"❌ Error with GitHub update: {str(e)}")
-        return False
 
 def compare_with_github():
     """Compare local expansions with GitHub version and report differences"""
-    if not GITHUB_TOKEN:
-        print("⚠️ GITHUB_TOKEN not found, skipping GitHub comparison")
-        return None, None
-    
-    # GitHub API URL for file content
-    api_url = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/contents/{FILE_PATH}?ref={BRANCH}"
-    
     try:
-        response = requests.get(api_url, headers={"Authorization": f"Bearer {GITHUB_TOKEN}"})
-        
-        if response.status_code == 200:
-            file_data = response.json()
-            content_base64 = file_data['content']
-            decoded_content = base64.b64decode(content_base64).decode('utf-8')
-            github_data = json.loads(decoded_content)
+        github_data = github_service.load_json_file(file_path=FILE_PATH)[0]
             
-            # Get GitHub expansion codes from booster field
-            github_codes = set()
-            if 'expansions' in github_data:
-                for item in github_data['expansions']:
-                    # Handle nested list structure
-                    if isinstance(item, list) and len(item) > 0:
-                        expansion_obj = item[0]
-                    elif isinstance(item, dict):
-                        expansion_obj = item
-                    else:
-                        continue
+        # Get GitHub expansion codes from booster field
+        github_codes = set()
+        for item in github_data['expansions']:
+            # Handle nested list structure
+            if isinstance(item, list) and len(item) > 0:
+                expansion_obj = item[0]
+            elif isinstance(item, dict):
+                expansion_obj = item
+            else:
+                continue
                     
-                    # Get booster code (preferred) or fallback to expansion_code
-                    booster_code = expansion_obj.get('booster', expansion_obj.get('expansion_code', ''))
-                    if booster_code:
-                        github_codes.add(booster_code)
-            
+                # Get booster code (preferred) or fallback to expansion_code
+            booster_code = expansion_obj.get('booster', expansion_obj.get('expansion_code', ''))
+            if booster_code:
+                github_codes.add(booster_code)        
             return github_data, github_codes
-        else:
-            print(f"⚠️ Could not fetch GitHub data: {response.status_code}")
-            return None, None
             
     except Exception as e:
         print(f"⚠️ Error comparing with GitHub: {str(e)}")
@@ -139,7 +75,6 @@ def parse_japanese_date(date_str):
 def upload_expansion_image(expansion_code, image_url):
     """Upload expansion/booster pack image to GCS"""
     try:
-        from service.googlecloudservice import upload_image_to_gcs
         
         if not image_url:
             return None
@@ -155,21 +90,6 @@ def upload_expansion_image(expansion_code, image_url):
     except Exception as e:
         print(f"⚠️ Failed to upload expansion image for {expansion_code}: {str(e)}")
         return image_url  # Return original URL as fallback
-
-def load_series_db():
-    """Load series data from db.json"""
-    db_file = os.path.join(os.path.dirname(__file__), '..', '..', 'wsbdb', 'db.json')
-    
-    if not os.path.exists(db_file):
-        print("❌ db.json not found. Run scrape_wsb_series() first.")
-        return None
-        
-    try:
-        with open(db_file, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"❌ Error loading db.json: {str(e)}")
-        return None
 
 def scrape_cards_for_expansion(expansion_code, expansion_title, max_pages=10):
     """Scrape all cards for a specific expansion"""
@@ -346,7 +266,7 @@ def check_and_scrape_new_expansions():
     # Compare with GitHub and local data
     current_codes = {exp['booster'] for exp in current_expansions}
     github_data, github_codes = compare_with_github()
-    existing_data = load_series_db()
+    existing_data,file_sha = github_service.load_json_file(file_path=FILE_PATH)
     
     # Determine what expansions need scraping
     if existing_data is None and github_codes is None:
@@ -391,7 +311,13 @@ def check_and_scrape_new_expansions():
                     "expansions": current_expansions,
                     "total_count": len(current_expansions)
                 }
-                update_github_db(expansions_db)
+                updated_content = json.dumps(expansions_db, indent=2, ensure_ascii=False)
+                commit_message = "Update db.json with current expansions list"
+                success = github_service.update_file(FILE_PATH, updated_content, commit_message, file_sha)
+                if success:
+                    print("✅ GitHub db.json has been updated.")
+                else:
+                    print("❌ Error updating db.json on GitHub.")
             else:
                 print("✅ No new expansions found. Database is up to date.")
             return []
@@ -464,20 +390,16 @@ def check_and_scrape_new_expansions():
         "expansions": current_expansions,
         "total_count": len(current_expansions)
     }
-    
-    # Save locally
-    db_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'wsbdb')
-    os.makedirs(db_dir, exist_ok=True)
-    db_file = os.path.join(db_dir, 'db.json')
-    
-    with open(db_file, 'w', encoding='utf-8') as f:
-        json.dump(expansions_db, f, indent=2, ensure_ascii=False)
-    
-    print(f"💾 Updated local expansions database with {len(current_expansions)} total expansions (including urlimage fields)")
-    
+
     # Update GitHub with complete data including urlimage fields
     if expansions_to_scrape:  # Only update GitHub if there were new expansions
-        update_github_db(expansions_db)
+        updated_content = json.dumps(expansions_db, indent=2, ensure_ascii=False)
+        commit_message = "Update db.json with current expansions list"
+        success = github_service.update_file(FILE_PATH, updated_content, commit_message, file_sha)
+        if success:
+            print("✅ GitHub db.json has been updated.")
+        else:
+            print("❌ Error updating db.json on GitHub.")
     
     # Show summary but don't upload yet
     if all_cards_data:
@@ -487,11 +409,12 @@ def check_and_scrape_new_expansions():
         print(f"💾 Data ready for upload (currently disabled for review)")
         collection_value = os.getenv('C_WSB')
         if collection_value:
-             upload_to_mongo(
+            mongo_service.upload_data(
                  data=all_cards_data,
-                 collection_name=collection_value
+                 collection_name=collection_value,
+                 backup_before_upload=True
              )
-             print(f"📤 Uploaded {len(all_cards_data)} cards to MongoDB")
+            print(f"📤 Uploaded {len(all_cards_data)} cards to MongoDB")
         else:
              print("⚠️ MongoDB collection name not found in environment variables")
     
@@ -501,61 +424,8 @@ def check_and_scrape_new_expansions():
         print(f"📊 New expansions processed: {len(expansions_to_scrape)}")
         print(f"🎴 Total cards scraped: {len(all_cards_data)}")
         print(f"💾 Local database updated: ✅")
-        print(f"🔄 GitHub updated: ✅" if GITHUB_TOKEN else "🔄 GitHub update: ⚠️ (No token)")
     
     return all_cards_data
-
-def scrape_specific_expansion(expansion_code):
-    """Scrape cards for a specific expansion by code"""
-    expansion_data = load_series_db()
-    if not expansion_data:
-        print("❌ Expansion data not found. Run check_and_scrape_new_expansions() first.")
-        return
-    
-    # Find the expansion
-    expansion_info = None
-    expansions = expansion_data.get('expansions', expansion_data.get('series', []))
-    for expansion in expansions:
-        exp_code = expansion.get('expansion_code', expansion.get('value', ''))
-        if str(exp_code) == str(expansion_code):
-            expansion_info = expansion
-            break
-    
-    if not expansion_info:
-        print(f"❌ Expansion with code {expansion_code} not found")
-        return
-    
-    # Scrape cards for this expansion
-    cards_data = scrape_cards_for_expansion(
-        expansion_info.get('expansion_code', expansion_info.get('value', '')), 
-        expansion_info.get('title', expansion_info.get('name', ''))
-    )
-    
-    # Show data for review (upload disabled)
-    if cards_data:
-        print(f"🎯 SCRAPING COMPLETE - REVIEW DATA")
-        print(f"📊 Total cards scraped: {len(cards_data)}")
-        print(f"📋 Sample card data:")
-        sample_card = cards_data[0] if cards_data else {}
-        for key, value in list(sample_card.items())[:8]:  # Show first 8 fields
-            print(f"   {key}: {value}")
-        if len(sample_card) > 8:
-            print(f"   ... and {len(sample_card) - 8} more fields")
-        print(f"💾 Data ready for upload (currently disabled for review)")
-        collection_value = os.getenv('C_WSB')
-        if collection_value:
-            try:
-                upload_to_mongo(
-                    data=cards_data,
-                    collection_name=collection_value,
-                    backup_before_upload=True
-                )
-            except Exception as e:
-                print(f"❌ MongoDB operation failed: {str(e)}")
-        else:
-            print("⚠️ MongoDB collection name not found in environment variables")
-    
-    return cards_data
 
 if __name__ == "__main__":
     check_and_scrape_new_expansions()
