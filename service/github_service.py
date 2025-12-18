@@ -17,15 +17,12 @@ class GitHubService:
         
         # Load environment variables
         self.github_token = os.getenv("GITHUB_TOKEN")
-        #self.github_username = os.getenv("GITHUB_USERNAME")
-        #self.github_email = os.getenv("GITHUB_EMAIL")
-        
         print(f"🔧 GitHub service initialized for {repo_owner}/{repo_name}")
     
     def _validate_github_config(self):
         """Validate that all required GitHub environment variables are set"""
-        if not all([self.github_token]):#, self.github_username, self.github_email]):
-            raise ValueError("Missing one or more required GitHub environment variables: GITHUB_TOKEN, GITHUB_USERNAME, GITHUB_EMAIL")
+        if not all([self.github_token]):
+            raise ValueError("Missing GitHub environment variables: GITHUB_TOKEN")
     
     def set_file_path(self, file_path):
         """Set the file path and generate API URL"""
