@@ -269,6 +269,7 @@ def startscraping(booster_list):
 
             all_translated_data.extend(translated_data)
             collection_value = os.getenv("C_DUELMASTERS")
+            booster_update = translated_data[0]['booster']  # Ensure booster field is set
             if collection_value:
                 try:
                     mongo_service.upload_data(
@@ -276,7 +277,7 @@ def startscraping(booster_list):
                         collection_name=collection_value,
                         backup_before_upload=True
                     )
-                    json_obj = mongo_service.find_by_field(collection_name="NewList", field_name="booster", field_value=booster)
+                    json_obj = mongo_service.find_by_field(collection_name="NewList", field_name="booster", field_value=booster_update)
                     
                     # Modify category field by splitting on underscore and taking first part
                     if json_obj and 'category' in json_obj:

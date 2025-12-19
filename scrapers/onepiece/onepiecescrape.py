@@ -196,7 +196,7 @@ def scrape_onepiece_cards(series_value):
                 collection_name=collection_value,
                 backup_before_upload=True
             )
-            if(mongo_service.validate_field(collection_name=booster_collection_value, field_name="pathname", field_value=booster_mapped) == False):
+            if not mongo_service.validate_field(collection_name=booster_collection_value, field_name="pathname", field_value=booster_mapped)['exists']:
                 new_booster = {
                     "pathname": booster_mapped,
                     "alt": booster_mapped,
@@ -217,6 +217,7 @@ def scrape_onepiece_cards(series_value):
                     collection_name=booster_collection_value,
                     backup_before_upload=True
                 )
+        
         except Exception as e:
                     print(f"❌ MongoDB operation failed: {str(e)}")
     else:
