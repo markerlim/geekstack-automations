@@ -36,5 +36,9 @@ jobs:
         C_ONEPIECE: ${{vars.C_ONEPIECE}}
         GCSIMAGE: ${{ secrets.GCSIMAGE }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SMTP_HOST: ${{ vars.SMTP_HOST }}
+        SMTP_PORT: ${{ vars.SMTP_PORT }}
+        SMTP_USER: ${{ secrets.SMTP_USER }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
       run: |
         python scrapers/onepiece/opcheckscrape.py

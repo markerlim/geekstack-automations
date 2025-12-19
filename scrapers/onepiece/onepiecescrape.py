@@ -8,9 +8,11 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from service.googlecloudservice import upload_image_to_gcs
 from service.mongo_service import MongoService
+from service.notification_service import NotificationService
 
 # Initialize Service Layer
-mongo_service = MongoService
+mongo_service = MongoService()
+notification_service = NotificationService()
 
 def map_booster(code):
     if code == '556701':
@@ -57,6 +59,20 @@ def reverse_map_booster(booster_code):
             return f"5563{suffix}"
         else:
             return booster_code  # Return as-is if no mapping found
+
+def calculate_order(booster_code):
+    """Calculate order based on booster type and set number"""
+    if booster_code.startswith('OP') and len(booster_code) >= 3:
+        suffix = booster_code[2:]  # Extract set number
+        return int(f"10{suffix.zfill(2)}")  # 10XX format
+    elif booster_code.startswith('ST') and len(booster_code) >= 3:
+        suffix = booster_code[2:]  # Extract set number
+        return int(f"20{suffix.zfill(2)}")  # 20XX format
+    elif booster_code.startswith('EB') and len(booster_code) >= 3:
+        suffix = booster_code[2:]  # Extract set number
+        return int(f"30{suffix.zfill(2)}")  # 30XX format
+    else:
+        return 9999  # Default fallback for special cases
 
 def scrape_onepiece_cards(series_value):
     if not series_value:
@@ -161,6 +177,7 @@ def scrape_onepiece_cards(series_value):
 
 
     collection_value = os.getenv('C_ONEPIECE')
+    booster_collection_value = os.getenv('C_BOOSTERLIST') or "BoosterList"
     if collection_value:
         try:
             mongo_service.upload_data(
@@ -168,6 +185,28 @@ def scrape_onepiece_cards(series_value):
                 collection_name=collection_value,
                 backup_before_upload=True
             )
+            if(mongo_service.find_by_field(collection_name=booster_collection_value, field_name="pathname", field_value=booster_mapped) is False):
+
+                new_booster = {
+                    "pathname": booster_mapped,
+                    "alt": booster_mapped,
+                    "imageSrc": f"https://images.geekstack.dev/boostercover/opdeckimage_{booster_mapped.lower()}.webp",
+                    "tcg": "onepiece",
+                    "order": calculate_order(booster_mapped),
+                    "imgWidth": "110%",
+                    "category": "deck_unreleased"
+                }
+
+                notification_service.send_email_notification(
+                    subject="New One Piece Booster Detected",
+                    message=f"A new set '{booster_mapped}' has been added to the One Piece collection.",
+                )
+                
+                mongo_service.upload_data(
+                    data=new_booster,
+                    collection_name=booster_collection_value,
+                    backup_before_upload=True
+                )
         except Exception as e:
                     print(f"❌ MongoDB operation failed: {str(e)}")
     else:

@@ -10,7 +10,7 @@ from service.googlecloudservice import upload_image_to_gcs
 from service.mongo_service import MongoService
 
 # Initialize Service Layer
-mongo_service = MongoService
+mongo_service = MongoService()
 
 def map_booster(code):
     if code == '583901':
