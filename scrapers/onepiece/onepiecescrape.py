@@ -185,8 +185,7 @@ def scrape_onepiece_cards(series_value):
                 collection_name=collection_value,
                 backup_before_upload=True
             )
-            if(mongo_service.find_by_field(collection_name=booster_collection_value, field_name="pathname", field_value=booster_mapped) is False):
-
+            if(mongo_service.validate_field(collection_name=booster_collection_value, field_name="pathname", field_value=booster_mapped) == False):
                 new_booster = {
                     "pathname": booster_mapped,
                     "alt": booster_mapped,
@@ -194,14 +193,14 @@ def scrape_onepiece_cards(series_value):
                     "tcg": "onepiece",
                     "order": calculate_order(booster_mapped),
                     "imgWidth": "110%",
-                    "category": "deck_unreleased"
+                    "category": "deck"
                 }
 
                 notification_service.send_email_notification(
                     subject="New One Piece Booster Detected",
                     message=f"A new set '{booster_mapped}' has been added to the One Piece collection.",
                 )
-                
+
                 mongo_service.upload_data(
                     data=new_booster,
                     collection_name=booster_collection_value,
