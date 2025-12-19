@@ -74,6 +74,17 @@ def calculate_order(booster_code):
     else:
         return 9999  # Default fallback for special cases
 
+def get_category_from_booster(booster_code):
+    """Get category based on booster type"""
+    if booster_code.startswith('ST'):
+        return "deck"  # Starter Decks
+    elif booster_code.startswith('OP'):
+        return "expansion"  # Main Sets/Expansions
+    elif booster_code.startswith('EB'):
+        return "extra"  # Extra Boosters
+    else:
+        return "others"  # Default fallback for special cases (FDS, LIMITED, PROMO, etc.)
+
 def scrape_onepiece_cards(series_value):
     if not series_value:
         print("❌ series_value is not provided. Exiting.")
@@ -193,7 +204,7 @@ def scrape_onepiece_cards(series_value):
                     "tcg": "onepiece",
                     "order": calculate_order(booster_mapped),
                     "imgWidth": "110%",
-                    "category": "deck"
+                    "category": f"{get_category_from_booster(booster_mapped)}_unreleased"
                 }
 
                 notification_service.send_email_notification(
