@@ -288,8 +288,8 @@ def startscraping(booster_list):
                     
                 except Exception as e:
                     print(f"❌ MongoDB operation failed: {str(e)}")
-        else:
-            print("⚠️ MongoDB collection name not found in environment variables")  
+            else:
+                print("⚠️ MongoDB collection name not found in environment variables")  
 
     finally:
         driver.quit()
