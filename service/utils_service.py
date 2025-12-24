@@ -74,3 +74,69 @@ def mimick_click(session, element, base_url="", headers=None):
     
     print(f"No click action found for element: {element.name}")
     return None
+ 
+def get_anime_english_title(anime_name):
+    """
+    Get the English title for an anime/manga from the Jikan API (MyAnimeList data).
+    Tries anime first, then manga if no anime results found.
+    
+    Args:
+        anime_name: Japanese or any anime/manga name to search for
+        
+    Returns:
+        English title if found, or the original anime_name if not found/error
+    """
+    def try_endpoint(endpoint_type, name):
+        """Helper function to try a specific endpoint"""
+        try:
+            api_url = f"https://api.jikan.moe/v4/{endpoint_type}?q={name}&limit=1"
+            
+            response = requests.get(api_url, timeout=10)
+            response.raise_for_status()
+            
+            data = response.json()
+            
+            # Check if we have results
+            if data.get('data') and len(data['data']) > 0:
+                info = data['data'][0]
+                
+                # Try to get English title
+                english_title = info.get('title_english')
+                if english_title:
+                    print(f"Found English title for '{name}' in {endpoint_type}: {english_title}")
+                    return english_title
+                
+                # Fallback to default title if no English title
+                default_title = info.get('title')
+                if default_title:
+                    print(f"No English title found in {endpoint_type}, using default: {default_title}")
+                    return default_title
+            
+            return None
+            
+        except requests.RequestException as e:
+            print(f"API request failed for '{name}' on {endpoint_type}: {e}")
+            return None
+        except Exception as e:
+            print(f"Error getting title for '{name}' on {endpoint_type}: {e}")
+            return None
+    
+    try:
+        # First try anime endpoint
+        result = try_endpoint("anime", anime_name)
+        if result:
+            return result
+        
+        # If no anime found, try manga endpoint
+        print(f"No anime results for '{anime_name}', trying manga...")
+        result = try_endpoint("manga", anime_name)
+        if result:
+            return result
+        
+        # If both fail, return original name
+        print(f"No results found in anime or manga for: {anime_name}")
+        return anime_name
+        
+    except Exception as e:
+        print(f"Error in get_anime_english_title for '{anime_name}': {e}")
+        return anime_name 

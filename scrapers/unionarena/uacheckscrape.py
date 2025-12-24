@@ -8,7 +8,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 from service.github_service import GitHubService
 from service.api_service import ApiService
-from service.translationservice import translate_text
+from service.utils_service import get_anime_english_title
 from scrapers.unionarena.unionarenascrape import scrape_unionarena_cards
 
 # Initialize GitHub service
@@ -19,7 +19,7 @@ FILE_PATH = "unionarenadb/series.json"
 def translate_new_series(series_name):
     """Translate Japanese series name to English"""
     try:
-        english_name = translate_text(series_name, src_lang="ja", dest_lang="en")
+        english_name = get_anime_english_title(series_name)
         print(f"Translated: '{series_name}' -> '{english_name}'")
         return english_name
     except Exception as e:
@@ -72,7 +72,7 @@ def main():
             
             commit_message = f"Add {len(new_series)} new series mappings: {', '.join([f'{jp}->{updated_series_map[jp]}' for jp in new_series[:2]])}{'...' if len(new_series) > 2 else ''}"
             
-            success = github_service.update_file(FILE_PATH, updated_content, commit_message)
+            success = github_service.update_file(FILE_PATH, updated_content, commit_message, file_sha)
             
             if success:
                 print("\n✓ Successfully updated series.json on GitHub with new mappings")
