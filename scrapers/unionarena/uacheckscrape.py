@@ -40,7 +40,7 @@ def main():
         print(f"Scraped {len(scraped_series_list)} series from website")
         
         # Step 2: Get the existing series.json file from GitHub (now as key-value pairs)
-        github_content = github_service.get_file_content(FILE_PATH)
+        github_content = github_service.load_json_file(FILE_PATH)
         
         if github_content is None:
             print(f"Error fetching file from GitHub: {FILE_PATH}")
