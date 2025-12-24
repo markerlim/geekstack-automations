@@ -46,12 +46,8 @@ def main():
             print(f"Error fetching file from GitHub: {FILE_PATH}")
             return
         
-        # Parse existing series mapping (Japanese -> English)
-        try:
-            existing_series_map = json.loads(github_content)
-        except json.JSONDecodeError:
-            print("Error: Existing series.json is not valid JSON, treating as empty")
-            existing_series_map = {}
+        # The content is already parsed as a dictionary (Japanese -> English mapping)
+        existing_series_map = github_content
         
         print(f"Current series mapping has {len(existing_series_map)} entries")
         
