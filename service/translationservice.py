@@ -2,6 +2,39 @@ from deep_translator import GoogleTranslator
 import time
 from tqdm import tqdm
 
+def translate_text(text, src_lang='ja', dest_lang='en', max_retries=3):
+    """
+    Translates a single text string.
+
+    Args:
+        text: String to translate.
+        src_lang: Source language code (default: 'ja').
+        dest_lang: Target language code (default: 'en').
+        max_retries: Retry attempts per translation (default: 3).
+
+    Returns:
+        Translated string, or original text if translation fails.
+    """
+    if not text or str(text).strip() == "":
+        return text
+    
+    translator = GoogleTranslator(source=src_lang, target=dest_lang)
+    
+    retry_count = 0
+    while retry_count < max_retries:
+        try:
+            translated = translator.translate(str(text))
+            return translated
+        except Exception as e:
+            retry_count += 1
+            if retry_count < max_retries:
+                time.sleep(2 ** retry_count)  # Exponential backoff
+            else:
+                print(f"⚠️ Failed to translate '{text}': {e}")
+                return text  # Return original text if all retries fail
+    
+    return text  # Fallback
+
 def translate_data(data, 
                                    fields_to_translate,
                                    src_lang='ja',
