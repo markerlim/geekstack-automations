@@ -181,7 +181,7 @@ def scrape_unionarena_cards(series_value):
                 
                 # Extract card name
                 try:
-                    cardname_element = soup.find('div', class_="cardNameCol")
+                    cardname_element = soup.find('h2', class_="cardNameCol")
                     if cardname_element:
                         cardname = cardname_element.get_text(strip=True)
                     else:
@@ -340,7 +340,7 @@ def scrape_unionarena_cards(series_value):
                     "color": color,  # Extracted Japanese color character
                     "effect": effects_jp,
                     "energycost": int(energycost) if energycost != "-" and energycost.isdigit() else 0,
-                    "energygen": energygenerate if energygenerate != "none" else "",
+                    "energygen": str(energygenerate) if energygenerate != "none" else "",
                     "image": f"/UD/{processedCardUid}.webp",  # Need to build image path
                     "rarity": "ALT" if rarity != "-" and "★" in rarity else (rarity if rarity != "-" else ""),
                     "traits": traits,
@@ -376,7 +376,7 @@ def scrape_unionarena_cards(series_value):
             print(f"Traceback: {traceback.format_exc()}")
             continue
 
-    json_data = translate_data(card_objects,fields_to_translate=["effect"], src_lang="ja", dest_lang="en", keep_original=False)
+    json_data = translate_data(card_objects,fields_to_translate=["cardName","effect","traits"], src_lang="ja", dest_lang="en", keep_original=False)
 
     if C_UNIONARENA:
         try:
