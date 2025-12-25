@@ -389,8 +389,15 @@ def scrape_unionarena_cards(series_value):
             continue
 
     #json_data = translate_data(card_objects,fields_to_translate=["cardName","effect","traits"], src_lang="ja", dest_lang="en", keep_original=False)
-        json_data = openrouter_service.translate_fields(card_objects,fields_to_translate=["cardName","effect","traits"], source_lang="ja", target_lang="en", keep_original=False)
+    translation_result = openrouter_service.translate_fields(card_objects,fields_to_translate=["cardName","effect","traits"], source_lang="ja", target_lang="en", keep_original=False)
 
+    if translation_result['success']:
+        json_data = translation_result['translated_data']
+        print(f"✅ Translation successful: {len(json_data)} objects translated")
+    else:
+        print(f"❌ Translation failed: {translation_result.get('error', 'Unknown error')}, falling back to translation service")
+        json_data = translate_data(card_objects,fields_to_translate=["cardName","effect","traits"], src_lang="ja", dest_lang="en", keep_original=False)
+    
     if C_UNIONARENA:
         try:
             mongo_service.upload_data(
