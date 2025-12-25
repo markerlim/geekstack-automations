@@ -145,7 +145,7 @@ def check_for_watchlist_updates():
             card_numbers_with_AP = navigate_to_selected_cardlist(jp_title)
             card_numbers = clean_out_AP(card_numbers_with_AP)
             exist, count = mongo_service.validate_field(C_UNIONARENA,"anime",en_title)
-            if( count < len(card_numbers)) or (not exist):
+            if( int(count) < len(card_numbers)) or (not exist):
                 print(f"Discrepancy found for '{jp_title}' ({en_title}): MongoDB has {count} cards, scraped {len(card_numbers)} cards.")
                 scrape_unionarena_cards(jp_title)
         else:
