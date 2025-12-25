@@ -41,10 +41,22 @@ class GitHubService:
             'update_url': f"https://api.github.com/repos/{self.repo_owner}/{self.repo_name}/contents/{self.file_path}"
         }
     
-    def load_json_file(self, file_path=None, api_url=None):
-        """Load JSON file from GitHub using configured or provided file path/API URL"""
+    def load_json_file(self, file_path=None, api_url=None, local_fallback=False):
+        """Load JSON file from GitHub or local filesystem"""
         if file_path:
             self.set_file_path(file_path)
+        
+        # Check if file exists locally first
+        if file_path and local_fallback and os.path.exists(file_path):
+            try:
+                print(f"📂 Loading JSON from local file: {file_path}")
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    json_data = json.load(f)
+                print(f"✅ Successfully loaded JSON from local file")
+                return json_data, None  # No SHA for local files
+            except Exception as e:
+                print(f"❌ Error loading local file: {e}")
+                print("🔄 Falling back to GitHub...")
         
         if not api_url and not self.api_url:
             raise ValueError("No API URL configured. Please call set_file_path() first or provide api_url parameter")
@@ -72,7 +84,7 @@ class GitHubService:
                 decoded_content = base64.b64decode(content_base64).decode('utf-8')
                 json_data = json.loads(decoded_content)
                 
-                print(f"✅ Successfully loaded JSON file")
+                print(f"✅ Successfully loaded JSON file from GitHub")
                 return json_data, file_data['sha']
             except Exception as e:
                 print(f"❌ Error decoding file content: {e}")
@@ -85,9 +97,9 @@ class GitHubService:
             print(response.text)
             return None, None
     
-    def load_series_json(self, file_path=None, api_url=None):
-        """Load series JSON from GitHub (backward compatibility method)"""
-        json_data, file_sha = self.load_json_file(file_path, api_url)
+    def load_series_json(self, file_path=None, api_url=None, local_fallback=True):
+        """Load series JSON from GitHub or local filesystem (backward compatibility method)"""
+        json_data, file_sha = self.load_json_file(file_path, api_url, local_fallback)
         
         if json_data is None:
             return [], None
@@ -97,6 +109,44 @@ class GitHubService:
         else:
             print("[Warning] JSON content is not a list.")
             return [], file_sha
+    
+    def get_file_content(self, file_path, local_fallback=False):
+        """Get raw file content from GitHub or local filesystem"""
+        # Check if file exists locally first
+        if local_fallback and os.path.exists(file_path):
+            try:
+                print(f"📂 Reading content from local file: {file_path}")
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                print(f"✅ Successfully read content from local file")
+                return content
+            except Exception as e:
+                print(f"❌ Error reading local file: {e}")
+                print("🔄 Falling back to GitHub...")
+        
+        # GitHub API fallback
+        self.set_file_path(file_path)
+        self._validate_github_config()
+        
+        headers = {
+            "Authorization": f"Bearer {self.github_token}",
+            "Accept": "application/vnd.github.v3+json"
+        }
+
+        response = requests.get(self.api_url, headers=headers)
+        if response.status_code == 200:
+            file_data = response.json()
+            try:
+                content_base64 = file_data['content']
+                decoded_content = base64.b64decode(content_base64).decode('utf-8')
+                print(f"✅ Successfully retrieved content from GitHub")
+                return decoded_content
+            except Exception as e:
+                print(f"❌ Error decoding GitHub file content: {e}")
+                return None
+        else:
+            print(f"❌ Error fetching file from GitHub: {response.status_code}")
+            return None
     
     def update_file(self, file_path, content, commit_message, file_sha=None, branch=None):
         """Update a file directly on GitHub via API"""
@@ -134,8 +184,8 @@ class GitHubService:
             print(f"❌ Error updating file on GitHub: {e}")
             return False
     
-    def load_mapping(self, file_path):
-        """Load mapping JSON from GitHub - useful for configuration files"""
-        json_data, _ = self.load_json_file(file_path)
+    def load_mapping(self, file_path, local_fallback=True):
+        """Load mapping JSON from GitHub or local filesystem - useful for configuration files"""
+        json_data, _ = self.load_json_file(file_path, local_fallback=local_fallback)
         return json_data if json_data is not None else {}
 

@@ -9,13 +9,20 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 from service.github_service import GitHubService
 from service.api_service import ApiService
 from service.openrouter_service import OpenRouterService
-from scrapers.unionarena.unionarenascrape import scrape_unionarena_cards
+from service.notification_service import NotificationService
+from service.mongo_service import MongoService
+from scrapers.unionarena.unionarenascrape import scrape_unionarena_cards,navigate_to_selected_cardlist,clean_out_AP
 
 # Initialize services
 github_service = GitHubService()
 api_service = ApiService("https://www.unionarena-tcg.com")
 openrouter_service = OpenRouterService()
+notification_service = NotificationService()
+mongo_service = MongoService()
+
+# Variables
 FILE_PATH = "unionarenadb/series.json"
+C_UNIONARENA = os.getenv('C_UNIONARENA')
 
 def translate_new_series_batch(series_list):
     """Translate a list of Japanese series names to English using OpenRouter"""
@@ -45,7 +52,7 @@ def translate_new_series_batch(series_list):
         return {title: title for title in series_list}  # Fallback to originals
 
 # Main execution logic wrapped in a function
-def main():
+def check_for_new_series():
     try:
         # Step 1: Scrape the current list of series values from the Union Arena site
         response = api_service.get("/jp/cardlist/")
@@ -100,6 +107,10 @@ def main():
             if success:
                 print(f"\n✓ Successfully updated series.json on GitHub")
                 print(f"Added {len(new_series)} new series translations")
+                notification_service.send_email_notification(
+                    subject="Union Arena Series.json Updated",
+                    message=f"Added {len(new_series)} new series translations to series.json on GitHub."
+                )
                 print(f"Total series mappings: {len(updated_series_map)}")
             else:
                 print("✗ Error updating series.json on GitHub")
@@ -122,5 +133,28 @@ def main():
         import traceback
         traceback.print_exc()
 
+def check_for_watchlist_updates():
+    try:
+        # Load watchlist from GitHub
+        watchlist, _ = github_service.load_json_file("unionarenadb/watchlist.json")
+        if not watchlist:
+            print("Watchlist is empty or could not be loaded.")
+            return
+        for jp_title, en_title in watchlist.items():
+            print(f"Watchlist entry: {jp_title} -> {en_title}")
+            card_numbers_with_AP = navigate_to_selected_cardlist(jp_title)
+            card_numbers = clean_out_AP(card_numbers_with_AP)
+            exist, count = mongo_service.validate_field(C_UNIONARENA,"anime",en_title)
+            if( count < len(card_numbers)) or (not exist):
+                print(f"Discrepancy found for '{jp_title}' ({en_title}): MongoDB has {count} cards, scraped {len(card_numbers)} cards.")
+                scrape_unionarena_cards(jp_title)
+        else:
+            print("No updates found in watchlist.")
+            
+    except Exception as e:
+        print(f"Error checking watchlist updates: {e}")
+        import traceback
+        traceback.print_exc()
 if __name__ == "__main__":
-    main()
+    check_for_new_series()
+    check_for_watchlist_updates()

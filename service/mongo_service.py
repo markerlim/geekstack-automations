@@ -136,6 +136,24 @@ class MongoService:
             print(f"❌ MongoDB unique set check failed: {e}")
             return None
 
+    def get_unique_values_scoped(self, collection_name, scope_field, scope_value, field_name):
+        """Get all unique values for a specific field within a scoped subset"""
+        try:
+            collection = self._get_collection(collection_name)
+
+            # Create query to filter by scope first (e.g., anime = "kagurabachi")
+            scope_query = {scope_field: scope_value}
+            
+            # Fetch all unique values for the specified field within the scope
+            unique_values = collection.distinct(field_name, scope_query)
+            
+            print(f"✅ Found {len(unique_values)} unique values for field '{field_name}' where '{scope_field}' = '{scope_value}'.")
+            
+            return unique_values
+        except Exception as e:
+            print(f"❌ MongoDB scoped unique set check failed: {e}")
+            return None
+        
     def find_by_field(self, collection_name, field_name, field_value):
         """Find a specific document by field value"""
         try:

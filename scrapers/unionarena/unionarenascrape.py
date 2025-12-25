@@ -21,6 +21,16 @@ selenium = SeleniumService(headless=True, window_size="1920,1080", timeout=10)
 mongo_service = MongoService()
 api_service = ApiService("https://www.unionarena-tcg.com")
 
+# Variables
+FILE_PATH = "unionarenadb/series.json"
+C_UNIONARENA = os.getenv('C_UNIONARENA')
+try:
+    ANIME_MAP, FILE_SHA = github_service.load_json_file(FILE_PATH)
+    print(f"✅ ANIME_MAP loaded successfully, type: {type(ANIME_MAP)}, keys count: {len(ANIME_MAP) if ANIME_MAP else 0}")
+except Exception as e:
+    print(f"❌ Error loading ANIME_MAP: {e}")
+    ANIME_MAP = {}
+
 def scrape_unionarena_cards(series_value):
     """
     Scrape Union Arena cards for a specific series
@@ -30,9 +40,31 @@ def scrape_unionarena_cards(series_value):
     """
     print(f"Starting scrape for series: {series_value}")
     
+    # Debug: Check ANIME_MAP and mapping
+    print(f"ANIME_MAP type: {type(ANIME_MAP)}")
+    print(f"ANIME_MAP keys available: {list(ANIME_MAP.keys()) if ANIME_MAP else 'None'}")
+    print(f"Looking for series_value: {series_value}")
+    anime = ANIME_MAP.get(series_value, series_value) if ANIME_MAP else series_value
+    print(f"Mapped anime value: {anime}")
+    
+    if not anime:
+        print("Error: anime value is None, using series_value as fallback")
+        anime = series_value
+    
     card_objects = []  # Store card objects for JSON
     card_numbers_with_AP = navigate_to_selected_cardlist(series_value)
     card_numbers = clean_out_AP(card_numbers_with_AP)
+    
+    # Debug MongoDB call parameters
+    print(f"MongoDB query params: collection={C_UNIONARENA}, field=anime, value={anime}, target_field=cardUid")
+    
+    # Get existing cards with null check
+    existing_cards = mongo_service.get_unique_values_scoped(C_UNIONARENA, "anime", anime, "cardUid")
+    if existing_cards is None:
+        print("Warning: get_unique_values_scoped returned None, using empty set")
+        listofcards = set()
+    else:
+        listofcards = set(existing_cards)
     if not card_numbers:
         print(f"No new cards found for series: {series_value}")
         return 0
@@ -40,6 +72,21 @@ def scrape_unionarena_cards(series_value):
     successful_scrapes = 0
     
     for card_no in card_numbers:
+        booster, cardUid = card_no.split('/') if '/' in card_no else (card_no, card_no)
+
+        animeCode = cardUid.split('-')[0] if '-' in cardUid else cardUid
+        cardId = cardUid.split('_')[0] if '_' in cardUid else cardUid
+        if '_p1' in cardUid:
+            processedCardUid = cardUid.replace('_p1', '_ALT')
+        elif '_p' in cardUid:
+            processedCardUid = re.sub(r'_p(\d+)', r'_ALT\1', cardUid)
+        else:
+            processedCardUid = cardUid
+
+        if(listofcards.__contains__(processedCardUid)):
+            print(f"Skipping existing card: {processedCardUid}")
+            continue
+        
         try:
             response = api_service.get(f"/jp/cardlist/detail_iframe.php?card_no={card_no}")
             
@@ -163,20 +210,12 @@ def scrape_unionarena_cards(series_value):
                 if apcost == "-" and category == "-" and bpcost == "-":
                     continue
                 
-                booster, cardUid = card_no.split('/') if '/' in card_no else (card_no, card_no)
-                animeCode = cardUid.split('-')[0] if '-' in cardUid else cardUid
-                cardId = cardUid.split('_')[0] if '_' in cardUid else cardUid
-                if '_p1' in cardUid:
-                    processedCardUid = cardUid.replace('_p1', '_ALT')
-                elif '_p' in cardUid:
-                    processedCardUid = re.sub(r'_p(\d+)', r'_ALT\1', cardUid)
-                else:
-                    processedCardUid = cardUid
+                # Map States
                 triggerState = TRIGGER_STATE_MAP.get(trigger, "-")
                 mappedCategory = CATEGORY_MAP.get(category, "-")
                 # Create card object structure
                 card_object = {
-                    "anime": series_value,
+                    "anime": anime,
                     "animeCode": animeCode,  # Need to derive this
                     "apcost": int(apcost) if apcost != "-" and apcost.isdigit() else 0,
                     "banRatio": 4,  # Leave blank
