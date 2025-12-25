@@ -8,23 +8,41 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 from service.github_service import GitHubService
 from service.api_service import ApiService
-from service.utils_service import get_anime_english_title
+from service.openrouter_service import OpenRouterService
 from scrapers.unionarena.unionarenascrape import scrape_unionarena_cards
 
-# Initialize GitHub service
+# Initialize services
 github_service = GitHubService()
 api_service = ApiService("https://www.unionarena-tcg.com")
+openrouter_service = OpenRouterService()
 FILE_PATH = "unionarenadb/series.json"
 
-def translate_new_series(series_name):
-    """Translate Japanese series name to English"""
+def translate_new_series_batch(series_list):
+    """Translate a list of Japanese series names to English using OpenRouter"""
     try:
-        english_name = get_anime_english_title(series_name)
-        print(f"Translated: '{series_name}' -> '{english_name}'")
-        return english_name
+        response = openrouter_service.translate_titles_batch(
+            titles=series_list,
+            source_lang="Japanese",
+            target_lang="English"
+        )
+        
+        if response.get('success'):
+            translated_data = response.get('translated_data', {})
+            # Convert the response format to a mapping
+            mapping = {}
+            for i, original_title in enumerate(series_list):
+                key = f"title_{i}"
+                translated = translated_data.get(key, original_title)
+                mapping[original_title] = translated
+                print(f"Translated: '{original_title}' -> '{translated}'")
+            return mapping
+        else:
+            print(f"OpenRouter translation failed: {response.get('error')}")
+            return {title: title for title in series_list}  # Fallback to originals
+            
     except Exception as e:
-        print(f"Failed to translate '{series_name}': {e}")
-        return series_name  # Fallback to original name
+        print(f"Failed to translate series batch: {e}")
+        return {title: title for title in series_list}  # Fallback to originals
 
 # Main execution logic wrapped in a function
 def main():
@@ -39,43 +57,49 @@ def main():
         
         print(f"Scraped {len(scraped_series_list)} series from website")
         
-        # Step 2: Get the existing series.json file from GitHub (now as key-value pairs)
+        # Step 2: Get the existing series.json file from GitHub
         github_content, file_sha = github_service.load_json_file(FILE_PATH)
         
         if github_content is None:
             print(f"Error fetching file from GitHub: {FILE_PATH}")
             return
         
-        # The content is already parsed as a dictionary (Japanese -> English mapping)
-        existing_series_map = github_content
-        
-        print(f"Current series mapping has {len(existing_series_map)} entries")
+        # Handle both array and object formats
+        if isinstance(github_content, list):
+            # Convert array to mapping format (all titles map to themselves initially)
+            existing_series_map = {title: title for title in github_content}
+            print(f"Converted array of {len(github_content)} series to mapping format")
+        else:
+            # Already in mapping format
+            existing_series_map = github_content
+            print(f"Current series mapping has {len(existing_series_map)} entries")
         
         # Step 3: Find new series not in current mapping
         new_series = [series for series in scraped_series_list if series not in existing_series_map.keys()]
         
         if new_series:
             print(f"Found {len(new_series)} new series:")
+            for series in new_series:
+                print(f"  - {series}")
             
-            # Create updated mapping with translations
+            # Translate new series using OpenRouter batch translation
+            print("\nTranslating new series using OpenRouter...")
+            new_translations = translate_new_series_batch(new_series)
+            
+            # Create updated mapping
             updated_series_map = existing_series_map.copy()
-            
-            for japanese_series in new_series:
-                print(f"  - Processing: {japanese_series}")
-                # Translate to English
-                english_series = translate_new_series(japanese_series)
-                updated_series_map[japanese_series] = english_series
-                print(f"    Added mapping: '{japanese_series}' -> '{english_series}'")
+            updated_series_map.update(new_translations)
             
             # Step 4: Update the GitHub file with new mappings
             updated_content = json.dumps(updated_series_map, ensure_ascii=False, indent=2)
             
-            commit_message = f"Add {len(new_series)} new series mappings: {', '.join([f'{jp}->{updated_series_map[jp]}' for jp in new_series[:2]])}{'...' if len(new_series) > 2 else ''}"
+            commit_message = f"Add {len(new_series)} new series via OpenRouter: {', '.join(new_series[:2])}{'...' if len(new_series) > 2 else ''}"
             
             success = github_service.update_file(FILE_PATH, updated_content, commit_message, file_sha)
             
             if success:
-                print("\n✓ Successfully updated series.json on GitHub with new mappings")
+                print(f"\n✓ Successfully updated series.json on GitHub")
+                print(f"Added {len(new_series)} new series translations")
                 print(f"Total series mappings: {len(updated_series_map)}")
             else:
                 print("✗ Error updating series.json on GitHub")

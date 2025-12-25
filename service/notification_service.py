@@ -36,13 +36,13 @@ class NotificationService:
             recipient = recipient or self.trello_email
             
             # Create message
-            msg = MimeMultipart()
+            msg = MIMEMultipart()
             msg['From'] = self.email_user
             msg['To'] = recipient
             msg['Subject'] = subject
             
             # Add body to email
-            msg.attach(MimeText(message, 'plain'))
+            msg.attach(MIMEText(message, 'plain'))
             
             # Create SMTP session
             server = smtplib.SMTP(self.smtp_server, self.smtp_port)
