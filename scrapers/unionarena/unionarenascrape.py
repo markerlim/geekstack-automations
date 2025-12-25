@@ -3,7 +3,6 @@ import re
 from bs4 import BeautifulSoup
 import os
 import sys
-import json
 from selenium.webdriver.common.by import By
 
 # Add parent directories to path for imports
@@ -31,6 +30,80 @@ try:
 except Exception as e:
     print(f"❌ Error loading ANIME_MAP: {e}")
     ANIME_MAP = {}
+
+def allocate_alt_suffix(processedCardUid, cardId, booster, alt_allocation_map):
+    """
+    Allocate appropriate ALT suffix for UAPR cards to avoid duplicates
+    
+    Args:
+        processedCardUid: Current processed card UID
+        cardId: Base card ID (without ALT suffix)
+        booster: Booster type
+        alt_allocation_map: Dictionary tracking ALT allocations in current run
+    
+    Returns:
+        Updated processedCardUid with appropriate ALT suffix
+    """
+    # Only process UAPR cards that don't already have ALT suffix
+    if booster != "UAPR" or "_ALT" in processedCardUid:
+        return processedCardUid
+    
+    listofcarduid = mongo_service.get_unique_values_scoped(C_UNIONARENA,"cardId",cardId,"cardUid")
+
+    if listofcarduid:
+        alt_variants = [uid for uid in listofcarduid if "_ALT" in uid]
+        alt_count = len(alt_variants)
+        print(f"Found {alt_count} ALT variants for cardId: {cardId}: {alt_variants}")
+        
+        if alt_count == 0:
+            # No ALT variants exist in DB, check current run allocation
+            if cardId in alt_allocation_map:
+                # Already allocated ALT in this run, increment
+                next_alt_num = alt_allocation_map[cardId] + 1
+                processedCardUid = f"{processedCardUid}_ALT{next_alt_num}"
+                alt_allocation_map[cardId] = next_alt_num
+                print(f"Auto-allocated _ALT{next_alt_num} suffix for UAPR card (run allocation): {processedCardUid}")
+            else:
+                # First ALT allocation for this cardId in this run
+                processedCardUid = f"{processedCardUid}_ALT"
+                alt_allocation_map[cardId] = 1
+                print(f"Auto-allocated _ALT suffix for UAPR card: {processedCardUid}")
+        else:
+            # ALT variants exist in DB, find highest ALT number and increment
+            max_alt_num = 0
+            for uid in alt_variants:
+                # Extract number from _ALT patterns like _ALT, _ALT2, _ALT3, etc.
+                if "_ALT" in uid:
+                    alt_part = uid.split("_ALT")[1]
+                    if alt_part == "":  # _ALT with no number
+                        max_alt_num = max(max_alt_num, 1)
+                    elif alt_part.isdigit():  # _ALT2, _ALT3, etc.
+                        max_alt_num = max(max_alt_num, int(alt_part))
+            
+            # Check current run allocations for this cardId
+            if cardId in alt_allocation_map:
+                max_alt_num = max(max_alt_num, alt_allocation_map[cardId])
+            
+            next_alt_num = max_alt_num + 1
+            processedCardUid = f"{processedCardUid}_ALT{next_alt_num}"
+            alt_allocation_map[cardId] = next_alt_num
+            print(f"Auto-allocated _ALT{next_alt_num} suffix for UAPR card: {processedCardUid}")
+    else:
+        print(f"No existing cards found for cardId: {cardId}")
+        # If this is the first card with this cardId and booster is UAPR, add _ALT suffix
+        if cardId in alt_allocation_map:
+            # Already allocated ALT in this run, increment
+            next_alt_num = alt_allocation_map[cardId] + 1
+            processedCardUid = f"{processedCardUid}_ALT{next_alt_num}"
+            alt_allocation_map[cardId] = next_alt_num
+            print(f"Auto-allocated _ALT{next_alt_num} suffix for first UAPR card (run allocation): {processedCardUid}")
+        else:
+            # First ALT allocation for this cardId in this run
+            processedCardUid = f"{processedCardUid}_ALT"
+            alt_allocation_map[cardId] = 1
+            print(f"Auto-allocated _ALT suffix for first UAPR card: {processedCardUid}")
+    
+    return processedCardUid
 
 def scrape_unionarena_cards(series_value):
     """
@@ -72,6 +145,9 @@ def scrape_unionarena_cards(series_value):
 
     successful_scrapes = 0
     
+    # Track ALT allocations within this run to avoid duplicates
+    alt_allocation_map = {}  # cardId -> highest_alt_num_allocated
+    
     for card_no in card_numbers:
         booster, cardUid = card_no.split('/') if '/' in card_no else (card_no, card_no)
 
@@ -84,9 +160,13 @@ def scrape_unionarena_cards(series_value):
         else:
             processedCardUid = cardUid
 
-        if(listofcards.__contains__(processedCardUid)):
+        if(listofcards.__contains__(processedCardUid) and (booster != "UAPR")):
             print(f"Skipping existing card: {processedCardUid}")
             continue
+        
+        
+        # Allocate appropriate ALT suffix for UAPR cards
+        processedCardUid = allocate_alt_suffix(processedCardUid, cardId, booster, alt_allocation_map)
         
         try:
             response = api_service.get(f"/jp/cardlist/detail_iframe.php?card_no={card_no}")
@@ -108,21 +188,25 @@ def scrape_unionarena_cards(series_value):
                 try:
                     energycost_element = soup.find('dl', class_="needEnergyData").find('img')
                     if energycost_element:
-                        energycost_alt = energycost_element['alt']
-                        energycost = energycost_alt
-                        
+                        energycost_alt = energycost_element['alt']  # e.g. "赤2", "青1", "黄-"
+
                         # Color mapping from Japanese to English
                         color_map = COLOR_MAP
-                        
-                        # Extract color from alt text (e.g., "黄-", "赤2", "青1")
-                        color = ""
-                        for char in energycost_alt:
-                            if char in color_map:
-                                color = color_map[char]
-                                break
+
+                        # Extract color
+                        color_char = energycost_alt[0]
+                        color = color_map.get(color_char, "")
+
+                        # Extract energy cost number
+                        cost_part = energycost_alt[1:]
+                        if cost_part.isdigit():
+                            energycost = int(cost_part)
+                        else:
+                            # Handles "-" or empty cost
+                            energycost = None
                     else:
                         energycost = "-"
-                        color = ""
+                        color = "-"
                 except AttributeError:
                     energycost = "-"
                     color = ""
@@ -219,13 +303,16 @@ def scrape_unionarena_cards(series_value):
                     card_image_url = ""
 
                 # Extract energy generate
-                energygenerate = "none"
+                energygenerate = "-"
+
                 try:
                     image2 = soup.find('dl', class_="generatedEnergyData").find('img')
-                    if image2:
-                        energygenerate = image2['alt']
+                    if image2 and image2.get('alt'):
+                        alt = image2['alt']  # e.g. "青青", "青"
+                        energygenerate = len(alt)
                 except AttributeError:
                     pass
+
 
                 # Skip if this appears to be an empty/invalid card
                 if apcost == "-" and category == "-" and bpcost == "-":
