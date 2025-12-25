@@ -155,6 +155,7 @@ def check_for_watchlist_updates():
         print(f"Error checking watchlist updates: {e}")
         import traceback
         traceback.print_exc()
+
 if __name__ == "__main__":
     check_for_new_series()
     check_for_watchlist_updates()

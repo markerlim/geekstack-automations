@@ -13,6 +13,7 @@ from service.github_service import GitHubService
 from service.selenium_service import SeleniumService
 from service.mongo_service import MongoService
 from service.api_service import ApiService
+from service.googlecloudservice import upload_image_to_gcs
 from service.translationservice import translate_data
 
 # Initialize Service Layer
@@ -197,6 +198,26 @@ def scrape_unionarena_cards(series_value):
                 except AttributeError:
                     trigger = "-"
 
+                # Extract card image URL
+                card_image_url = ""
+                try:
+                    card_img_dl = soup.find('dl', class_="cardImgTitleCol")
+                    if card_img_dl:
+                        img_dd = card_img_dl.find('dd', class_="cardDataImgCol")
+                        if img_dd:
+                            img_element = img_dd.find('img')
+                            if img_element and img_element.get('src'):
+                                # Extract the src and build the full URL
+                                src_path = img_element.get('src')
+                                if src_path.startswith('/jp/images/'):
+                                    # Remove version parameter if present (e.g., ?v7)
+                                    clean_path = src_path.split('?')[0]
+                                    card_image_url = f"https://www.unionarena-tcg.com{clean_path}"
+                                else:
+                                    card_image_url = src_path  # Use as-is if not a relative path
+                except AttributeError:
+                    card_image_url = ""
+
                 # Extract energy generate
                 energygenerate = "none"
                 try:
@@ -213,6 +234,9 @@ def scrape_unionarena_cards(series_value):
                 # Map States
                 triggerState = TRIGGER_STATE_MAP.get(trigger, "-")
                 mappedCategory = CATEGORY_MAP.get(category, "-")
+
+                # Handle Image upload
+                urlimage = upload_image_to_gcs(card_image_url,processedCardUid,"UD")
                 # Create card object structure
                 card_object = {
                     "anime": anime,
@@ -229,12 +253,12 @@ def scrape_unionarena_cards(series_value):
                     "effect": effects_jp,
                     "energycost": int(energycost) if energycost != "-" and energycost.isdigit() else 0,
                     "energygen": energygenerate if energygenerate != "none" else "",
-                    "image": "",  # Need to build image path
+                    "image": f"/UD/{processedCardUid}.webp",  # Need to build image path
                     "rarity": "ALT" if rarity != "-" and "★" in rarity else (rarity if rarity != "-" else ""),
                     "traits": traits,
                     "trigger": trigger,
                     "triggerState": triggerState,
-                    "urlimage": "",  # Need to build URL
+                    "urlimage":urlimage ,  # Scraped card image URL
                     "rarityAct": rarity,
                     "cardcode": card_no,
                 }
