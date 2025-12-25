@@ -229,7 +229,17 @@ def scrape_unionarena_cards(series_value):
                     bpcost = "-"
                 
                 try:
-                    traits = soup.find('dl', class_="attributeData").find('dd', class_="cardDataContents").text.strip()
+                    traits_element = soup.find('dl', class_="attributeData")
+                    if traits_element:
+                        traits_dd = traits_element.find('dd', class_="cardDataContents")
+                        if traits_dd:
+                            traits = traits_dd.text.strip()
+                            if not traits:  # If empty string
+                                traits = "-"
+                        else:
+                            traits = "-"
+                    else:
+                        traits = "-"
                 except AttributeError:
                     traits = "-"
                 
