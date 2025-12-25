@@ -1,4 +1,5 @@
 import requests
+import time
 from urllib.parse import urljoin, urlparse
 from service.translationservice import translate_text
 
@@ -90,9 +91,12 @@ def get_anime_english_title(anime_name):
         English title if found, or the original anime_name if not found/error
     """
     def try_endpoint(endpoint_type, name):
-        """Helper function to try a specific endpoint"""
+        """Helper function to try a specific endpoint with rate limiting"""
         try:
             api_url = f"https://api.jikan.moe/v4/{endpoint_type}?q={name}&limit=1"
+            
+            # Rate limiting: 3 requests per second max, so wait at least 0.34 seconds
+            time.sleep(1)
             
             response = requests.get(api_url, timeout=10)
             response.raise_for_status()
@@ -113,6 +117,7 @@ def get_anime_english_title(anime_name):
                 default_title = info.get('title')
                 if default_title:
                     try:
+                        from service.translationservice import translate_text
                         translated_title = translate_text(default_title, src_lang='ja', dest_lang='en')
                         print(f"No English title in {endpoint_type}, translated '{default_title}' to: {translated_title}")
                         return translated_title
