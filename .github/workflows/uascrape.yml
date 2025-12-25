@@ -37,5 +37,7 @@ jobs:
         MONGO_CLUSTER: ${{ secrets.MONGO_CLUSTER }}
         C_UNIONARENA: ${{ vars.C_UNIONARENA }}  # Make sure to set this variable in your repo settings
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
       run: |
         python scrapers/unionarena/uacheckscrape.py
