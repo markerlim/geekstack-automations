@@ -40,7 +40,8 @@ def translate_data(data,
                                    src_lang='ja',
                                    dest_lang='en',
                                    batch_size=100,
-                                   max_retries=3):
+                                   max_retries=3,
+                                   keep_original=True):
     """
     Translates specified fields in a list of JSON objects together per entry, preserving originals.
 
@@ -51,6 +52,7 @@ def translate_data(data,
         dest_lang: Target language code.
         batch_size: Rate limit batch size.
         max_retries: Retry attempts per translation.
+        keep_original: If True (default), keeps original text in fieldJP. If False, only keeps translated version.
 
     Returns:
         Translated JSON data.
@@ -69,8 +71,9 @@ def translate_data(data,
                     if not original or str(original).strip() == "":
                         continue
 
-                    # Backup original
-                    item[f"{field}JP"] = original
+                    # Backup original (optional)
+                    if keep_original:
+                        item[f"{field}JP"] = original
 
                     # Translate and assign
                     if isinstance(original, list):

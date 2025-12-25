@@ -236,7 +236,7 @@ def scrape_unionarena_cards(series_value):
                 mappedCategory = CATEGORY_MAP.get(category, "-")
 
                 # Handle Image upload
-                urlimage = upload_image_to_gcs(card_image_url,processedCardUid,"UD")
+                urlimage = upload_image_to_gcs(card_image_url,processedCardUid,"UD/")
                 # Create card object structure
                 card_object = {
                     "anime": anime,
@@ -288,46 +288,19 @@ def scrape_unionarena_cards(series_value):
             print(f"Traceback: {traceback.format_exc()}")
             continue
 
-    translate_data(card_objects,fields_to_translate=["effect"], src_lang="ja", dest_lang="en")
-    # Save data to local JSON file for testing
-    if card_objects:
-        json_filename = f'test.json'
-        local_json_path = os.path.join(os.path.dirname(__file__), json_filename)
-        
-        try:
-            with open(local_json_path, 'w', encoding='utf-8') as json_file:
-                json.dump(card_objects, json_file, ensure_ascii=False, indent=2)
-            print(f"Successfully saved {len(card_objects)} card objects to {json_filename}")
-        except Exception as e:
-            print(f"Error saving JSON file: {e}")
+    json_data = translate_data(card_objects,fields_to_translate=["effect"], src_lang="ja", dest_lang="en", keep_original=False)
 
-        exit()
-    # Also save all card numbers to series.json
-    if card_numbers:
+    if C_UNIONARENA:
         try:
-            # Load existing series.json
-            existing_series, file_sha = github_service.load_json_file("unionarenadb/series.json")
-            if existing_series is None:
-                existing_series = []
-            
-            # Add new card numbers to the list
-            all_card_numbers = list(set(existing_series + card_numbers))
-            all_card_numbers.sort()
-            
-            # Update series.json
-            updated_content = json.dumps(all_card_numbers, indent=4)
-            commit_message = f"Add {len(card_numbers)} card links from series: {series_value}"
-            
-            success = github_service.update_file("unionarenadb/series.json", updated_content, commit_message, file_sha)
-            if success:
-                print(f"Successfully added {len(card_numbers)} card links to series.json")
-            else:
-                print("Failed to update series.json")
+            mongo_service.upload_data(
+                data=json_data,
+                collection_name=C_UNIONARENA,
+                backup_before_upload=True
+            )
         except Exception as e:
-            print(f"Error updating series.json: {e}")
-    
+            print(f"❌ MongoDB operation failed: {str(e)}")
     else:
-        print(f"No cards found for series: {series_value}")
+        print("⚠️ MongoDB collection name not found in environment variables")    
     
     return successful_scrapes
 
