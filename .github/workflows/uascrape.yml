@@ -31,13 +31,17 @@ jobs:
 
     - name: Run Union Arena scraper
       env:
-        MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
-        MONGO_USER: ${{ secrets.MONGO_USER }}
-        MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
-        MONGO_CLUSTER: ${{ secrets.MONGO_CLUSTER }}
-        C_UNIONARENA: ${{ vars.C_UNIONARENA }}  # Make sure to set this variable in your repo settings
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
+        MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }} # Mongo Service
+        MONGO_USER: ${{ secrets.MONGO_USER }} # Mongo Service
+        MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }} # Mongo Service
+        MONGO_CLUSTER: ${{ secrets.MONGO_CLUSTER }} # Mongo Service
+        C_UNIONARENA: ${{ vars.C_UNIONARENA }} # MongoDB Collection
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Github Service
+        OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }} # Union Arena Titles Search
+        OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }} # Union Arena Titles Search
+        SMTP_HOST: ${{ vars.SMTP_HOST }} # Notification Service
+        SMTP_PORT: ${{ vars.SMTP_PORT }} # Notification Service
+        SMTP_USER: ${{ secrets.SMTP_USER }} # Notification Service
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }} # Notification Service
       run: |
         python scrapers/unionarena/uacheckscrape.py
