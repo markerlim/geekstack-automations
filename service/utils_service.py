@@ -1,5 +1,7 @@
 import requests
 from urllib.parse import urljoin, urlparse
+from service.translationservice import translate_text
+
 
 def find_missing_values(json_values, website_values):
     json_set = set(json_values)
@@ -79,6 +81,7 @@ def get_anime_english_title(anime_name):
     """
     Get the English title for an anime/manga from the Jikan API (MyAnimeList data).
     Tries anime first, then manga if no anime results found.
+    Falls back to translation if no English title is available.
     
     Args:
         anime_name: Japanese or any anime/manga name to search for
@@ -106,11 +109,16 @@ def get_anime_english_title(anime_name):
                     print(f"Found English title for '{name}' in {endpoint_type}: {english_title}")
                     return english_title
                 
-                # Fallback to default title if no English title
+                # Get default title for potential translation
                 default_title = info.get('title')
                 if default_title:
-                    print(f"No English title found in {endpoint_type}, using default: {default_title}")
-                    return default_title
+                    try:
+                        translated_title = translate_text(default_title, src_lang='ja', dest_lang='en')
+                        print(f"No English title in {endpoint_type}, translated '{default_title}' to: {translated_title}")
+                        return translated_title
+                    except Exception as translate_error:
+                        print(f"Translation failed, using default: {default_title}")
+                        return default_title
             
             return None
             
