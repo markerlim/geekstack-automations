@@ -12,6 +12,7 @@ from service.github_service import GitHubService
 from service.selenium_service import SeleniumService
 from service.mongo_service import MongoService
 from service.api_service import ApiService
+from service.openrouter_service import OpenRouterService
 from service.googlecloudservice import upload_image_to_gcs
 from service.translationservice import translate_data
 
@@ -19,6 +20,7 @@ from service.translationservice import translate_data
 github_service = GitHubService()
 selenium = SeleniumService(headless=True, window_size="1920,1080", timeout=10)
 mongo_service = MongoService()
+openrouter_service = OpenRouterService()
 api_service = ApiService("https://www.unionarena-tcg.com")
 
 # Variables
@@ -386,7 +388,8 @@ def scrape_unionarena_cards(series_value):
             print(f"Traceback: {traceback.format_exc()}")
             continue
 
-    json_data = translate_data(card_objects,fields_to_translate=["cardName","effect","traits"], src_lang="ja", dest_lang="en", keep_original=False)
+    #json_data = translate_data(card_objects,fields_to_translate=["cardName","effect","traits"], src_lang="ja", dest_lang="en", keep_original=False)
+        json_data = openrouter_service.translate_fields(card_objects,fields_to_translate=["cardName","effect","traits"], source_lang="ja", target_lang="en", keep_original=False)
 
     if C_UNIONARENA:
         try:
