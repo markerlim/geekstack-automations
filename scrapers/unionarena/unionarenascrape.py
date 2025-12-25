@@ -48,6 +48,11 @@ def allocate_alt_suffix(processedCardUid, cardId, booster, alt_allocation_map):
     if booster != "UAPR" or "_ALT" in processedCardUid:
         return processedCardUid
     
+    # Skip promo cards (indicated by -P- in cardId) as they are unique
+    if "-P-" in cardId:
+        print(f"Skipping ALT allocation for promo card: {cardId}")
+        return processedCardUid
+    
     listofcarduid = mongo_service.get_unique_values_scoped(C_UNIONARENA,"cardId",cardId,"cardUid")
 
     if listofcarduid:
@@ -198,12 +203,8 @@ def scrape_unionarena_cards(series_value):
                         color = color_map.get(color_char, "")
 
                         # Extract energy cost number
-                        cost_part = energycost_alt[1:]
-                        if cost_part.isdigit():
-                            energycost = int(cost_part)
-                        else:
-                            # Handles "-" or empty cost
-                            energycost = None
+                        energycost = energycost_alt[1:]
+                        
                     else:
                         energycost = "-"
                         color = "-"
