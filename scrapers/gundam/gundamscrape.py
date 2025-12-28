@@ -1,4 +1,5 @@
-import requests
+import json
+import re
 from bs4 import BeautifulSoup
 import os
 import sys
@@ -8,9 +9,17 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 from service.googlecloudservice import upload_image_to_gcs
 from service.mongo_service import MongoService
+from service.api_service import ApiService
+
+# Environment Variables
+C_GUNDAM = os.getenv('C_GUNDAM')
+BASE_URL = "https://www.gundam-gcg.com"
 
 # Initialize Service Layer
 mongo_service = MongoService()
+api_service = ApiService(BASE_URL)
+
+
 
 def scrape_gundam_cards(package_value):
     """Scrape Gundam cards for a specific package value and upload to MongoDB/GCS"""
@@ -19,30 +28,23 @@ def scrape_gundam_cards(package_value):
         return
     
     gcs_imgpath_value = f'GUNDAM/{package_value}/'
-    url = f"https://www.gundam-gcg.com/asia-en/cards/?package={package_value}"
-    base_url = "https://www.gundam-gcg.com/asia-en/cards/"
-
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-        "Accept-Language": "en-US,en;q=0.9"
-    }
 
     try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, 'html.parser')
+        response = api_service.get(f"/asia-en/cards/?package={package_value}")
+        soup = BeautifulSoup(response['data'], 'html.parser')
 
         card_items = [item for item in soup.select('.cardCol .cardItem') 
                      if 'display: none' not in item.get('style', '')]
 
         json_data = []
-
+        carduid_from_mongo = set(mongo_service.get_unique_values_scoped(C_GUNDAM,"package",package_value,"cardUid"))
         for item in card_items:
             try:
                 card_link = item.find('a', class_='cardStr')
                 if not card_link:
                     continue
 
+                base_url = BASE_URL
                 # Extract basic card info
                 detail_url = card_link.get('data-src', '')
                 card_id = detail_url.split('detailSearch=')[-1] if 'detailSearch=' in detail_url else ''
@@ -53,6 +55,9 @@ def scrape_gundam_cards(package_value):
                 full_image_url = urljoin(base_url, image_url) if image_url else ''
                 filename = image_url.split('/')[-1].split('?')[0] if image_url else ''
                 card_uid = filename.replace('.webp', '')
+                if card_uid in carduid_from_mongo:
+                    print(f"⚠️ Skipping existing cardUid: {card_uid}")
+                    continue
                 urlimage = upload_image_to_gcs(full_image_url, card_uid, gcs_imgpath_value)
 
                 # Initialize card data structure
@@ -62,14 +67,15 @@ def scrape_gundam_cards(package_value):
                     "series": card_id.split('-')[0] if '-' in card_id else '',
                     "urlimage": urlimage,
                     "cardUid": card_uid,
-                    "detail_url": urljoin(base_url, detail_url) if detail_url else ''
+                    "detail_url": urljoin(base_url, f"/asia-en/cards/{detail_url}") if detail_url else ''
                 }
 
                 # Get additional details from detail page if available
                 if detail_url:
                     try:
-                        detail_response = requests.get(urljoin(base_url, detail_url), headers=headers)
-                        detail_soup = BeautifulSoup(detail_response.content, 'html.parser')
+                        print(f"Fetching details for card ID: {card_uid} from {detail_url}")
+                        detail_response = api_service.get(f"/asia-en/cards/{detail_url}")
+                        detail_soup = BeautifulSoup(detail_response['data'], 'html.parser')
                         
                         # Extract card number and rarity
                         card_no_element = detail_soup.select_one('.cardNoCol .cardNo')
@@ -97,8 +103,21 @@ def scrape_gundam_cards(package_value):
                         
                         # Extract overview/effect text
                         overview_element = detail_soup.select_one('.cardDataRow.overview .dataTxt')
+                        print(overview_element)
                         if overview_element:
-                            card_data['effect'] = overview_element.get_text(strip=True)
+                            # Get the HTML content and process it
+                            effect_html = str(overview_element)
+                            # This regex matches <br> that is NOT followed by optional whitespace and </div>
+                            effect_html = re.sub(r'<br/>(?!\s*</div>)', '\n', effect_html)
+                            
+                            # Parse the modified HTML and get text
+                            effect_soup = BeautifulSoup(effect_html, 'html.parser')
+                            effect = effect_soup.get_text(strip=True)
+                            
+                            # Clean up any remaining HTML entities
+                            effect = effect.replace('&lt;', '<').replace('&gt;', '>')
+                            
+                            card_data['effect'] = effect
                         
                         # Extract zone, trait, link
                         other_data = detail_soup.select('.cardDataRow:not(.side) .dataBox')
@@ -138,13 +157,14 @@ def scrape_gundam_cards(package_value):
                         print(f"⚠️ Couldn't fetch details for {card_id}: {str(e)}")
 
                 json_data.append(card_data)
+                print(json.dumps(card_data, indent=2, ensure_ascii=False))
                 print(f"✅ Success: {card_data['cardName']} ({card_id})")
 
             except Exception as e:
                 print(f"❌ Error processing card: {str(e)}")
 
         # Upload to MongoDB
-        collection_value = os.getenv('C_GUNDAM')  # Default collection name
+        collection_value = C_GUNDAM # Default collection name
         if collection_value:
             try:
                 mongo_service.upload_data(

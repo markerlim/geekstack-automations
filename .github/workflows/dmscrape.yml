@@ -3,7 +3,7 @@ name: Run Duel Master Scraper
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 15 * * *'
+    - cron: '0 10 * * 6'  # Runs weekly at 6:00PM SGT on Saturdays
 jobs:
   scrape:
     runs-on: ubuntu-latest

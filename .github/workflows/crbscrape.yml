@@ -3,7 +3,7 @@ name: Run Cookierun Scraper
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 15 * * *'
+    - cron: '0 10 * * 5'  # Runs weekly at 6:00PM SGT on Fridays
 jobs:
   scrape:
     runs-on: ubuntu-latest

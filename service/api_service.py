@@ -224,28 +224,3 @@ class ApiService:
 def create_api_client(base_url: str, headers: Optional[Dict[str, str]] = None) -> ApiService:
     """Factory function to create API client"""
     return ApiService(base_url=base_url, default_headers=headers)
-
-
-# Example usage:
-if __name__ == "__main__":
-    # Create API client
-    api = ApiService("https://jsonplaceholder.typicode.com")
-    
-    # GET request example
-    response = api.get("/posts/1")
-    if response['success']:
-        print("GET Success:", response['data'])
-    else:
-        print("GET Error:", response['data'])
-    
-    # POST request example
-    post_data = {
-        "title": "Test Post",
-        "body": "This is a test post",
-        "userId": 1
-    }
-    response = api.post("/posts", json_data=post_data)
-    if response['success']:
-        print("POST Success:", response['data'])
-    else:
-        print("POST Error:", response['data'])
