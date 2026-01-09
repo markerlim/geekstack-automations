@@ -1,0 +1,249 @@
+import requests
+from bs4 import BeautifulSoup
+import os
+import sys
+import re
+from urllib.parse import urljoin
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+from service.mongo_service import MongoService
+from service.api_service import ApiService
+from scrapers.onepiece.onepiecescrape import reverse_map_booster
+
+# Environment Variables
+C_TEST = 'test'
+BASE_URL = "https://asia-en.onepiece-cardgame.com"
+
+# Initialize Service Layer
+mongo_service = MongoService()
+api_service = ApiService(BASE_URL)
+
+def extract_card_id_from_uid(card_uid):
+    """Extract the base card ID from cardUid (e.g., GD02-001_p1 -> GD02-001)"""
+    if '_p' in card_uid:
+        return card_uid.split('_p')[0]
+    return card_uid
+
+# Gundam card effect extraction and update logic
+def extract_effect_from_detail_page(card_id):
+    """Scrape effect text from Gundam card detail page"""
+    try:
+        detail_url = f"detail.php?detailSearch={card_id}"
+        print(f"🔍 Fetching effect for {card_id} from {detail_url}")
+        
+        detail_response = api_service.get(f"/asia-en/cards/{detail_url}")
+        detail_soup = BeautifulSoup(detail_response['data'], 'html.parser')
+        
+        # Extract overview/effect text
+        overview_element = detail_soup.select_one('.cardDataRow.overview .dataTxt')
+        if overview_element:
+            # Get the HTML content and process it
+            effect_html = str(overview_element)
+            
+            # Replace <br> with \n, but not when followed by whitespace and </div>
+            # This regex matches <br> that is NOT followed by optional whitespace and </div>
+            effect_html = re.sub(r'<br/>(?!\s*</div>)', '\n', effect_html)
+            
+            # Parse the modified HTML and get text
+            effect_soup = BeautifulSoup(effect_html, 'html.parser')
+            effect = effect_soup.get_text(strip=True)
+            
+            # Clean up any remaining HTML entities
+            effect = effect.replace('&lt;', '<').replace('&gt;', '>')
+            
+            return effect
+        else:
+            print(f"❌ No effect element found for {card_id}")
+            return None
+            
+    except Exception as e:
+        print(f"❌ Error fetching effect for {card_id}: {str(e)}")
+        return None
+
+def update_all_card_effects():
+    """Update effect text for all cards in MongoDB"""
+    if not C_TEST:
+        print("❌ C_TEST environment variable not found")
+        return
+    
+    try:
+        # Get all cardUIDs from MongoDB
+        print("📊 Fetching all cardUIDs from MongoDB...")
+        all_card_uids = mongo_service.get_unique_values(C_TEST, "cardUid")
+        print(f"Found {len(all_card_uids)} cards in database")
+        
+        success_count = 0
+        error_count = 0
+        
+        for i, card_uid in enumerate(all_card_uids, 1):
+            try:
+                # Extract base card ID for detail page lookup
+                card_id = extract_card_id_from_uid(card_uid)
+                
+                print(f"\n[{i}/{len(all_card_uids)}] Processing {card_uid} (ID: {card_id})")
+                
+                # Scrape effect from detail page
+                effect = extract_effect_from_detail_page(card_id)
+                
+                if effect:
+                    # Update MongoDB document
+                    update_result = mongo_service.update_by_field(
+                        C_TEST,
+                        "cardUid", 
+                        card_uid,
+                        update_data={"effect": effect}
+                    )
+                    
+                    if update_result:
+                        print(f"✅ Updated effect for {card_uid}")
+                        print(f"📝 Effect: {effect[:100]}...")
+                        success_count += 1
+                    else:
+                        print(f"❌ Failed to update {card_uid} in database")
+                        error_count += 1
+                else:
+                    print(f"⚠️ No effect found for {card_uid}")
+                    error_count += 1
+                    
+            except Exception as e:
+                print(f"❌ Error processing {card_uid}: {str(e)}")
+                error_count += 1
+        
+        print(f"\n🎉 Update complete!")
+        print(f"✅ Successfully updated: {success_count} cards")
+        print(f"❌ Errors: {error_count} cards")
+        
+    except Exception as e:
+        print(f"❌ Fatal error in update process: {str(e)}")
+
+
+
+
+
+def update_onepiece_card_effects():
+    """Update effect text for all One Piece cards by scraping every series value"""
+    if not C_TEST:
+        print("❌ C_ONEPIECE environment variable not found")
+        return
+    
+    try:
+        # Get all unique series values from MongoDB 
+        print("📊 Fetching all series values from One Piece collection...")
+        all_series = mongo_service.get_unique_values(C_TEST, "booster")
+        print(f"Found {len(all_series)} series in database: {all_series}")
+        
+        # Map series back to numeric values for scraping
+        series_to_scrape = []
+        for booster_code in all_series:
+            numeric_series = reverse_map_booster(booster_code)
+            series_to_scrape.append(numeric_series)
+        
+        print(f"Series values to scrape: {series_to_scrape}")
+        
+        total_updated = 0
+        total_errors = 0
+
+        all_carduids = mongo_service.get_unique_values(C_TEST, "cardUid")
+        
+        # Scrape each series value
+        for series_idx, series_value in enumerate(series_to_scrape, 1):
+            try:
+                print(f"\n[{series_idx}/{len(series_to_scrape)}] Scraping series {series_value}...")
+                
+                # Scrape the series page (like original onepiece scraper)
+                url = f"https://asia-en.onepiece-cardgame.com/cardlist/?series={series_value}"
+                headers = {
+                    "User-Agent": "Mozilla/5.0",
+                    "Accept-Language": "en-US,en;q=0.5",
+                    "Referer": BASE_URL + "/"
+                }
+                
+                response = requests.get(url, headers=headers)
+                if response.status_code != 200:
+                    print(f"❌ Failed to fetch series {series_value}: HTTP {response.status_code}")
+                    continue
+                
+                soup = BeautifulSoup(response.content, 'html.parser')
+                dl_elements = soup.find_all('dl', class_='modalCol')
+                
+                print(f"Found {len(dl_elements)} cards in series {series_value}")
+                
+                # Process each card in the series
+                for card_idx, dl_element in enumerate(dl_elements):
+                    try:
+                        # Extract cardUid from image URL (like original scraper)
+                        img_element = dl_element.find('img')
+                        if not img_element:
+                            continue
+                            
+                        img_src = img_element.get('data-src') or img_element.get('src')
+                        if not img_src:
+                            continue
+                            
+                        filename = img_src.split('/')[-1].split('?')[0]
+                        card_uid = filename.replace('.png', '')
+                        
+                        # Extract effect text (like original scraper)
+                        effect_element = dl_element.find('div', class_='text')
+                        if not effect_element:
+                            continue
+                            
+                        # Get the HTML content and process <br> tags
+                        effect_html = str(effect_element)
+                        
+                        # Replace <br> with \n, but not when followed by whitespace and </div>
+                        effect_html = re.sub(r'<br/>?(?!\s*</div>)', '\n', effect_html)
+                        
+                        # Parse the modified HTML and get text
+                        effect_soup = BeautifulSoup(effect_html, 'html.parser')
+                        effect = effect_soup.get_text().replace('Effect', '').strip()
+                        
+                        # Clean up any remaining HTML entities
+                        effect = effect.replace('&lt;', '<').replace('&gt;', '>')
+                        
+                        if not effect:
+                            continue
+                            
+                        # Check if this cardUid exists in our database
+                        existing_card = card_uid in all_carduids
+
+                        if not existing_card:
+                            print(f"⚠️ Card {card_uid} not found in database, skipping")
+                            continue
+                            
+                        # Update the effect in MongoDB
+
+                        update_result =mongo_service.update_by_field(
+                            C_TEST,
+                            "cardUid", 
+                            card_uid,
+                            update_data={"effects": effect}
+                        )
+                        
+                        if update_result:
+                            print(f"✅ Updated effect for {card_uid}")
+                            print(f"📝 Effect: {effect[:100]}...")
+                            total_updated += 1
+                        else:
+                            print(f"❌ Failed to update {card_uid} in database")
+                            total_errors += 1
+                        
+                    except Exception as e:
+                        print(f"❌ Error processing card in series {series_value}: {str(e)}")
+                        total_errors += 1
+                        
+            except Exception as e:
+                print(f"❌ Error processing series {series_value}: {str(e)}")
+                total_errors += 1
+        
+        print(f"\n🎉 One Piece effects update complete!")
+        print(f"✅ Successfully updated: {total_updated} cards")
+        print(f"❌ Errors: {total_errors} cards")
+        
+    except Exception as e:
+        print(f"❌ Fatal error in One Piece update process: {str(e)}")
+
+if __name__ == "__main__":
+    print("🚀 Starting One Piece card effects update process...")
+    update_onepiece_card_effects()

@@ -90,7 +90,7 @@ def scrape_onepiece_cards(series_value):
         print("❌ series_value is not provided. Exiting.")
         return
     
-    gcs_imgpath_value = os.getenv('GCSIMAGE', 'OPTCG/test/')
+    gcs_imgpath_value = os.getenv('GCS_ONEPIECE')
     url = f"https://asia-en.onepiece-cardgame.com/cardlist/?series={series_value}"
     source_id = series_value
     booster_mapped = map_booster(source_id)

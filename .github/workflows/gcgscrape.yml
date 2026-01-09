@@ -36,6 +36,7 @@ jobs:
         MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
         MONGO_CLUSTER: ${{ secrets.MONGO_CLUSTER }}
         C_GUNDAM: ${{ vars.C_GUNDAM }}  # Make sure to set this variable in your repo settings
+        GCS_GUNDAM: ${{ vars.GCS_GUNDAM }}  # Make sure to set this variable in your repo settings
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         python scrapers/gundam/gcgcheckscrape.py

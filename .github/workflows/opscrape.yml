@@ -34,7 +34,7 @@ jobs:
         MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
         MONGO_CLUSTER: ${{ secrets.MONGO_CLUSTER }}
         C_ONEPIECE: ${{vars.C_ONEPIECE}}
-        GCSIMAGE: ${{ secrets.GCSIMAGE }}
+        GCS_ONEPIECE: ${{ vars.GCS_ONEPIECE }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SMTP_HOST: ${{ vars.SMTP_HOST }}
         SMTP_PORT: ${{ vars.SMTP_PORT }}

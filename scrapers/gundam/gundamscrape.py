@@ -13,6 +13,7 @@ from service.api_service import ApiService
 
 # Environment Variables
 C_GUNDAM = os.getenv('C_GUNDAM')
+GCS_GUNDAM = os.getenv('GCS_GUNDAM')
 BASE_URL = "https://www.gundam-gcg.com"
 
 # Initialize Service Layer
@@ -27,7 +28,7 @@ def scrape_gundam_cards(package_value):
         print("❌ package_value is not provided. Exiting.")
         return
     
-    gcs_imgpath_value = f'GUNDAM/{package_value}/'
+    gcs_imgpath_value = f'{GCS_GUNDAM}{package_value}/'
 
     try:
         response = api_service.get(f"/asia-en/cards/?package={package_value}")

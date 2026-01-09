@@ -315,6 +315,11 @@ def scrape_unionarena_cards(series_value):
                 except AttributeError:
                     card_image_url = ""
 
+                placeholder_url = "https://www.unionarena-tcg.com/jp/images/cardlist/card/comingsoon.png"
+                if card_image_url == placeholder_url:
+                    print(f"Skipping card with placeholder image: {processedCardUid}")
+                    continue
+
                 # Extract energy generate
                 energygenerate = "-"
 
