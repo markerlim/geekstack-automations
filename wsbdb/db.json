@@ -751,6 +751,20 @@
       "expansion_image_alt": "スタートデッキ『ちいかわ』"
     },
     {
+      "booster": "PR2026",
+      "title": "PR card (2026)",
+      "category": "extra",
+      "release_date": "",
+      "url": "/cardlist/cardsearch/?expansion=PR2026",
+      "alt": "PR card (2026)",
+      "expansion_image": "https://ws-blau.com/wordpress/wp-content/themes/blau_v0/assets/images/common/thumb_default.png",
+      "expansion_image_alt": "PRカード（2026年）",
+      "titleJP": "PRカード（2026年）",
+      "categoryJP": "extra",
+      "altJP": "PRカード（2026年）",
+      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverPR2026.webp"
+    },
+    {
       "booster": "PR2025",
       "title": "PRカード（2025年）",
       "category": "extra",
@@ -791,5 +805,5 @@
       "expansion_image_alt": "PRカード（2022年）"
     }
   ],
-  "total_count": 79
+  "total_count": 80
 }
