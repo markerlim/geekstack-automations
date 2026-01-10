@@ -167,13 +167,12 @@ def scrape_unionarena_cards(series_value):
         else:
             processedCardUid = cardUid
 
-        listofcardcodes = mongo_service.get_unique_values_scoped(C_UNIONARENA,"cardId",cardId,"cardCode")
-
         # Skip card by CARDUID
         if listofcards.__contains__(processedCardUid):
             print(f"Skipping existing card: {processedCardUid}")
             continue
 
+        listofcardcodes = mongo_service.get_unique_values_scoped(C_UNIONARENA,"cardId",cardId,"cardCode")
         # Skip card by CARDCODE
         if listofcardcodes.__contains__(card_no):
             print(f"Card code {card_no} already exists in DB for cardId: {cardId}, skipping ALT allocation")
