@@ -33,7 +33,7 @@ except Exception as e:
     print(f"❌ Error loading ANIME_MAP: {e}")
     ANIME_MAP = {}
 
-def allocate_alt_suffix(processedCardUid, cardId, booster, alt_allocation_map):
+def allocate_alt_suffix(processedCardUid, cardId, booster, card_no, alt_allocation_map):
     """
     Allocate appropriate ALT suffix for UAPR cards to avoid duplicates
     
@@ -55,7 +55,7 @@ def allocate_alt_suffix(processedCardUid, cardId, booster, alt_allocation_map):
         print(f"Skipping ALT allocation for promo card: {cardId}")
         return processedCardUid
     
-    listofcarduid = mongo_service.get_unique_values_scoped(C_UNIONARENA,"cardId",cardId,"cardUid")
+    listofcarduid = mongo_service.get_unique_values_scoped(C_UNIONARENA,"cardId",cardId,"cardUid")\
 
     if listofcarduid:
         alt_variants = [uid for uid in listofcarduid if "_ALT" in uid]
@@ -157,9 +157,9 @@ def scrape_unionarena_cards(series_value):
     
     for card_no in card_numbers:
         booster, cardUid = card_no.split('/') if '/' in card_no else (card_no, card_no)
-
         animeCode = cardUid.split('-')[0] if '-' in cardUid else cardUid
         cardId = cardUid.split('_')[0] if '_' in cardUid else cardUid
+
         if '_p1' in cardUid:
             processedCardUid = cardUid.replace('_p1', '_ALT')
         elif '_p' in cardUid:
@@ -167,13 +167,22 @@ def scrape_unionarena_cards(series_value):
         else:
             processedCardUid = cardUid
 
-        if(listofcards.__contains__(processedCardUid) and (booster != "UAPR")):
+        listofcardcodes = mongo_service.get_unique_values_scoped(C_UNIONARENA,"cardId",cardId,"cardCode")
+
+        # Skip card by CARDUID
+        if listofcards.__contains__(processedCardUid):
             print(f"Skipping existing card: {processedCardUid}")
             continue
-        
-        
-        # Allocate appropriate ALT suffix for UAPR cards
-        processedCardUid = allocate_alt_suffix(processedCardUid, cardId, booster, alt_allocation_map)
+
+        # Skip card by CARDCODE
+        if listofcardcodes.__contains__(card_no):
+            print(f"Card code {card_no} already exists in DB for cardId: {cardId}, skipping ALT allocation")
+            print(f"Skipping existing card: {processedCardUid}")
+            continue
+
+        # For UAPR cards, allocate ALT suffix first, then check if it exists
+        if booster == "UAPR":
+            processedCardUid = allocate_alt_suffix(processedCardUid, cardId, booster, card_no, alt_allocation_map)
         
         try:
             response = api_service.get(f"/jp/cardlist/detail_iframe.php?card_no={card_no}")
@@ -377,10 +386,14 @@ def scrape_unionarena_cards(series_value):
                 # Map States
                 triggerState = TRIGGER_STATE_MAP.get(trigger, "-")
                 triggerEN = TRIGGER_MAP.get(triggerState, "-")
+                # If triggerState begins with "color", change it to just "color"
+                if isinstance(triggerState, str) and triggerState.startswith("color"):
+                    triggerState = "color"
                 mappedCategory = CATEGORY_MAP.get(category, "-")
 
                 # Handle Image upload
-                urlimage = upload_image_to_gcs(card_image_url,processedCardUid,"UD/")
+                # urlimage = upload_image_to_gcs(card_image_url,processedCardUid,"UD/")
+                urlimage = card_image_url  # For now, just use the scraped URL
                 # Create card object structure
                 card_object = {
                     "anime": anime,
