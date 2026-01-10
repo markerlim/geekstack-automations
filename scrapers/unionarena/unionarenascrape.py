@@ -457,11 +457,12 @@ def scrape_unionarena_cards(series_value):
     
     if C_UNIONARENA:
         try:
-            mongo_service.upload_data(
-                data=json_data,
-                collection_name=C_UNIONARENA,
-                backup_before_upload=True
-            )
+            print(json_data)
+            # mongo_service.upload_data(
+            #     data=json_data,
+            #     collection_name=C_UNIONARENA,
+            #     backup_before_upload=True
+            # )
         except Exception as e:
             print(f"❌ MongoDB operation failed: {str(e)}")
     else:
