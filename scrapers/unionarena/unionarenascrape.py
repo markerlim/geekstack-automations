@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 
 # Add parent directories to path for imports
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
-from scrapers.unionarena.uamapping import CATEGORY_MAP, COLOR_MAP, TRIGGER_STATE_MAP, UATAG_MAP
+from scrapers.unionarena.uamapping import CATEGORY_MAP, COLOR_MAP, TRIGGER_STATE_MAP,TRIGGER_MAP, UATAG_MAP
 from service.github_service import GitHubService
 from service.selenium_service import SeleniumService
 from service.mongo_service import MongoService
@@ -281,6 +281,44 @@ def scrape_unionarena_cards(series_value):
                             # Join all parts preserving original order
                             effects_jp = ''.join(effect_parts) if effect_parts else "-"
 
+                            # Replace Japanese angle brackets with standard ones
+                            if effects_jp != "-":
+                                effects_jp = effects_jp.replace('〉', '>').replace('〈', '<')
+                                
+                                # Clean up raid text patterns - split by lines and process each
+                                lines = effects_jp.split('\\n')
+                                processed_lines = []
+                                
+                                for line in lines:
+                                    if line.startswith('[Raid]'):
+                                        # Extract content after [Raid] to avoid extracting "Raid" itself
+                                        after_raid = line[line.find('[Raid]') + len('[Raid]'):].strip()
+                                        
+                                        # Extract bracketed content [xxx] and angled content <xxx> from after [Raid]
+                                        brackets = re.findall(r'\[([^\]]+)\]', after_raid)
+                                        angles = re.findall(r'<([^>]+)>', after_raid)
+                                        
+                                        # Build new raid line
+                                        raid_parts = ['[Raid]']
+                                        
+                                        # Add all trait brackets found after [Raid]
+                                        for bracket in brackets:
+                                            raid_parts.append(f'[{bracket}]')
+                                        
+                                        # Add angled content
+                                        for angle in angles:
+                                            raid_parts.append(f'<{angle}>')
+                                        
+                                        # Join parts with space
+                                        processed_line = ' '.join(raid_parts)
+                                        processed_lines.append(processed_line)
+                                        print(f"Raid line processed: '{line}' -> '{processed_line}'")
+                                    else:
+                                        processed_lines.append(line)
+                                
+                                effects_jp = '\\n'.join(processed_lines)
+
+
                             if effects_jp is None or effects_jp == "":
                                 effects_jp = "-"
                         else:
@@ -338,6 +376,7 @@ def scrape_unionarena_cards(series_value):
                 
                 # Map States
                 triggerState = TRIGGER_STATE_MAP.get(trigger, "-")
+                triggerEN = TRIGGER_MAP.get(triggerState, "-")
                 mappedCategory = CATEGORY_MAP.get(category, "-")
 
                 # Handle Image upload
@@ -345,7 +384,7 @@ def scrape_unionarena_cards(series_value):
                 # Create card object structure
                 card_object = {
                     "anime": anime,
-                    "animeCode": animeCode,  # Need to derive this
+                    "animeCode": animeCode.lower(),  # Need to derive this
                     "apcost": int(apcost) if apcost != "-" and apcost.isdigit() else 0,
                     "banRatio": 4,  # Leave blank
                     "basicpower": bpcost if bpcost != "-" else "",
@@ -361,7 +400,7 @@ def scrape_unionarena_cards(series_value):
                     "image": f"/UD/{processedCardUid}.webp",  # Need to build image path
                     "rarity": "ALT" if rarity != "-" and "★" in rarity else (rarity if rarity != "-" else ""),
                     "traits": traits,
-                    "trigger": trigger,
+                    "trigger": triggerEN,
                     "triggerState": triggerState,
                     "urlimage":urlimage ,  # Scraped card image URL
                     "rarityAct": rarity,
@@ -487,7 +526,7 @@ def clean_out_AP(card_numbers):
     try:
         cleaned_cards = []
         for each in card_numbers:
-            if "-AP" not in each:
+            if "-AP" not in each and "_AP" not in each:
                 cleaned_cards.append(each)
             else:
                 print(f"Removed AP card: {each}")
