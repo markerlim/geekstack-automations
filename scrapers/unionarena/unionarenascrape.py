@@ -391,39 +391,49 @@ def scrape_unionarena_cards(series_value):
                 mappedCategory = CATEGORY_MAP.get(category, "-")
 
                 # Handle Image upload
-                # urlimage = upload_image_to_gcs(card_image_url,processedCardUid,"UD/")
-                urlimage = card_image_url  # For now, just use the scraped URL
+                urlimage = upload_image_to_gcs(card_image_url,processedCardUid,"UD/")
+                doc = mongo_service.find_by_field(C_UNIONARENA, "cardId", cardId) or {}
+                
+                # Use existing DB fields if doc exists, otherwise use scraped values
+                needs_translation = True
+                if doc:
+                    cardname = doc.get("cardName", "-")
+                    effects_jp = doc.get("effect", "-")
+                    traits = doc.get("traits", "-")
+                    needs_translation = False
+                    print(f"Using existing DB data for cardId {cardId}, skipping translation")
+                
                 # Create card object structure
                 card_object = {
                     "anime": anime,
-                    "animeCode": animeCode.lower(),  # Need to derive this
+                    "animeCode": animeCode.lower(),
                     "apcost": int(apcost) if apcost != "-" and apcost.isdigit() else 0,
-                    "banRatio": 4,  # Leave blank
+                    "banRatio": 4,
                     "basicpower": bpcost if bpcost != "-" else "",
-                    "booster": booster,  # Need to derive this
+                    "booster": booster,
                     "cardId": cardId,
                     "cardUid": processedCardUid,
                     "cardName": cardname,
                     "category": mappedCategory.lower(),
-                    "color": color,  # Extracted Japanese color character
+                    "color": color,
                     "effect": effects_jp,
                     "energycost": int(energycost) if energycost != "-" and energycost.isdigit() else 0,
                     "energygen": str(energygenerate) if energygenerate != "none" else "",
-                    "image": f"/UD/{processedCardUid}.webp",  # Need to build image path
+                    "image": f"/UD/{processedCardUid}.webp",
                     "rarity": "ALT" if rarity != "-" and "★" in rarity else (rarity if rarity != "-" else ""),
                     "traits": traits,
                     "trigger": triggerEN,
                     "triggerState": triggerState,
-                    "urlimage":urlimage ,  # Scraped card image URL
+                    "urlimage": urlimage,
                     "rarityAct": rarity,
                     "cardcode": card_no,
                 }
                 
+                # Track separately which cards need translation
+                card_object["_needs_translation"] = needs_translation
+                
                 print(f"Scraped card {card_no}: {category}")
-                
-                # Store card object for JSON export
                 card_objects.append(card_object)
-                
                 successful_scrapes += 1
 
         except requests.RequestException as e:
@@ -444,24 +454,47 @@ def scrape_unionarena_cards(series_value):
             print(f"Traceback: {traceback.format_exc()}")
             continue
 
-    #json_data = translate_data(card_objects,fields_to_translate=["cardName","effect","traits"], src_lang="ja", dest_lang="en", keep_original=False)
-    translation_result = openrouter_service.translate_fields(card_objects,fields_to_translate=["cardName","effect","traits"], source_lang="ja", target_lang="en", keep_original=False)
-
-    if translation_result['success']:
-        json_data = translation_result['translated_data']
-        print(f"✅ Translation successful: {len(json_data)} objects translated")
-    else:
-        print(f"❌ Translation failed: {translation_result.get('error', 'Unknown error')}, falling back to translation service")
-        json_data = translate_data(card_objects,fields_to_translate=["cardName","effect","traits"], src_lang="ja", dest_lang="en", keep_original=False)
+    # Split objects into those needing translation and those already complete
+    to_translate = [o for o in card_objects if o.get("_needs_translation", True)]
+    skipped = [o for o in card_objects if not o.get("_needs_translation", True)]
     
+    print(f"Cards to translate: {len(to_translate)}, Cards skipped (from DB): {len(skipped)}")
+
+    translated_list = []
+    if to_translate:
+        translation_result = openrouter_service.translate_fields(to_translate, fields_to_translate=["cardName","effect","traits"], source_lang="ja", target_lang="en", keep_original=False)
+
+        if translation_result['success']:
+            translated_list = translation_result['translated_data']
+            print(f"✅ Translation successful: {len(translated_list)} objects translated")
+        else:
+            print(f"❌ Translation failed: {translation_result.get('error', 'Unknown error')}, falling back to translation service")
+            translated_list = translate_data(to_translate, fields_to_translate=["cardName","effect","traits"], src_lang="ja", dest_lang="en", keep_original=False)
+
+    # Merge translated items with skipped items
+    final_json = []
+    translated_by_uid = {item["cardUid"]: item for item in translated_list}
+    
+    for obj in card_objects:
+        obj.pop("_needs_translation", None)  # Remove internal tracking flag
+        
+        if obj["cardUid"] in translated_by_uid:
+            # Use translated version
+            final_json.append(translated_by_uid[obj["cardUid"]])
+        else:
+            # Use original (either skipped or fallback)
+            final_json.append(obj)
+    
+    json_data = final_json
+
     if C_UNIONARENA:
         try:
             print(json_data)
-            # mongo_service.upload_data(
-            #     data=json_data,
-            #     collection_name=C_UNIONARENA,
-            #     backup_before_upload=True
-            # )
+            mongo_service.upload_data(
+                data=json_data,
+                collection_name=C_UNIONARENA,
+                backup_before_upload=True
+            )
         except Exception as e:
             print(f"❌ MongoDB operation failed: {str(e)}")
     else:

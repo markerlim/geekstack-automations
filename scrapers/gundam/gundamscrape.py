@@ -20,8 +20,6 @@ BASE_URL = "https://www.gundam-gcg.com"
 mongo_service = MongoService()
 api_service = ApiService(BASE_URL)
 
-
-
 def scrape_gundam_cards(package_value):
     """Scrape Gundam cards for a specific package value and upload to MongoDB/GCS"""
     if not package_value:
