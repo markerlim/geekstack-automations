@@ -50,7 +50,7 @@ def check_for_new_series():
             scrape_gundam_cards(val)
 
 def check_for_watchlist():
-    watchlist = ["619701","619801","619901"]
+    watchlist = ["619701","619801","619901","619103"]
 
     for package_value in watchlist:
         print(f"Checking package: {package_value}")
