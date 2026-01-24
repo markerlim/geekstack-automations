@@ -2,17 +2,13 @@
   "expansions": [
     {
       "booster": "EES/01B",
-      "title": "Booster pack “Fire Force Sanno Chapter”",
+      "title": "ブースターパック『炎炎ノ消防隊 参ノ章』",
       "category": "expansion",
       "release_date": "2026-01-23",
       "url": "/cardlist/cardsearch/?expansion=EES/01B",
-      "alt": "Booster pack “Fire Force Sanno Chapter”",
+      "alt": "ブースターパック『炎炎ノ消防隊 参ノ章』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/11/28175319/bppackage_EES_01b.png",
-      "expansion_image_alt": "ブースターパック『炎炎ノ消防隊 参ノ章』",
-      "titleJP": "ブースターパック『炎炎ノ消防隊 参ノ章』",
-      "categoryJP": "expansion",
-      "altJP": "ブースターパック『炎炎ノ消防隊 参ノ章』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverEES_01B.webp"
+      "expansion_image_alt": "ブースターパック『炎炎ノ消防隊 参ノ章』"
     },
     {
       "booster": "TAL/01S",
@@ -772,8 +768,7 @@
       "url": "/cardlist/cardsearch/?expansion=PR2026",
       "alt": "PRカード（2026年）",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/themes/blau_v0/assets/images/common/thumb_default.png",
-      "expansion_image_alt": "PRカード（2026年）",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverPR2026.webp"
+      "expansion_image_alt": "PRカード（2026年）"
     },
     {
       "booster": "PR2025",
