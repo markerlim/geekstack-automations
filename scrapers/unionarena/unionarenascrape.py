@@ -409,7 +409,7 @@ def scrape_unionarena_cards(series_value):
                     "animeCode": animeCode.lower(),
                     "apcost": int(apcost) if apcost != "-" and apcost.isdigit() else 0,
                     "banRatio": 4,
-                    "basicpower": bpcost if bpcost != "-" else "",
+                    "basicpower": bpcost if bpcost != "-" else "-",
                     "booster": booster,
                     "cardId": cardId,
                     "cardUid": processedCardUid,
@@ -484,6 +484,15 @@ def scrape_unionarena_cards(series_value):
         else:
             # Use original (either skipped or fallback)
             final_json.append(obj)
+    
+    # Validate and normalize null values to "-" for critical fields
+    for item in final_json:
+        if item.get("effect") is None or item.get("effect") == "":
+            item["effect"] = "-"
+        if item.get("traits") is None or item.get("traits") == "":
+            item["traits"] = "-"
+        if item.get("basicpower") is None or item.get("basicpower") == "":
+            item["basicpower"] = "-"
     
     json_data = final_json
 
