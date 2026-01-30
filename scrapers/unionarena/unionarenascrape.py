@@ -3,6 +3,7 @@ import re
 from bs4 import BeautifulSoup
 import os
 import sys
+import json
 from selenium.webdriver.common.by import By
 
 # Add parent directories to path for imports
@@ -15,6 +16,8 @@ from service.api_service import ApiService
 from service.openrouter_service import OpenRouterService
 from service.googlecloudservice import upload_image_to_gcs
 from service.translationservice import translate_data
+from dotenv import load_dotenv
+load_dotenv()
 
 # Initialize Service Layer
 github_service = GitHubService()
@@ -46,70 +49,17 @@ def allocate_alt_suffix(processedCardUid, cardId, booster, card_no, alt_allocati
     Returns:
         Updated processedCardUid with appropriate ALT suffix
     """
-    # Only process UAPR cards that don't already have ALT suffix
-    if booster != "UAPR" or "_ALT" in processedCardUid:
+    # Only process cards that don't already have ALT suffix
+    if "_ALT" in processedCardUid:
         return processedCardUid
-    
-    # Skip promo cards (indicated by -P- in cardId) as they are unique
-    if "-P-" in cardId:
-        print(f"Skipping ALT allocation for promo card: {cardId}")
-        return processedCardUid
-    
-    listofcarduid = mongo_service.get_unique_values_scoped(C_UNIONARENA,"cardId",cardId,"cardUid")\
 
-    if listofcarduid:
-        alt_variants = [uid for uid in listofcarduid if "_ALT" in uid]
-        alt_count = len(alt_variants)
-        print(f"Found {alt_count} ALT variants for cardId: {cardId}: {alt_variants}")
-        
-        if alt_count == 0:
-            # No ALT variants exist in DB, check current run allocation
-            if cardId in alt_allocation_map:
-                # Already allocated ALT in this run, increment
-                next_alt_num = alt_allocation_map[cardId] + 1
-                processedCardUid = f"{processedCardUid}_ALT{next_alt_num}"
-                alt_allocation_map[cardId] = next_alt_num
-                print(f"Auto-allocated _ALT{next_alt_num} suffix for UAPR card (run allocation): {processedCardUid}")
-            else:
-                # First ALT allocation for this cardId in this run
-                processedCardUid = f"{processedCardUid}_ALT"
-                alt_allocation_map[cardId] = 1
-                print(f"Auto-allocated _ALT suffix for UAPR card: {processedCardUid}")
-        else:
-            # ALT variants exist in DB, find highest ALT number and increment
-            max_alt_num = 0
-            for uid in alt_variants:
-                # Extract number from _ALT patterns like _ALT, _ALT2, _ALT3, etc.
-                if "_ALT" in uid:
-                    alt_part = uid.split("_ALT")[1]
-                    if alt_part == "":  # _ALT with no number
-                        max_alt_num = max(max_alt_num, 1)
-                    elif alt_part.isdigit():  # _ALT2, _ALT3, etc.
-                        max_alt_num = max(max_alt_num, int(alt_part))
-            
-            # Check current run allocations for this cardId
-            if cardId in alt_allocation_map:
-                max_alt_num = max(max_alt_num, alt_allocation_map[cardId])
-            
-            next_alt_num = max_alt_num + 1
-            processedCardUid = f"{processedCardUid}_ALT{next_alt_num}"
-            alt_allocation_map[cardId] = next_alt_num
-            print(f"Auto-allocated _ALT{next_alt_num} suffix for UAPR card: {processedCardUid}")
-    else:
-        print(f"No existing cards found for cardId: {cardId}")
-        # If this is the first card with this cardId and booster is UAPR, add _ALT suffix
-        if cardId in alt_allocation_map:
-            # Already allocated ALT in this run, increment
-            next_alt_num = alt_allocation_map[cardId] + 1
-            processedCardUid = f"{processedCardUid}_ALT{next_alt_num}"
-            alt_allocation_map[cardId] = next_alt_num
-            print(f"Auto-allocated _ALT{next_alt_num} suffix for first UAPR card (run allocation): {processedCardUid}")
-        else:
-            # First ALT allocation for this cardId in this run
-            processedCardUid = f"{processedCardUid}_ALT"
-            alt_allocation_map[cardId] = 1
-            print(f"Auto-allocated _ALT suffix for first UAPR card: {processedCardUid}")
-    
+    key = cardId  # Use cardId for global uniqueness
+    if key in alt_allocation_map:
+        next_alt_num = alt_allocation_map[key] + 1
+        processedCardUid = f"{cardId}_ALT{next_alt_num}"
+        alt_allocation_map[key] = next_alt_num
+        print(f"Auto-allocated _ALT{next_alt_num} suffix for cardId {cardId}: {processedCardUid}")
+
     return processedCardUid
 
 def scrape_unionarena_cards(series_value):
@@ -137,10 +87,10 @@ def scrape_unionarena_cards(series_value):
     card_numbers = clean_out_AP(card_numbers_with_AP)
     
     # Debug MongoDB call parameters
-    print(f"MongoDB query params: collection={C_UNIONARENA}, field=anime, value={anime}, target_field=cardUid")
+    print(f"MongoDB query params: collection={C_UNIONARENA}, field=anime, value={anime}, target_field=cardcode")
     
-    # Get existing cards with null check
-    existing_cards = mongo_service.get_unique_values_scoped(C_UNIONARENA, "anime", anime, "cardUid")
+    # Get existing cards with null check, by cardcode (unique identifier)
+    existing_cards = mongo_service.get_unique_values_scoped(C_UNIONARENA, "anime", anime, "cardcode")
     if existing_cards is None:
         print("Warning: get_unique_values_scoped returned None, using empty set")
         listofcards = set()
@@ -156,36 +106,32 @@ def scrape_unionarena_cards(series_value):
     alt_allocation_map = {}  # cardId -> highest_alt_num_allocated
     
     for card_no in card_numbers:
+        if card_no in listofcards:
+            print(f"Card code {card_no} already exists in DB, skipping")
+            continue
+
         booster, cardUid = card_no.split('/') if '/' in card_no else (card_no, card_no)
         animeCode = cardUid.split('-')[0] if '-' in cardUid else cardUid
         cardId = cardUid.split('_')[0] if '_' in cardUid else cardUid
 
         if '_p1' in cardUid:
             processedCardUid = cardUid.replace('_p1', '_ALT')
+            alt_allocation_map[cardId] = max(alt_allocation_map.get(cardId, 0), 1)
         elif '_p' in cardUid:
-            processedCardUid = re.sub(r'_p(\d+)', r'_ALT\1', cardUid)
+            match = re.search(r'_p(\d+)', cardUid)
+            if match:
+                alt_num = int(match.group(1))
+                processedCardUid = re.sub(r'_p(\d+)', r'_ALT\1', cardUid)
+                alt_allocation_map[cardId] = max(alt_allocation_map.get(cardId, 0), alt_num)
+            else:
+                processedCardUid = cardUid
         else:
             processedCardUid = cardUid
 
-        # Skip card by CARDUID
-        if listofcards.__contains__(processedCardUid):
-            print(f"Skipping existing card: {processedCardUid}")
-            continue
-
-        listofcardcodes = mongo_service.get_unique_values_scoped(C_UNIONARENA,"cardId",cardId,"cardCode")
-        # Skip card by CARDCODE
-        if listofcardcodes.__contains__(card_no):
-            print(f"Card code {card_no} already exists in DB for cardId: {cardId}, skipping ALT allocation")
-            print(f"Skipping existing card: {processedCardUid}")
-            continue
-
-        # For UAPR cards, allocate ALT suffix first, then check if it exists
-        if booster == "UAPR":
-            processedCardUid = allocate_alt_suffix(processedCardUid, cardId, booster, card_no, alt_allocation_map)
+        processedCardUid = allocate_alt_suffix(processedCardUid, cardId, booster, card_no, alt_allocation_map)
         
         try:
             response = api_service.get(f"/jp/cardlist/detail_iframe.php?card_no={card_no}")
-            
             if response['status'] == 200:
                 soup = BeautifulSoup(response['data'], "html.parser")
                 
@@ -391,7 +337,7 @@ def scrape_unionarena_cards(series_value):
                 mappedCategory = CATEGORY_MAP.get(category, "-")
 
                 # Handle Image upload
-                urlimage = upload_image_to_gcs(card_image_url,processedCardUid,"UD/")
+                urlimage = card_image_url #upload_image_to_gcs(card_image_url,processedCardUid,"UD/")
                 doc = mongo_service.find_by_field(C_UNIONARENA, "cardId", cardId) or {}
                 
                 # Use existing DB fields if doc exists, otherwise use scraped values
@@ -498,7 +444,6 @@ def scrape_unionarena_cards(series_value):
 
     if C_UNIONARENA:
         try:
-            print(json_data)
             mongo_service.upload_data(
                 data=json_data,
                 collection_name=C_UNIONARENA,

@@ -12,6 +12,8 @@ from service.openrouter_service import OpenRouterService
 from service.notification_service import NotificationService
 from service.mongo_service import MongoService
 from scrapers.unionarena.unionarenascrape import scrape_unionarena_cards,navigate_to_selected_cardlist,clean_out_AP
+from dotenv import load_dotenv
+load_dotenv()
 
 # Initialize services
 github_service = GitHubService()
