@@ -337,7 +337,7 @@ def scrape_unionarena_cards(series_value):
                 mappedCategory = CATEGORY_MAP.get(category, "-")
 
                 # Handle Image upload
-                urlimage = card_image_url #upload_image_to_gcs(card_image_url,processedCardUid,"UD/")
+                urlimage = upload_image_to_gcs(card_image_url,processedCardUid,"UD/")
                 doc = mongo_service.find_by_field(C_UNIONARENA, "cardId", cardId) or {}
                 
                 # Use existing DB fields if doc exists, otherwise use scraped values
