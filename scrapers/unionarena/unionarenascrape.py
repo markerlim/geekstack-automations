@@ -36,31 +36,29 @@ except Exception as e:
     print(f"❌ Error loading ANIME_MAP: {e}")
     ANIME_MAP = {}
 
-def allocate_alt_suffix(processedCardUid, cardId, booster, card_no, alt_allocation_map):
-    """
-    Allocate appropriate ALT suffix for UAPR cards to avoid duplicates
+# def allocate_alt_suffix(processedCardUid, cardId,alt_allocation_map):
+#     """
+#     Allocate appropriate ALT suffix for UAPR cards to avoid duplicates
     
-    Args:
-        processedCardUid: Current processed card UID
-        cardId: Base card ID (without ALT suffix)
-        booster: Booster type
-        alt_allocation_map: Dictionary tracking ALT allocations in current run
+#     Args:
+#         processedCardUid: Current processed card UID
+#         cardId: Base card ID (without ALT suffix)
+#         alt_allocation_map: Dictionary tracking ALT allocations in current run
     
-    Returns:
-        Updated processedCardUid with appropriate ALT suffix
-    """
-    # Only process cards that don't already have ALT suffix
-    if "_ALT" in processedCardUid:
-        return processedCardUid
+#     Returns:
+#         Updated processedCardUid with appropriate ALT suffix
+#     """
+#     # Only process cards that don't already have ALT suffix
+#     if "_ALT" in processedCardUid:
+#         return processedCardUid
 
-    key = cardId  # Use cardId for global uniqueness
-    if key in alt_allocation_map:
-        next_alt_num = alt_allocation_map[key] + 1
-        processedCardUid = f"{cardId}_ALT{next_alt_num}"
-        alt_allocation_map[key] = next_alt_num
-        print(f"Auto-allocated _ALT{next_alt_num} suffix for cardId {cardId}: {processedCardUid}")
-
-    return processedCardUid
+#     key = cardId  # Use cardId for global uniqueness
+#     if key in alt_allocation_map:
+#         next_alt_num = alt_allocation_map[key] + 1
+#         processedCardUid = f"{cardId}_ALT{next_alt_num}"
+#         alt_allocation_map[key] = next_alt_num
+#         print(f"Auto-allocated _ALT{next_alt_num} suffix for cardId {cardId}: {processedCardUid}")
+#     return processedCardUid
 
 def scrape_unionarena_cards(series_value):
     """
@@ -99,36 +97,31 @@ def scrape_unionarena_cards(series_value):
     if not card_numbers:
         print(f"No new cards found for series: {series_value}")
         return 0
-
+    
     successful_scrapes = 0
     
     # Track ALT allocations within this run to avoid duplicates
     alt_allocation_map = {}  # cardId -> highest_alt_num_allocated
     
     for card_no in card_numbers:
-        if card_no in listofcards:
-            print(f"Card code {card_no} already exists in DB, skipping")
-            continue
-
         booster, cardUid = card_no.split('/') if '/' in card_no else (card_no, card_no)
         animeCode = cardUid.split('-')[0] if '-' in cardUid else cardUid
         cardId = cardUid.split('_')[0] if '_' in cardUid else cardUid
 
-        if '_p1' in cardUid:
-            processedCardUid = cardUid.replace('_p1', '_ALT')
-            alt_allocation_map[cardId] = max(alt_allocation_map.get(cardId, 0), 1)
-        elif '_p' in cardUid:
-            match = re.search(r'_p(\d+)', cardUid)
-            if match:
-                alt_num = int(match.group(1))
-                processedCardUid = re.sub(r'_p(\d+)', r'_ALT\1', cardUid)
-                alt_allocation_map[cardId] = max(alt_allocation_map.get(cardId, 0), alt_num)
-            else:
-                processedCardUid = cardUid
+        # Always use the allocation map to assign ALT suffixes in order
+        if cardId not in alt_allocation_map:
+            # First occurrence: no ALT
+            processedCardUid = cardId
+            alt_allocation_map[cardId] = 0
         else:
-            processedCardUid = cardUid
+            # Next occurrence: ALT, ALT2, ALT3, ...
+            next_alt_num = alt_allocation_map[cardId] + 1
+            processedCardUid = f"{cardId}_ALT" if next_alt_num == 1 else f"{cardId}_ALT{next_alt_num}"
+            alt_allocation_map[cardId] = next_alt_num
 
-        processedCardUid = allocate_alt_suffix(processedCardUid, cardId, booster, card_no, alt_allocation_map)
+        if card_no in listofcards:
+            print(f"Card code {card_no} already exists in DB, skipping")
+            continue
         
         try:
             response = api_service.get(f"/jp/cardlist/detail_iframe.php?card_no={card_no}")
