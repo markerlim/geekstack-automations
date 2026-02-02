@@ -17,13 +17,14 @@ mongo_service = MongoService()
 # Variables
 FILE_PATH = "cookierundb/latestdate.json"
 
-existing_values, file_sha = github_service.load_json_file(FILE_PATH)
-latest_date = existing_values.get("latestDate", 0)
+# existing_values, file_sha = github_service.load_json_file(FILE_PATH)
+# latest_date = existing_values.get("latestDate", 0)
     
+latest_date = 1763503980
 # Step 1: Fetch card data from API
 try:
     print("🔍 Fetching cards from Cookie Run API...")
-    api_url = "https://cookierunbraverse.com/en/cardList/card.json"
+    api_url = "https://cookierunbraverse.com/data/json/cardList_asia.json"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
         "Accept": "application/json, text/plain, */*",
@@ -32,53 +33,90 @@ try:
     response = requests.get(api_url, headers=headers, timeout=30)
     response.raise_for_status()
         
-    cards_data = response.json()
+    api_response = response.json()
+    cards_data = api_response.get("cardList", [])
     print(f"📦 Retrieved {len(cards_data)} total cards from API")
         
 except Exception as e:
     print(f"❌ Error fetching cards: {str(e)}")
     
-# Step 2: Filter for cards with postDate AFTER the latest recorded date
-print(f"🔍 Filtering cards with postDate > {latest_date}...")
+# Step 2: Filter for cards with update_dt AFTER the latest recorded date
+print(f"🔍 Filtering cards with update_dt > {latest_date}...")
 new_cards = []
     
 for card in cards_data:
-    card_post_date = card.get("postDate", 0)
-    if card_post_date > latest_date:
+    # Parse ISO 8601 timestamp and convert to epoch
+    update_dt_str = card.get("update_dt", "")
+    if update_dt_str:
+        try:
+            card_update_date = int(datetime.fromisoformat(update_dt_str.replace('Z', '+00:00')).timestamp())
+        except:
+            card_update_date = 0
+    else:
+        card_update_date = 0
+    
+    if card_update_date > latest_date:
         new_cards.append(card)
-        card_title = card.get("title", "Unknown")
-        card_no = card.get("field_cardNo_suyeowsc", "Unknown")
-        readable_date = datetime.fromtimestamp(card_post_date).strftime('%Y-%m-%d %H:%M:%S')
-        print(f"  ✅ New card found: {card_title} ({card_no}) - {readable_date} (postDate: {card_post_date})")
+        card_title = card.get("card_name", "Unknown")
+        card_no = card.get("card_no", "Unknown")
+        readable_date = datetime.fromtimestamp(card_update_date).strftime('%Y-%m-%d %H:%M:%S')
+        print(f"  ✅ New card found: {card_title} ({card_no}) - {readable_date} (update_dt: {card_update_date})")
     
 if not new_cards:
     print("✅ No new cards found. Database is up to date.")
-    print(f"   All cards have postDate <= {latest_date}")
+    print(f"   All cards have update_dt <= {latest_date}")
     
 print(f"🆕 Total new cards to process: {len(new_cards)}")
     
-# Step 3: Sort by postDate to process oldest first
-new_cards.sort(key=lambda x: x.get("postDate", 0))
+# Step 3: Sort by update_dt to process oldest first
+def get_update_timestamp(card):
+    try:
+        update_dt_str = card.get("update_dt", "")
+        return int(datetime.fromisoformat(update_dt_str.replace('Z', '+00:00')).timestamp())
+    except:
+        return 0
+
+new_cards.sort(key=get_update_timestamp)
 print("📊 Processing cards in chronological order...")
+
+# Ask for confirmation before processing
+if len(new_cards) > 0:
+    print("\n" + "="*60)
+    print(f"⚠️  About to process {len(new_cards)} card(s)")
+    print("="*60)
+    response = input("Proceed with processing? (yes/no): ").strip().lower()
+    if response not in ["yes", "y"]:
+        print("❌ Processing cancelled by user")
+        sys.exit(0)
+    print("✅ Proceeding with processing...\n")
     
 processed_cards = []
 latest_post_date = latest_date
 
 # Step 4: Process each new card    
 for i, card in enumerate(new_cards, 1):
-    card_no = card.get("field_cardNo_suyeowsc", "Unknown")
-    card_title = card.get("title", "Unknown")
-    post_date = card.get("postDate", 0)
+    card_no = card.get("card_no", "Unknown")
+    card_title = card.get("card_name", "Unknown")
+    
+    # Parse ISO 8601 timestamp
+    update_dt_str = card.get("update_dt", "")
+    if update_dt_str:
+        try:
+            update_date = int(datetime.fromisoformat(update_dt_str.replace('Z', '+00:00')).timestamp())
+        except:
+            update_date = 0
+    else:
+        update_date = 0
         
     print(f"  🎴 Processing ({i}/{len(new_cards)}): {card_title} ({card_no})")
-    print(f"      postDate: {post_date} ({datetime.fromtimestamp(post_date).strftime('%Y-%m-%d %H:%M:%S')})")
+    print(f"      update_dt: {update_date} ({datetime.fromtimestamp(update_date).strftime('%Y-%m-%d %H:%M:%S')})")
         
     processed_card = process_card_data(card)
     if processed_card:
         processed_cards.append(processed_card)
         # Update latest_post_date with the newest card processed
-        if post_date > latest_post_date:
-            latest_post_date = post_date
+        if update_date > latest_post_date:
+            latest_post_date = update_date
             print(f"      📅 Updated latest date to: {latest_post_date}")
     
 # Step 5: Upload processed cards to MongoDB

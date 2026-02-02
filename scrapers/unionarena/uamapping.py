@@ -81,6 +81,6 @@ UATAG_MAP = {
   '起動メイン': '[Activate Main]',
   'アタック時': '[When Attacking]',
   '自分のターン中': '[Your Turn]',
-  '/icons/UAtags/CTOppTurn.png': "[Opponent's Turn]",
+  '相手のターン中': "[Opponent's Turn]",
   'トリガー': '[Trigger]',
 }
