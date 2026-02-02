@@ -17,10 +17,9 @@ mongo_service = MongoService()
 # Variables
 FILE_PATH = "cookierundb/latestdate.json"
 
-# existing_values, file_sha = github_service.load_json_file(FILE_PATH)
-# latest_date = existing_values.get("latestDate", 0)
-    
-latest_date = 1763503980
+existing_values, file_sha = github_service.load_json_file(FILE_PATH)
+latest_date = existing_values.get("latestDate", 0)
+
 # Step 1: Fetch card data from API
 try:
     print("🔍 Fetching cards from Cookie Run API...")
