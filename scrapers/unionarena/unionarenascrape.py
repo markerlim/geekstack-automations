@@ -401,7 +401,7 @@ def scrape_unionarena_cards(series_value):
 
     translated_list = []
     if to_translate:
-        translation_result = openrouter_service.translate_fields(to_translate, fields_to_translate=["cardName","effect","traits"], source_lang="ja", target_lang="en", keep_original=False)
+        translation_result = openrouter_service.translate_fields_unionarena(to_translate, fields_to_translate=["cardName","effect","traits"], source_lang="ja", target_lang="en", keep_original=False, context=series_value)
 
         if translation_result['success']:
             translated_list = translation_result['translated_data']
