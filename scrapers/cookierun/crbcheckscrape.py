@@ -78,16 +78,12 @@ def get_update_timestamp(card):
 new_cards.sort(key=get_update_timestamp)
 print("📊 Processing cards in chronological order...")
 
-# Ask for confirmation before processing
+# Proceed with processing
 if len(new_cards) > 0:
     print("\n" + "="*60)
     print(f"⚠️  About to process {len(new_cards)} card(s)")
     print("="*60)
-    response = input("Proceed with processing? (yes/no): ").strip().lower()
-    if response not in ["yes", "y"]:
-        print("❌ Processing cancelled by user")
-        sys.exit(0)
-    print("✅ Proceeding with processing...\n")
+    print("✅ Processing...\n")
     
 processed_cards = []
 latest_post_date = latest_date
