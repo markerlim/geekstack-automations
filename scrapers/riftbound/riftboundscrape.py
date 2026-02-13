@@ -11,12 +11,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
-import requests
+from dotenv import load_dotenv
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 from service.googlecloudservice import upload_image_to_gcs
 from service.mongo_service import MongoService
 from service.github_service import GitHubService
+load_dotenv()
 
 # Initialize Service Layer
 github_service = GitHubService()
@@ -283,24 +284,36 @@ def extract_card_data(driver, card_code, booster):
             print(f"    ❌ Lightbox not found for card {card_code}")
             return None
         
+        # Define expected fields - initialize all to None
+        expected_fields = [
+            'title', 'cardUid', 'cardId', 'urlimage', 'alt',
+            'energy', 'power', 'might', 'domain', 'card_type', 'tags',
+            'ability', 'rarity', 'artist', 'card_set'
+        ]
+        
         card_data = {
             'code': card_code,
             'scraped_at': datetime.now().isoformat()
         }
         
-        # Extract card title and number
-        title_elem = lightbox.find('h3', class_=re.compile('sc-461a681-5'))
+        # Initialize all expected fields to None
+        for field in expected_fields:
+            card_data[field] = None
+        
+        # Extract card title and number using HTML structure
+        title_elem = lightbox.find('h3')
         if title_elem:
             card_data['title'] = title_elem.text.strip()
-        
-        card_number_elem = lightbox.find('p', class_=re.compile('sc-461a681-4'))
-        if card_number_elem:
-            card_uid = card_number_elem.text.strip()
-            card_data['cardUid'] = card_uid
             
-            # Extract cardId by removing variant letters (e.g., OGN-030a/298 -> OGN-030/298)
-            card_id = re.sub(r'([A-Z]+)-(\d+)[a-z]*/(\d+)', r'\1-\2/\3', card_uid)
-            card_data['cardId'] = card_id
+            # Card number is the <p> tag right after the title
+            card_number_elem = title_elem.find_next('p')
+            if card_number_elem:
+                card_uid = card_number_elem.text.strip()
+                card_data['cardUid'] = card_uid
+                
+                # Extract cardId by removing variant letters (e.g., OGN-030a/298 -> OGN-030/298)
+                card_id = re.sub(r'([A-Z]+)-(\d+)[a-z]*/(\d+)', r'\1-\2/\3', card_uid)
+                card_data['cardId'] = card_id
         
         # Extract card image
         img_elem = lightbox.find('img', class_=re.compile('main-card-image'))
@@ -326,46 +339,35 @@ def extract_card_data(driver, card_code, booster):
             if alt:
                 card_data['alt'] = alt
         
-        # Extract card stats
+        # Extract card stats based on HTML structure pattern
         stats_sections = lightbox.find_all('div', class_=re.compile('sc-3f327fbc-0'))
         
         for section in stats_sections:
-            header = section.find('h6', class_=re.compile('sc-fa72520a-0'))
+            header = section.find('h6')
             if not header:
                 continue
             
             stat_name = header.text.strip()
-            stat_value = None
-            
-            # Get the value based on stat type
-            value_container = section.find('div', class_=re.compile('sc-9d99ef4a-0|sc-aea04a14'))
-            
-            if value_container:
-                # Check if it's an image icon
-                img = value_container.find('img')
-                if img:
-                    # Value is paired with icon
-                    text_elem = value_container.find('p', class_=re.compile('sc-aea04a14-1|jlpCll'))
-                    if text_elem:
-                        stat_value = text_elem.text.strip()
-                else:
-                    # Just text value
-                    text_elem = value_container.find('p')
-                    if text_elem:
-                        stat_value = text_elem.text.strip()
             
             # Handle multi-value stats (like Card Type or Domain)
             if stat_name in ['Card Type', 'Domain', 'Tags']:
                 values = []
-                for container in section.find_all('div', class_=re.compile('sc-aea04a14-2')):
-                    text_elem = container.find('p', class_=re.compile('jlpCll'))
-                    if text_elem:
-                        values.append(text_elem.text.strip())
+                # Find all <p> tags in this section that come after the header
+                all_p_tags = section.find_all('p')
+                for p_tag in all_p_tags:
+                    text = p_tag.text.strip()
+                    if text:
+                        values.append(text)
                 
                 if values:
                     card_data[stat_name.lower().replace(' ', '_')] = values if len(values) > 1 else values[0]
-            elif stat_value:
-                card_data[stat_name.lower().replace(' ', '_')] = stat_value
+            else:
+                # For single-value stats, find the first <p> tag after the header
+                p_tag = header.find_next('p')
+                if p_tag:
+                    stat_value = p_tag.text.strip()
+                    if stat_value:
+                        card_data[stat_name.lower().replace(' ', '_')] = stat_value
         
         # Extract ability text
         ability_elem = lightbox.find('div', {'data-testid': 'rich-text'})
