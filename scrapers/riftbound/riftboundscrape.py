@@ -90,7 +90,7 @@ def get_sets_to_scrape(available_sets):
     for set_info in available_sets:
         set_code = set_info.get('code')
         # Query MongoDB for cards with this booster code
-        cards = list(mongo_service.find_all_by_field('CL_riftbound', 'booster', set_code))
+        cards = mongo_service.find_all_by_field('CL_riftbound', 'booster', set_code)
         scraped_sets_data[set_code] = cards
     
     sets_to_scrape = []
