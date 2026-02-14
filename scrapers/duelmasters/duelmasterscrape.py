@@ -220,7 +220,7 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper):
             alt = details_list[1] if len(details_list) > 1 else {}
             effects_main = abilities_list[0] if len(abilities_list) > 0 else ""
             effects_alt = abilities_list[1] if len(abilities_list) > 1 else ""
-            serial = re.search(r'\([^)]*([A-Za-z]+\d+/[A-Za-z]+\d+)[^)]*\)')
+            serial = re.search(r'\([^)]*([A-Za-z]+\d+/[A-Za-z]+\d+)[^)]*\)',card_name)  # Extract serial from card name if it exists
             
             card_obj = {
                 "cardName": card_name,
