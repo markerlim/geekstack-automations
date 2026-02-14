@@ -162,19 +162,22 @@ def scrape_gundam_cards(package_value):
             except Exception as e:
                 print(f"❌ Error processing card: {str(e)}")
 
-        # Upload to MongoDB
+        # Upload to MongoDB only if there's new data
         collection_value = C_GUNDAM # Default collection name
-        if collection_value:
-            try:
-                mongo_service.upload_data(
-                    data=json_data,
-                    collection_name=collection_value,
-                    backup_before_upload=True
-                )
-            except Exception as e:
-                print(f"❌ MongoDB operation failed: {str(e)}")
+        if json_data:  # Only upload if there are new cards
+            if collection_value:
+                try:
+                    mongo_service.upload_data(
+                        data=json_data,
+                        collection_name=collection_value,
+                        backup_before_upload=True
+                    )
+                except Exception as e:
+                    print(f"❌ MongoDB operation failed: {str(e)}")
+            else:
+                print("⚠️ MongoDB collection name not found in environment variables")
         else:
-            print("⚠️ MongoDB collection name not found in environment variables")        
+            print(f"⏭️ Skipping upload - no new cards found for package {package_value}")        
 
         return json_data
 
