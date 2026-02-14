@@ -108,13 +108,17 @@ def scrape_all_pages(driver, booster):
     print(all_card_data)
     return all_card_data
 
-def scrape_card_details(card_data, wikimainurl, wikiscraper):
+def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiScraper):
     """Scrapes the detailed information for each card and processes it."""
     detailed_cards = []
     civilization_mapping = load_mapping_from_github("duelmasterdb/civilization.json")
     type_mapping = load_mapping_from_github("duelmasterdb/type.json")
 
     card_mapping = wikiscraper.scrape_booster_page(wikimainurl)
+
+    # Testing: only process first 10 cards
+    card_data = card_data[:10]
+    print(f"⚠️ TEST MODE: Processing only first 10 cards")
 
     for card in card_data:
         try:
@@ -130,12 +134,13 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper):
 
             card_details_divs = soup.find_all("div", class_="cardDetail")
             details_list, abilities_list = [], []
-
+            serial = re.search(r'\([^)]*([A-Za-z]+\d+/[A-Za-z]+\d+)[^)]*\)',card_name)  # Extract serial from card name if it exists
+            print(f"🔍 Scraping details for card: {card_name} (Serial: {serial.group(1) if serial else 'N/A'})")
             # Extract all details for awaken array (if multiple forms exist)
             # Skip the first form, only include awakened forms (2nd onwards)
             awaken_list = []
             if len(card_details_divs) > 1:
-                for card_detail in card_details_divs[1:]:  # Skip first form
+                for awaken_idx, card_detail in enumerate(card_details_divs[1:]):  # Skip first form
                     awaken_form = {}
                     
                     # Extract card name from this specific detail
@@ -152,10 +157,12 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper):
                         else:
                             full_image_url = image_path
                         
+                        # Extract filename from awaken form's image path (e.g., dm25ex4-TR07b from /wp-content/card/cardimage/dm25ex4-TR07b.jpg)
+                        awaken_image_filename = image_path.split('/')[-1].split('?')[0].replace('.jpg', '').replace('.webp', '')
+                        
                         # Upload to GCS
                         booster = card["booster"]
-                        card_uid = card["cardUid"]
-                        gcs_url = upload_image_to_gcs(image_url=full_image_url, filename=card_uid, filepath=f"DMTCG/{booster}/")
+                        gcs_url = upload_image_to_gcs(image_url=full_image_url, filename=awaken_image_filename, filepath=f"DMTCG/{booster}/")
                         awaken_form["urlimage"] = gcs_url
                     
                     # Extract details from tables
@@ -189,6 +196,12 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper):
                     awaken_form["race"] = split_race(detail_dict.get("種族"))
                     awaken_form["effect"] = abilities
                     
+                    # Assign wiki URL with letter suffix (b, c, d, etc.)
+                    if serial:
+                        letter_suffix = chr(ord('b') + awaken_idx)  # 'b' for 1st awaken, 'c' for 2nd, etc.
+                        awaken_serial = f"{serial.group(1).split('/')[0]}{letter_suffix}/{serial.group(1).split('/')[1]}"
+                        awaken_form["wikiurl"] = card_mapping.get(awaken_serial, "")
+                    
                     awaken_list.append(awaken_form)
 
             # Extract main details (first and second forms for cardName/cardName2)
@@ -220,7 +233,6 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper):
             alt = details_list[1] if len(details_list) > 1 else {}
             effects_main = abilities_list[0] if len(abilities_list) > 0 else ""
             effects_alt = abilities_list[1] if len(abilities_list) > 1 else ""
-            serial = re.search(r'\([^)]*([A-Za-z]+\d+/[A-Za-z]+\d+)[^)]*\)',card_name)  # Extract serial from card name if it exists
             
             card_obj = {
                 "cardName": card_name,
@@ -353,7 +365,6 @@ def startscraping(booster_list):
             booster_update = translated_data[0]['booster']  # Ensure booster field is set
             if collection_value:
                 try:
-                    pass
                     mongo_service.upload_data(
                         data=all_translated_data,
                         collection_name=collection_value,

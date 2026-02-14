@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+import re
 
 
 class DuelMastersCardWikiScraper:
@@ -253,33 +254,52 @@ class DuelMastersCardWikiScraper:
                 list_items = current.find_all('li', recursive=False)
                 
                 for li in list_items:
-                    # Find the first link in this list item
-                    link = li.find('a', href=True)
+                    # Get the HTML content of the li to split by <br> tags
+                    li_html = str(li)
                     
-                    if link:
-                        # Extract the href
-                        href = link['href']
+                    # Split by <br> tags to handle multiple cards in one <li>
+                    segments = li_html.split('<br')
+                    
+                    # Process each segment
+                    for segment in segments:
+                        # Parse this segment
+                        soup_segment = BeautifulSoup(segment, 'html.parser')
+                        link = soup_segment.find('a', href=True)
                         
-                        # Get the full URL
-                        if href.startswith('/'):
-                            full_url = "https://duelmasters.fandom.com" + href
-                        elif href.startswith('http'):
-                            full_url = href
-                        else:
-                            full_url = "https://duelmasters.fandom.com/wiki/" + href
-                        
-                        # Extract the card ID (text before the link)
-                        # The card ID is typically in format like "SSP1/SSP1" before the link text
-                        link_text = link.get_text(strip=True)
-                        
-                        # Get all text before the link
-                        for string in li.stripped_strings:
-                            if string != link_text and '/' in string:
-                                # This is likely the card ID
-                                card_id = string
+                        if link:
+                            href = link['href']
+                            
+                            # Get the full URL
+                            if href.startswith('/'):
+                                full_url = "https://duelmasters.fandom.com" + href
+                            elif href.startswith('http'):
+                                full_url = href
+                            else:
+                                full_url = "https://duelmasters.fandom.com/wiki/" + href
+                            
+                            # Extract the text before the <a> tag in this segment
+                            # This should contain the card ID
+                            text_before_link = segment.split('<a')[0]
+                            
+                            # Find the card ID (pattern: text/text)
+                            import re
+                            card_id_match = re.search(r'([A-Za-z0-9]+/[A-Za-z0-9]+)', text_before_link)
+                            
+                            if card_id_match:
+                                card_id = card_id_match.group(1)
                                 card_mapping[card_id] = full_url
-                                break
             
             current = current.find_next_sibling()
         
-        return card_mapping
+        # Normalize card IDs: remove only 'a' suffix from the first part
+        # Example: PR1a/PR5 → PR1/PR5, but keep PR1b/PR5 and PR1c/PR5 as is
+        normalized_mapping = {}
+        for card_id, wiki_url in card_mapping.items():
+            # Remove only 'a' suffix from first part before the slash
+            normalized_id = re.sub(r'([A-Za-z0-9]+)a/([A-Za-z0-9]+)', r'\1/\2', card_id)
+            
+            # If this normalized ID doesn't exist yet, add it (keeps first occurrence)
+            if normalized_id not in normalized_mapping:
+                normalized_mapping[normalized_id] = wiki_url
+        
+        return normalized_mapping
