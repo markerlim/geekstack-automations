@@ -14,6 +14,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
+from scrapers.duelmasters.dmwikiscraper import DuelMastersCardWikiScraper
 from service.googlecloudservice import upload_image_to_gcs
 from service.mongo_service import MongoService
 from service.translationservice import translate_data
@@ -107,11 +108,14 @@ def scrape_all_pages(driver, booster):
     print(all_card_data)
     return all_card_data
 
-def scrape_card_details(card_data):
+def scrape_card_details(card_data, wikimainurl, wikiscraper):
     """Scrapes the detailed information for each card and processes it."""
     detailed_cards = []
     civilization_mapping = load_mapping_from_github("duelmasterdb/civilization.json")
     type_mapping = load_mapping_from_github("duelmasterdb/type.json")
+
+    card_mapping = wikiscraper.scrape_booster_page(wikimainurl)
+
     for card in card_data:
         try:
             card = process_card(card)  # Process the card to extract booster, cardUid, and urlimage
@@ -123,11 +127,71 @@ def scrape_card_details(card_data):
             # Scraping details
             full_name = soup.find("h3", class_="card-name").text.strip()
             card_name, card_name2 = split_card_name(full_name)
-            card_image = soup.find("div", class_="card-img").find("img")["src"]
 
             card_details_divs = soup.find_all("div", class_="cardDetail")
             details_list, abilities_list = [], []
 
+            # Extract all details for awaken array (if multiple forms exist)
+            # Skip the first form, only include awakened forms (2nd onwards)
+            awaken_list = []
+            if len(card_details_divs) > 1:
+                for card_detail in card_details_divs[1:]:  # Skip first form
+                    awaken_form = {}
+                    
+                    # Extract card name from this specific detail
+                    card_name_elem = card_detail.find("h3", class_="card-name")
+                    if card_name_elem:
+                        awaken_form["cardName"] = card_name_elem.text.strip().split("(")[0].strip()
+                    
+                    # Extract image URL from this detail and upload to GCS
+                    img_elem = card_detail.find("div", class_="card-img").find("img") if card_detail.find("div", class_="card-img") else None
+                    if img_elem and img_elem.get("src"):
+                        image_path = img_elem.get("src")
+                        if image_path.startswith("/"):
+                            full_image_url = "https://dm.takaratomy.co.jp" + image_path
+                        else:
+                            full_image_url = image_path
+                        
+                        # Upload to GCS
+                        booster = card["booster"]
+                        card_uid = card["cardUid"]
+                        gcs_url = upload_image_to_gcs(image_url=full_image_url, filename=card_uid, filepath=f"DMTCG/{booster}/")
+                        awaken_form["urlimage"] = gcs_url
+                    
+                    # Extract details from tables
+                    detail_dict = {}
+                    tables = card_detail.find_all("table")
+                    for table in tables:
+                        rows = table.find_all("tr")
+                        for row in rows:
+                            cols = row.find_all(["th", "td"])
+                            if len(cols) == 2:
+                                key = cols[0].text.strip()
+                                value = cols[1].text.strip()
+                                detail_dict[key] = value
+                            elif len(cols) == 4:
+                                key1, value1, key2, value2 = [col.text.strip() for col in cols]
+                                detail_dict[key1] = value1
+                                detail_dict[key2] = value2
+                    
+                    # Extract abilities
+                    ability_section = card_detail.find("td", class_="skills full")
+                    abilities = "\n".join([li.text.strip() for li in ability_section.find_all("li")]) if ability_section else ""
+                    
+                    # Map the fields
+                    awaken_form["typeJP"] = detail_dict.get("カードの種類")
+                    awaken_form["type"] = match_type(japanese_type=detail_dict.get("カードの種類"), type_mapping=type_mapping)
+                    awaken_form["civilizationJP"] = detail_dict.get("文明")
+                    awaken_form["civilization"] = match_civilization(japanese_civilization=detail_dict.get("文明"), civilization_mapping=civilization_mapping)
+                    awaken_form["power"] = detail_dict.get("パワー")
+                    awaken_form["cost"] = detail_dict.get("コスト")
+                    awaken_form["mana"] = detail_dict.get("マナ")
+                    awaken_form["race"] = split_race(detail_dict.get("種族"))
+                    awaken_form["effect"] = abilities
+                    
+                    awaken_list.append(awaken_form)
+
+            # Extract main details (first and second forms for cardName/cardName2)
             for card_detail in card_details_divs:
                 detail = {}
                 tables = card_detail.find_all("table")
@@ -156,8 +220,9 @@ def scrape_card_details(card_data):
             alt = details_list[1] if len(details_list) > 1 else {}
             effects_main = abilities_list[0] if len(abilities_list) > 0 else ""
             effects_alt = abilities_list[1] if len(abilities_list) > 1 else ""
-
-            detailed_cards.append({
+            serial = re.search(r'\([^)]*([A-Za-z]+\d+/[A-Za-z]+\d+)[^)]*\)')
+            
+            card_obj = {
                 "cardName": card_name,
                 "cardName2": card_name2,
                 "booster": card["booster"],  # Use the processed booster here
@@ -184,8 +249,16 @@ def scrape_card_details(card_data):
                 "cost2": alt.get("コスト"),
                 "mana2": alt.get("マナ"),
                 "race2": split_race(alt.get("種族")),
-                "effects2": effects_alt
-            })
+                "effects2": effects_alt,
+                "wikiurl": card_mapping.get(serial.group(1)) if serial else ""
+            }
+            
+            # Append awaken array if multiple forms exist
+            if awaken_list:
+                card_obj["awaken"] = awaken_list
+            
+            detailed_cards.append(card_obj)
+            
         except Exception as e:
             print(f"❌ Error scraping detailed data for card {card['cardUid']}: {e}")
 
@@ -245,18 +318,26 @@ def match_type(japanese_type,type_mapping):
 def startscraping(booster_list):
     chrome_options = Options()
     chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument(
+    "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/120.0.0.0 Safari/537.36"
+    )
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--no-sandbox")
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    wikiscraper = DuelMastersCardWikiScraper(driver)
 
     try:
         all_translated_data = []
-
+        wiki_map, _ = github_service.load_json_file("duelmasterdb/wiki_map.json")
         for booster in booster_list:
             print(f"🚀 Processing booster: {booster}")
             card_data = scrape_all_pages(driver, booster)
-            detailed_card_data = scrape_card_details(card_data)
+            wikimainurl = wiki_map.get(booster, '')
+            detailed_card_data = scrape_card_details(card_data, wikimainurl, wikiscraper)
 
             translated_data = translate_data(
                 data=detailed_card_data,
@@ -272,24 +353,46 @@ def startscraping(booster_list):
             booster_update = translated_data[0]['booster']  # Ensure booster field is set
             if collection_value:
                 try:
-                    mongo_service.upload_data(
-                        data=all_translated_data,
-                        collection_name=collection_value,
-                        backup_before_upload=True
-                    )
-                    json_obj = mongo_service.find_by_field(collection_name="NewList", field_name="booster", field_value=booster_update)
+                    pass
+                    # mongo_service.upload_data(
+                    #     data=all_translated_data,
+                    #     collection_name=collection_value,
+                    #     backup_before_upload=True
+                    # )
+                    # json_obj = mongo_service.find_by_field(collection_name="NewList", field_name="booster", field_value=booster_update)
                     
-                    # Modify category field by splitting on underscore and taking first part
-                    if json_obj and 'category' in json_obj:
-                        original_category = json_obj['category']
-                        json_obj['category'] = original_category.split('_')[0]
-                        mongo_service.update_by_id(collection_name="NewList", object_id=json_obj['_id'], update_data={'category': json_obj['category']})
-                        print(f"📝 Updated category from '{original_category}' to '{json_obj['category']}'")
+                    # # Modify category field by splitting on underscore and taking first part
+                    # if json_obj and 'category' in json_obj:
+                    #     original_category = json_obj['category']
+                    #     json_obj['category'] = original_category.split('_')[0]
+                    #     mongo_service.update_by_id(collection_name="NewList", object_id=json_obj['_id'], update_data={'category': json_obj['category']})
+                    #     print(f"📝 Updated category from '{original_category}' to '{json_obj['category']}'")
                     
                 except Exception as e:
                     print(f"❌ MongoDB operation failed: {str(e)}")
             else:
-                print("⚠️ MongoDB collection name not found in environment variables")  
+                print("⚠️ MongoDB collection name not found in environment variables")
+        
+        # Print specific card data
+        print(f"\n{'='*80}")
+        print("Searching for cards in all_translated_data:")
+        print(f"{'='*80}\n")
+        
+        target_card_name = "覇音獣 五朗丸"
+        found_cards = [card for card in all_translated_data if card.get('cardName') == target_card_name]
+        
+        if found_cards:
+            print(f"✅ Found {len(found_cards)} card(s) matching '{target_card_name}':\n")
+            for i, card in enumerate(found_cards, 1):
+                print(f"Card {i}:")
+                print(json.dumps(card, ensure_ascii=False, indent=2))
+                print()
+        else:
+            print(f"❌ No cards found matching '{target_card_name}'")
+            print(f"\nTotal cards in all_translated_data: {len(all_translated_data)}")
+            print("\nAvailable card names (first 10):")
+            for i, card in enumerate(all_translated_data[:10], 1):
+                print(f"  {i}. {card.get('cardName', 'N/A')}")  
 
     finally:
         driver.quit()

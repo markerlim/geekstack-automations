@@ -181,3 +181,105 @@ class DuelMastersCardWikiScraper:
                 current_index += 1
         
         return result
+    
+    def scrape_booster_page(self, url: str) -> Dict[str, str]:
+        """Scrape a booster set wiki page and extract card ID to URL mappings.
+        Only scrapes content between "Contents" h2 section and "Cycles" h2 section.
+        Handles multiple <p> and <ul> tags in between.
+        
+        Structure:
+        - h2 with span id="Contents"
+        - p (empty or with text)
+        - ul (with card list items)
+        - p (empty or with text)
+        - ul (with more card list items)
+        - ... more p and ul combinations ...
+        - h2 with span id="Cycles"
+        
+        Args:
+            url: The URL of the booster set wiki page
+            
+        Returns:
+            A dictionary mapping card IDs to their wiki URLs
+            
+        Example:
+            {"SSP1/SSP1": "https://duelmasters.fandom.com/wiki/Mendelssohn"}
+        """
+        try:
+            self.driver.get(url)
+            # Wait for the page to load
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.TAG_NAME, "ul"))
+            )
+            time.sleep(1)  # Extra wait for any dynamic content
+            
+            html_content = self.driver.page_source
+        except Exception as e:
+            print(f"Error fetching booster page: {e}")
+            return {}
+        
+        soup = BeautifulSoup(html_content, 'html.parser')
+        card_mapping = {}
+        
+        # Find the "Contents" h2 section - look for span with id="Contents"
+        contents_h2 = None
+        cycles_h2 = None
+        
+        h2_elements = soup.find_all('h2')
+        for h2 in h2_elements:
+            span = h2.find('span', {'id': 'Contents'})
+            if span:
+                contents_h2 = h2
+            
+            span = h2.find('span', {'id': 'Cycles'})
+            if span:
+                cycles_h2 = h2
+        
+        if not contents_h2:
+            print("Warning: 'Contents' h2 section not found")
+            return {}
+        
+        if not cycles_h2:
+            print("Warning: 'Cycles' h2 section not found")
+            return {}
+        
+        # Iterate through all siblings between Contents and Cycles
+        current = contents_h2.find_next_sibling()
+        
+        while current and current != cycles_h2:
+            # Look for all ul tags
+            if current.name == 'ul':
+                # Extract all li items from this ul
+                list_items = current.find_all('li', recursive=False)
+                
+                for li in list_items:
+                    # Find the first link in this list item
+                    link = li.find('a', href=True)
+                    
+                    if link:
+                        # Extract the href
+                        href = link['href']
+                        
+                        # Get the full URL
+                        if href.startswith('/'):
+                            full_url = "https://duelmasters.fandom.com" + href
+                        elif href.startswith('http'):
+                            full_url = href
+                        else:
+                            full_url = "https://duelmasters.fandom.com/wiki/" + href
+                        
+                        # Extract the card ID (text before the link)
+                        # The card ID is typically in format like "SSP1/SSP1" before the link text
+                        link_text = link.get_text(strip=True)
+                        
+                        # Get all text before the link
+                        for string in li.stripped_strings:
+                            if string != link_text and '/' in string:
+                                # This is likely the card ID
+                                card_id = string
+                                card_mapping[card_id] = full_url
+                                break
+            
+            current = current.find_next_sibling()
+        
+        return card_mapping
