@@ -116,9 +116,9 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
 
     card_mapping = wikiscraper.scrape_booster_page(wikimainurl)
 
-    # Testing: only process first 10 cards
-    card_data = card_data[:10]
-    print(f"⚠️ TEST MODE: Processing only first 10 cards")
+    # Testing: only process first 4 cards
+    card_data = card_data[:4]
+    print(f"⚠️ TEST MODE: Processing only first 4 cards")
 
     for card in card_data:
         try:
@@ -134,7 +134,7 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
 
             card_details_divs = soup.find_all("div", class_="cardDetail")
             details_list, abilities_list = [], []
-            serial = re.search(r'\([^)]*([A-Za-z]+\d+/[A-Za-z]+\d+)[^)]*\)',card_name)  # Extract serial from card name if it exists
+            serial = re.search(r'\(.*?([A-Z]+\d+/[A-Z]+\d+)\)', card_name)  # Extract serial from card name - non-greedy match
             print(f"🔍 Scraping details for card: {card_name} (Serial: {serial.group(1) if serial else 'N/A'})")
             # Extract all details for awaken array (if multiple forms exist)
             # Skip the first form, only include awakened forms (2nd onwards)
@@ -370,14 +370,14 @@ def startscraping(booster_list):
                         collection_name=collection_value,
                         backup_before_upload=True
                     )
-                    json_obj = mongo_service.find_by_field(collection_name="NewList", field_name="booster", field_value=booster_update)
+                    # json_obj = mongo_service.find_by_field(collection_name="NewList", field_name="booster", field_value=booster_update)
                     
-                    # Modify category field by splitting on underscore and taking first part
-                    if json_obj and 'category' in json_obj:
-                        original_category = json_obj['category']
-                        json_obj['category'] = original_category.split('_')[0]
-                        mongo_service.update_by_id(collection_name="NewList", object_id=json_obj['_id'], update_data={'category': json_obj['category']})
-                        print(f"📝 Updated category from '{original_category}' to '{json_obj['category']}'")
+                    # # Modify category field by splitting on underscore and taking first part
+                    # if json_obj and 'category' in json_obj:
+                    #     original_category = json_obj['category']
+                    #     json_obj['category'] = original_category.split('_')[0]
+                    #     mongo_service.update_by_id(collection_name="NewList", object_id=json_obj['_id'], update_data={'category': json_obj['category']})
+                    #     print(f"📝 Updated category from '{original_category}' to '{json_obj['category']}'")
                     
                 except Exception as e:
                     print(f"❌ MongoDB operation failed: {str(e)}")
