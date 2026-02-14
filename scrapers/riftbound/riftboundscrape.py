@@ -121,7 +121,8 @@ def get_sets_to_scrape(available_sets):
                     'reason': 'card_count_mismatch',
                     'existing_count': existing_count,
                     'expected_count': detected_card_count,
-                    'missing_count': missing_count
+                    'missing_count': missing_count,
+                    'existing_cards': existing_cards  # Pass existing cards to skip them during scraping
                 })
                 print(f"  📊 {set_name} ({set_code}) - Card count mismatch: has {existing_count}, expected {detected_card_count} ({missing_count} missing)")
             else:
@@ -568,21 +569,13 @@ def main():
             # If card count mismatch, only scrape missing cards
             if reason == 'card_count_mismatch':
                 print(f"\n🔄 Scraping missing cards for {set_name} ({set_code})...")
-                existing_cards = db['sets'].get(set_code, {}).get('cards', [])
+                existing_cards = set_info.get('existing_cards', [])
                 
                 # Scrape all cards for this set, passing existing cards to skip them
                 new_cards = scrape_set(driver, set_code, set_name, existing_cards=existing_cards)
                 
                 if new_cards:
                     print(f"  ✨ Found {len(new_cards)} new cards")
-                    # Merge with existing cards
-                    merged_cards = existing_cards + new_cards
-                    db['sets'][set_code] = {
-                        'name': set_name,
-                        'cards': merged_cards,
-                        'scraped_at': datetime.now().isoformat(),
-                        'card_count': len(merged_cards)
-                    }
                     all_scraped_cards.extend(new_cards)
                 else:
                     print(f"  ℹ️ No new cards found")
@@ -591,12 +584,6 @@ def main():
                 cards = scrape_set(driver, set_code, set_name, existing_cards=None)
                 
                 if cards:
-                    db['sets'][set_code] = {
-                        'name': set_name,
-                        'cards': cards,
-                        'scraped_at': datetime.now().isoformat(),
-                        'card_count': len(cards)
-                    }
                     all_scraped_cards.extend(cards)
         
         # Display summary
