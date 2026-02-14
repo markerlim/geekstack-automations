@@ -83,8 +83,14 @@ def detect_available_sets(driver):
 
 def get_sets_to_scrape(available_sets):
     """Determine which sets need scraping based on card count comparison"""
-    db = github_service.load_json_file(FILE_PATH)[0]
-    scraped_sets_data = db.get('sets', {})
+    scraped_sets_data = {}
+    
+    # Get card counts for each set from MongoDB
+    for set_info in available_sets:
+        set_code = set_info.get('code')
+        # Query MongoDB for cards with this booster code
+        cards = list(mongo_service.find_by_field('riftbound_cards', 'booster', set_code))
+        scraped_sets_data[set_code] = cards
     
     sets_to_scrape = []
     
@@ -93,7 +99,10 @@ def get_sets_to_scrape(available_sets):
         set_name = set_info.get('name')
         detected_card_count = set_info.get('card_count', 0)
         
-        if set_code not in scraped_sets_data:
+        existing_cards = scraped_sets_data.get(set_code, [])
+        existing_count = len(existing_cards)
+        
+        if existing_count == 0:
             # Not scraped yet
             sets_to_scrape.append({
                 'code': set_code,
@@ -103,9 +112,6 @@ def get_sets_to_scrape(available_sets):
             print(f"  📚 {set_name} ({set_code}) - Not scraped yet")
         else:
             # Already scraped, check if card count matches
-            existing_cards = scraped_sets_data[set_code].get('cards', [])
-            existing_count = len(existing_cards)
-            
             if detected_card_count > 0 and existing_count != detected_card_count:
                 # Card count mismatch - need to rescrape
                 missing_count = detected_card_count - existing_count
@@ -117,7 +123,7 @@ def get_sets_to_scrape(available_sets):
                     'expected_count': detected_card_count,
                     'missing_count': missing_count
                 })
-                print(f"  � {set_name} ({set_code}) - Card count mismatch: has {existing_count}, expected {detected_card_count} ({missing_count} missing)")
+                print(f"  📊 {set_name} ({set_code}) - Card count mismatch: has {existing_count}, expected {detected_card_count} ({missing_count} missing)")
             else:
                 # Up to date
                 print(f"  ✅ {set_name} ({set_code}) - Already has {existing_count} cards (up to date)")
@@ -525,10 +531,7 @@ def main():
             
             time.sleep(0.5)
         
-        # Load existing database
-        db,filesha = github_service.load_json_file(FILE_PATH)
-        if 'sets' not in db:
-            db['sets'] = {}
+        # MongoDB is used for storage - no file operations needed
         
         # Update available sets in database with current detection
         db['available_sets'] = available_sets
@@ -586,11 +589,6 @@ def main():
                         'card_count': len(cards)
                     }
                     all_scraped_cards.extend(cards)
-        
-        # Save updated database
-        updated_content = json.dumps(db, indent=2, ensure_ascii=False)
-        commit_message = "Update Riftbound TCG database with newly scraped cards"
-        github_service.update_file(FILE_PATH, updated_content, commit_message, filesha)
         
         # Display summary
         print(f"\n🎯 SCRAPING COMPLETE")
