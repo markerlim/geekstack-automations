@@ -89,7 +89,7 @@ def get_sets_to_scrape(available_sets):
     for set_info in available_sets:
         set_code = set_info.get('code')
         # Query MongoDB for cards with this booster code
-        cards = list(mongo_service.find_by_field('riftbound_cards', 'booster', set_code))
+        cards = list(mongo_service.find_by_field('CL_riftbound', 'booster', set_code))
         scraped_sets_data[set_code] = cards
     
     sets_to_scrape = []
@@ -531,13 +531,22 @@ def main():
             
             time.sleep(0.5)
         
-        # MongoDB is used for storage - no file operations needed
+        
+        # Load existing database from GitHub (for available_sets metadata)
+        db, filesha = github_service.load_json_file(FILE_PATH)
         
         # Update available sets in database with current detection
         db['available_sets'] = available_sets
         updated_content = json.dumps(db, indent=2, ensure_ascii=False)
         commit_message = "Update available sets with latest detection"
-        github_service.update_file(FILE_PATH, updated_content, commit_message , filesha)
+        try:
+            github_service.update_file(FILE_PATH, updated_content, commit_message, filesha)
+            print(f"✅ Updated available sets on GitHub")
+            # Reload file SHA after first update
+            db, filesha = github_service.load_json_file(FILE_PATH)
+        except Exception as e:
+            print(f"⚠️ Failed to update available sets: {str(e)}")
+            # Continue anyway
         
         # Determine which sets need scraping
         print("\n🔍 Checking which sets need scraping...")
