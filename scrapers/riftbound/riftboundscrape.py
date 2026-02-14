@@ -26,6 +26,7 @@ mongo_service = MongoService()
 # Variables
 FILE_PATH = "riftbounddb/db.json"
 BASE_URL = "https://riftbound.leagueoflegends.com/en-us/card-gallery/"
+
 DB_FILE = os.path.join(os.path.dirname(__file__), '..', '..', 'riftbounddb', 'db.json')
 
 # Define card sets
@@ -89,7 +90,7 @@ def get_sets_to_scrape(available_sets):
     for set_info in available_sets:
         set_code = set_info.get('code')
         # Query MongoDB for cards with this booster code
-        cards = list(mongo_service.find_by_field('CL_riftbound', 'booster', set_code))
+        cards = list(mongo_service.find_all_by_field('CL_riftbound', 'booster', set_code))
         scraped_sets_data[set_code] = cards
     
     sets_to_scrape = []
@@ -103,7 +104,6 @@ def get_sets_to_scrape(available_sets):
         existing_count = len(existing_cards)
         
         if existing_count == 0:
-            # Not scraped yet
             sets_to_scrape.append({
                 'code': set_code,
                 'name': set_name,

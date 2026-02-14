@@ -176,6 +176,31 @@ class MongoService:
             print(f"❌ MongoDB find operation failed: {e}")
             return None
         
+    def find_all_by_field(self, collection_name, field_name, field_value):
+        """Find all documents by field value"""
+        try:
+            collection = self._get_collection(collection_name)
+
+            query = {field_name: field_value}
+            cursor = collection.find(query)
+
+            documents = []
+            for doc in cursor:
+                if '_id' in doc:
+                    doc['_id'] = str(doc['_id'])
+                documents.append(doc)
+
+            if documents:
+                print(f"✅ Found {len(documents)} documents where '{field_name}' = '{field_value}'.")
+                return documents
+            else:
+                print(f"⚠️ No documents found where '{field_name}' = '{field_value}'.")
+                return []
+
+        except Exception as e:
+            print(f"❌ MongoDB find operation failed: {e}")
+            return []
+
     def update_by_field(self, collection_name, field_name, field_value, update_data):
         """Update document by field value"""
         try:
