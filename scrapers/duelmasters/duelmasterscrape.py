@@ -134,7 +134,7 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
 
             card_details_divs = soup.find_all("div", class_="cardDetail")
             details_list, abilities_list = [], []
-            serial = re.search(r'\(.*?([A-Z]+\d+/[A-Z]+\d+)\)', card_name)  # Extract serial from card name - non-greedy match
+            serial = re.search(r'\(.*?([A-Z]+\d+/[A-Z]+\d+|\d+[A-Z]*/\d+)\)', card_name)  # Extract serial from card name - supports DM25EX4/1 or 1/65 formats
             print(f"🔍 Scraping details for card: {card_name} (Serial: {serial.group(1) if serial else 'N/A'})")
             # Extract all details for awaken array (if multiple forms exist)
             # Skip the first form, only include awakened forms (2nd onwards)

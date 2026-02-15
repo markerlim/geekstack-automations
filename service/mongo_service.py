@@ -201,6 +201,32 @@ class MongoService:
             print(f"❌ MongoDB find operation failed: {e}")
             return []
 
+    def find_all_by_field_array(self, collection_name, field_name, field_values):
+        """Find all documents where field matches any value in the provided array"""
+        try:
+            collection = self._get_collection(collection_name)
+
+            # Use $in operator to match any value in the array
+            query = {field_name: {"$in": field_values}}
+            cursor = collection.find(query)
+
+            documents = []
+            for doc in cursor:
+                if '_id' in doc:
+                    doc['_id'] = str(doc['_id'])
+                documents.append(doc)
+
+            if documents:
+                print(f"✅ Found {len(documents)} documents where '{field_name}' matches any of {len(field_values)} values.")
+                return documents
+            else:
+                print(f"⚠️ No documents found where '{field_name}' matches any of the {len(field_values)} provided values.")
+                return []
+
+        except Exception as e:
+            print(f"❌ MongoDB find operation failed: {e}")
+            return []
+
     def update_by_field(self, collection_name, field_name, field_value, update_data):
         """Update document by field value"""
         try:
