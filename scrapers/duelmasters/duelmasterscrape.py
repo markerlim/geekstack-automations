@@ -114,7 +114,7 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
     civilization_mapping = load_mapping_from_github("duelmasterdb/civilization.json")
     type_mapping = load_mapping_from_github("duelmasterdb/type.json")
 
-    card_mapping = wikiscraper.scrape_booster_page(wikimainurl)
+    card_mapping = load_mapping_from_github("duelmasterdb/backup_dm25ex4.json") #wikiscraper.scrape_booster_page(wikimainurl)
 
     # # Testing: only process first 4 cards
     # card_data = card_data[:4]
