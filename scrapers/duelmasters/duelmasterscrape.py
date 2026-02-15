@@ -191,10 +191,11 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
                     awaken_form["civilizationJP"] = detail_dict.get("文明")
                     awaken_form["civilization"] = match_civilization(japanese_civilization=detail_dict.get("文明"), civilization_mapping=civilization_mapping)
                     awaken_form["power"] = detail_dict.get("パワー")
+                    awaken_form["powerInt"] = convert_power_to_int(detail_dict.get("パワー"))
                     awaken_form["cost"] = detail_dict.get("コスト")
                     awaken_form["mana"] = detail_dict.get("マナ")
                     awaken_form["race"] = split_race(detail_dict.get("種族"))
-                    awaken_form["effect"] = abilities
+                    awaken_form["effects"] = abilities
                     
                     # Assign wiki URL with letter suffix (b, c, d, etc.)
                     if serial:
@@ -247,6 +248,7 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
                 "civilization": match_civilization(japanese_civilization=main.get("文明"),civilization_mapping=civilization_mapping),
                 "rarity": main.get("レアリティ"),
                 "power": main.get("パワー"),
+                "powerInt": convert_power_to_int(main.get("パワー")),
                 "cost": main.get("コスト"),
                 "mana": main.get("マナ"),
                 "race": split_race(main.get("種族")),
@@ -258,6 +260,7 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
                 "civilization2": match_civilization(japanese_civilization=alt.get("文明"),civilization_mapping=civilization_mapping),
                 "rarity2": alt.get("レアリティ"),
                 "power2": alt.get("パワー"),
+                "power2Int": convert_power_to_int(alt.get("パワー")),
                 "cost2": alt.get("コスト"),
                 "mana2": alt.get("マナ"),
                 "race2": split_race(alt.get("種族")),
@@ -326,6 +329,22 @@ def match_civilization(japanese_civilization, civilization_mapping):
 
 def match_type(japanese_type,type_mapping):
     return type_mapping.get(japanese_type, japanese_type)
+
+def convert_power_to_int(power_str):
+    """Converts power string to integer. Infinity symbols become max int value."""
+    if not power_str:
+        return None
+    
+    power_str = str(power_str).strip()
+    
+    # Check for infinity symbols/text
+    if power_str in ["∞", "infinity", "無制限"]:
+        return 2147483647
+    
+    try:
+        return int(power_str)
+    except (ValueError, TypeError):
+        return None
 
 def startscraping(booster_list):
     chrome_options = Options()

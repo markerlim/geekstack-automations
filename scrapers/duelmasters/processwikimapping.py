@@ -81,16 +81,6 @@ class ProcessWikiMapping:
             print(f"❌ Error querying MongoDB: {e}")
             return []
     
-    def load_wiki_data_from_mongodb(self) -> list:
-        """Load wiki scraped data directly from MongoDB CL_duelmaster_wiki collection"""
-        try:
-            wiki_cards = mongo_service.find_all("CL_duelmaster_wiki", {})
-            print(f"✅ Loaded {len(wiki_cards)} wiki scraped cards from MongoDB")
-            return wiki_cards
-        except Exception as e:
-            print(f"❌ Error loading wiki data from MongoDB: {e}")
-            return []
-    
     def update_card_with_wiki_data(self, card_doc: dict, wiki_card: dict, wiki_map: dict = None) -> dict:
         """
         Update a card document with wiki scraped data.
