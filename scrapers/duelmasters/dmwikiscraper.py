@@ -30,6 +30,40 @@ class DuelMastersCardWikiScraper:
         
         return ' '.join(text_parts)
     
+    def extract_text_with_newlines(self, element) -> str:
+        """Extract text while preserving newlines for effect text."""
+        if not element:
+            return ""
+        
+        # Use get_text with newline as separator to preserve line breaks
+        text = element.get_text(separator='\n')
+        # Clean up excessive newlines and strip
+        text = '\n'.join(line.strip() for line in text.split('\n') if line.strip())
+        return text
+    
+    def extract_english_name_from_header(self, header_div) -> str:
+        """Extract English name from header div, getting only text before <br> tag."""
+        if not header_div:
+            return ""
+        
+        # Get text content, stopping at the first <br> tag
+        text_parts = []
+        for element in header_div.children:
+            if isinstance(element, str):
+                text = element.strip()
+                if text:
+                    text_parts.append(text)
+            elif element.name == 'br':
+                # Stop at the first <br> tag
+                break
+            elif element.name != 'small':  # Skip small tags (Japanese)
+                # For other tags, get their text
+                text = element.get_text(strip=True)
+                if text:
+                    text_parts.append(text)
+        
+        return ' '.join(text_parts).strip()
+    
     def clean_text(self, text: str) -> str:
         """Clean extracted text by removing extra symbols and normalizing whitespace."""
         # Remove shield trigger symbol prefix if present
@@ -84,13 +118,17 @@ class DuelMastersCardWikiScraper:
         if not section_header:
             return None
         
-        # Extract card name
-        name_text = ' '.join(section_header.stripped_strings)
-        # Remove Japanese text in small tags
-        small_tags = section_header.find_all('small')
-        for small in small_tags:
-            name_text = name_text.replace(small.get_text(strip=True), '').strip()
-        card_info['name'] = name_text
+        # Extract card name - get only text before <br> tag from the header div
+        header_div = section_header.find('div', style=lambda x: x and 'color: white' in x if x else False)
+        if header_div:
+            card_info['name'] = self.extract_english_name_from_header(header_div)
+        else:
+            # Fallback if div structure is different
+            name_text = ' '.join(section_header.stripped_strings)
+            small_tags = section_header.find_all('small')
+            for small in small_tags:
+                name_text = name_text.replace(small.get_text(strip=True), '').strip()
+            card_info['name'] = name_text
         
         # Extract properties until next major section
         current_row = start_row
@@ -121,9 +159,9 @@ class DuelMastersCardWikiScraper:
                 elif 'Mana Number' in label:
                     card_info['mana_number'] = self.extract_text_content(value)
                 elif 'English Text' in label:
-                    card_info['english_text'] = self.clean_text(self.extract_text_content(value))
+                    card_info['english_text'] = self.extract_text_with_newlines(value)
                 elif 'Japanese Text' in label:
-                    card_info['japanese_text'] = self.clean_text(self.extract_text_content(value))
+                    card_info['japanese_text'] = self.extract_text_with_newlines(value)
                 elif 'Illustrator' in label:
                     card_info['illustrator'] = self.extract_text_content(value)
             

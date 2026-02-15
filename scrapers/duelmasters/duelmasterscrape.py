@@ -116,9 +116,9 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
 
     card_mapping = wikiscraper.scrape_booster_page(wikimainurl)
 
-    # Testing: only process first 4 cards
-    card_data = card_data[:4]
-    print(f"⚠️ TEST MODE: Processing only first 4 cards")
+    # # Testing: only process first 4 cards
+    # card_data = card_data[:4]
+    # print(f"⚠️ TEST MODE: Processing only first 4 cards")
 
     for card in card_data:
         try:
@@ -362,6 +362,7 @@ def startscraping(booster_list):
 
             all_translated_data.extend(translated_data)
             collection_value = os.getenv("C_DUELMASTERS")
+
             booster_update = translated_data[0]['booster']  # Ensure booster field is set
             if collection_value:
                 try:
