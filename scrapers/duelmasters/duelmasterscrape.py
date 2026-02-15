@@ -385,27 +385,6 @@ def startscraping(booster_list):
             else:
                 print("⚠️ MongoDB collection name not found in environment variables")
         
-        # Print specific card data
-        print(f"\n{'='*80}")
-        print("Searching for cards in all_translated_data:")
-        print(f"{'='*80}\n")
-        
-        target_card_name = "覇音獣 五朗丸"
-        found_cards = [card for card in all_translated_data if card.get('cardName') == target_card_name]
-        
-        if found_cards:
-            print(f"✅ Found {len(found_cards)} card(s) matching '{target_card_name}':\n")
-            for i, card in enumerate(found_cards, 1):
-                print(f"Card {i}:")
-                print(json.dumps(card, ensure_ascii=False, indent=2))
-                print()
-        else:
-            print(f"❌ No cards found matching '{target_card_name}'")
-            print(f"\nTotal cards in all_translated_data: {len(all_translated_data)}")
-            print("\nAvailable card names (first 10):")
-            for i, card in enumerate(all_translated_data[:10], 1):
-                print(f"  {i}. {card.get('cardName', 'N/A')}")  
-
     finally:
         driver.quit()
 
