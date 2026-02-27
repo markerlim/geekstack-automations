@@ -2,31 +2,23 @@
   "expansions": [
     {
       "booster": "TGA/01S",
-      "title": "Start Deck “Togen Anki”",
+      "title": "スタートデッキ 『桃源暗鬼』",
       "category": "deck",
       "release_date": "2026-02-20",
       "url": "/cardlist/cardsearch/?expansion=TGA/01S",
-      "alt": "Start Deck “Togen Anki”",
+      "alt": "スタートデッキ 『桃源暗鬼』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2026/01/23123459/tga_sd.png",
-      "expansion_image_alt": "スタートデッキ 『桃源暗鬼』",
-      "titleJP": "スタートデッキ 『桃源暗鬼』",
-      "categoryJP": "deck",
-      "altJP": "スタートデッキ 『桃源暗鬼』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverTGA_01S.webp"
+      "expansion_image_alt": "スタートデッキ 『桃源暗鬼』"
     },
     {
       "booster": "TGA/01B",
-      "title": "Booster pack “Togen Anki”",
+      "title": "ブースターパック『桃源暗鬼』",
       "category": "expansion",
       "release_date": "2026-02-20",
       "url": "/cardlist/cardsearch/?expansion=TGA/01B",
-      "alt": "Booster pack “Togen Anki”",
+      "alt": "ブースターパック『桃源暗鬼』",
       "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/11/23123347/tga_bp.png",
-      "expansion_image_alt": "ブースターパック『桃源暗鬼』",
-      "titleJP": "ブースターパック『桃源暗鬼』",
-      "categoryJP": "expansion",
-      "altJP": "ブースターパック『桃源暗鬼』",
-      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverTGA_01B.webp"
+      "expansion_image_alt": "ブースターパック『桃源暗鬼』"
     },
     {
       "booster": "EES/01B",
