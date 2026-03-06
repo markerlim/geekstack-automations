@@ -1,6 +1,26 @@
 {
   "expansions": [
     {
+      "booster": "TGA/01S",
+      "title": "スタートデッキ 『桃源暗鬼』",
+      "category": "deck",
+      "release_date": "2026-02-20",
+      "url": "/cardlist/cardsearch/?expansion=TGA/01S",
+      "alt": "スタートデッキ 『桃源暗鬼』",
+      "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2026/01/23123459/tga_sd.png",
+      "expansion_image_alt": "スタートデッキ 『桃源暗鬼』"
+    },
+    {
+      "booster": "TGA/01B",
+      "title": "ブースターパック『桃源暗鬼』",
+      "category": "expansion",
+      "release_date": "2026-02-20",
+      "url": "/cardlist/cardsearch/?expansion=TGA/01B",
+      "alt": "ブースターパック『桃源暗鬼』",
+      "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2025/11/23123347/tga_bp.png",
+      "expansion_image_alt": "ブースターパック『桃源暗鬼』"
+    },
+    {
       "booster": "EES/01B",
       "title": "ブースターパック『炎炎ノ消防隊 参ノ章』",
       "category": "expansion",
@@ -811,5 +831,5 @@
       "expansion_image_alt": "PRカード（2022年）"
     }
   ],
-  "total_count": 81
+  "total_count": 83
 }
