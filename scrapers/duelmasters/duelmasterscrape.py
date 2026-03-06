@@ -73,6 +73,20 @@ def split_race(race_string):
     
     return [r.strip() for r in race_string.split("/") if r.strip()]
 
+def split_civilization(civilization_string):
+    """Splits a civilization string by '/' and returns a list of cleaned civilization names.
+    
+    Args:
+        civilization_string: The civilization string to process (e.g., "水/闇" or "Water/Darkness")
+    
+    Returns:
+        List[str]: List of civilization names (empty list if input is empty/None)
+    """
+    if not civilization_string:
+        return []
+    
+    return [c.strip() for c in civilization_string.split("/") if c.strip()]
+
 def scrape_all_pages(driver, booster):
     total_pages = get_total_pages(driver, booster)
     all_card_data = []
@@ -136,10 +150,30 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
             details_list, abilities_list = [], []
             serial = re.search(r'\(.*?([A-Z]+\d+/[A-Z]+\d+|\d+[A-Z]*/\d+)\)', card_name)  # Extract serial from card name - supports DM25EX4/1 or 1/65 formats
             print(f"🔍 Scraping details for card: {card_name} (Serial: {serial.group(1) if serial else 'N/A'})")
-            # Extract all details for awaken array (if multiple forms exist)
-            # Skip the first form, only include awakened forms (2nd onwards)
+            
+            # Count the number of card images to distinguish between awaken and twinpact
+            # Awaken cards: num_images == num_details (each form has its own image)
+            # Twinpact cards: num_details == 2 but num_images == 1 (2nd form shares image or has no image)
+            num_images = 0
+            for card_detail in card_details_divs:
+                img_elem = card_detail.find("div", class_="card-img")
+                if img_elem:
+                    img_tag = img_elem.find("img")
+                    # Only count if img exists and has a non-empty src attribute
+                    if img_tag and img_tag.get("src") and img_tag.get("src").strip():
+                        num_images += 1
+            
+            num_details = len(card_details_divs)
+            is_awaken_card = num_details > 1 and num_images == num_details
+            is_twinpact_card = num_details == 2 and num_images == 1
+            
+            print(f"   Card forms: {num_details}, Images: {num_images}")
+            print(f"   Type: {'Awaken' if is_awaken_card else 'Twinpact' if is_twinpact_card else 'Single Form'}")
+            
+            # Extract all details for awaken array (only if it's an awaken card with multiple images)
+            # Twinpact cards (2 details, 1 image) will use cardName2 instead
             awaken_list = []
-            if len(card_details_divs) > 1:
+            if is_awaken_card:
                 for awaken_idx, card_detail in enumerate(card_details_divs[1:]):  # Skip first form
                     awaken_form = {}
                     
@@ -188,8 +222,8 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
                     # Map the fields
                     awaken_form["typeJP"] = detail_dict.get("カードの種類")
                     awaken_form["type"] = match_type(japanese_type=detail_dict.get("カードの種類"), type_mapping=type_mapping)
-                    awaken_form["civilizationJP"] = detail_dict.get("文明")
-                    awaken_form["civilization"] = match_civilization(japanese_civilization=detail_dict.get("文明"), civilization_mapping=civilization_mapping)
+                    awaken_form["civilizationJP"] = split_civilization(detail_dict.get("文明"))
+                    awaken_form["civilization"] = [match_civilization(japanese_civilization=c, civilization_mapping=civilization_mapping) for c in split_civilization(detail_dict.get("文明"))]
                     awaken_form["power"] = detail_dict.get("パワー")
                     awaken_form["powerInt"] = convert_power_to_int(detail_dict.get("パワー"))
                     awaken_form["cost"] = detail_dict.get("コスト")
@@ -244,8 +278,8 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
                 "urlimage": card["urlimage"],  # Use the processed urlimage here
                 "typeJP": main.get("カードの種類"),
                 "type": match_type(japanese_type=main.get("カードの種類"),type_mapping=type_mapping),
-                "civilizationJP": main.get("文明"),
-                "civilization": match_civilization(japanese_civilization=main.get("文明"),civilization_mapping=civilization_mapping),
+                "civilizationJP": split_civilization(main.get("文明")),
+                "civilization": [match_civilization(japanese_civilization=c, civilization_mapping=civilization_mapping) for c in split_civilization(main.get("文明"))],
                 "rarity": main.get("レアリティ"),
                 "power": main.get("パワー"),
                 "powerInt": convert_power_to_int(main.get("パワー")),
@@ -256,8 +290,8 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
                 "effects": effects_main,
                 "type2JP": alt.get("カードの種類"),
                 "type2": match_type(japanese_type=alt.get("カードの種類"),type_mapping=type_mapping),
-                "civilization2JP": alt.get("文明"),
-                "civilization2": match_civilization(japanese_civilization=alt.get("文明"),civilization_mapping=civilization_mapping),
+                "civilization2JP": split_civilization(alt.get("文明")),
+                "civilization2": [match_civilization(japanese_civilization=c, civilization_mapping=civilization_mapping) for c in split_civilization(alt.get("文明"))],
                 "rarity2": alt.get("レアリティ"),
                 "power2": alt.get("パワー"),
                 "power2Int": convert_power_to_int(alt.get("パワー")),

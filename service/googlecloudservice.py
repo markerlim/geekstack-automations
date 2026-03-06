@@ -6,9 +6,31 @@ import json
 from PIL import Image
 from service.googlecredentials import get_google_credentials
 
-def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geekstack.dev"):
+def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geekstack.dev", skip_if_exists=True):
 
     try:
+        # Get credentials and setup GCS client early to check for existing file
+        credentials = get_google_credentials()
+        if not credentials:
+            raise Exception("No GCP credentials found. Set GOOGLE_APPLICATION_CREDENTIALS environment variable or provide a credentials file.")
+
+        client = storage.Client(credentials=credentials)
+        bucket = client.get_bucket(bucket_name)
+        blob = bucket.blob(f"{filepath}{filename}.webp")
+        
+        # Check if file already exists
+        if blob.exists():
+            if skip_if_exists:
+                print(f"⏭️  File already exists in GCS, skipping upload: {filepath}{filename}.webp")
+                gcs_url = blob.public_url
+                custom_url = gcs_url.replace(
+                    f"https://storage.googleapis.com/{bucket_name}/",
+                    f"https://{bucket_name}/"
+                )
+                return custom_url
+            else:
+                print(f"ℹ️  File already exists, proceeding with overwrite: {filepath}{filename}.webp")
+
         print(f"Attempting to download image from: {image_url}")
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
@@ -43,15 +65,7 @@ def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geeks
         #print(f"Converted WebP image saved at: {webp_file_path}")
         os.remove(temp_file_path)  # Clean up original PNG
 
-        # Get credentials using centralized service
-        credentials = get_google_credentials()
-        if not credentials:
-            raise Exception("No GCP credentials found. Set GOOGLE_APPLICATION_CREDENTIALS environment variable or provide a credentials file.")
-
         # Upload to GCS
-        client = storage.Client(credentials=credentials)
-        bucket = client.get_bucket(bucket_name)
-        blob = bucket.blob(f"{filepath}{filename}.webp")
         print(f"Uploading to GCS at: {filepath}{filename}.webp")
         blob.upload_from_filename(webp_file_path)
 
@@ -69,7 +83,7 @@ def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geeks
         print(f"❌ Failed to upload {filename} to GCS: {e}")
         return image_url  # fallback to original
 
-def upload_data_to_gcs(data, file_name, folder_path="backups", bucket_name="images.geekstack.dev", data_type='json'):
+def upload_data_to_gcs(data, file_name, folder_path="backups", bucket_name="images.geekstack.dev", data_type='json', skip_if_exists=True):
     """
     Upload data directly to Google Cloud Storage (without creating a local file)
     
@@ -79,6 +93,7 @@ def upload_data_to_gcs(data, file_name, folder_path="backups", bucket_name="imag
         folder_path: Folder path in GCS (default: 'backups')
         bucket_name: GCS bucket name (default: 'images.geekstack.dev')
         data_type: Type of data ('json' or 'text')
+        skip_if_exists: If True, skip upload if file already exists (default: True)
     
     Returns:
         Dictionary with file_name, gcs_path, and public_url, or None if failed
@@ -89,14 +104,6 @@ def upload_data_to_gcs(data, file_name, folder_path="backups", bucket_name="imag
             print("⚠️ GCS upload failed - no credentials found")
             return None
         
-        # Determine MIME type and format content
-        if data_type == 'json':
-            mime_type = 'application/json'
-            content = json.dumps(data, indent=2, ensure_ascii=False)
-        else:
-            mime_type = 'text/plain'
-            content = str(data)
-        
         # Create GCS client and get bucket
         client = storage.Client(credentials=credentials)
         bucket = client.bucket(bucket_name)
@@ -104,6 +111,33 @@ def upload_data_to_gcs(data, file_name, folder_path="backups", bucket_name="imag
         # Create full blob path
         blob_path = f"{folder_path}/{file_name}"
         blob = bucket.blob(blob_path)
+        
+        # Check if file already exists
+        if blob.exists():
+            if skip_if_exists:
+                print(f"⏭️  File already exists in GCS, skipping upload: gs://{bucket_name}/{blob_path}")
+                public_url = blob.public_url
+                custom_url = public_url.replace(
+                    f"https://storage.googleapis.com/{bucket_name}/",
+                    f"https://{bucket_name}/"
+                )
+                return {
+                    'file_name': file_name,
+                    'gcs_path': f"gs://{bucket_name}/{blob_path}",
+                    'public_url': custom_url,
+                    'blob_path': blob_path,
+                    'skipped': True
+                }
+            else:
+                print(f"ℹ️  File already exists, proceeding with overwrite: gs://{bucket_name}/{blob_path}")
+        
+        # Determine MIME type and format content
+        if data_type == 'json':
+            mime_type = 'application/json'
+            content = json.dumps(data, indent=2, ensure_ascii=False)
+        else:
+            mime_type = 'text/plain'
+            content = str(data)
         
         print(f"Uploading to GCS: gs://{bucket_name}/{blob_path}")
         

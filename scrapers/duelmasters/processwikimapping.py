@@ -126,7 +126,7 @@ class ProcessWikiMapping:
                 # First back up current values to JP fields
                 awaken_card['cardNameJP'] = awaken_card.get('cardName')
                 awaken_card['raceJP'] = awaken_card.get('race')
-                awaken_card['effectsJP'] = awaken_card.get('effect')
+                awaken_card['effectsJP'] = awaken_card.get('effects')
                 
                 # Look up matching wiki card using awaken's wikiurl
                 if wiki_map and awaken_url and awaken_url in wiki_map:
@@ -138,9 +138,54 @@ class ProcessWikiMapping:
                         awaken_card['cardName'] = wiki_form.get('name')
                         awaken_card['type'] = wiki_form.get('card_type')
                         awaken_card['race'] = wiki_form.get('race')
-                        awaken_card['effect'] = wiki_form.get('english_text')
+                        awaken_card['effects'] = wiki_form.get('english_text')
         
         return card_doc
+    
+    def normalize_data_format(self, cards: list) -> list:
+        """
+        Normalize data format for all cards:
+        - Convert race field in awaken from string to array
+        - Remove "effect" field from awaken (keep only "effects")
+        - Ensure _id is in MongoDB ObjectId format
+        
+        Args:
+            cards (list): List of card documents to normalize
+        
+        Returns:
+            list: Normalized cards
+        """
+        count_race_converted = 0
+        count_effect_removed = 0
+        count_oid_converted = 0
+        
+        for card in cards:
+            # Normalize _id to ObjectId format
+            if '_id' in card and isinstance(card['_id'], str):
+                card['_id'] = {'$oid': card['_id']}
+                count_oid_converted += 1
+            
+            # Process awaken cards
+            awaken = card.get('awaken', [])
+            if awaken and isinstance(awaken, list):
+                for awaken_card in awaken:
+                    # Convert race from string to array
+                    if 'race' in awaken_card and isinstance(awaken_card['race'], str):
+                        race_array = [r.strip() for r in awaken_card['race'].split('/')]
+                        awaken_card['race'] = race_array
+                        count_race_converted += 1
+                    
+                    # Remove "effect" field if it exists (keep "effects")
+                    if 'effect' in awaken_card:
+                        del awaken_card['effect']
+                        count_effect_removed += 1
+        
+        print(f"✅ Data normalization complete:")
+        print(f"   - Converted {count_race_converted} race fields to array")
+        print(f"   - Removed {count_effect_removed} effect fields")
+        print(f"   - Converted {count_oid_converted} _id fields to ObjectId format")
+        
+        return cards
     
 if __name__ == "__main__":
     booster_id = "dm25ex4"
@@ -251,7 +296,12 @@ if __name__ == "__main__":
     
     print(f"✅ Updated {updated_count} cards with wiki data\n")
     
-    # Display updated cards
+    # Step 5: Normalize data format
+    print("🔄 Normalizing data format...\n")
+    listofcards = processor.normalize_data_format(listofcards)
+    print()
+    
+    # Step 6: Display updated cards
     print("=" * 80)
     print("📋 UPDATED CARDS SUMMARY")
     print("=" * 80)
@@ -268,7 +318,7 @@ if __name__ == "__main__":
     print(f"✅ Complete! {updated_count}/{len(listofcards)} cards updated")
     print("=" * 80)
     
-    # Step 5: Save and display final results
+    # Step 7: Save and display final results
     print("\n📋 FINAL RESULTS FOR VALIDATION")
     print("=" * 80)
     
