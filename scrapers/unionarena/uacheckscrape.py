@@ -142,17 +142,43 @@ def check_for_watchlist_updates():
         if not watchlist:
             print("Watchlist is empty or could not be loaded.")
             return
+        
+        discrepancies_found = False
+        
         for jp_title, en_title in watchlist.items():
             print(f"Watchlist entry: {jp_title} -> {en_title}")
             card_numbers_with_AP = navigate_to_selected_cardlist(jp_title)
             card_numbers = clean_out_AP(card_numbers_with_AP)
+            
+            # Get existing cards from database
+            existing_cards = mongo_service.get_unique_values_scoped(C_UNIONARENA, "anime", en_title, "cardcode")
+            if existing_cards is None:
+                existing_cards = []
+            existing_cards_set = set(existing_cards)
+            scraped_cards_set = set(card_numbers)
+            
+            # Check for missing cards (cards in scraped data but not in database)
+            missing_cards = scraped_cards_set - existing_cards_set
+            extra_cards = existing_cards_set - scraped_cards_set
+            
             validation_result = mongo_service.validate_field(C_UNIONARENA,"anime",en_title)
             exists = validation_result['exists']
             count = validation_result['count']
-            if( int(count) < len(card_numbers)) or (not exists):
+            
+            if (int(count) < len(card_numbers)) or (not exists) or missing_cards:
+                discrepancies_found = True
                 print(f"Discrepancy found for '{jp_title}' ({en_title}): MongoDB has {count} cards, scraped {len(card_numbers)} cards.")
+                if missing_cards:
+                    print(f"  Missing cards in database: {sorted(list(missing_cards))[:10]}")
+                    if len(missing_cards) > 10:
+                        print(f"  ... and {len(missing_cards) - 10} more missing cards")
+                if extra_cards:
+                    print(f"  Extra cards in database: {sorted(list(extra_cards))[:10]}")
+                    if len(extra_cards) > 10:
+                        print(f"  ... and {len(extra_cards) - 10} more extra cards")
                 scrape_unionarena_cards(jp_title)
-        else:
+        
+        if not discrepancies_found:
             print("No updates found in watchlist.")
             
     except Exception as e:
