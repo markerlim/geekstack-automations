@@ -1,6 +1,20 @@
 {
   "expansions": [
     {
+      "booster": "CNN/02E",
+      "title": "Premium Pack “Detective Conan TV Anime 30th Anniversary”",
+      "category": "expansion",
+      "release_date": "2026-04-10",
+      "url": "/cardlist/cardsearch/?expansion=CNN/02E",
+      "alt": "Premium Pack “Detective Conan TV Anime 30th Anniversary”",
+      "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2026/01/10165530/cnn_pp.png",
+      "expansion_image_alt": "プレミアムパック『名探偵コナン TVアニメ 30th Anniversary』",
+      "titleJP": "プレミアムパック『名探偵コナン TVアニメ 30th Anniversary』",
+      "categoryJP": "expansion",
+      "altJP": "プレミアムパック『名探偵コナン TVアニメ 30th Anniversary』",
+      "urlimage": "https://images.geekstack.dev/boostercover/wsbCoverCNN_02E.webp"
+    },
+    {
       "booster": "TGA/01S",
       "title": "スタートデッキ 『桃源暗鬼』",
       "category": "deck",
@@ -831,5 +845,5 @@
       "expansion_image_alt": "PRカード（2022年）"
     }
   ],
-  "total_count": 83
+  "total_count": 84
 }
