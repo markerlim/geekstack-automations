@@ -14,7 +14,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 
-from scrapers.duelmasters.dmwikiscraper import DuelMastersCardWikiScraper
 from service.googlecloudservice import upload_image_to_gcs
 from service.mongo_service import MongoService
 from service.translationservice import translate_data
@@ -134,13 +133,11 @@ def scrape_all_pages(driver, booster):
     print(f"\n✅ Total cards scraped: {len(all_card_data)}")
     return all_card_data
 
-def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiScraper):
+def scrape_card_details(card_data):
     """Scrapes the detailed information for each card and processes it."""
     detailed_cards = []
     civilization_mapping = load_mapping_from_github("duelmasterdb/civilization.json")
     type_mapping = load_mapping_from_github("duelmasterdb/type.json")
-
-    card_mapping = load_mapping_from_github("duelmasterdb/backup_dm25ex4.json") #wikiscraper.scrape_booster_page(wikimainurl)
 
     # # Testing: only process first 4 cards
     # card_data = card_data[:4]
@@ -160,8 +157,7 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
 
             card_details_divs = soup.find_all("div", class_="cardDetail")
             details_list, abilities_list = [], []
-            serial = re.search(r'\(.*?([A-Z]+\d+/[A-Z]+\d+|\d+[A-Z]*/\d+)\)', card_name)  # Extract serial from card name - supports DM25EX4/1 or 1/65 formats
-            print(f"🔍 Scraping details for card: {card_name} (Serial: {serial.group(1) if serial else 'N/A'})")
+            print(f"🔍 Scraping details for card: {card_name}")
             
             # Count the number of card images to distinguish between awaken and twinpact
             # Awaken cards: num_images == num_details (each form has its own image)
@@ -243,12 +239,6 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
                     awaken_form["race"] = split_race(detail_dict.get("種族"))
                     awaken_form["effects"] = abilities
                     
-                    # Assign wiki URL with letter suffix (b, c, d, etc.)
-                    if serial:
-                        letter_suffix = chr(ord('b') + awaken_idx)  # 'b' for 1st awaken, 'c' for 2nd, etc.
-                        awaken_serial = f"{serial.group(1).split('/')[0]}{letter_suffix}/{serial.group(1).split('/')[1]}"
-                        awaken_form["wikiurl"] = card_mapping.get(awaken_serial, "")
-                    
                     awaken_list.append(awaken_form)
 
             # Extract main details (first and second forms for cardName/cardName2)
@@ -311,7 +301,6 @@ def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiS
                 "mana2": alt.get("マナ"),
                 "race2": split_race(alt.get("種族")),
                 "effects2": effects_alt,
-                "wikiurl": card_mapping.get(serial.group(1)) if serial else "ERROR"
             }
             
             # Append awaken array if multiple forms exist
@@ -473,54 +462,51 @@ def startscraping(booster_list):
     chrome_options.add_argument("--no-sandbox")
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-    wikiscraper = DuelMastersCardWikiScraper(driver)
 
     try:
         all_final_data = []
-        wiki_map, _ = github_service.load_json_file("duelmasterdb/wiki_map.json")
         for booster in booster_list:
             print(f"🚀 Processing booster: {booster}")
             card_data = scrape_all_pages(driver, booster)
-            wikimainurl = wiki_map.get(booster, '')
-            detailed_card_data = scrape_card_details(card_data, wikimainurl, wikiscraper)
+            detailed_card_data = scrape_card_details(card_data)
 
             # Step 1: Back up JP fields for all cards
             print("\n📋 Backing up JP fields...")
             for card in detailed_card_data:
                 backup_jp_fields(card)
 
-            # Step 2: Get wiki data from CL_duelmasters_wiki
-            print("🔍 Looking up wiki data...")
-            wiki_urls = []
-            for card in detailed_card_data:
-                url = card.get('wikiurl')
-                if url:
-                    wiki_urls.append(url)
-                # Also collect awaken wiki URLs
-                for aw in card.get('awaken', []):
-                    aw_url = aw.get('wikiurl')
-                    if aw_url:
-                        wiki_urls.append(aw_url)
+            # Step 2: Get wiki data from CL_duelmasters_wiki by JP name
+            print("🔍 Looking up wiki data by JP name...")
+            wiki_collection = mongo_service._get_collection("CL_duelmasters_wiki")
+            all_wiki_docs = list(wiki_collection.find({}))
 
-            wiki_docs = mongo_service.find_all_by_field_array("CL_duelmasters_wiki", "url", list(set(wiki_urls))) if wiki_urls else []
-            wiki_lookup = {doc.get('url'): doc for doc in wiki_docs}
-            print(f"   Found {len(wiki_lookup)} wiki entries for {len(set(wiki_urls))} unique URLs")
+            # Build name_jp → wiki_doc lookup
+            jp_name_lookup = {}
+            for doc in all_wiki_docs:
+                for wiki_card in doc.get('cards', []):
+                    name_jp = wiki_card.get('name_jp', '')
+                    if name_jp and name_jp not in jp_name_lookup:
+                        jp_name_lookup[name_jp] = doc
+            print(f"   Built lookup with {len(jp_name_lookup)} JP names from {len(all_wiki_docs)} wiki docs")
 
             # Step 3: Apply wiki data where available, collect cards needing translation
             wiki_updated = 0
             cards_needing_translation = []
 
             for card in detailed_card_data:
-                wiki_url = card.get('wikiurl')
-                wiki_card = wiki_lookup.get(wiki_url) if wiki_url else None
+                # Strip serial suffix from JP name: "勇気のリュウセイ・ブレイブ(DM25EX4 40/100)" → "勇気のリュウセイ・ブレイブ"
+                jp_name = re.sub(r'\s*\([^)]*\)\s*$', '', card.get('cardName', ''))
+                wiki_card = jp_name_lookup.get(jp_name)
 
                 if wiki_card and apply_wiki_data(card, wiki_card):
+                    card['wikiurl'] = wiki_card.get('url', '')
                     wiki_updated += 1
-                    # Also apply wiki data to awaken forms
+                    # Also apply wiki data to awaken forms by JP name
                     for aw in card.get('awaken', []):
-                        aw_url = aw.get('wikiurl')
-                        aw_wiki = wiki_lookup.get(aw_url) if aw_url else None
+                        aw_jp_name = aw.get('cardName', '')
+                        aw_wiki = jp_name_lookup.get(aw_jp_name)
                         if aw_wiki:
+                            aw['wikiurl'] = aw_wiki.get('url', '')
                             aw_cards = aw_wiki.get('cards', [])
                             if aw_cards:
                                 wiki_form = aw_cards[0]
