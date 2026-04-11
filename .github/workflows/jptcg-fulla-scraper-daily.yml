@@ -1,0 +1,108 @@
+name: Fulla Ahead Scraper Daily
+
+on:
+  schedule:
+    # Run every day at 12:00 AM UTC
+    # - cron: '0 0 * * *'
+  
+  # Allow manual trigger from Actions tab
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Load environment variables
+        env:
+          MONGO_USER: ${{ secrets.MONGO_USER }}
+          MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+          MONGO_CLUSTER: ${{ secrets.MONGO_CLUSTER }}
+          MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
+          GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
+          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
+        run: |
+          # Create .env file with secrets
+          cat > .env << EOF
+          MONGO_USER=$MONGO_USER
+          MONGO_PASSWORD=$MONGO_PASSWORD
+          MONGO_CLUSTER=$MONGO_CLUSTER
+          MONGO_DATABASE=$MONGO_DATABASE
+          GOOGLE_CLOUD_PROJECT=$GOOGLE_CLOUD_PROJECT
+          EOF
+          
+          # Create Google Cloud credentials file
+          echo $GOOGLE_APPLICATION_CREDENTIALS_JSON | base64 -d > credentials/service-accountkey.json
+      
+      - name: Run Fulla Ahead Scraper
+        run: |
+          python3 scrapers/japantcg/scrapefullahead.py
+      
+      - name: Commit and push backup if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Check if fullaheaddb/ has changes
+          if git diff --quiet fullaheaddb/; then
+            echo "No changes in fullaheaddb/"
+          else
+            git add fullaheaddb/
+            git commit -m "chore: update fulla ahead scraper backup - $(date -u +%Y-%m-%d\ %H:%M:%S\ UTC)"
+            git push
+          fi
+      
+      # - name: Send Slack notification (Success)
+      #   if: success()
+      #   uses: slackapi/slack-github-action@v1.24.0
+      #   with:
+      #     payload: |
+      #       {
+      #         "text": "✅ Fulla Ahead Scraper - Daily Run Successful",
+      #         "blocks": [
+      #           {
+      #             "type": "section",
+      #             "text": {
+      #               "type": "mrkdwn",
+      #               "text": "*✅ Fulla Ahead Scraper - Daily Run Successful*\n\n*Time:* ${{ job.status }}\n*Repository:* ${{ github.repository }}\n*Branch:* ${{ github.ref }}\n*Run:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Details>"
+      #             }
+      #           }
+      #         ]
+      #       }
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #     SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+      
+      # - name: Send Slack notification (Failure)
+      #   if: failure()
+      #   uses: slackapi/slack-github-action@v1.24.0
+      #   with:
+      #     payload: |
+      #       {
+      #         "text": "❌ Fulla Ahead Scraper - Daily Run Failed",
+      #         "blocks": [
+      #           {
+      #             "type": "section",
+      #             "text": {
+      #               "type": "mrkdwn",
+      #               "text": "*❌ Fulla Ahead Scraper - Daily Run Failed*\n\n*Repository:* ${{ github.repository }}\n*Branch:* ${{ github.ref }}\n*Run:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View Details>"
+      #             }
+      #           }
+      #         ]
+      #       }
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #     SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK

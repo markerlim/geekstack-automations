@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from pymongo import UpdateOne
 import certifi
 import os
 import json
@@ -246,6 +247,66 @@ class MongoService:
         except Exception as e:
             print(f"❌ MongoDB update operation failed: {e}")
             return False
+    
+    def batch_update_by_field(self, collection_name, update_operations, batch_size=1000):
+        """Batch update multiple documents by field value
+        
+        Args:
+            collection_name: Name of the collection
+            update_operations: List of dicts with format {'field_name': name, 'field_value': value, 'update_data': data}
+            batch_size: Max operations per bulk_write call (default 1000 to avoid memory/timeout issues)
+        
+        Returns:
+            Dict with 'success': bool, 'total': int, 'matched': int, 'modified': int
+        """
+        try:
+            collection = self._get_collection(collection_name)
+            
+            if not update_operations:
+                print("⚠️ No update operations provided")
+                return {'success': False, 'total': 0, 'matched': 0, 'modified': 0}
+            
+            total_matched = 0
+            total_modified = 0
+            num_batches = (len(update_operations) + batch_size - 1) // batch_size
+            
+            print(f"🔄 Processing {len(update_operations)} updates in {num_batches} batch(es)...")
+            
+            # Process in chunks to avoid memory/timeout issues
+            for batch_num in range(num_batches):
+                start_idx = batch_num * batch_size
+                end_idx = min(start_idx + batch_size, len(update_operations))
+                batch_ops = update_operations[start_idx:end_idx]
+                
+                operations = []
+                for op in batch_ops:
+                    field_name = op['field_name']
+                    field_value = op['field_value']
+                    update_data = op['update_data']
+                    
+                    query = {field_name: field_value}
+                    update = {"$set": update_data}
+                    operations.append(UpdateOne(query, update))
+                
+                # Execute this batch
+                result = collection.bulk_write(operations)
+                total_matched += result.matched_count
+                total_modified += result.modified_count
+                
+                batch_label = f"Batch {batch_num + 1}/{num_batches}"
+                print(f"  ✅ {batch_label}: {result.matched_count} matched, {result.modified_count} modified")
+            
+            print(f"✅ Batch update complete: {total_matched} total matched, {total_modified} total modified")
+            return {
+                'success': True,
+                'total': len(update_operations),
+                'matched': total_matched,
+                'modified': total_modified
+            }
+        except Exception as e:
+            print(f"❌ MongoDB batch update operation failed: {e}")
+            return {'success': False, 'total': 0, 'matched': 0, 'modified': 0}
+
 
     def update_by_id(self, collection_name, object_id, update_data):
         """Update document by ObjectId"""

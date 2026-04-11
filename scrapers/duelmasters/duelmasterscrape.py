@@ -88,11 +88,13 @@ def split_civilization(civilization_string):
     return [c.strip() for c in civilization_string.split("/") if c.strip()]
 
 def scrape_all_pages(driver, booster):
-    total_pages = get_total_pages(driver, booster)
     all_card_data = []
+    page_num = 1
+    consecutive_empty_pages = 0
+    max_empty_pages = 2  # Stop if we get 2 consecutive empty pages
 
-    for page_num in range(1, total_pages + 1):
-        print(f"\n📄 Scraping Page {page_num} of {total_pages}")
+    while True:
+        print(f"\n📄 Scraping Page {page_num}")
         url = f"https://dm.takaratomy.co.jp/card/?v=%7B%22suggest%22:%22on%22,%22keyword_type%22:%5B%22card_name%22,%22card_ruby%22,%22card_text%22%5D,%22culture_cond%22:%5B%22%E5%8D%98%E8%89%B2%22,%22%E5%A4%9A%E8%89%B2%22%5D,%22pagenum%22:%22{page_num}%22,%22samename%22:%22show%22,%22products%22:%22{booster}%22,%22sort%22:%22release_new%22%7D"
 
         driver.get(url)
@@ -116,10 +118,20 @@ def scrape_all_pages(driver, booster):
                 print(f"❌ Error extracting card data: {e}")
 
         print(f"✅ Page {page_num}: Found {len(page_data)} cards")
-        all_card_data.extend(page_data)
-
+        
+        if len(page_data) == 0:
+            consecutive_empty_pages += 1
+            if consecutive_empty_pages >= max_empty_pages:
+                print(f"\n🛑 No more cards found. Stopping pagination.")
+                break
+        else:
+            consecutive_empty_pages = 0
+            all_card_data.extend(page_data)
+        
+        page_num += 1
         time.sleep(1)
-    print(all_card_data)
+    
+    print(f"\n✅ Total cards scraped: {len(all_card_data)}")
     return all_card_data
 
 def scrape_card_details(card_data, wikimainurl, wikiscraper:DuelMastersCardWikiScraper):
@@ -380,6 +392,74 @@ def convert_power_to_int(power_str):
     except (ValueError, TypeError):
         return None
 
+def backup_jp_fields(card):
+    """Back up JP fields before overwriting with English wiki data."""
+    # cardName → cardNameJP
+    if 'cardName' in card and 'cardNameJP' not in card:
+        card['cardNameJP'] = card['cardName']
+    # cardName2 → cardName2JP
+    if 'cardName2' in card and card['cardName2'] and 'cardName2JP' not in card:
+        card['cardName2JP'] = card['cardName2']
+    # effects → effectsJP
+    if 'effects' in card and 'effectsJP' not in card:
+        card['effectsJP'] = card['effects']
+    # effects2 → effects2JP
+    if 'effects2' in card and card.get('effects2') and 'effects2JP' not in card:
+        card['effects2JP'] = card['effects2']
+    # race → raceJP
+    if 'race' in card and 'raceJP' not in card:
+        card['raceJP'] = card['race']
+    # race2 → race2JP
+    if 'race2' in card and card.get('race2') and 'race2JP' not in card:
+        card['race2JP'] = card['race2']
+
+
+def apply_wiki_data(card, wiki_card):
+    """
+    Apply wiki data to a card. Returns True if wiki data was applied.
+    Wiki provides: name, card_type, english_text, japanese_text, race, illustrator, civilization, mana_cost, power, mana_number
+    """
+    cards = wiki_card.get('cards', [])
+    if not cards:
+        return False
+    
+    # Update first card form
+    card_0 = cards[0]
+    if card_0.get('name'):
+        card['cardName'] = card_0['name']
+    if card_0.get('card_type'):
+        card['type'] = card_0['card_type']
+    if card_0.get('english_text'):
+        card['effects'] = card_0['english_text']
+    if card_0.get('race'):
+        card['race'] = split_race(card_0['race'])
+    if card_0.get('illustrator'):
+        card['illustrator'] = card_0['illustrator']
+    
+    # Update second card form if twinpact
+    if len(cards) > 1:
+        card_1 = cards[1]
+        if card_1.get('name'):
+            card['cardName2'] = card_1['name']
+        if card_1.get('card_type'):
+            card['type2'] = card_1['card_type']
+        if card_1.get('english_text'):
+            card['effects2'] = card_1['english_text']
+        if card_1.get('race'):
+            card['race2'] = split_race(card_1['race'])
+    
+    # Update awaken forms if they exist
+    awaken = card.get('awaken', [])
+    if awaken and isinstance(awaken, list):
+        for awaken_card in awaken:
+            # Back up JP fields for awaken
+            awaken_card['cardNameJP'] = awaken_card.get('cardName')
+            awaken_card['raceJP'] = awaken_card.get('race')
+            awaken_card['effectsJP'] = awaken_card.get('effects')
+    
+    return True
+
+
 def startscraping(booster_list):
     chrome_options = Options()
     chrome_options.add_argument("--headless")
@@ -396,7 +476,7 @@ def startscraping(booster_list):
     wikiscraper = DuelMastersCardWikiScraper(driver)
 
     try:
-        all_translated_data = []
+        all_final_data = []
         wiki_map, _ = github_service.load_json_file("duelmasterdb/wiki_map.json")
         for booster in booster_list:
             print(f"🚀 Processing booster: {booster}")
@@ -404,23 +484,80 @@ def startscraping(booster_list):
             wikimainurl = wiki_map.get(booster, '')
             detailed_card_data = scrape_card_details(card_data, wikimainurl, wikiscraper)
 
-            translated_data = translate_data(
-                data=detailed_card_data,
-                fields_to_translate=['cardName', 'cardName2', 'effects', 'effects2', 'race', 'race2'],
-                src_lang='ja',
-                dest_lang='en',
-                batch_size=100,
-                max_retries=3
-            )
+            # Step 1: Back up JP fields for all cards
+            print("\n📋 Backing up JP fields...")
+            for card in detailed_card_data:
+                backup_jp_fields(card)
 
-            all_translated_data.extend(translated_data)
+            # Step 2: Get wiki data from CL_duelmasters_wiki
+            print("🔍 Looking up wiki data...")
+            wiki_urls = []
+            for card in detailed_card_data:
+                url = card.get('wikiurl')
+                if url:
+                    wiki_urls.append(url)
+                # Also collect awaken wiki URLs
+                for aw in card.get('awaken', []):
+                    aw_url = aw.get('wikiurl')
+                    if aw_url:
+                        wiki_urls.append(aw_url)
+
+            wiki_docs = mongo_service.find_all_by_field_array("CL_duelmasters_wiki", "url", list(set(wiki_urls))) if wiki_urls else []
+            wiki_lookup = {doc.get('url'): doc for doc in wiki_docs}
+            print(f"   Found {len(wiki_lookup)} wiki entries for {len(set(wiki_urls))} unique URLs")
+
+            # Step 3: Apply wiki data where available, collect cards needing translation
+            wiki_updated = 0
+            cards_needing_translation = []
+
+            for card in detailed_card_data:
+                wiki_url = card.get('wikiurl')
+                wiki_card = wiki_lookup.get(wiki_url) if wiki_url else None
+
+                if wiki_card and apply_wiki_data(card, wiki_card):
+                    wiki_updated += 1
+                    # Also apply wiki data to awaken forms
+                    for aw in card.get('awaken', []):
+                        aw_url = aw.get('wikiurl')
+                        aw_wiki = wiki_lookup.get(aw_url) if aw_url else None
+                        if aw_wiki:
+                            aw_cards = aw_wiki.get('cards', [])
+                            if aw_cards:
+                                wiki_form = aw_cards[0]
+                                if wiki_form.get('name'):
+                                    aw['cardName'] = wiki_form['name']
+                                if wiki_form.get('card_type'):
+                                    aw['type'] = wiki_form['card_type']
+                                if wiki_form.get('english_text'):
+                                    aw['effects'] = wiki_form['english_text']
+                                if wiki_form.get('race'):
+                                    aw['race'] = split_race(wiki_form['race'])
+                else:
+                    cards_needing_translation.append(card)
+
+            print(f"✅ Wiki mapped: {wiki_updated} cards")
+            print(f"⚠️ Needs translation fallback: {len(cards_needing_translation)} cards")
+
+            # Step 4: Translate only cards without wiki data
+            if cards_needing_translation:
+                print(f"\n🔁 Translating {len(cards_needing_translation)} cards without wiki data...")
+                translate_data(
+                    data=cards_needing_translation,
+                    fields_to_translate=['cardName', 'cardName2', 'effects', 'effects2', 'race', 'race2'],
+                    src_lang='ja',
+                    dest_lang='en',
+                    batch_size=100,
+                    max_retries=3
+                )
+
+            all_final_data.extend(detailed_card_data)
             collection_value = os.getenv("C_DUELMASTERS")
 
-            booster_update = translated_data[0]['booster']  # Ensure booster field is set
+            booster_update = detailed_card_data[0]['booster']
             if collection_value:
                 try:
                     mongo_service.upload_data(
-                        data=all_translated_data,
+                        data=all_final_data,
                         collection_name=collection_value,
                         backup_before_upload=True
                     )

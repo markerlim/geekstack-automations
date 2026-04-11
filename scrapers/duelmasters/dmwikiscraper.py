@@ -31,38 +31,84 @@ class DuelMastersCardWikiScraper:
         return ' '.join(text_parts)
     
     def extract_text_with_newlines(self, element) -> str:
-        """Extract text while preserving newlines for effect text."""
+        """Extract text while preserving intentional newlines from <br> and <p> tags."""
         if not element:
             return ""
         
-        # Use get_text with newline as separator to preserve line breaks
-        text = element.get_text(separator='\n')
-        # Clean up excessive newlines and strip
-        text = '\n'.join(line.strip() for line in text.split('\n') if line.strip())
+        # Recursively extract text, treating <p> and <br> as separators
+        parts = []
+        for child in element.children:
+            if isinstance(child, str):
+                text = child.strip()
+                if text:
+                    parts.append(text)
+            elif getattr(child, 'name', None) == 'br':
+                parts.append('\n')
+            elif getattr(child, 'name', None) == 'p':
+                # Extract text from paragraph, add newline after
+                p_text = child.get_text(separator=' ').strip()
+                if p_text:
+                    parts.append(p_text)
+                    parts.append('\n')
+            else:
+                # Recurse into child elements, joining with space
+                inner_text = child.get_text(separator=' ').strip()
+                if inner_text:
+                    parts.append(inner_text)
+        
+        # Join parts
+        text = ''.join(parts)
+        
+        # Clean up excessive spaces within lines, but preserve newlines
+        lines = text.split('\n')
+        cleaned_lines = [' '.join(line.split()) for line in lines]  # Normalize spaces per line
+        text = '\n'.join(cleaned_lines)
+        
+        # Remove leading/trailing newlines
+        text = text.strip()
+        
         return text
     
-    def extract_english_name_from_header(self, header_div) -> str:
-        """Extract English name from header div, getting only text before <br> tag."""
+    def extract_english_and_japanese_name_from_header(self, header_div):
+        """
+        Extract English and Japanese names from header div.
+        Returns (english_name, japanese_name)
+        """
         if not header_div:
-            return ""
-        
-        # Get text content, stopping at the first <br> tag
-        text_parts = []
+            return ("", "")
+
+        english_parts = []
+        japanese_name = ""
+        found_br = False
         for element in header_div.children:
             if isinstance(element, str):
                 text = element.strip()
-                if text:
-                    text_parts.append(text)
+                if text and not found_br:
+                    english_parts.append(text)
             elif element.name == 'br':
-                # Stop at the first <br> tag
-                break
-            elif element.name != 'small':  # Skip small tags (Japanese)
-                # For other tags, get their text
+                found_br = True
+            elif element.name == 'small':
+                # Robust Japanese name extraction
+                small = element
+                jp_parts = []
+                for child in small.children:
+                    if getattr(child, 'name', None) == 'ruby':
+                        # Only take <rb> text (kanji), skip <rt>/<rp>
+                        for rb in child.find_all('rb'):
+                            jp_parts.append(rb.get_text(strip=True))
+                    elif isinstance(child, str):
+                        # Plain text directly in <small>
+                        jp_parts.append(child.strip())
+                    elif getattr(child, 'name', None):
+                        # Any other tag in <small>
+                        jp_parts.append(child.get_text(strip=True))
+                japanese_name = ''.join([s for s in jp_parts if s])
+            else:
                 text = element.get_text(strip=True)
                 if text:
-                    text_parts.append(text)
-        
-        return ' '.join(text_parts).strip()
+                    english_parts.append(text)
+        english_name = ' '.join(english_parts).strip()
+        return (english_name, japanese_name)
     
     def clean_text(self, text: str) -> str:
         """Clean extracted text by removing extra symbols and normalizing whitespace."""
@@ -118,17 +164,24 @@ class DuelMastersCardWikiScraper:
         if not section_header:
             return None
         
-        # Extract card name - get only text before <br> tag from the header div
+        # Extract card name (English and Japanese) from the header div
         header_div = section_header.find('div', style=lambda x: x and 'color: white' in x if x else False)
         if header_div:
-            card_info['name'] = self.extract_english_name_from_header(header_div)
+            english_name, japanese_name = self.extract_english_and_japanese_name_from_header(header_div)
+            card_info['name'] = english_name
+            card_info['name_jp'] = japanese_name
         else:
             # Fallback if div structure is different
             name_text = ' '.join(section_header.stripped_strings)
             small_tags = section_header.find_all('small')
+            japanese_name = ''
             for small in small_tags:
-                name_text = name_text.replace(small.get_text(strip=True), '').strip()
+                small_text = small.get_text(strip=True)
+                name_text = name_text.replace(small_text, '').strip()
+                if not japanese_name:
+                    japanese_name = small_text
             card_info['name'] = name_text
+            card_info['name_jp'] = japanese_name
         
         # Extract properties until next major section
         current_row = start_row
@@ -262,30 +315,34 @@ class DuelMastersCardWikiScraper:
         
         # Find the "Contents" h2 section - look for span with id="Contents"
         contents_h2 = None
-        cycles_h2 = None
+        end_h2 = None
         
         h2_elements = soup.find_all('h2')
+        found_contents = False
         for h2 in h2_elements:
             span = h2.find('span', {'id': 'Contents'})
             if span:
                 contents_h2 = h2
+                found_contents = True
+                continue
             
-            span = h2.find('span', {'id': 'Cycles'})
-            if span:
-                cycles_h2 = h2
+            # Use the first h2 after Contents as the end boundary
+            # (could be "Cycles", "Gallery", or anything else)
+            if found_contents and not end_h2:
+                end_h2 = h2
         
         if not contents_h2:
             print("Warning: 'Contents' h2 section not found")
             return {}
         
-        if not cycles_h2:
-            print("Warning: 'Cycles' h2 section not found")
+        if not end_h2:
+            print("Warning: No h2 section found after 'Contents'")
             return {}
         
-        # Iterate through all siblings between Contents and Cycles
+        # Iterate through all siblings between Contents and the next h2
         current = contents_h2.find_next_sibling()
         
-        while current and current != cycles_h2:
+        while current and current != end_h2:
             # Look for all ul tags
             if current.name == 'ul':
                 # Extract all li items from this ul
@@ -319,9 +376,9 @@ class DuelMastersCardWikiScraper:
                             # This should contain the card ID
                             text_before_link = segment.split('<a')[0]
                             
-                            # Find the card ID (pattern: text/text)
+                            # Find the card ID (pattern: text/text, allowing unicode chars like ㊙)
                             import re
-                            card_id_match = re.search(r'([A-Za-z0-9]+/[A-Za-z0-9]+)', text_before_link)
+                            card_id_match = re.search(r'([\w㊙]+/[\w㊙]+)', text_before_link)
                             
                             if card_id_match:
                                 card_id = card_id_match.group(1)
