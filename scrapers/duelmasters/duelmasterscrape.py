@@ -561,14 +561,14 @@ def startscraping(booster_list):
                         collection_name=collection_value,
                         backup_before_upload=True
                     )
-                    # json_obj = mongo_service.find_by_field(collection_name="NewList", field_name="booster", field_value=booster_update)
+                    json_obj = mongo_service.find_by_field(collection_name="NewList", field_name="booster", field_value=booster_update)
                     
-                    # # Modify category field by splitting on underscore and taking first part
-                    # if json_obj and 'category' in json_obj:
-                    #     original_category = json_obj['category']
-                    #     json_obj['category'] = original_category.split('_')[0]
-                    #     mongo_service.update_by_id(collection_name="NewList", object_id=json_obj['_id'], update_data={'category': json_obj['category']})
-                    #     print(f"📝 Updated category from '{original_category}' to '{json_obj['category']}'")
+                    # Modify category field by splitting on underscore and taking first part
+                    if json_obj and 'category' in json_obj:
+                        original_category = json_obj['category']
+                        json_obj['category'] = original_category.split('_')[0]
+                        mongo_service.update_by_id(collection_name="NewList", object_id=json_obj['_id'], update_data={'category': json_obj['category']})
+                        print(f"📝 Updated category from '{original_category}' to '{json_obj['category']}'")
                     
                 except Exception as e:
                     print(f"❌ MongoDB operation failed: {str(e)}")
