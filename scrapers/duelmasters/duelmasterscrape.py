@@ -480,13 +480,16 @@ def startscraping(booster_list):
             wiki_collection = mongo_service._get_collection("CL_duelmasters_wiki")
             all_wiki_docs = list(wiki_collection.find({}))
 
-            # Build name_jp → wiki_doc lookup
+            # Build name_jp → wiki_doc lookup (normalize spaces)
             jp_name_lookup = {}
             for doc in all_wiki_docs:
                 for wiki_card in doc.get('cards', []):
                     name_jp = wiki_card.get('name_jp', '')
-                    if name_jp and name_jp not in jp_name_lookup:
-                        jp_name_lookup[name_jp] = doc
+                    if name_jp:
+                        # Normalize by removing all spaces for matching
+                        normalized_name = name_jp.replace(' ', '')
+                        if normalized_name not in jp_name_lookup:
+                            jp_name_lookup[normalized_name] = doc
             print(f"   Built lookup with {len(jp_name_lookup)} JP names from {len(all_wiki_docs)} wiki docs")
 
             # Step 3: Apply wiki data where available, collect cards needing translation
@@ -496,7 +499,9 @@ def startscraping(booster_list):
             for card in detailed_card_data:
                 # Strip serial suffix from JP name: "勇気のリュウセイ・ブレイブ(DM25EX4 40/100)" → "勇気のリュウセイ・ブレイブ"
                 jp_name = re.sub(r'\s*\([^)]*\)\s*$', '', card.get('cardName', ''))
-                wiki_card = jp_name_lookup.get(jp_name)
+                # Normalize by removing spaces for lookup
+                normalized_jp_name = jp_name.replace(' ', '')
+                wiki_card = jp_name_lookup.get(normalized_jp_name)
 
                 if wiki_card and apply_wiki_data(card, wiki_card):
                     card['wikiurl'] = wiki_card.get('url', '')
@@ -504,7 +509,9 @@ def startscraping(booster_list):
                     # Also apply wiki data to awaken forms by JP name
                     for aw in card.get('awaken', []):
                         aw_jp_name = aw.get('cardName', '')
-                        aw_wiki = jp_name_lookup.get(aw_jp_name)
+                        # Normalize by removing spaces for lookup
+                        normalized_aw_name = aw_jp_name.replace(' ', '')
+                        aw_wiki = jp_name_lookup.get(normalized_aw_name)
                         if aw_wiki:
                             aw['wikiurl'] = aw_wiki.get('url', '')
                             aw_cards = aw_wiki.get('cards', [])

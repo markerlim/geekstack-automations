@@ -372,29 +372,10 @@ class DuelMastersCardWikiScraper:
                             else:
                                 full_url = "https://duelmasters.fandom.com/wiki/" + href
                             
-                            # Extract the text before the <a> tag in this segment
-                            # This should contain the card ID
-                            text_before_link = segment.split('<a')[0]
-                            
-                            # Find the card ID (pattern: text/text, allowing unicode chars like ㊙)
-                            import re
-                            card_id_match = re.search(r'([\w㊙]+/[\w㊙]+)', text_before_link)
-                            
-                            if card_id_match:
-                                card_id = card_id_match.group(1)
-                                card_mapping[card_id] = full_url
+                            # Use URL slug as the identifier
+                            url_slug = full_url.split('/wiki/')[-1] if '/wiki/' in full_url else full_url
+                            card_mapping[url_slug] = full_url
             
             current = current.find_next_sibling()
         
-        # Normalize card IDs: remove only 'a' suffix from the first part
-        # Example: PR1a/PR5 → PR1/PR5, but keep PR1b/PR5 and PR1c/PR5 as is
-        normalized_mapping = {}
-        for card_id, wiki_url in card_mapping.items():
-            # Remove only 'a' suffix from first part before the slash
-            normalized_id = re.sub(r'([A-Za-z0-9]+)a/([A-Za-z0-9]+)', r'\1/\2', card_id)
-            
-            # If this normalized ID doesn't exist yet, add it (keeps first occurrence)
-            if normalized_id not in normalized_mapping:
-                normalized_mapping[normalized_id] = wiki_url
-        
-        return normalized_mapping
+        return card_mapping

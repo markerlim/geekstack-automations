@@ -79,13 +79,16 @@ def scrape_and_upload_wiki(booster_url):
         card_mapping = scraper.scrape_booster_page(booster_url)
         
         print(f"✅ Step 1 Complete!")
-        print(f"📊 Found {len(card_mapping)} cards with wiki links\n")
+        print(f"📊 Found {len(card_mapping)} cards with wiki links")
+        
+        # Get unique wiki URLs to display
+        unique_urls = set(card_mapping.values())
+        print(f"\n📋 Unique Wiki URLs ({len(unique_urls)}):")
+        for url in sorted(unique_urls):
+            print(f"   {url}")
+        print()
     finally:
         driver.quit()
-    
-    # Step 2: Deduplicate - get unique wiki URLs and check against MongoDB
-    unique_urls = set(card_mapping.values())
-    print(f"📊 Unique wiki URLs from booster: {len(unique_urls)}")
     
     existing_urls = get_existing_urls(mongo_service)
     print(f"📊 Existing URLs in MongoDB: {len(existing_urls)}")
