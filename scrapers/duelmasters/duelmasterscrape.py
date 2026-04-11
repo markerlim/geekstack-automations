@@ -527,6 +527,30 @@ def startscraping(booster_list):
                                     aw['race'] = split_race(wiki_form['race'])
                 else:
                     cards_needing_translation.append(card)
+            
+            print(f"\n📊 Wiki Mapping Results:")
+            print(f"   ✅ Matched to wiki: {wiki_updated}")
+            print(f"   ⚠️ Not matched (need translation): {len(cards_needing_translation)}")
+            
+            # Save unmapped cards to JSON
+            unmapped_list = []
+            if cards_needing_translation:
+                print(f"\n📋 Unmapped Cards:")
+                for card in cards_needing_translation:
+                    jp_name = re.sub(r'\s*\([^)]*\)\s*$', '', card.get('cardName', ''))
+                    print(f"   - {jp_name}")
+                    unmapped_list.append({
+                        "cardName": jp_name,
+                        "cardNameJP": card.get('cardNameJP', ''),
+                        "civilization": card.get('civilization', ''),
+                        "type": card.get('type', '')
+                    })
+                
+                # Save to JSON file
+                unmapped_file = "unmapped_cards.json"
+                with open(unmapped_file, 'w', encoding='utf-8') as f:
+                    json.dump(unmapped_list, f, ensure_ascii=False, indent=2)
+                print(f"\n💾 Saved unmapped cards to {unmapped_file}")
 
             print(f"✅ Wiki mapped: {wiki_updated} cards")
             print(f"⚠️ Needs translation fallback: {len(cards_needing_translation)} cards")

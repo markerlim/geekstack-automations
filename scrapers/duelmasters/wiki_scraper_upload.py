@@ -150,6 +150,7 @@ def scrape_and_upload_wiki(booster_url):
     print(f"   Newly scraped & uploaded: {len(urls_to_scrape)}")
 
 if __name__ == "__main__":
-    booster_urls = ["https://duelmasters.fandom.com/wiki/DM26-RP1_Garde_of_Bolmeteus"]
+    booster_urls = ["https://duelmasters.fandom.com/wiki/DM25-BD1_Dream_Saga_Deck:_Book_of_Bolshack","https://duelmasters.fandom.com/wiki/DM25-BD2_Dream_Saga_Deck:_Book_of_Alcadeias",
+                    "https://duelmasters.fandom.com/wiki/DM25-BD3_Dream_Saga_Deck:_Book_of_Glenmalt"]
     for booster_url in booster_urls:
         scrape_and_upload_wiki(booster_url)
