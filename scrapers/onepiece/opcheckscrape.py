@@ -7,7 +7,7 @@ import sys
 # Add parent directories to path for imports
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 from service.github_service import GitHubService
-from onepiecescrape import scrape_onepiece_cards
+from onepiecescrape import scrape_onepiece_cards, scrape_onepiece_cards_incremental
 
 # Initialize GitHub service
 github_service = GitHubService()
@@ -65,3 +65,9 @@ else:
         print("\nseries.json has been updated on GitHub.")
     else:
         print("Error updating file on GitHub.")
+
+# Always check LIMITED and PROMO for new cards, regardless of series list changes
+ALWAYS_CHECK_SERIES = ['556801', '556901']
+for series_val in ALWAYS_CHECK_SERIES:
+    print(f"\n🔄 Checking for new cards in series {series_val}...")
+    scrape_onepiece_cards_incremental(series_val)
