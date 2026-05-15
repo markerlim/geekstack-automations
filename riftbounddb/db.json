@@ -3,26 +3,26 @@
     {
       "code": "UNL",
       "name": "Unleashed",
-      "detected_at": "2026-05-08T15:37:58.704351",
+      "detected_at": "2026-05-15T15:47:01.829918",
       "card_count": 286
     },
     {
       "code": "SFD",
       "name": "Spiritforged",
-      "detected_at": "2026-05-08T15:37:58.704375",
+      "detected_at": "2026-05-15T15:47:01.829942",
       "card_count": 288
     },
     {
       "code": "OGN",
       "name": "Origins - Main Set",
-      "detected_at": "2026-05-08T15:37:58.704382",
-      "card_count": 353
+      "detected_at": "2026-05-15T15:47:01.829949",
+      "card_count": 352
     },
     {
       "code": "OGS",
       "name": "Origins - Proving Grounds",
-      "detected_at": "2026-05-08T15:37:58.704388",
-      "card_count": 25
+      "detected_at": "2026-05-15T15:47:01.829959",
+      "card_count": 24
     }
   ]
 }
