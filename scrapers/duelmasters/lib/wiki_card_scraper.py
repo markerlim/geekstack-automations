@@ -69,6 +69,25 @@ class DuelMastersCardWikiScraper:
         
         return text
     
+    def _text_with_img_alts(self, element) -> str:
+        """get_text variant that substitutes <img alt="X"> with X.
+
+        The wiki inlines some stylized characters (e.g. 卍) as <img> tags,
+        which plain get_text() drops. Not safe for <ruby> (would merge rb+rt) —
+        callers should handle <ruby> separately before reaching this.
+        """
+        parts = []
+        for desc in element.descendants:
+            if isinstance(desc, str):
+                text = desc.strip()
+                if text:
+                    parts.append(text)
+            elif getattr(desc, 'name', None) == 'img':
+                alt = (desc.get('alt') or '').strip()
+                if alt:
+                    parts.append(alt)
+        return ''.join(parts)
+
     def extract_english_and_japanese_name_from_header(self, header_div):
         """
         Extract English and Japanese names from header div.
@@ -100,11 +119,11 @@ class DuelMastersCardWikiScraper:
                         # Plain text directly in <small>
                         jp_parts.append(child.strip())
                     elif getattr(child, 'name', None):
-                        # Any other tag in <small>
-                        jp_parts.append(child.get_text(strip=True))
+                        # Any other tag in <small> — pick up <img alt> too
+                        jp_parts.append(self._text_with_img_alts(child))
                 japanese_name = ''.join([s for s in jp_parts if s])
             else:
-                text = element.get_text(strip=True)
+                text = self._text_with_img_alts(element)
                 if text:
                     english_parts.append(text)
         english_name = ' '.join(english_parts).strip()
