@@ -5,11 +5,12 @@ Usage:
     python rescrape_booster.py <booster_code> [<booster_code> ...]
 
 Examples:
-    python rescrape_booster.py dm25ex4
-    python rescrape_booster.py dm25ex4 dm25ex5 dm25bd1
+    python rescrape_booster.py 26ex1
+    python rescrape_booster.py 25ex4 26rp1 26sd1
 
-The booster code must match the product code used on dm.takaratomy.co.jp
-(e.g. dm25ex4, dmc01, dmbd01). Check the card list URL for the exact code:
+The booster code is the `<option value="...">` from the products dropdown at
+dm.takaratomy.co.jp/card/ — e.g. value="26ex1" (label "DM26-EX1 ..."). No "dm"
+prefix. To verify in a browser:
     https://dm.takaratomy.co.jp/card/?v={"products":"<booster_code>"}
 
 What this does:
@@ -32,7 +33,7 @@ if __name__ == "__main__":
     boosters = sys.argv[1:]
     if not boosters:
         print("Usage: python rescrape_booster.py <booster_code> [<booster_code> ...]")
-        print("Example: python rescrape_booster.py dm25ex4")
+        print("Example: python rescrape_booster.py 26ex1")
         sys.exit(1)
 
     print(f"Rescraping {len(boosters)} booster(s): {', '.join(boosters)}")

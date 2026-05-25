@@ -139,7 +139,9 @@ startscraping(booster_list)
   └─ driver.quit()
 ```
 
-To rescrape one booster manually: `python scrapers/duelmasters/scripts/rescrape_booster.py dm25ex4`.
+To rescrape one booster manually: `python scrapers/duelmasters/scripts/rescrape_booster.py 26ex1`.
+
+**Booster code source of truth:** the `<option value="...">` attribute in the products dropdown at [dm.takaratomy.co.jp/card/](https://dm.takaratomy.co.jp/card/) — e.g. value `26ex1` (label `DM26-EX1 ますますつよいパック 25の援軍`). No `dm` prefix. The same codes are what `series.json` stores.
 
 ---
 

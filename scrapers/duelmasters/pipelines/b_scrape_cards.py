@@ -23,6 +23,47 @@ from service.github_service import GitHubService
 github_service = GitHubService()
 mongo_service = MongoService()
 
+def _build_chrome_options():
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--window-size=1920,1080")
+    chrome_options.add_argument(
+        "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/120.0.0.0 Safari/537.36"
+    )
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    return chrome_options
+
+
+def _new_driver():
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=_build_chrome_options())
+
+
+def safe_get(driver, url, max_retries=3):
+    """driver.get with retries; recreates the driver on hang/crash.
+
+    Returns the (possibly new) driver — callers must reassign.
+    """
+    for attempt in range(1, max_retries + 1):
+        try:
+            driver.get(url)
+            return driver
+        except Exception as e:
+            print(f"⚠️ driver.get failed (attempt {attempt}/{max_retries}): {e}")
+            try:
+                driver.quit()
+            except Exception:
+                pass
+            if attempt == max_retries:
+                raise
+            time.sleep(5)
+            driver = _new_driver()
+    return driver
+
+
 def get_total_pages(driver, booster):
     url = f"https://dm.takaratomy.co.jp/card/?v=%7B%22suggest%22:%22on%22,%22keyword_type%22:%5B%22card_name%22,%22card_ruby%22,%22card_text%22%5D,%22culture_cond%22:%5B%22%E5%8D%98%E8%89%B2%22,%22%E5%A4%9A%E8%89%B2%22%5D,%22pagenum%22:%221%22,%22samename%22:%22show%22,%22products%22:%22{booster}%22,%22sort%22:%22release_new%22%7D"
     
@@ -96,7 +137,7 @@ def scrape_all_pages(driver, booster):
         print(f"\n📄 Scraping Page {page_num}")
         url = f"https://dm.takaratomy.co.jp/card/?v=%7B%22suggest%22:%22on%22,%22keyword_type%22:%5B%22card_name%22,%22card_ruby%22,%22card_text%22%5D,%22culture_cond%22:%5B%22%E5%8D%98%E8%89%B2%22,%22%E5%A4%9A%E8%89%B2%22%5D,%22pagenum%22:%22{page_num}%22,%22samename%22:%22show%22,%22products%22:%22{booster}%22,%22sort%22:%22release_new%22%7D"
 
-        driver.get(url)
+        driver = safe_get(driver, url)
         time.sleep(3)
 
         card_items = driver.find_elements(By.CSS_SELECTOR, 'div#cardlist li')
@@ -131,7 +172,7 @@ def scrape_all_pages(driver, booster):
         time.sleep(1)
     
     print(f"\n✅ Total cards scraped: {len(all_card_data)}")
-    return all_card_data
+    return all_card_data, driver
 
 def scrape_card_details(card_data):
     """Scrapes the detailed information for each card and processes it."""
@@ -456,24 +497,13 @@ def apply_wiki_data(card, wiki_card):
 
 
 def startscraping(booster_list):
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument(
-    "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-    "AppleWebKit/537.36 (KHTML, like Gecko) "
-    "Chrome/120.0.0.0 Safari/537.36"
-    )
-    chrome_options.add_argument("--disable-gpu")
-    chrome_options.add_argument("--no-sandbox")
-
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    driver = _new_driver()
 
     try:
         all_final_data = []
         for booster in booster_list:
             print(f"🚀 Processing booster: {booster}")
-            card_data = scrape_all_pages(driver, booster)
+            card_data, driver = scrape_all_pages(driver, booster)
             detailed_card_data = scrape_card_details(card_data)
 
             # Step 1: Back up JP fields for all cards
