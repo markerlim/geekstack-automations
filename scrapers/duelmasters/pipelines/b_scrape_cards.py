@@ -25,6 +25,26 @@ github_service = GitHubService()
 mongo_service = MongoService()
 
 
+def fetch_with_retry(url: str, max_retries: int = 3, timeout: int = 30):
+    """requests.get with timeout + retries on Timeout/ConnectionError.
+
+    The detail-page fetch was hanging indefinitely (no timeout set) and any
+    transient network blip killed the whole booster scrape.
+    """
+    last_exc = None
+    for attempt in range(1, max_retries + 1):
+        try:
+            response = requests.get(url, timeout=timeout)
+            response.raise_for_status()
+            return response
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
+            last_exc = e
+            print(f"⚠️ fetch failed for {url} (attempt {attempt}/{max_retries}): {e}")
+            if attempt < max_retries:
+                time.sleep(2 ** attempt)
+    raise last_exc
+
+
 def normalize_jp_name(s: str) -> str:
     """Normalize a JP card name for cross-source matching.
 
@@ -38,7 +58,7 @@ def normalize_jp_name(s: str) -> str:
     s = s.replace('〜', '~')
     s = (s.replace('“', '"').replace('”', '"')
            .replace('‘', "'").replace('’', "'"))
-    return s.replace(' ', '').replace('　', '')
+    return s.replace(' ', '').replace('　', '').casefold()
 
 def _build_chrome_options():
     chrome_options = Options()
@@ -205,8 +225,7 @@ def scrape_card_details(card_data):
         try:
             card = process_card(card)  # Process the card to extract booster, cardUid, and urlimage
             detail_url = card["detailUrl"]
-            response = requests.get(detail_url)
-            response.raise_for_status()
+            response = fetch_with_retry(detail_url)
             soup = BeautifulSoup(response.text, 'html.parser')
 
             # Scraping details
