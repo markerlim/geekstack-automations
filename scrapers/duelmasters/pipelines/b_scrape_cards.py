@@ -645,14 +645,36 @@ def startscraping(booster_list):
             if collection_value:
                 try:
                     collection = mongo_service._get_collection(collection_value)
-                    deleted = collection.delete_many({"booster": booster_update})
-                    if deleted.deleted_count:
-                        print(f"🗑️ Removed {deleted.deleted_count} existing docs for booster '{booster_update}' before re-insert")
-                    mongo_service.upload_data(
-                        data=detailed_card_data,
-                        collection_name=collection_value,
-                        backup_before_upload=True
-                    )
+
+                    # Skip cards already present in this booster (keyed by JP names).
+                    existing_keys = {
+                        (d.get("cardNameJP"), d.get("cardNameJP2"))
+                        for d in collection.find(
+                            {"booster": booster_update},
+                            {"cardNameJP": 1, "cardNameJP2": 1},
+                        )
+                    }
+                    new_cards = []
+                    seen_in_batch = set()
+                    for card in detailed_card_data:
+                        key = (card.get("cardNameJP"), card.get("cardNameJP2"))
+                        if key in existing_keys or key in seen_in_batch:
+                            continue
+                        new_cards.append(card)
+                        seen_in_batch.add(key)
+
+                    skipped = len(detailed_card_data) - len(new_cards)
+                    if skipped:
+                        print(f"⏭️ Skipped {skipped} cards already in booster '{booster_update}'")
+
+                    if new_cards:
+                        mongo_service.upload_data(
+                            data=new_cards,
+                            collection_name=collection_value,
+                            backup_before_upload=True,
+                        )
+                    else:
+                        print(f"✓ No new cards to insert for booster '{booster_update}'")
                     json_obj = mongo_service.find_by_field(collection_name="NewList", field_name="booster", field_value=booster_update)
                     
                     # Modify category field by splitting on underscore and taking first part
