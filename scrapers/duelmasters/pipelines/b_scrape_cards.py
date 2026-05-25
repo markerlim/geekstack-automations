@@ -539,6 +539,27 @@ def startscraping(booster_list):
         for booster in booster_list:
             print(f"🚀 Processing booster: {booster}")
             card_data, driver = scrape_all_pages(driver, booster)
+
+            # Pre-filter: skip cards whose cardUid already exists in DB so we
+            # don't pay the detail-page fetch + GCS upload cost for them.
+            collection_value = os.getenv("C_DUELMASTERS")
+            if collection_value and card_data:
+                db_booster = card_data[0][0].split("-")[0]
+                collection = mongo_service._get_collection(collection_value)
+                existing_uids = {
+                    d["cardUid"]
+                    for d in collection.find({"booster": db_booster}, {"cardUid": 1})
+                }
+                before = len(card_data)
+                card_data = [c for c in card_data if c[0] not in existing_uids]
+                skipped = before - len(card_data)
+                if skipped:
+                    print(f"⏭️ Skipping {skipped} cards already in DB by cardUid. Fetching details for {len(card_data)} new.")
+
+            if not card_data:
+                print(f"✓ All cards for booster '{booster}' already in DB. Nothing to fetch.")
+                continue
+
             detailed_card_data = scrape_card_details(card_data)
 
             # Step 1: Back up JP fields for all cards
