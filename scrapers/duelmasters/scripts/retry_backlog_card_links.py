@@ -18,6 +18,7 @@ import random
 import sys
 import time
 from pathlib import Path
+from urllib.parse import quote, urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -63,11 +64,27 @@ def create_driver():
     )
 
 
+def _safe_url(url: str) -> str:
+    """Percent-encode reserved chars in the URL path so Selenium accepts it.
+
+    Wiki URLs in our data are stored unencoded (e.g. ".../Super_Rare_100%_Pack"),
+    which the browser auto-handles but chromedriver rejects with an empty error.
+    """
+    parts = urlsplit(url)
+    return urlunsplit((
+        parts.scheme,
+        parts.netloc,
+        quote(parts.path, safe="/"),
+        parts.query,
+        parts.fragment,
+    ))
+
+
 def fetch_card_links(url: str) -> list[str]:
     """Fetch card links from a booster set page using a fresh driver per call."""
     driver = create_driver()
     try:
-        driver.get(url)
+        driver.get(_safe_url(url))
         WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.TAG_NAME, "ul"))
         )
@@ -147,7 +164,8 @@ def main():
                 last_err = "no card links found on page"
                 print(f"  ⚠️ attempt {attempt}: {last_err}")
             except Exception as e:
-                last_err = str(e).splitlines()[0][:150]
+                msg = (str(e) or "").splitlines()[0].strip() or "(empty message)"
+                last_err = f"{type(e).__name__}: {msg}"[:200]
                 print(f"  ✗ attempt {attempt}: {last_err}")
             if attempt < MAX_RETRIES_PER_SET:
                 time.sleep(RETRY_BACKOFF_SECS)

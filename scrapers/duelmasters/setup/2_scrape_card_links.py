@@ -3,6 +3,7 @@ import os
 import sys
 import random
 import time
+from urllib.parse import quote, urlsplit, urlunsplit
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -44,11 +45,23 @@ def create_driver():
     )
 
 
+def _safe_url(url: str) -> str:
+    """Percent-encode reserved chars in URL path so chromedriver doesn't reject it."""
+    parts = urlsplit(url)
+    return urlunsplit((
+        parts.scheme,
+        parts.netloc,
+        quote(parts.path, safe="/"),
+        parts.query,
+        parts.fragment,
+    ))
+
+
 def fetch_card_links(url: str) -> list[str]:
     """Fetch card links from a booster set page using a fresh driver per call."""
     driver = create_driver()
     try:
-        driver.get(url)
+        driver.get(_safe_url(url))
         WebDriverWait(driver, 15).until(
             EC.presence_of_element_located((By.TAG_NAME, "ul"))
         )
