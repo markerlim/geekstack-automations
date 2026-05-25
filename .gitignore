@@ -8,4 +8,3 @@ __pycache__
 # Duel Masters: ephemeral/generated outputs
 scrapers/duelmasters/unmapped_cards.json
 scrapers/duelmasters/geekstack.CL_duelmasters_wiki.json
-duelmasterdb/unmapped_cards.json

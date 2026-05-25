@@ -635,11 +635,21 @@ def startscraping(booster_list):
                         "type": card.get('type', '')
                     })
                 
-                # Save to JSON file
-                unmapped_file = "unmapped_cards.json"
+                # Save to JSON file (local) and commit to GitHub so the artifact
+                # survives the workflow runner.
+                unmapped_file = "duelmasterdb/unmapped_cards.json"
+                unmapped_content = json.dumps(unmapped_list, ensure_ascii=False, indent=2)
                 with open(unmapped_file, 'w', encoding='utf-8') as f:
-                    json.dump(unmapped_list, f, ensure_ascii=False, indent=2)
+                    f.write(unmapped_content)
                 print(f"\n💾 Saved unmapped cards to {unmapped_file}")
+
+                _, existing_sha = github_service.load_json_file(unmapped_file)
+                github_service.update_file(
+                    file_path=unmapped_file,
+                    content=unmapped_content,
+                    commit_message=f"Update unmapped cards for {booster}",
+                    file_sha=existing_sha,
+                )
 
             print(f"✅ Wiki mapped: {wiki_updated} cards")
             print(f"⚠️ Needs translation fallback: {len(cards_needing_translation)} cards")
