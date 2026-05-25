@@ -6,6 +6,7 @@ import json
 import os
 import sys
 import base64
+import unicodedata
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -22,6 +23,22 @@ from service.github_service import GitHubService
 # Initialize Service Layer
 github_service = GitHubService()
 mongo_service = MongoService()
+
+
+def normalize_jp_name(s: str) -> str:
+    """Normalize a JP card name for cross-source matching.
+
+    Wiki and takaratomy use inconsistent variants — NFKC handles fullwidth↔
+    halfwidth (covers ＝→=, ～→~, etc.) but not wave dash (U+301C) or quote
+    chars, which we fold manually.
+    """
+    if not s:
+        return ''
+    s = unicodedata.normalize('NFKC', s)
+    s = s.replace('〜', '~')
+    s = (s.replace('“', '"').replace('”', '"')
+           .replace('‘', "'").replace('’', "'"))
+    return s.replace(' ', '').replace('　', '')
 
 def _build_chrome_options():
     chrome_options = Options()
@@ -521,8 +538,7 @@ def startscraping(booster_list):
                 for wiki_card in doc.get('cards', []):
                     name_jp = wiki_card.get('name_jp', '')
                     if name_jp:
-                        # Normalize by removing all spaces for matching
-                        normalized_name = name_jp.replace(' ', '')
+                        normalized_name = normalize_jp_name(name_jp)
                         if normalized_name not in jp_name_lookup:
                             jp_name_lookup[normalized_name] = doc
             print(f"   Built lookup with {len(jp_name_lookup)} JP names from {len(all_wiki_docs)} wiki docs")
@@ -534,8 +550,7 @@ def startscraping(booster_list):
             for card in detailed_card_data:
                 # Strip serial suffix from JP name: "勇気のリュウセイ・ブレイブ(DM25EX4 40/100)" → "勇気のリュウセイ・ブレイブ"
                 jp_name = re.sub(r'\s*\([^)]*\)\s*$', '', card.get('cardName', ''))
-                # Normalize by removing spaces for lookup
-                normalized_jp_name = jp_name.replace(' ', '')
+                normalized_jp_name = normalize_jp_name(jp_name)
                 wiki_card = jp_name_lookup.get(normalized_jp_name)
 
                 if wiki_card and apply_wiki_data(card, wiki_card):
@@ -544,8 +559,7 @@ def startscraping(booster_list):
                     # Also apply wiki data to awaken forms by JP name
                     for aw in card.get('awaken', []):
                         aw_jp_name = aw.get('cardName', '')
-                        # Normalize by removing spaces for lookup
-                        normalized_aw_name = aw_jp_name.replace(' ', '')
+                        normalized_aw_name = normalize_jp_name(aw_jp_name)
                         aw_wiki = jp_name_lookup.get(normalized_aw_name)
                         if aw_wiki:
                             aw['wikiurl'] = aw_wiki.get('url', '')
