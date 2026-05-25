@@ -1,0 +1,4053 @@
+{
+  "source": "https://duelmasters.fandom.com/wiki/List_of_Duel_Masters_OCG_Sets",
+  "total": 505,
+  "sets": [
+    {
+      "set_code": "DM-01",
+      "name": "Base Set",
+      "url": "https://duelmasters.fandom.com/wiki/DM-01_Base_Set_(OCG)",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Beginner's Block"
+    },
+    {
+      "set_code": "DM-02",
+      "name": "Master of Evolution",
+      "url": "https://duelmasters.fandom.com/wiki/Master_of_Evolution",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Beginner's Block"
+    },
+    {
+      "set_code": "DM-03",
+      "name": "Master of Destruction",
+      "url": "https://duelmasters.fandom.com/wiki/Master_of_Destruction",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Beginner's Block"
+    },
+    {
+      "set_code": "DM-04",
+      "name": "Challenge of Black Shadow",
+      "url": "https://duelmasters.fandom.com/wiki/Challenge_of_Black_Shadow",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Beginner's Block"
+    },
+    {
+      "set_code": "DM-05",
+      "name": "Return of the Survivor",
+      "url": "https://duelmasters.fandom.com/wiki/Return_of_the_Survivor",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Beginner's Block"
+    },
+    {
+      "set_code": "DM-06",
+      "name": "Invincible Soul",
+      "url": "https://duelmasters.fandom.com/wiki/Invincible_Soul",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Fighting Spirit Saga"
+    },
+    {
+      "set_code": "DM-07",
+      "name": "Invincible Charge",
+      "url": "https://duelmasters.fandom.com/wiki/Invincible_Charge",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Fighting Spirit Saga"
+    },
+    {
+      "set_code": "DM-08",
+      "name": "Invincible Legend",
+      "url": "https://duelmasters.fandom.com/wiki/Invincible_Legend",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Fighting Spirit Saga"
+    },
+    {
+      "set_code": "DM-09",
+      "name": "Invincible Blood",
+      "url": "https://duelmasters.fandom.com/wiki/Invincible_Blood",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Fighting Spirit Saga"
+    },
+    {
+      "set_code": "DM-10",
+      "name": "Eternal Arms",
+      "url": "https://duelmasters.fandom.com/wiki/Eternal_Arms",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Holy Fist Saga"
+    },
+    {
+      "set_code": "DM-11",
+      "name": "Eternal Wave",
+      "url": "https://duelmasters.fandom.com/wiki/Eternal_Wave",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Holy Fist Saga"
+    },
+    {
+      "set_code": "DM-12",
+      "name": "Eternal Vortex",
+      "url": "https://duelmasters.fandom.com/wiki/Eternal_Vortex",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Holy Fist Saga"
+    },
+    {
+      "set_code": "DM-13",
+      "name": "Eternal Phoenix",
+      "url": "https://duelmasters.fandom.com/wiki/Eternal_Phoenix",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Holy Fist Saga"
+    },
+    {
+      "set_code": "DM-14",
+      "name": "Generate Gear",
+      "url": "https://duelmasters.fandom.com/wiki/Generate_Gear",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Reincarnation Saga"
+    },
+    {
+      "set_code": "DM-15",
+      "name": "Secret of Hidden Gear",
+      "url": "https://duelmasters.fandom.com/wiki/Secret_of_Hidden_Gear",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Reincarnation Saga"
+    },
+    {
+      "set_code": "DM-16",
+      "name": "Origin of Perfect Gear",
+      "url": "https://duelmasters.fandom.com/wiki/Origin_of_Perfect_Gear",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Reincarnation Saga"
+    },
+    {
+      "set_code": "DM-17",
+      "name": "The Over-Technocross",
+      "url": "https://duelmasters.fandom.com/wiki/The_Over-Technocross",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Reincarnation Saga"
+    },
+    {
+      "set_code": "DM-18",
+      "name": "Best Challenger",
+      "url": "https://duelmasters.fandom.com/wiki/Best_Challenger",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Reprint"
+    },
+    {
+      "set_code": "DM-19",
+      "name": "Spectacle Nova",
+      "url": "https://duelmasters.fandom.com/wiki/Spectacle_Nova",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Phoenix Saga"
+    },
+    {
+      "set_code": "DM-20",
+      "name": "The Ultimate Nova",
+      "url": "https://duelmasters.fandom.com/wiki/The_Ultimate_Nova",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Phoenix Saga"
+    },
+    {
+      "set_code": "DM-21",
+      "name": "History of Devil Nova",
+      "url": "https://duelmasters.fandom.com/wiki/History_of_Devil_Nova",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Phoenix Saga"
+    },
+    {
+      "set_code": "DM-22",
+      "name": "The Dragonic Nova",
+      "url": "https://duelmasters.fandom.com/wiki/The_Dragonic_Nova",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Phoenix Saga"
+    },
+    {
+      "set_code": "DM-22+1D",
+      "name": "The Dragonic Nova Plus One Dream",
+      "url": "https://duelmasters.fandom.com/wiki/The_Dragonic_Nova_Plus_One_Dream",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Phoenix Saga",
+      "variant": true
+    },
+    {
+      "set_code": "DM-23",
+      "name": "The End of the Universe",
+      "url": "https://duelmasters.fandom.com/wiki/The_End_of_the_Universe",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Phoenix Saga"
+    },
+    {
+      "set_code": "DM-24",
+      "name": "Violence Heaven",
+      "url": "https://duelmasters.fandom.com/wiki/Violence_Heaven",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "God Apex Saga"
+    },
+    {
+      "set_code": "DM-25",
+      "name": "Violence Creator",
+      "url": "https://duelmasters.fandom.com/wiki/Violence_Creator",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "God Apex Saga"
+    },
+    {
+      "set_code": "DM-26",
+      "name": "Dragonic Wars",
+      "url": "https://duelmasters.fandom.com/wiki/Dragonic_Wars",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "God Apex Saga"
+    },
+    {
+      "set_code": "DM-27",
+      "name": "Perfect Heaven",
+      "url": "https://duelmasters.fandom.com/wiki/Perfect_Heaven",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "God Apex Saga"
+    },
+    {
+      "set_code": "DM-27+1D",
+      "name": "Perfect Heaven Plus One Dream",
+      "url": "https://duelmasters.fandom.com/wiki/Perfect_Heaven_Plus_One_Dream",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "God Apex Saga",
+      "variant": true
+    },
+    {
+      "set_code": "DM-28",
+      "name": "Battle Galaxy",
+      "url": "https://duelmasters.fandom.com/wiki/Battle_Galaxy",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Sengoku Saga"
+    },
+    {
+      "set_code": "DM-29",
+      "name": "Rock-on Heroes",
+      "url": "https://duelmasters.fandom.com/wiki/Rock-on_Heroes",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Sengoku Saga"
+    },
+    {
+      "set_code": "DM-29+1D",
+      "name": "Rock-on Heroes Plus One Dream",
+      "url": "https://duelmasters.fandom.com/wiki/Rock-on_Heroes_Plus_One_Dream",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Sengoku Saga",
+      "variant": true
+    },
+    {
+      "set_code": "DM-30",
+      "name": "Ultra Duel",
+      "url": "https://duelmasters.fandom.com/wiki/Ultra_Duel",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Sengoku Saga"
+    },
+    {
+      "set_code": "DM-31",
+      "name": "Greatest Champion",
+      "url": "https://duelmasters.fandom.com/wiki/Greatest_Champion",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Sengoku Saga"
+    },
+    {
+      "set_code": "DM-32",
+      "name": "Evolution Saga",
+      "url": "https://duelmasters.fandom.com/wiki/Evolution_Saga",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Divine Evolution Saga"
+    },
+    {
+      "set_code": "DM-32+1D",
+      "name": "Evolution Saga Plus One Dream",
+      "url": "https://duelmasters.fandom.com/wiki/Evolution_Saga_Plus_One_Dream",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Divine Evolution Saga",
+      "variant": true
+    },
+    {
+      "set_code": "DM-33",
+      "name": "Rising Dragon",
+      "url": "https://duelmasters.fandom.com/wiki/Rising_Dragon",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Divine Evolution Saga"
+    },
+    {
+      "set_code": "DM-34",
+      "name": "Cross Generation",
+      "url": "https://duelmasters.fandom.com/wiki/Cross_Generation",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Divine Evolution Saga"
+    },
+    {
+      "set_code": "DM-34+1S",
+      "name": "Cross Generation Plus One Super",
+      "url": "https://duelmasters.fandom.com/wiki/Cross_Generation_Plus_One_Super",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Divine Evolution Saga",
+      "variant": true
+    },
+    {
+      "set_code": "DM-35",
+      "name": "Neverending Saga",
+      "url": "https://duelmasters.fandom.com/wiki/Neverending_Saga",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Divine Evolution Saga"
+    },
+    {
+      "set_code": "DM-36",
+      "name": "Psychic Shock",
+      "url": "https://duelmasters.fandom.com/wiki/DM-36_Psychic_Shock",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Psychic Shock"
+    },
+    {
+      "set_code": "DM-36+1D",
+      "name": "Psychic Shock Plus One Dream",
+      "url": "https://duelmasters.fandom.com/wiki/Psychic_Shock_Plus_One_Dream",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Psychic Shock",
+      "variant": true
+    },
+    {
+      "set_code": "DM-37",
+      "name": "Dark Emperor",
+      "url": "https://duelmasters.fandom.com/wiki/Dark_Emperor",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Psychic Shock"
+    },
+    {
+      "set_code": "DM-38",
+      "name": "Angelic Wars",
+      "url": "https://duelmasters.fandom.com/wiki/Angelic_Wars",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Psychic Shock"
+    },
+    {
+      "set_code": "DM-39",
+      "name": "Psychic Splash",
+      "url": "https://duelmasters.fandom.com/wiki/Psychic_Splash",
+      "category": "Booster Packs",
+      "series": "DM Packs",
+      "block": "Psychic Shock"
+    },
+    {
+      "set_code": "DMR-01",
+      "name": "First Contact",
+      "url": "https://duelmasters.fandom.com/wiki/First_Contact",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Episode 1"
+    },
+    {
+      "set_code": "DMR-02",
+      "name": "Dark Side",
+      "url": "https://duelmasters.fandom.com/wiki/Dark_Side",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Episode 1"
+    },
+    {
+      "set_code": "DMR-03",
+      "name": "Gaial Victory",
+      "url": "https://duelmasters.fandom.com/wiki/Gaial_Victory",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Episode 1"
+    },
+    {
+      "set_code": "DMR-04",
+      "name": "Rising Hope",
+      "url": "https://duelmasters.fandom.com/wiki/Rising_Hope",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Episode 1"
+    },
+    {
+      "set_code": "DMR-05",
+      "name": "Golden Age",
+      "url": "https://duelmasters.fandom.com/wiki/Golden_Age",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Episode 2"
+    },
+    {
+      "set_code": "DMR-06",
+      "name": "Victory Rush",
+      "url": "https://duelmasters.fandom.com/wiki/Victory_Rush",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Episode 2"
+    },
+    {
+      "set_code": "DMR-07",
+      "name": "Golden Dragon",
+      "url": "https://duelmasters.fandom.com/wiki/Golden_Dragon",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Episode 2"
+    },
+    {
+      "set_code": "DMR-08",
+      "name": "Great Miracle",
+      "url": "https://duelmasters.fandom.com/wiki/Great_Miracle",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Episode 2"
+    },
+    {
+      "set_code": "DMR-08S",
+      "name": "Seven Heroes Version",
+      "url": "https://duelmasters.fandom.com/wiki/DMR-08S_Great_Miracle:_Seven_Heroes_Version",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Episode 2",
+      "variant": true
+    },
+    {
+      "set_code": "DMR-09",
+      "name": "Rage vs God",
+      "url": "https://duelmasters.fandom.com/wiki/Rage_vs_God",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Episode 3"
+    },
+    {
+      "set_code": "DMR-10",
+      "name": "Dead & Beat",
+      "url": "https://duelmasters.fandom.com/wiki/Dead_&_Beat",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Episode 3"
+    },
+    {
+      "set_code": "DMR-11",
+      "name": "Ultra Victory Master",
+      "url": "https://duelmasters.fandom.com/wiki/Ultra_Victory_Master",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Episode 3"
+    },
+    {
+      "set_code": "DMR-12",
+      "name": "Omega Climax",
+      "url": "https://duelmasters.fandom.com/wiki/Omega_Climax",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Episode 3"
+    },
+    {
+      "set_code": "DMR-13",
+      "name": "Dragsolution Gaiginga",
+      "url": "https://duelmasters.fandom.com/wiki/Dragsolution_Gaiginga",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Dragon Saga"
+    },
+    {
+      "set_code": "DMR-14",
+      "name": "Wild Dragon Gaiglen",
+      "url": "https://duelmasters.fandom.com/wiki/Wild_Dragon_Gaiglen",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Dragon Saga"
+    },
+    {
+      "set_code": "DMR-15",
+      "name": "Double Swords Ohginga",
+      "url": "https://duelmasters.fandom.com/wiki/Double_Swords_Ohginga",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Dragon Saga"
+    },
+    {
+      "set_code": "DMR-16極",
+      "name": "Super Battle Guynext x Goku",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Battle_Guynext_x_Goku",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Dragon Saga"
+    },
+    {
+      "set_code": "DMR-16真",
+      "name": "Super Battle Guynext x Shin",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Battle_Guynext_x_Shin",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Dragon Saga"
+    },
+    {
+      "set_code": "DMR-17",
+      "name": "Burning Dogiragon!!",
+      "url": "https://duelmasters.fandom.com/wiki/Burning_Dogiragon!!",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Revolution"
+    },
+    {
+      "set_code": "DMR-18",
+      "name": "Seize the Moment, Miradante!!",
+      "url": "https://duelmasters.fandom.com/wiki/Seize_the_Moment,_Miradante!!",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Revolution"
+    },
+    {
+      "set_code": "DMR-19",
+      "name": "Forbidden Dokindam X",
+      "url": "https://duelmasters.fandom.com/wiki/Forbidden_Dokindam_X",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Revolution"
+    },
+    {
+      "set_code": "DMR-20",
+      "name": "Gyuujinmaru's True Identity!!",
+      "url": "https://duelmasters.fandom.com/wiki/Gyuujinmaru's_True_Identity!!",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Revolution"
+    },
+    {
+      "set_code": "DMR-21",
+      "name": "Team Hamukatsu and Dogiragon Buster",
+      "url": "https://duelmasters.fandom.com/wiki/Team_Hamukatsu_and_Dogiragon_Buster",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Revolution Final"
+    },
+    {
+      "set_code": "DMR-22",
+      "name": "The World of Zero!! Blackout!!",
+      "url": "https://duelmasters.fandom.com/wiki/The_World_of_Zero!!_Blackout!!",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Revolution Final"
+    },
+    {
+      "set_code": "DMR-23",
+      "name": "Dogiragolden VS Dormageddon X",
+      "url": "https://duelmasters.fandom.com/wiki/Dogiragolden_VS_Dormageddon_X",
+      "category": "Booster Packs",
+      "series": "DMR Packs",
+      "block": "Revolution Final"
+    },
+    {
+      "set_code": "DMRP-01",
+      "name": "Here Come the Jokers!!",
+      "url": "https://duelmasters.fandom.com/wiki/Here_Come_the_Jokers!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Duel Masters"
+    },
+    {
+      "set_code": "DMRP-02",
+      "name": "All So Truly B・A・D Labyrinth!!",
+      "url": "https://duelmasters.fandom.com/wiki/All_So_Truly_B・A・D_Labyrinth!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Duel Masters"
+    },
+    {
+      "set_code": "DMRP-03",
+      "name": "Feeling Joejoe Meraventure!!",
+      "url": "https://duelmasters.fandom.com/wiki/Feeling_Joejoe_Meraventure!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Duel Masters"
+    },
+    {
+      "set_code": "DMRP-04裁",
+      "name": "The Rise of Master Dragon!! ~Judgment for Justice~",
+      "url": "https://duelmasters.fandom.com/wiki/The_Rise_of_Master_Dragon!!_~Judgment_for_Justice~",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Duel Masters"
+    },
+    {
+      "set_code": "DMRP-04魔",
+      "name": "The Rise of Master Dolszak!! ~Demon Phoenix of Moonless Night~",
+      "url": "https://duelmasters.fandom.com/wiki/The_Rise_of_Master_Dolszak!!_~Demon_Phoenix_of_Moonless_Night~",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Duel Masters"
+    },
+    {
+      "set_code": "DMRP-05",
+      "name": "Gokai!! Joragon Go Fight!!",
+      "url": "https://duelmasters.fandom.com/wiki/Gokai!!_Joragon_Go_Fight!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Twinpact Series"
+    },
+    {
+      "set_code": "DMRP-06",
+      "name": "Strike Back Galaxy 卍・Inferno・Annihilation!!",
+      "url": "https://duelmasters.fandom.com/wiki/Strike_Back_Galaxy_卍・Inferno・Annihilation!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Twinpact Series"
+    },
+    {
+      "set_code": "DMRP-07",
+      "name": "Ghira Ghira Ghiramessiah and Finaling QX!!",
+      "url": "https://duelmasters.fandom.com/wiki/Ghira_Ghira_Ghiramessiah_and_Finaling_QX!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Twinpact Series"
+    },
+    {
+      "set_code": "DMRP-08",
+      "name": "The Showdown! Baraghiara!! Invincible OraOra Ringfinity ∞",
+      "url": "https://duelmasters.fandom.com/wiki/The_Showdown!_Baraghiara!!_Invincible_OraOra_Ringfinity_∞",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Twinpact Series"
+    },
+    {
+      "set_code": "DMRP-09",
+      "name": "New Zone Was Born! Super GR and Orega Aura!!",
+      "url": "https://duelmasters.fandom.com/wiki/New_Zone_Was_Born!_Super_GR_and_Orega_Aura!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Gacharange Series"
+    },
+    {
+      "set_code": "DMRP-10",
+      "name": "Blue C.A.P and Black DaiBanZai",
+      "url": "https://duelmasters.fandom.com/wiki/Blue_C.A.P_and_Black_DaiBanZai",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Gacharange Series"
+    },
+    {
+      "set_code": "DMRP-11",
+      "name": "Zero Birth! Maji's Jornado 1059!!",
+      "url": "https://duelmasters.fandom.com/wiki/Zero_Birth!_Maji's_Jornado_1059!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Gacharange Series"
+    },
+    {
+      "set_code": "DMRP-12",
+      "name": "SuperSuperSuper Top! The Awakening Joghiragon vs. Zeeron Bang-Tan!",
+      "url": "https://duelmasters.fandom.com/wiki/SuperSuperSuper_Top!_The_Awakening_Joghiragon_vs._Zeeron_Bang-Tan!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Gacharange Series"
+    },
+    {
+      "set_code": "DMRP-13",
+      "name": "Kirifuda x Onifuda King Wars!!!",
+      "url": "https://duelmasters.fandom.com/wiki/Kirifuda_x_Onifuda_King_Wars!!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Ten Kings"
+    },
+    {
+      "set_code": "DMRP-14",
+      "name": "Explosive Dragon x Explosive Rising Dynabolt!!!",
+      "url": "https://duelmasters.fandom.com/wiki/Explosive_Dragon_x_Explosive_Rising_Dynabolt!!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Ten Kings"
+    },
+    {
+      "set_code": "DMRP-15",
+      "name": "Phantom Dragon x Swift Attack Genmu Emperor!!!",
+      "url": "https://duelmasters.fandom.com/wiki/Phantom_Dragon_x_Swift_Attack_Genmu_Emperor!!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Ten Kings"
+    },
+    {
+      "set_code": "DMRP-16",
+      "name": "The Hundred Kings x Evil King Oni Revolution!!!",
+      "url": "https://duelmasters.fandom.com/wiki/The_Hundred_Kings_x_Evil_King_Oni_Revolution!!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "Ten Kings"
+    },
+    {
+      "set_code": "DMRP-17",
+      "name": "RexStars and Dispector",
+      "url": "https://duelmasters.fandom.com/wiki/RexStars_and_Dispector",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "The Rise of Kings"
+    },
+    {
+      "set_code": "DMRP-18",
+      "name": "Miracle Forbidden",
+      "url": "https://duelmasters.fandom.com/wiki/Miracle_Forbidden",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "The Rise of Kings"
+    },
+    {
+      "set_code": "DMRP-19",
+      "name": "Eternal Premiums",
+      "url": "https://duelmasters.fandom.com/wiki/Eternal_Premiums",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "The Rise of Kings"
+    },
+    {
+      "set_code": "DMRP-20",
+      "name": "The King Of The End",
+      "url": "https://duelmasters.fandom.com/wiki/The_King_Of_The_End",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "The Rise of Kings"
+    },
+    {
+      "set_code": "DMRP-21",
+      "name": "Oni Yaba Counterattack Star Max!!",
+      "url": "https://duelmasters.fandom.com/wiki/Oni_Yaba_Counterattack_Star_Max!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "The Rise of Kings MAX"
+    },
+    {
+      "set_code": "DMRP-22",
+      "name": "Kirifuda! Master CRYMAX!!",
+      "url": "https://duelmasters.fandom.com/wiki/Kirifuda!_Master_CRYMAX!!",
+      "category": "Booster Packs",
+      "series": "DMRP Packs",
+      "block": "The Rise of Kings MAX"
+    },
+    {
+      "set_code": "DM22-RP1",
+      "name": "Legendary Jashin",
+      "url": "https://duelmasters.fandom.com/wiki/Legendary_Jashin",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "God of Abyss"
+    },
+    {
+      "set_code": "DM22-RP2",
+      "name": "Dragon Emperor of Booming Flame",
+      "url": "https://duelmasters.fandom.com/wiki/Dragon_Emperor_of_Booming_Flame",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "God of Abyss"
+    },
+    {
+      "set_code": "DM23-RP1",
+      "name": "Battle Tales of Twin Dragons",
+      "url": "https://duelmasters.fandom.com/wiki/Battle_Tales_of_Twin_Dragons",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "Abyss Revolution"
+    },
+    {
+      "set_code": "DM23-RP2",
+      "name": "Chaos of Wicked Ninjas",
+      "url": "https://duelmasters.fandom.com/wiki/Chaos_of_Wicked_Ninjas",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "Abyss Revolution"
+    },
+    {
+      "set_code": "DM23-RP3",
+      "name": "Magical Revolution",
+      "url": "https://duelmasters.fandom.com/wiki/Magical_Revolution",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "Abyss Revolution"
+    },
+    {
+      "set_code": "DM23-RP4",
+      "name": "Dragon Emperor God Bakuterasu",
+      "url": "https://duelmasters.fandom.com/wiki/Dragon_Emperor_God_Bakuterasu",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "Abyss Revolution"
+    },
+    {
+      "set_code": "DM24-RP1",
+      "name": "Demon of Hypermoon",
+      "url": "https://duelmasters.fandom.com/wiki/Demon_of_Hypermoon",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "Royal Road"
+    },
+    {
+      "set_code": "DM24-RP2",
+      "name": "Kaiser of Hyperdragon",
+      "url": "https://duelmasters.fandom.com/wiki/Kaiser_of_Hyperdragon",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "Royal Road"
+    },
+    {
+      "set_code": "DM24-RP3",
+      "name": "Gold of Hyperangel",
+      "url": "https://duelmasters.fandom.com/wiki/Gold_of_Hyperangel",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "Royal Road"
+    },
+    {
+      "set_code": "DM24-RP4",
+      "name": "World of Ballom",
+      "url": "https://duelmasters.fandom.com/wiki/World_of_Ballom",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "Royal Road"
+    },
+    {
+      "set_code": "DM25-RP1",
+      "name": "Jashin Versus Jashin: ~Soul of the Abyss~",
+      "url": "https://duelmasters.fandom.com/wiki/Jashin_Versus_Jashin:_~Soul_of_the_Abyss~",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "Royal Road Double"
+    },
+    {
+      "set_code": "DM25-RP2",
+      "name": "Jashin Versus Jashin: ~Jashin in the Shell~",
+      "url": "https://duelmasters.fandom.com/wiki/Jashin_Versus_Jashin:_~Jashin_in_the_Shell~",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "Royal Road Double"
+    },
+    {
+      "set_code": "DM25-RP3",
+      "name": "Jashin Versus Jioh ~Beyond the Time~",
+      "url": "https://duelmasters.fandom.com/wiki/Jashin_Versus_Jioh_~Beyond_the_Time~",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "Royal Road Double"
+    },
+    {
+      "set_code": "DM25-RP4",
+      "name": "The Finale of the Deepest World ~LOVE & ABYSS~",
+      "url": "https://duelmasters.fandom.com/wiki/The_Finale_of_the_Deepest_World_~LOVE_&_ABYSS~",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "Royal Road Double"
+    },
+    {
+      "set_code": "DM26-RP1",
+      "name": "Garde of Bolmeteus",
+      "url": "https://duelmasters.fandom.com/wiki/Garde_of_Bolmeteus",
+      "category": "Booster Packs",
+      "series": "DM##-RP Packs",
+      "block": "Exdream Series"
+    },
+    {
+      "set_code": "DMS-01",
+      "name": "Duel Masters Starter Deck",
+      "url": "https://duelmasters.fandom.com/wiki/DMS-01_Duel_Masters_Starter_Deck",
+      "category": "Other Sets",
+      "series": "DMS Starter Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMS-02",
+      "name": "Invincible Soul Starter Deck",
+      "url": "https://duelmasters.fandom.com/wiki/Invincible_Soul_Starter_Deck",
+      "category": "Other Sets",
+      "series": "DMS Starter Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMS-03",
+      "name": "Eternal Arms Starter Deck",
+      "url": "https://duelmasters.fandom.com/wiki/Eternal_Arms_Starter_Deck",
+      "category": "Other Sets",
+      "series": "DMS Starter Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMS-04",
+      "name": "Generation Gear Starter Deck",
+      "url": "https://duelmasters.fandom.com/wiki/Generation_Gear_Starter_Deck",
+      "category": "Other Sets",
+      "series": "DMS Starter Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMS-05",
+      "name": "Best Challenger Starter Deck",
+      "url": "https://duelmasters.fandom.com/wiki/Best_Challenger_Starter_Deck",
+      "category": "Other Sets",
+      "series": "DMS Starter Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-01",
+      "name": "Shobu's Blaze Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Shobu's_Blaze_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-02",
+      "name": "Kokujo's Darkness Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/DMC-02_Kokujo's_Darkness_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-03",
+      "name": "Shobu's Blaze Power-Up Pack 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Shobu's_Blaze_Power-Up_Pack",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-04",
+      "name": "Kokujo's Darkness Power-Up Pack 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Kokujo's_Darkness_Power-Up_Pack",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-05",
+      "name": "Lightning Thunder Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Lightning_Thunder_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-06",
+      "name": "Dragon Strikes Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Dragon_Strikes_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-07",
+      "name": "Eternal Insects Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Eternal_Insects_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-08",
+      "name": "Endless Black Hole Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Endless_Black_Hole_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-09",
+      "name": "Shobu's Dragon Legend Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Shobu's_Dragon_Legend_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-10",
+      "name": "Hakuoh's Holy Spirit Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Hakuoh's_Holy_Spirit_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-11",
+      "name": "Shobu's Dragon Legend Power-Up Pack 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Shobu's_Dragon_Legend_Power-Up_Pack",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-12",
+      "name": "Hakuoh's Holy Spirit Power-Up Pack 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Hakuoh's_Holy_Spirit_Power-Up_Pack",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-13",
+      "name": "CoroCoro New Generation Pack 20px",
+      "url": "https://duelmasters.fandom.com/wiki/CoroCoro_New_Generation_Pack",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-14",
+      "name": "Crimson Armorloids Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Crimson_Armorloids_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-15",
+      "name": "Eternal Dragons Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Eternal_Dragons_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-16",
+      "name": "Guardian Blue Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Guardian_Blue_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-17",
+      "name": "Dark Warriors Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Dark_Warriors_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-18",
+      "name": "Shobu's Holy Dragon Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Shobu's_Holy_Dragon_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-19",
+      "name": "Zakira's Dragon Commander Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Zakira's_Dragon_Commander_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-20",
+      "name": "Shobu's Holy Dragon Power-Up Pack 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Shobu's_Holy_Dragon_Power-Up_Pack",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-21",
+      "name": "Zakira's Dragon Commander Power-Up Pack 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Zakira's_Dragon_Commander_Power-Up_Pack",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-22",
+      "name": "Hell Boost Half Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Hell_Boost_Half_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-23",
+      "name": "Speed Burn Half Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Speed_Burn_Half_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-24",
+      "name": "Illusion Blue Half Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Illusion_Blue_Half_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-25",
+      "name": "Shobu's Fullmetal Fire Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Shobu's_Fullmetal_Fire_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-26",
+      "name": "Hakuoh's Angel Kingdom Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Hakuoh's_Angel_Kingdom_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-27",
+      "name": "CoroCoro Dream Pack 20px",
+      "url": "https://duelmasters.fandom.com/wiki/CoroCoro_Dream_Pack",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-28",
+      "name": "Grand Devil Finisher 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Grand_Devil_Finisher",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-29",
+      "name": "Arc Seraphim Reverser 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Arc_Seraphim_Reverser",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-30",
+      "name": "Tyranno Drake Crusher 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Tyranno_Drake_Crusher",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-31",
+      "name": "Great Mecha-O Eraser 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Great_Mecha-O_Eraser",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-32",
+      "name": "Mars Flash 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Mars_Flash",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-33",
+      "name": "Edge of Dragon 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Edge_of_Dragon",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-34",
+      "name": "CoroCoro Dream Pack 2: Eternal Legacy 20px",
+      "url": "https://duelmasters.fandom.com/wiki/CoroCoro_Dream_Pack_2:_Eternal_Legacy",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-35",
+      "name": "Beginner Beat Slash Deck 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Beginner_Beat_Slash_Deck",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-36",
+      "name": "Heaven of Dragon 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Heaven_of_Dragon",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-37",
+      "name": "Violence Angel 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Violence_Angel",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-38",
+      "name": "Castle of Demon file:Dmc38-39symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/Castle_of_Demon",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-39",
+      "name": "Victory Soul file:Dmc38-39symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/Victory_Soul",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-40",
+      "name": "Heavy Death Metal",
+      "url": "https://duelmasters.fandom.com/wiki/Heavy_Death_Metal",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-41",
+      "name": "Wild Kingdom file:Dmc41symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/Wild_Kingdom",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-42",
+      "name": "CoroCoro Dream Pack 3: Eternal Gear file:Dmc42symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/CoroCoro_Dream_Pack_3:_Eternal_Gear",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-43",
+      "name": "Never Ending Hero 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Never_Ending_Hero",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-44",
+      "name": "Endless All Delete 20px",
+      "url": "https://duelmasters.fandom.com/wiki/Endless_All_Delete",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-45",
+      "name": "Battle of Yamato Soul file:Dmc45-46symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/Battle_of_Yamato_Soul",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-46",
+      "name": "Arcadias Knights file:Dmc45-46symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/Arcadias_Knights",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-47",
+      "name": "Heroes Cross Pack - Shobu file:Dmc47-48symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/Heroes_Cross_Pack_-_Shobu",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-48",
+      "name": "Heroes Cross Pack - Zakira file:Dmc47-48symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/Heroes_Cross_Pack_-_Zakira",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-49",
+      "name": "Force of Dragon file:Dmc49-50-51-52symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/Force_of_Dragon",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-50",
+      "name": "Perfect Angel file:Dmc49-50-51-52symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/Perfect_Angel",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-51",
+      "name": "Entry Pack Zero: Force of Dragon file:Dmc49-50-51-52symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/Entry_Pack_Zero:_Force_of_Dragon",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-52",
+      "name": "Entry Pack Zero: Perfect Angel file:Dmc49-50-51-52symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/Entry_Pack_Zero:_Perfect_Angel",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-53",
+      "name": "Legend Chronicle Shobu",
+      "url": "https://duelmasters.fandom.com/wiki/Legend_Chronicle_Shobu",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-54",
+      "name": "Legend Chronicle Rival",
+      "url": "https://duelmasters.fandom.com/wiki/Legend_Chronicle_Rival",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-55",
+      "name": "CoroCoro Legend 7 file:Dmc55symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/CoroCoro_Legend_7",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-56",
+      "name": "The Samurai Legend file:Dmc56-57symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/The_Samurai_Legend",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-57",
+      "name": "The God Kingdom file:Dmc56-57symbol.gif",
+      "url": "https://duelmasters.fandom.com/wiki/The_God_Kingdom",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-58",
+      "name": "Mad Rock Chester",
+      "url": "https://duelmasters.fandom.com/wiki/Mad_Rock_Chester",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-59",
+      "name": "Samurai Ambitious",
+      "url": "https://duelmasters.fandom.com/wiki/Samurai_Ambitious",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-60",
+      "name": "Eternal Death",
+      "url": "https://duelmasters.fandom.com/wiki/Eternal_Death",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-61",
+      "name": "CoroCoro Dream Pack 4: Eternal Heaven",
+      "url": "https://duelmasters.fandom.com/wiki/CoroCoro_Dream_Pack_4:_Eternal_Heaven",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-62",
+      "name": "Ultra NEX",
+      "url": "https://duelmasters.fandom.com/wiki/Ultra_NEX",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-63",
+      "name": "Lunatic God",
+      "url": "https://duelmasters.fandom.com/wiki/Lunatic_God",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-64",
+      "name": "CoroCoro Legend 7: Dynamite Movie",
+      "url": "https://duelmasters.fandom.com/wiki/CoroCoro_Legend_7:_Dynamite_Movie",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-65",
+      "name": "The Movie Deck: Ultra Fire Spirits",
+      "url": "https://duelmasters.fandom.com/wiki/The_Movie_Deck:_Ultra_Fire_Spirits",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-66",
+      "name": "Duel Masters: Super Best",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Masters:_Super_Best",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-67",
+      "name": "Dramatic Wars: Fire and Dragon",
+      "url": "https://duelmasters.fandom.com/wiki/Dramatic_Wars:_Fire_and_Dragon",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMC-68",
+      "name": "Dramatic Wars: Angel and Demon",
+      "url": "https://duelmasters.fandom.com/wiki/Dramatic_Wars:_Angel_and_Demon",
+      "category": "Other Sets",
+      "series": "DMC Packs and Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-01",
+      "name": "Start Dash Deck: Fire & Nature",
+      "url": "https://duelmasters.fandom.com/wiki/Start_Dash_Deck:_Fire_&_Nature",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-02",
+      "name": "Start Dash Deck: Water & Darkness",
+      "url": "https://duelmasters.fandom.com/wiki/Start_Dash_Deck:_Water_&_Darkness",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-03",
+      "name": "Strong Metal Deck: Explosive Dash",
+      "url": "https://duelmasters.fandom.com/wiki/Strong_Metal_Deck:_Explosive_Dash",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-04",
+      "name": "Strong Metal Deck: Strongest National Sport",
+      "url": "https://duelmasters.fandom.com/wiki/Strong_Metal_Deck:_Strongest_National_Sport",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-05",
+      "name": "Rising Dash Deck: Infinite Attack!",
+      "url": "https://duelmasters.fandom.com/wiki/Rising_Dash_Deck:_Infinite_Attack!",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-06",
+      "name": "Rising Dash Deck: Counterattack Block!",
+      "url": "https://duelmasters.fandom.com/wiki/Rising_Dash_Deck:_Counterattack_Block!",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-07",
+      "name": "Transform Deck Set DX Oni Dragon",
+      "url": "https://duelmasters.fandom.com/wiki/Transform_Deck_Set_DX_Oni_Dragon",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-08",
+      "name": "Transform Deck Set DX Oni Angel",
+      "url": "https://duelmasters.fandom.com/wiki/Transform_Deck_Set_DX_Oni_Angel",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-09",
+      "name": "1st Deck Outrage Dash",
+      "url": "https://duelmasters.fandom.com/wiki/1st_Deck_Outrage_Dash",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-10",
+      "name": "1st Deck Oracle Dash",
+      "url": "https://duelmasters.fandom.com/wiki/1st_Deck_Oracle_Dash",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-11",
+      "name": "Forbidden Transform Deck: The Book of Outrage",
+      "url": "https://duelmasters.fandom.com/wiki/Forbidden_Transform_Deck:_The_Book_of_Outrage",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-12",
+      "name": "Forbidden Transform Deck: The Book of Oracle",
+      "url": "https://duelmasters.fandom.com/wiki/Forbidden_Transform_Deck:_The_Book_of_Oracle",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-13",
+      "name": "Super Deck MAX: Katsuking and Legendary Secret Treasure",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Deck_MAX:_Katsuking_and_Legendary_Secret_Treasure",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-14",
+      "name": "Super Deck OMG: Revenging Izumo and Holy Evil God's Secret Treasure",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Deck_OMG:_Revenging_Izumo_and_Holy_Evil_God's_Secret_Treasure",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-15",
+      "name": "Beginning Dragon Deck: Battle Passion Dragon",
+      "url": "https://duelmasters.fandom.com/wiki/Beginning_Dragon_Deck:_Battle_Passion_Dragon",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-16",
+      "name": "Beginning Dragon Deck: Heavenly Justice Dragon",
+      "url": "https://duelmasters.fandom.com/wiki/Beginning_Dragon_Deck:_Heavenly_Justice_Dragon",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-17",
+      "name": "Beginning Dragon Deck: Crystal Memory Dragon",
+      "url": "https://duelmasters.fandom.com/wiki/Beginning_Dragon_Deck:_Crystal_Memory_Dragon",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-18",
+      "name": "Super Victory Deck: Blaze Up Dragon Sword Gaial",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Victory_Deck:_Blaze_Up_Dragon_Sword_Gaial",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-19",
+      "name": "Super Victory Deck: Annihilation Dragon Sword Diabolos",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Victory_Deck:_Annihilation_Dragon_Sword_Diabolos",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-20",
+      "name": "Super Victory Deck: Victorious Rising Dragon Sword Gaiohburn",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Victory_Deck:_Victorious_Rising_Dragon_Sword_Gaiohburn",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-21",
+      "name": "Due-ma Start Deck: Invincible Fire Civilization",
+      "url": "https://duelmasters.fandom.com/wiki/Due-ma_Start_Deck:_Invincible_Fire_Civilization",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-22",
+      "name": "Due-ma Start Deck: Destroyer Darkness Civilization",
+      "url": "https://duelmasters.fandom.com/wiki/Due-ma_Start_Deck:_Destroyer_Darkness_Civilization",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-23",
+      "name": "Due-ma Start Deck: Miracle Bringer Light Civilization",
+      "url": "https://duelmasters.fandom.com/wiki/Due-ma_Start_Deck:_Miracle_Bringer_Light_Civilization",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-24",
+      "name": "Masters Chronicle Deck: Bolmeteus Returns",
+      "url": "https://duelmasters.fandom.com/wiki/Masters_Chronicle_Deck:_Bolmeteus_Returns",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-25",
+      "name": "Masters Chronicle Deck: Resurrection from Romanov Purgatory",
+      "url": "https://duelmasters.fandom.com/wiki/Masters_Chronicle_Deck:_Resurrection_from_Romanov_Purgatory",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-26",
+      "name": "Masters Chronicle Deck: Survivor Evolution - Alpha to Omega",
+      "url": "https://duelmasters.fandom.com/wiki/Masters_Chronicle_Deck:_Survivor_Evolution_-_Alpha_to_Omega",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-27",
+      "name": "Custom Transformation Deck Revolution vs. Invasion: Explosive Passion Fire Civilization",
+      "url": "https://duelmasters.fandom.com/wiki/Custom_Transformation_Deck_Revolution_vs._Invasion:_Explosive_Passion_Fire_Civilization",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-28",
+      "name": "Custom Transformation Deck Revolution vs. Invasion: Dragonic Polaris Light Civilization",
+      "url": "https://duelmasters.fandom.com/wiki/Custom_Transformation_Deck_Revolution_vs._Invasion:_Dragonic_Polaris_Light_Civilization",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-29",
+      "name": "Revolution Start Deck: Katta's Whirlwindy Attack",
+      "url": "https://duelmasters.fandom.com/wiki/Revolution_Start_Deck:_Katta's_Whirlwindy_Attack",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-30",
+      "name": "Revolution Start Deck: Lucifer's Time Stop",
+      "url": "https://duelmasters.fandom.com/wiki/Revolution_Start_Deck:_Lucifer's_Time_Stop",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-31",
+      "name": "Field Start Deck: Basara's Forbidden",
+      "url": "https://duelmasters.fandom.com/wiki/Field_Start_Deck:_Basara's_Forbidden",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-32",
+      "name": "Masters Chronicle Deck 2016: The Genesis by the Lord of Spirits",
+      "url": "https://duelmasters.fandom.com/wiki/Masters_Chronicle_Deck_2016:_The_Genesis_by_the_Lord_of_Spirits",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-33",
+      "name": "Masters Chronicle Deck 2016: The World's End by the God of Devils",
+      "url": "https://duelmasters.fandom.com/wiki/Masters_Chronicle_Deck_2016:_The_World's_End_by_the_God_of_Devils",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-34",
+      "name": "Deluxe DueGacha Deck: Hero of the Silver Blade Dogiragon",
+      "url": "https://duelmasters.fandom.com/wiki/Deluxe_DueGacha_Deck:_Hero_of_the_Silver_Blade_Dogiragon",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMD-35",
+      "name": "Deluxe DueGacha Deck: Forbidden Star Dokindam",
+      "url": "https://duelmasters.fandom.com/wiki/Deluxe_DueGacha_Deck:_Forbidden_Star_Dokindam",
+      "category": "Other Sets",
+      "series": "DMD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMX-01",
+      "name": "King of Duel Road: Strong 7",
+      "url": "https://duelmasters.fandom.com/wiki/King_of_Duel_Road:_Strong_7",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-02",
+      "name": "Deck Builder DX: Hunter Edition",
+      "url": "https://duelmasters.fandom.com/wiki/Deck_Builder_DX:_Hunter_Edition",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-03",
+      "name": "Deck Builder DX: Alien Edition",
+      "url": "https://duelmasters.fandom.com/wiki/Deck_Builder_DX:_Alien_Edition",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-04",
+      "name": "Full Foil Pack: Revival Hero - The Hunter",
+      "url": "https://duelmasters.fandom.com/wiki/Full_Foil_Pack:_Revival_Hero_-_The_Hunter",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-05",
+      "name": "Full Foil Pack: Revival Hero - The Alien",
+      "url": "https://duelmasters.fandom.com/wiki/Full_Foil_Pack:_Revival_Hero_-_The_Alien",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-06",
+      "name": "Duel Madness! Heroes Victory Pack: Mission Die Hardest",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Madness!_Heroes_Victory_Pack:_Mission_Die_Hardest",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-07",
+      "name": "Duel Madness! Heroes Victory Pack: Mission Roar Wilder",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Madness!_Heroes_Victory_Pack:_Mission_Roar_Wilder",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-08",
+      "name": "Burn up to the Max! Gachinko BEST",
+      "url": "https://duelmasters.fandom.com/wiki/Burn_up_to_the_Max!_Gachinko_BEST",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-09",
+      "name": "Deck Builder Oni DX Go For It! Katta Edition",
+      "url": "https://duelmasters.fandom.com/wiki/Deck_Builder_Oni_DX_Go_For_It!_Katta_Edition",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-10",
+      "name": "Deck Builder Oni DX Bright Star! Leo Edition",
+      "url": "https://duelmasters.fandom.com/wiki/Deck_Builder_Oni_DX_Bright_Star!_Leo_Edition",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-11",
+      "name": "Rock On Battle All Stars 12",
+      "url": "https://duelmasters.fandom.com/wiki/Rock_On_Battle_All_Stars_12",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-12",
+      "name": "Black Box Pack",
+      "url": "https://duelmasters.fandom.com/wiki/DMX-12_Black_Box_Pack",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-13",
+      "name": "White Zenith Pack",
+      "url": "https://duelmasters.fandom.com/wiki/White_Zenith_Pack",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-14",
+      "name": "The Greatest Strategies Perfect 12",
+      "url": "https://duelmasters.fandom.com/wiki/The_Greatest_Strategies_Perfect_12",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-15",
+      "name": "Full Foil VS Pack: Unmerciful Royale",
+      "url": "https://duelmasters.fandom.com/wiki/Full_Foil_VS_Pack:_Unmerciful_Royale",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-16",
+      "name": "The Great Royal Strategies: Fantasista 12",
+      "url": "https://duelmasters.fandom.com/wiki/The_Great_Royal_Strategies:_Fantasista_12",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-17",
+      "name": "Dragon Souls Festival",
+      "url": "https://duelmasters.fandom.com/wiki/Dragon_Souls_Festival",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-18",
+      "name": "Triple Shifter! Dragsolution Allstars",
+      "url": "https://duelmasters.fandom.com/wiki/Triple_Shifter!_Dragsolution_Allstars",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-19",
+      "name": "Super Rare 100% Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Rare_100%_Pack",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-20",
+      "name": "Deck Ultimate Perfection!! Due-Max 160 ~Revolution & Invasion~",
+      "url": "https://duelmasters.fandom.com/wiki/Deck_Ultimate_Perfection!!_Due-Max_160_~Revolution_&_Invasion~",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-21",
+      "name": "Masters Chronicle Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Masters_Chronicle_Pack",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-22",
+      "name": "Super Black Box Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Black_Box_Pack",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-23",
+      "name": "Mystery Teach!! Deck Level MAX Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Mystery_Teach!!_Deck_Level_MAX_Pack",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-24",
+      "name": "Shine! Duedemy Prize Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Shine!_Duedemy_Prize_Pack",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-25",
+      "name": "Final Memorial Pack ~E1, E2, E3 edition~",
+      "url": "https://duelmasters.fandom.com/wiki/Final_Memorial_Pack_~E1,_E2,_E3_edition~",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMX-26",
+      "name": "Final Memorial Pack ~DS, Rev, RevF edition~",
+      "url": "https://duelmasters.fandom.com/wiki/Final_Memorial_Pack_~DS,_Rev,_RevF_edition~",
+      "category": "Other Sets",
+      "series": "DMX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-01",
+      "name": "New Hero Deck: Joe's Jokers",
+      "url": "https://duelmasters.fandom.com/wiki/New_Hero_Deck:_Joe's_Jokers",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-02",
+      "name": "New Hero Deck: Kira's Labyrinth",
+      "url": "https://duelmasters.fandom.com/wiki/New_Hero_Deck:_Kira's_Labyrinth",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-03",
+      "name": "New Hero Deck: Boltz's Bad Action Dynamite",
+      "url": "https://duelmasters.fandom.com/wiki/New_Hero_Deck:_Boltz's_Bad_Action_Dynamite",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-04",
+      "name": "Jokers Bullets Explosion Start Deck",
+      "url": "https://duelmasters.fandom.com/wiki/Jokers_Bullets_Explosion_Start_Deck",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-05",
+      "name": "Ou Kabuto Mach Explosion Start Deck",
+      "url": "https://duelmasters.fandom.com/wiki/Ou_Kabuto_Mach_Explosion_Start_Deck",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-06",
+      "name": "Dolszak Moonless Explosion Start Deck",
+      "url": "https://duelmasters.fandom.com/wiki/Dolszak_Moonless_Explosion_Start_Deck",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-07",
+      "name": "Messiah Calibur Z-Explosion Start Deck",
+      "url": "https://duelmasters.fandom.com/wiki/Messiah_Calibur_Z-Explosion_Start_Deck",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-08",
+      "name": "Super GR Start Deck: Joe's GachaMecha Wonderfoo",
+      "url": "https://duelmasters.fandom.com/wiki/Super_GR_Start_Deck:_Joe's_GachaMecha_Wonderfoo",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-09",
+      "name": "Super GR Start Deck: Cap's Orega-Ora Delete",
+      "url": "https://duelmasters.fandom.com/wiki/Super_GR_Start_Deck:_Cap's_Orega-Ora_Delete",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-10",
+      "name": "Super GR Start Deck: Kira's Ghiramillion Galaxy",
+      "url": "https://duelmasters.fandom.com/wiki/Super_GR_Start_Deck:_Kira's_Ghiramillion_Galaxy",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-11",
+      "name": "Super GR Start Deck: Cap's WAVE Gacha Paradise",
+      "url": "https://duelmasters.fandom.com/wiki/Super_GR_Start_Deck:_Cap's_WAVE_Gacha_Paradise",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-12",
+      "name": "Super GR Start Deck: Zero's Orega Moonless Sin",
+      "url": "https://duelmasters.fandom.com/wiki/Super_GR_Start_Deck:_Zero's_Orega_Moonless_Sin",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-13",
+      "name": "Super GR Mega Start Deck: Joe's Super Jokers Tornado",
+      "url": "https://duelmasters.fandom.com/wiki/Super_GR_Mega_Start_Deck:_Joe's_Super_Jokers_Tornado",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-14",
+      "name": "King Master Start Deck: Joe's Kirifudash",
+      "url": "https://duelmasters.fandom.com/wiki/King_Master_Start_Deck:_Joe's_Kirifudash",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-15",
+      "name": "King Master Start Deck: Onifuda's Onitime",
+      "url": "https://duelmasters.fandom.com/wiki/King_Master_Start_Deck:_Onifuda's_Onitime",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-16",
+      "name": "King Master Start Deck: Zero Jr.'s Mugen Climb",
+      "url": "https://duelmasters.fandom.com/wiki/King_Master_Start_Deck:_Zero_Jr.'s_Mugen_Climb",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-17",
+      "name": "King Master Start Deck: Joe's Star Evolution",
+      "url": "https://duelmasters.fandom.com/wiki/King_Master_Start_Deck:_Joe's_Star_Evolution",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-18",
+      "name": "King Master Start Deck: Jendle's Dispector",
+      "url": "https://duelmasters.fandom.com/wiki/King_Master_Start_Deck:_Jendle's_Dispector",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-19",
+      "name": "King Master Start Deck: Hyde's Dispector N-EXT",
+      "url": "https://duelmasters.fandom.com/wiki/King_Master_Start_Deck:_Hyde's_Dispector_N-EXT",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-20",
+      "name": "King Master Start Deck: Joe's Star Max Evolution",
+      "url": "https://duelmasters.fandom.com/wiki/King_Master_Start_Deck:_Joe's_Star_Max_Evolution",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSD-21",
+      "name": "King Master Start Deck: Abaku's Oni RexStars",
+      "url": "https://duelmasters.fandom.com/wiki/King_Master_Start_Deck:_Abaku's_Oni_RexStars",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM22-SD1",
+      "name": "Start WIN Deck: Jashin From Abyss",
+      "url": "https://duelmasters.fandom.com/wiki/Start_WIN_Deck:_Jashin_From_Abyss",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM23-SD1",
+      "name": "Start WIN Deck: Dragon Army of Bolshack",
+      "url": "https://duelmasters.fandom.com/wiki/Start_WIN_Deck:_Dragon_Army_of_Bolshack",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM23-SD2",
+      "name": "Start WIN Deck: Sacred Chaos Kunoichi Change",
+      "url": "https://duelmasters.fandom.com/wiki/Start_WIN_Deck:_Sacred_Chaos_Kunoichi_Change",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM23-SD3",
+      "name": "Start WIN Deck: Amazing Magic",
+      "url": "https://duelmasters.fandom.com/wiki/Start_WIN_Deck:_Amazing_Magic",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM24-SD1",
+      "name": "Super Strong Deck: Royal Road of Attack",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Strong_Deck:_Royal_Road_of_Attack",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM24-SD2",
+      "name": "Super Strong Deck: Royal Road of Defense",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Strong_Deck:_Royal_Road_of_Defense",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM25-SD1",
+      "name": "Super Strong Deck: Royal Road of Skill",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Strong_Deck:_Royal_Road_of_Skill",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM25-SD2",
+      "name": "Super Strong Deck: Royal Road of Power",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Strong_Deck:_Royal_Road_of_Power",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM26-SD1",
+      "name": "Doki Doki Tsuyoi Decks: 25 of Royal Roads",
+      "url": "https://duelmasters.fandom.com/wiki/Doki_Doki_Tsuyoi_Decks:_25_of_Royal_Roads",
+      "category": "Other Sets",
+      "series": "DMSD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-01",
+      "name": "Duel Masters: Golden Best",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Masters:_Golden_Best",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-02",
+      "name": "Duema Quest Pack ~The Top 12 Legendary Strategies~",
+      "url": "https://duelmasters.fandom.com/wiki/Duema_Quest_Pack_~The_Top_12_Legendary_Strategies~",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-03",
+      "name": "Peri!!! Specialness Overloaded Mystery Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Peri!!!_Specialness_Overloaded_Mystery_Pack",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-04",
+      "name": "Dreams Come True!! Twinpact Uber No.1 Pack!!",
+      "url": "https://duelmasters.fandom.com/wiki/Dreams_Come_True!!_Twinpact_Uber_No.1_Pack!!",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-05",
+      "name": "100% New Zone! Super GR Pack 100",
+      "url": "https://duelmasters.fandom.com/wiki/100%_New_Zone!_Super_GR_Pack_100",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-06",
+      "name": "The Super King!! DueKing Pack",
+      "url": "https://duelmasters.fandom.com/wiki/The_Super_King!!_DueKing_Pack",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-07",
+      "name": "Hissatsu!! Maximum the Master Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Hissatsu!!_Maximum_the_Master_Pack",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-08",
+      "name": "Mysterious Black Box Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Mysterious_Black_Box_Pack",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-09",
+      "name": "W-Team Docking Pack: Team Kirifuda & Team Wave",
+      "url": "https://duelmasters.fandom.com/wiki/W-Team_Docking_Pack:_Team_Kirifuda_&_Team_Wave",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-10",
+      "name": "W-Kingdom Docking Pack: Onifuda Kingdom & Fushigi Kingdom",
+      "url": "https://duelmasters.fandom.com/wiki/W-Kingdom_Docking_Pack:_Onifuda_Kingdom_&_Fushigi_Kingdom",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-11",
+      "name": "W-Team Docking Pack: Team Ginga & Team Bomber",
+      "url": "https://duelmasters.fandom.com/wiki/W-Team_Docking_Pack:_Team_Ginga_&_Team_Bomber",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-12",
+      "name": "Super Powerful Strategies!! Draring Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Powerful_Strategies!!_Draring_Pack",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-13",
+      "name": "The Great 4 Rising → Powerful Link Pack",
+      "url": "https://duelmasters.fandom.com/wiki/The_Great_4_Rising_→_Powerful_Link_Pack",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-14",
+      "name": "Magnificent War x Ten Kings Super Final Wars!!!",
+      "url": "https://duelmasters.fandom.com/wiki/DMEX-14_Magnificent_War_x_Ten_Kings_Super_Final_Wars!!!",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-15",
+      "name": "20th Anniversary Huge Thanks Memorial Pack: The Chapter of The Souls The BEST of Great Scenes",
+      "url": "https://duelmasters.fandom.com/wiki/20th_Anniversary_Huge_Thanks_Memorial_Pack:_The_Chapter_of_The_Souls_The_BEST_of_Great_Scenes",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-16",
+      "name": "20th Anniversary Huge Thanks Memorial Pack: The Chapter of The Skills The Heroes' Way Perfect 20",
+      "url": "https://duelmasters.fandom.com/wiki/20th_Anniversary_Huge_Thanks_Memorial_Pack:_The_Chapter_of_The_Skills_The_Heroes'_Way_Perfect_20",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-17",
+      "name": "20th Anniversary Huge Thanks Memorial Pack: The Chapter of The Ultimacy Dueking MAX",
+      "url": "https://duelmasters.fandom.com/wiki/20th_Anniversary_Huge_Thanks_Memorial_Pack:_The_Chapter_of_The_Ultimacy_Dueking_MAX",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-18",
+      "name": "20th Anniversary Huge Thanks Memorial Pack: The Chapter of The Shadow Parallel Masters",
+      "url": "https://duelmasters.fandom.com/wiki/20th_Anniversary_Huge_Thanks_Memorial_Pack:_The_Chapter_of_The_Shadow_Parallel_Masters",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMEX-19",
+      "name": "Master Final Memorial Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Master_Final_Memorial_Pack",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM22-EX1",
+      "name": "Golden Strategy!! Dueking MAX 2022",
+      "url": "https://duelmasters.fandom.com/wiki/Golden_Strategy!!_Dueking_MAX_2022",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM22-EX2",
+      "name": "Heroes Darkside Pack: The Kirifudas of Darkness",
+      "url": "https://duelmasters.fandom.com/wiki/Heroes_Darkside_Pack:_The_Kirifudas_of_Darkness",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM23-EX1",
+      "name": "Big Thanksgiving Victory BEST",
+      "url": "https://duelmasters.fandom.com/wiki/Big_Thanksgiving_Victory_BEST",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM23-EX2",
+      "name": "Battle of Top!! Dueking MAX 2023",
+      "url": "https://duelmasters.fandom.com/wiki/Battle_of_Top!!_Dueking_MAX_2023",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM23-EX3",
+      "name": "Deathbell Crystal",
+      "url": "https://duelmasters.fandom.com/wiki/Deathbell_Crystal",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM24-EX1",
+      "name": "Hyper Thanksgiving Fantasy BEST",
+      "url": "https://duelmasters.fandom.com/wiki/Hyper_Thanksgiving_Fantasy_BEST",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM24-EX2",
+      "name": "Unparalleled!! Dueking DreaM 2024",
+      "url": "https://duelmasters.fandom.com/wiki/Unparalleled!!_Dueking_DreaM_2024",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM24-EX3",
+      "name": "Explosive Excitement Duenamite Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Explosive_Excitement_Duenamite_Pack",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM24-EX4",
+      "name": "NIJISANJI Collab Masters: Virtual Duelist",
+      "url": "https://duelmasters.fandom.com/wiki/NIJISANJI_Collab_Masters:_Virtual_Duelist",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM25-EX1",
+      "name": "Love Thanksgiving: Heroine BEST",
+      "url": "https://duelmasters.fandom.com/wiki/Love_Thanksgiving:_Heroine_BEST",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM25-EX2",
+      "name": "DreaM vs Nightmare DueKing WDreaM 2025",
+      "url": "https://duelmasters.fandom.com/wiki/DreaM_vs_Nightmare_DueKing_WDreaM_2025",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM25-EX3",
+      "name": "Jashin Explosion Duenamite Pack: Royal Road Double",
+      "url": "https://duelmasters.fandom.com/wiki/Jashin_Explosion_Duenamite_Pack:_Royal_Road_Double",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM25-EX4",
+      "name": "Episode 4: Pandora Wars",
+      "url": "https://duelmasters.fandom.com/wiki/Episode_4:_Pandora_Wars",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM26-EX1",
+      "name": "MasuMasu Tsuyoi Pack: 25 of Reinforcements",
+      "url": "https://duelmasters.fandom.com/wiki/MasuMasu_Tsuyoi_Pack:_25_of_Reinforcements",
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM26-EX2",
+      "name": "",
+      "url": null,
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DM26-EX3",
+      "name": "「キャラプレミアムパック ドラゴン娘になりたくないっ！ 文化祭だョ！全員集合!! ドラ娘100%パック」",
+      "url": null,
+      "category": "Other Sets",
+      "series": "DMEX Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-01",
+      "name": "Chronicle Legacy Deck: Alcadeias Requiem",
+      "url": "https://duelmasters.fandom.com/wiki/Chronicle_Legacy_Deck:_Alcadeias_Requiem",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-02",
+      "name": "Chronicle Legacy Deck: Storm Rising!! Dolge's Ninja Art",
+      "url": "https://duelmasters.fandom.com/wiki/Chronicle_Legacy_Deck:_Storm_Rising!!_Dolge's_Ninja_Art",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-03",
+      "name": "Super Mega Bountiful Premium 7 Deck: Gather!! Fire J.O.E.kers!",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Mega_Bountiful_Premium_7_Deck:_Gather!!_Fire_J.O.E.kers!",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-04",
+      "name": "Super Mega Bountiful Premium 7 Deck: Kira's Justice!! DG Super Move",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Mega_Bountiful_Premium_7_Deck:_Kira's_Justice!!_DG_Super_Move",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-05",
+      "name": "Chronicle Legacy Deck 2018: Ultimate Balga Dragoncadia",
+      "url": "https://duelmasters.fandom.com/wiki/Chronicle_Legacy_Deck_2018:_Ultimate_Balga_Dragoncadia",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-06",
+      "name": "Chronicle Legacy Deck 2018: Divine Temple of the Zenith",
+      "url": "https://duelmasters.fandom.com/wiki/Chronicle_Legacy_Deck_2018:_Divine_Temple_of_the_Zenith",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-07",
+      "name": "Behold!! Twin Hero Deck 80: Jokers Deluxe VS Calibur Saga",
+      "url": "https://duelmasters.fandom.com/wiki/Behold!!_Twin_Hero_Deck_80:_Jokers_Deluxe_VS_Calibur_Saga",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-08",
+      "name": "Behold!! Twin Hero Deck 80: Final Hazard VS Moonless Moon",
+      "url": "https://duelmasters.fandom.com/wiki/Behold!!_Twin_Hero_Deck_80:_Final_Hazard_VS_Moonless_Moon",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-09",
+      "name": "Ultimate Chronicle Deck 2019: Gachinko! Kaiser Blade Oga",
+      "url": "https://duelmasters.fandom.com/wiki/Ultimate_Chronicle_Deck_2019:_Gachinko!_Kaiser_Blade_Oga",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-10",
+      "name": "Ultimate Chronicle Deck 2019: SSS! Invasion Dead Disaster",
+      "url": "https://duelmasters.fandom.com/wiki/Ultimate_Chronicle_Deck_2019:_SSS!_Invasion_Dead_Disaster",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-11",
+      "name": "Gachi Yaba 4! Infinite Modifier Deck Set DX!! Joe's BigBang GR",
+      "url": "https://duelmasters.fandom.com/wiki/Gachi_Yaba_4!_Infinite_Modifier_Deck_Set_DX!!_Joe's_BigBang_GR",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-12",
+      "name": "Gachi Yaba 4! Infinite Modifier Deck Set DX!! Zeero's Dragon Aura",
+      "url": "https://duelmasters.fandom.com/wiki/Gachi_Yaba_4!_Infinite_Modifier_Deck_Set_DX!!_Zeero's_Dragon_Aura",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-13",
+      "name": "Chronicle Final Wars Deck: Psychic Meteor Saga",
+      "url": "https://duelmasters.fandom.com/wiki/Chronicle_Final_Wars_Deck:_Psychic_Meteor_Saga",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-14",
+      "name": "Chronicle Final Wars Deck: Dragheart Crimson Saga",
+      "url": "https://duelmasters.fandom.com/wiki/Chronicle_Final_Wars_Deck:_Dragheart_Crimson_Saga",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-15",
+      "name": "Legend Super Deck: Blue Dragon Revolution",
+      "url": "https://duelmasters.fandom.com/wiki/Legend_Super_Deck:_Blue_Dragon_Revolution",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-16",
+      "name": "20th Chronicle Deck: Battle Now!! Bolshack Duel",
+      "url": "https://duelmasters.fandom.com/wiki/20th_Chronicle_Deck:_Battle_Now!!_Bolshack_Duel",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-17",
+      "name": "20th Chronicle Deck: Voltage Max!! Outrage Victory",
+      "url": "https://duelmasters.fandom.com/wiki/20th_Chronicle_Deck:_Voltage_Max!!_Outrage_Victory",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-18",
+      "name": "Legend Super Deck: The Storm of Divine Songs",
+      "url": "https://duelmasters.fandom.com/wiki/Legend_Super_Deck:_The_Storm_of_Divine_Songs",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-19",
+      "name": "Game Designers Selection Deck: Fire Water Crash Head",
+      "url": "https://duelmasters.fandom.com/wiki/Game_Designers_Selection_Deck:_Fire_Water_Crash_Head",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-20",
+      "name": "Game Designers Selection Deck: Water Darkness Magic Tool",
+      "url": "https://duelmasters.fandom.com/wiki/Game_Designers_Selection_Deck:_Water_Darkness_Magic_Tool",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-21",
+      "name": "Chronicle Dark Side Deck: Big Bang",
+      "url": "https://duelmasters.fandom.com/wiki/Chronicle_Dark_Side_Deck:_Big_Bang",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMBD-22",
+      "name": "Chronicle Dark Side Deck: Zero Birth",
+      "url": "https://duelmasters.fandom.com/wiki/Chronicle_Dark_Side_Deck:_Zero_Birth",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM22-BD1",
+      "name": "Legend Super Deck: Flaming Dragon Fighter",
+      "url": "https://duelmasters.fandom.com/wiki/Legend_Super_Deck:_Flaming_Dragon_Fighter",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM22-BD2",
+      "name": "Game Designers Selection Deck: Light Water Fire Kira Star",
+      "url": "https://duelmasters.fandom.com/wiki/Game_Designers_Selection_Deck:_Light_Water_Fire_Kira_Star",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM22-BD3",
+      "name": "Game Designers Selection Deck: 7-axis Gachirobo",
+      "url": "https://duelmasters.fandom.com/wiki/Game_Designers_Selection_Deck:_7-axis_Gachirobo",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM23-BD1",
+      "name": "Legend Super Deck: Creation of the Forbidden King",
+      "url": "https://duelmasters.fandom.com/wiki/Legend_Super_Deck:_Creation_of_the_Forbidden_King",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM23-BD2",
+      "name": "Game Designers Selection Deck: Fire Darkness Jyaoumon",
+      "url": "https://duelmasters.fandom.com/wiki/Game_Designers_Selection_Deck:_Fire_Darkness_Jyaoumon",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM23-BD3",
+      "name": "Game Designers Selection Deck: Water Darkness Nature Hand Destruction",
+      "url": "https://duelmasters.fandom.com/wiki/Game_Designers_Selection_Deck:_Water_Darkness_Nature_Hand_Destruction",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM23-BD4",
+      "name": "Exciting Duepa Deck: Doradoradoragon Paradise",
+      "url": "https://duelmasters.fandom.com/wiki/Exciting_Duepa_Deck:_Doradoradoragon_Paradise",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM23-BD5",
+      "name": "Exciting Duepa Deck: Disrespectful! Knights of the Evil Eye",
+      "url": "https://duelmasters.fandom.com/wiki/Exciting_Duepa_Deck:_Disrespectful!_Knights_of_the_Evil_Eye",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM23-BD6",
+      "name": "Exciting Duepa Deck: Twinpact Akashic Z Project",
+      "url": "https://duelmasters.fandom.com/wiki/Exciting_Duepa_Deck:_Twinpact_Akashic_Z_Project",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM23-BD7",
+      "name": "Exciting Duepa Deck: False Pedant of Negotiation",
+      "url": "https://duelmasters.fandom.com/wiki/Exciting_Duepa_Deck:_False_Pedant_of_Negotiation",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM24-BD1",
+      "name": "Dream Saga Deck: Book of Dogiragon",
+      "url": "https://duelmasters.fandom.com/wiki/Dream_Saga_Deck:_Book_of_Dogiragon",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM24-BD2",
+      "name": "Dream Saga Deck: Book of Johnny",
+      "url": "https://duelmasters.fandom.com/wiki/Dream_Saga_Deck:_Book_of_Johnny",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM24-BD3",
+      "name": "Dream Saga Deck: Book of Momoking",
+      "url": "https://duelmasters.fandom.com/wiki/Dream_Saga_Deck:_Book_of_Momoking",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM24-BD4",
+      "name": "Nightmare Saga Deck: Chapter of Ballom",
+      "url": "https://duelmasters.fandom.com/wiki/Nightmare_Saga_Deck:_Chapter_of_Ballom",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM24-BD5",
+      "name": "Exciting Duepa Deck: Asebi and Faeries in Another World",
+      "url": "https://duelmasters.fandom.com/wiki/Exciting_Duepa_Deck:_Asebi_and_Faeries_in_Another_World",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM24-BD6",
+      "name": "Exciting Duepa Deck: Zurathustra's Crystal Moment",
+      "url": "https://duelmasters.fandom.com/wiki/Exciting_Duepa_Deck:_Zurathustra's_Crystal_Moment",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM25-BD1",
+      "name": "Dream Saga Deck: Book of Bolshack",
+      "url": "https://duelmasters.fandom.com/wiki/Dream_Saga_Deck:_Book_of_Bolshack",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM25-BD2",
+      "name": "Dream Saga Deck: Book of Alcadeias",
+      "url": "https://duelmasters.fandom.com/wiki/Dream_Saga_Deck:_Book_of_Alcadeias",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DM25-BD3",
+      "name": "Dream Saga Deck: Book of Glenmalt",
+      "url": "https://duelmasters.fandom.com/wiki/Dream_Saga_Deck:_Book_of_Glenmalt",
+      "category": "Other Sets",
+      "series": "DMBD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMSP-01",
+      "name": "Fancy! Grandy!! JoeDeckie BOX!!",
+      "url": "https://duelmasters.fandom.com/wiki/Fancy!_Grandy!!_JoeDeckie_BOX!!",
+      "category": "Other Sets",
+      "series": "DMSP Sets",
+      "block": null
+    },
+    {
+      "set_code": "DMSP-02",
+      "name": "The King of Legend",
+      "url": "https://duelmasters.fandom.com/wiki/The_King_of_Legend",
+      "category": "Other Sets",
+      "series": "DMSP Sets",
+      "block": null
+    },
+    {
+      "set_code": "DMSP-03",
+      "name": "King Master Start Deck: Joe's Star Evolution 20th Anniversary Perfect Set",
+      "url": "https://duelmasters.fandom.com/wiki/King_Master_Start_Deck:_Joe's_Star_Evolution_20th_Anniversary_Perfect_Set",
+      "category": "Other Sets",
+      "series": "DMSP Sets",
+      "block": null
+    },
+    {
+      "set_code": "DMSP-04",
+      "name": "DueMa Strong Dream: Jokers GR",
+      "url": "https://duelmasters.fandom.com/wiki/DueMa_Strong_Dream:_Jokers_GR",
+      "category": "Other Sets",
+      "series": "DMSP Sets",
+      "block": null
+    },
+    {
+      "set_code": "DMSP-05",
+      "name": "King Master Start Deck: Hyde's Dispector NEXT 20th Anniversary Perfect Set",
+      "url": "https://duelmasters.fandom.com/wiki/King_Master_Start_Deck:_Hyde's_Dispector_NEXT_20th_Anniversary_Perfect_Set",
+      "category": "Other Sets",
+      "series": "DMSP Sets",
+      "block": null
+    },
+    {
+      "set_code": "DMSP-06",
+      "name": "King Master Start Deck: Joe's Star Max Evolution 20th Anniversary Perfect Set",
+      "url": "https://duelmasters.fandom.com/wiki/King_Master_Start_Deck:_Joe's_Star_Max_Evolution_20th_Anniversary_Perfect_Set",
+      "category": "Other Sets",
+      "series": "DMSP Sets",
+      "block": null
+    },
+    {
+      "set_code": "DM22-SP1",
+      "name": "Legendary Jashin: Invitation from the Depths",
+      "url": "https://duelmasters.fandom.com/wiki/Legendary_Jashin:_Invitation_from_the_Depths",
+      "category": "Other Sets",
+      "series": "DMSP Sets",
+      "block": null
+    },
+    {
+      "set_code": "DM22-SP2",
+      "name": "Dragon Emperor of Booming Flame: Invitation from the Raging Dragon Count",
+      "url": "https://duelmasters.fandom.com/wiki/Dragon_Emperor_of_Booming_Flame:_Invitation_from_the_Raging_Dragon_Count",
+      "category": "Other Sets",
+      "series": "DMSP Sets",
+      "block": null
+    },
+    {
+      "set_code": "DM23-SP1",
+      "name": "Start WIN Super Deck: Abyssbell Rush",
+      "url": "https://duelmasters.fandom.com/wiki/Start_WIN_Super_Deck:_Abyssbell_Rush",
+      "category": "Other Sets",
+      "series": "DMSP Sets",
+      "block": null
+    },
+    {
+      "set_code": "DM24-SP1",
+      "name": "Character Premium Deck: \"I don't wanna be a Dragon Girl!\" Yeah! Utterly, Wholly, Dragon!!",
+      "url": "https://duelmasters.fandom.com/wiki/Character_Premium_Deck:_\"I_don't_wanna_be_a_Dragon_Girl!\"_Yeah!_Utterly,_Wholly,_Dragon!!",
+      "category": "Other Sets",
+      "series": "DMSP Sets",
+      "block": null
+    },
+    {
+      "set_code": "DM24-SP2",
+      "name": "Character Premium Deck: LOST Crystal Bridal",
+      "url": "https://duelmasters.fandom.com/wiki/Character_Premium_Deck:_LOST_Crystal_Bridal",
+      "category": "Other Sets",
+      "series": "DMSP Sets",
+      "block": null
+    },
+    {
+      "set_code": "DMPCD-01",
+      "name": "DueMa Play's CollaboDeck: The Rise of Überdragon & The Rise of Heavenly Gate",
+      "url": "https://duelmasters.fandom.com/wiki/DueMa_Play's_CollaboDeck:_The_Rise_of_Überdragon_&_The_Rise_of_Heavenly_Gate",
+      "category": "Other Sets",
+      "series": "DMPCD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMPCD-02",
+      "name": "DueMa Play's CollaboDeck: The Dragon-Geared Samurais and The Knights of Magic Bullet",
+      "url": "https://duelmasters.fandom.com/wiki/DueMa_Play's_CollaboDeck:_The_Dragon-Geared_Samurais_and_The_Knights_of_Magic_Bullet",
+      "category": "Other Sets",
+      "series": "DMPCD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMPCD-03",
+      "name": "DueMaPlay's Collaboration Deck: The Fierce Dragon Hero and the Original Wicked Eye",
+      "url": "https://duelmasters.fandom.com/wiki/DueMaPlay's_Collaboration_Deck:_The_Fierce_Dragon_Hero_and_the_Original_Wicked_Eye",
+      "category": "Other Sets",
+      "series": "DMPCD Decks",
+      "block": null
+    },
+    {
+      "set_code": "DMART-01",
+      "name": "Fabulous Art: The Scroll Painting of Onifuda Legend",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-01_Fabulous_Art:_The_Scroll_Painting_of_Onifuda_Legend",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-02",
+      "name": "Fabulous Art: BOLSHACK by Toshiaki Takayama",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-02_Fabulous_Art:_BOLSHACK_by_Toshiaki_Takayama",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-03",
+      "name": "Fabulous Art: The Faerie Library",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-03_Fabulous_Art:_The_Faerie_Library",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-04",
+      "name": "Fabulous Art: The Creation of Amazing Creatures ~The World of Shigenobu Matsumoto~",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-04_Fabulous_Art:_The_Creation_of_Amazing_Creatures_~The_World_of_Shigenobu_Matsumoto~",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-05",
+      "name": "Fabulous Art: Fun Five Dragon ♡ Summer",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-05_Fabulous_Art:_Fun_Five_Dragon_♡_Summer",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-06",
+      "name": "Fabulous Art: Super Visual Shock Dragon Series",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-06_Fabulous_Art:_Super_Visual_Shock_Dragon_Series",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-07",
+      "name": "Fabulous Art: COLORFUL＊SNOW",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-07_Fabulous_Art:_COLORFUL＊SNOW",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-08",
+      "name": "Fabulous Art: Greatest New World",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-08_Fabulous_Art:_Greatest_New_World",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-09",
+      "name": "Fabulous Art: Dispector Duemarium",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-09_Fabulous_Art:_Dispector_Duemarium",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-10",
+      "name": "Fabulous Art: Duema x TRANSFORMERS",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-10_Fabulous_Art:_Duema_x_TRANSFORMERS",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-11",
+      "name": "Fabulous Art: Dragon Girl's Spring of Life ☆ Paradise",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-11_Fabulous_Art:_Dragon_Girl's_Spring_of_Life_☆_Paradise",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-12",
+      "name": "Fabulous Art: Angelic Wisdom",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-12_Fabulous_Art:_Angelic_Wisdom",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-13",
+      "name": "Fabulous Art: Duema x Duema Play's",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-13_Fabulous_Art:_Duema_x_Duema_Play's",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-14",
+      "name": "Fabulous Art: The Faerie Timeline",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-14_Fabulous_Art:_The_Faerie_Timeline",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-15",
+      "name": "Fabulous Art: Terrific Drawing!! The Caricatures of Amazing Creatures",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-15_Fabulous_Art:_Terrific_Drawing!!_The_Caricatures_of_Amazing_Creatures",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-16",
+      "name": "Fabulous Art: Forbidden ~Sealed Art~",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-16_Fabulous_Art:_Forbidden_~Sealed_Art~",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-17",
+      "name": "Fabulous Art: Neon Light Girl",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-17_Fabulous_Art:_Neon_Light_Girl",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-18",
+      "name": "Fabulous Art: Exploring the World of Amazing Creatures ~The Travels of Asebi~",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-18_Fabulous_Art:_Exploring_the_World_of_Amazing_Creatures_~The_Travels_of_Asebi~",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-19",
+      "name": "Fabulous Art: RPD (Role-Playing Duema): That Time Ryusei Kaiser Got Reincarnated as a Hero",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-19_Fabulous_Art:_RPD_(Role-Playing_Duema):_That_Time_Ryusei_Kaiser_Got_Reincarnated_as_a_Hero",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-20",
+      "name": "Fabulous Art: DUELMASTERS 「AMAZING COMICS」",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-20_Fabulous_Art:_DUELMASTERS_「AMAZING_COMICS」",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-21",
+      "name": "Fabulous Art: Perfect Märchen",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-21_Fabulous_Art:_Perfect_Märchen",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-22",
+      "name": "Fabulous Art: Animal Masters: ~Duel of Cats~",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-22_Fabulous_Art:_Animal_Masters:_~Duel_of_Cats~",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-23",
+      "name": "Fabulous Art: Wake up Dragons ♪ Dragon Girl's in School Festival",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-23_Fabulous_Art:_Wake_up_Dragons_♪_Dragon_Girl's_in_School_Festival",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-24",
+      "name": "Fabulous Art: Magical Girl Idol \"Girl Mage\" ~Idol Magic Item Collection~",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-24_Fabulous_Art:_Magical_Girl_Idol_\"Girl_Mage\"_~Idol_Magic_Item_Collection~",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-25",
+      "name": "Fabulous Art: Abyss In Tokyo",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-25_Fabulous_Art:_Abyss_In_Tokyo",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART-26",
+      "name": "Fabulous Art: DueMa x MONSTER HUNTER WILDS",
+      "url": "https://duelmasters.fandom.com/wiki/DMART-26_Fabulous_Art:_DueMa_x_MONSTER_HUNTER_WILDS",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART極-1",
+      "name": "Fabulous Art: Ballom by Ittoku",
+      "url": "https://duelmasters.fandom.com/wiki/DMART極-1_Fabulous_Art:_Ballom_by_Ittoku",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": "DMART極-2",
+      "name": "Fabulous Art: Neon Light Girl² ~Dystopia Dispect~",
+      "url": "https://duelmasters.fandom.com/wiki/DMART極-2_Fabulous_Art:_Neon_Light_Girl²_~Dystopia_Dispect~",
+      "category": "Fabulous Art",
+      "series": null,
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "CoroCoro Revival Pack",
+      "url": "https://duelmasters.fandom.com/wiki/CoroCoro_Revival_Pack",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "CoroCoro Revival Pack 2",
+      "url": "https://duelmasters.fandom.com/wiki/CoroCoro_Revival_Pack_2",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Katta Final Memorial Pack: CoroCoro Version",
+      "url": "https://duelmasters.fandom.com/wiki/Katta_Final_Memorial_Pack:_CoroCoro_Version",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Four Big Kings Gathering! Super King Pack!!",
+      "url": "https://duelmasters.fandom.com/wiki/Four_Big_Kings_Gathering!_Super_King_Pack!!",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duel Masters 20th Anniversary King Master Guaranteed Pack!!",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Masters_20th_Anniversary_King_Master_Guaranteed_Pack!!",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": null
+    },
+    {
+      "set_code": "DMR-07",
+      "name": "Golden Dragon: CoroCoro Edition",
+      "url": "https://duelmasters.fandom.com/wiki/DMR-07_Golden_Dragon:_CoroCoro_Edition",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": "CoroCoro Editions"
+    },
+    {
+      "set_code": "DMX-19",
+      "name": "Super Rare 100% Pack: CoroCoro Edition",
+      "url": "https://duelmasters.fandom.com/wiki/DMX-19_Super_Rare_100%_Pack:_CoroCoro_Edition",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": "CoroCoro Editions"
+    },
+    {
+      "set_code": "DMR-19",
+      "name": "Forbidden Dokindam X: Forbidden Edition",
+      "url": "https://duelmasters.fandom.com/wiki/DMR-19_Forbidden_Dokindam_X:_Forbidden_Edition",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": "CoroCoro Editions"
+    },
+    {
+      "set_code": "DMR-23",
+      "name": "Dogiragolden VS Dormageddon X: CoroCoro Edition",
+      "url": "https://duelmasters.fandom.com/wiki/DMR-23_Dogiragolden_VS_Dormageddon_X:_CoroCoro_Edition",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": "CoroCoro Editions"
+    },
+    {
+      "set_code": "DMRP-01",
+      "name": "Here Come the Jokers!!: CoroCoro Edition",
+      "url": "https://duelmasters.fandom.com/wiki/DMRP-01_Here_Come_the_Jokers!!:_CoroCoro_Edition",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": "CoroCoro Editions"
+    },
+    {
+      "set_code": "DMRP-08",
+      "name": "The Showdown! Baraghiara!! Invincible OraOra Ringfinity ∞: CoroCoro Edition",
+      "url": "https://duelmasters.fandom.com/wiki/DMRP-08_The_Showdown!_Baraghiara!!_Invincible_OraOra_Ringfinity_∞:_CoroCoro_Edition",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": "CoroCoro Editions"
+    },
+    {
+      "set_code": "DMRP-12",
+      "name": "SuperSuperSuper Top! The Awakening Joghiragon vs. Zeeron Bang-Tan: CoroCoro Edition",
+      "url": "https://duelmasters.fandom.com/wiki/DMRP-12_SuperSuperSuper_Top!_The_Awakening_Joghiragon_vs._Zeeron_Bang-Tan:_CoroCoro_Edition",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": "CoroCoro Editions"
+    },
+    {
+      "set_code": "DMRP-16",
+      "name": "The Hundred Kings x Evil King Oni Revolution!!!: CoroCoro Edition",
+      "url": "https://duelmasters.fandom.com/wiki/DMRP-16_The_Hundred_Kings_x_Evil_King_Oni_Revolution!!!:_CoroCoro_Edition",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": "CoroCoro Editions"
+    },
+    {
+      "set_code": null,
+      "name": "DM22-RP1 Legendary Jashin: CoroCoro Special Royale Pack! 2022",
+      "url": "https://duelmasters.fandom.com/wiki/DM22-RP1_Legendary_Jashin:_CoroCoro_Special_Royale_Pack!_2022",
+      "category": "Promotional Packs",
+      "series": "Magazine Appendix Packs",
+      "block": "CoroCoro Editions"
+    },
+    {
+      "set_code": "SpDeck-01",
+      "name": "CoroCoro Dogiragon 40 Card Deck",
+      "url": "https://duelmasters.fandom.com/wiki/CoroCoro_Dogiragon_40_Card_Deck",
+      "category": "Promotional Packs",
+      "series": "SpDeck (CoroCoro Special Decks)",
+      "block": null
+    },
+    {
+      "set_code": "SpDeck-02",
+      "name": "Duema 40 Card Special Deck",
+      "url": "https://duelmasters.fandom.com/wiki/Duema_40_Card_Special_Deck",
+      "category": "Promotional Packs",
+      "series": "SpDeck (CoroCoro Special Decks)",
+      "block": null
+    },
+    {
+      "set_code": "SpDeck-03",
+      "name": "CoroCoro Special Deck",
+      "url": "https://duelmasters.fandom.com/wiki/CoroCoro_Special_Deck",
+      "category": "Promotional Packs",
+      "series": "SpDeck (CoroCoro Special Decks)",
+      "block": null
+    },
+    {
+      "set_code": "SpDeck-04/SpDeck-05",
+      "name": "CoroCoro Jokers and Nature Double Deck",
+      "url": "https://duelmasters.fandom.com/wiki/CoroCoro_Jokers_and_Nature_Double_Deck",
+      "category": "Promotional Packs",
+      "series": "SpDeck (CoroCoro Special Decks)",
+      "block": null
+    },
+    {
+      "set_code": "SpDeck-06",
+      "name": "Duema Gacharange Explosive Speed Start 52 Card Deck Set 24px",
+      "url": "https://duelmasters.fandom.com/wiki/Duema_Gacharange_Explosive_Speed_Start_52_Card_Deck_Set",
+      "category": "Promotional Packs",
+      "series": "SpDeck (CoroCoro Special Decks)",
+      "block": null
+    },
+    {
+      "set_code": "SpDeck-07",
+      "name": "Team Kirifuda Super King Deck 40 Card!!",
+      "url": "https://duelmasters.fandom.com/wiki/Team_Kirifuda_Super_King_Deck_40_Card!!",
+      "category": "Promotional Packs",
+      "series": "SpDeck (CoroCoro Special Decks)",
+      "block": null
+    },
+    {
+      "set_code": "SpDeck-08",
+      "name": "Welcome! Onifuda Kingdom Deck 40 Card!!",
+      "url": "https://duelmasters.fandom.com/wiki/Welcome!_Onifuda_Kingdom_Deck_40_Card!!",
+      "category": "Promotional Packs",
+      "series": "SpDeck (CoroCoro Special Decks)",
+      "block": null
+    },
+    {
+      "set_code": "SpDeck-09",
+      "name": "Win and Jashin 40-Card Special Deck",
+      "url": "https://duelmasters.fandom.com/wiki/Win_and_Jashin_40-Card_Special_Deck",
+      "category": "Promotional Packs",
+      "series": "SpDeck (CoroCoro Special Decks)",
+      "block": null
+    },
+    {
+      "set_code": "SpDeck-10",
+      "name": "Start WIN CoroCoro Deck: Hyper Abyssbell",
+      "url": "https://duelmasters.fandom.com/wiki/Start_WIN_CoroCoro_Deck:_Hyper_Abyssbell",
+      "category": "Promotional Packs",
+      "series": "SpDeck (CoroCoro Special Decks)",
+      "block": null
+    },
+    {
+      "set_code": "SpDeck-11",
+      "name": "Start WIN CoroCoro Deck: Abyssbell Energy",
+      "url": "https://duelmasters.fandom.com/wiki/Start_WIN_CoroCoro_Deck:_Abyssbell_Energy",
+      "category": "Promotional Packs",
+      "series": "SpDeck (CoroCoro Special Decks)",
+      "block": null
+    },
+    {
+      "set_code": "SpDeck-12",
+      "name": "Dedede Danger Deck",
+      "url": "https://duelmasters.fandom.com/wiki/Dedede_Danger_Deck",
+      "category": "Promotional Packs",
+      "series": "SpDeck (CoroCoro Special Decks)",
+      "block": null
+    },
+    {
+      "set_code": "SpDeck-13",
+      "name": "Heavy Win Metal Kirari 40 Deck",
+      "url": "https://duelmasters.fandom.com/wiki/Heavy_Win_Metal_Kirari_40_Deck",
+      "category": "Promotional Packs",
+      "series": "SpDeck (CoroCoro Special Decks)",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Extreme Joe!! Golden Master Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Extreme_Joe!!_Golden_Master_Pack",
+      "category": "Promotional Packs",
+      "series": "Magazine Applicant Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Treasure Pack Victory!!",
+      "url": "https://duelmasters.fandom.com/wiki/Treasure_Pack_Victory!!",
+      "category": "Promotional Packs",
+      "series": "Product Purchase Bonus Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Golden Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Golden_Pack",
+      "category": "Promotional Packs",
+      "series": "Product Purchase Bonus Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Golden Pack: Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Golden_Pack:_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Product Purchase Bonus Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Denny's Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Denny's_Pack",
+      "category": "Promotional Packs",
+      "series": "Product Purchase Bonus Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "AgeAge Against Pack",
+      "url": "https://duelmasters.fandom.com/wiki/AgeAge_Against_Pack",
+      "category": "Promotional Packs",
+      "series": "Product Purchase Bonus Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "AgeAge Beat Pack",
+      "url": "https://duelmasters.fandom.com/wiki/AgeAge_Beat_Pack",
+      "category": "Promotional Packs",
+      "series": "Product Purchase Bonus Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "AgeAge Climax Pack",
+      "url": "https://duelmasters.fandom.com/wiki/AgeAge_Climax_Pack",
+      "category": "Promotional Packs",
+      "series": "Product Purchase Bonus Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Passion! Dragsolution!! Duel Soul Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Passion!_Dragsolution!!_Duel_Soul_Pack",
+      "category": "Promotional Packs",
+      "series": "Product Purchase Bonus Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Dokan and Duema Revolution Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Dokan_and_Duema_Revolution_Pack",
+      "category": "Promotional Packs",
+      "series": "Product Purchase Bonus Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Let's Final!! Revolution Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Let's_Final!!_Revolution_Pack",
+      "category": "Promotional Packs",
+      "series": "Product Purchase Bonus Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Mezase! King Master Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Mezase!_King_Master_Pack",
+      "category": "Promotional Packs",
+      "series": "Product Purchase Bonus Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "1 BOX Thank You Pack (DMRP-16)",
+      "url": "https://duelmasters.fandom.com/wiki/1_BOX_Thank_You_Pack_(DMRP-16)",
+      "category": "Promotional Packs",
+      "series": "1 BOX Thank You Pack",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "1 BOX Thank You Pack (DMRP-18)",
+      "url": "https://duelmasters.fandom.com/wiki/1_BOX_Thank_You_Pack_(DMRP-18)",
+      "category": "Promotional Packs",
+      "series": "1 BOX Thank You Pack",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "1 BOX Thank You Pack (DMRP-20)",
+      "url": "https://duelmasters.fandom.com/wiki/1_BOX_Thank_You_Pack_(DMRP-20)",
+      "category": "Promotional Packs",
+      "series": "1 BOX Thank You Pack",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "1 BOX Thank You Pack (DM24-RP2)",
+      "url": "https://duelmasters.fandom.com/wiki/1_BOX_Thank_You_Pack_(DM24-RP2)",
+      "category": "Promotional Packs",
+      "series": "1 BOX Thank You Pack",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "1 BOX Thank You Pack (DM24-RP4)",
+      "url": "https://duelmasters.fandom.com/wiki/1_BOX_Thank_You_Pack_(DM24-RP4)",
+      "category": "Promotional Packs",
+      "series": "1 BOX Thank You Pack",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "CoroCoro Legend Appendix Card Special Pack",
+      "url": "https://duelmasters.fandom.com/wiki/CoroCoro_Legend_Appendix_Card_Special_Pack",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Conquering All Challenges Pack: Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Conquering_All_Challenges_Pack:_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Conquering All Challenges Pack: Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Conquering_All_Challenges_Pack:_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Conquering All Challenges Pack: Volume 3",
+      "url": "https://duelmasters.fandom.com/wiki/Conquering_All_Challenges_Pack:_Volume_3",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Conquering All Challenges Pack: Volume 4",
+      "url": "https://duelmasters.fandom.com/wiki/Conquering_All_Challenges_Pack:_Volume_4",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Good Luck Victory Pack: Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Good_Luck_Victory_Pack:_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Good Luck Victory Pack: Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Good_Luck_Victory_Pack:_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Good Luck Victory Pack: Volume 3",
+      "url": "https://duelmasters.fandom.com/wiki/Good_Luck_Victory_Pack:_Volume_3",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Good Luck Victory Pack: Volume 4",
+      "url": "https://duelmasters.fandom.com/wiki/Good_Luck_Victory_Pack:_Volume_4",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Atsumero!! 6 Pack: Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Atsumero!!_6_Pack:_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Atsumero!! 6 Pack: Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Atsumero!!_6_Pack:_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Atsumero!! 6 Pack: Volume 3",
+      "url": "https://duelmasters.fandom.com/wiki/Atsumero!!_6_Pack:_Volume_3",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Atsumero!! 6 Pack: Volume 4",
+      "url": "https://duelmasters.fandom.com/wiki/Atsumero!!_6_Pack:_Volume_4",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Happy 6 Pack: Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Happy_6_Pack:_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Happy 6 Pack: Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Happy_6_Pack:_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Happy 6 Pack: Volume 3",
+      "url": "https://duelmasters.fandom.com/wiki/Happy_6_Pack:_Volume_3",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Happy 6 Pack: Volume 4",
+      "url": "https://duelmasters.fandom.com/wiki/Happy_6_Pack:_Volume_4",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Happy 6 Pack: Volume 5",
+      "url": "https://duelmasters.fandom.com/wiki/Happy_6_Pack:_Volume_5",
+      "category": "Promotional Packs",
+      "series": "Duel Road Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Grab It 6 Pack: Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Grab_It_6_Pack:_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Due Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Grab It 6 Pack: Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Grab_It_6_Pack:_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Due Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Grab It 6 Pack: Volume 3",
+      "url": "https://duelmasters.fandom.com/wiki/Grab_It_6_Pack:_Volume_3",
+      "category": "Promotional Packs",
+      "series": "Due Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Grab It 6 Pack: Volume 4",
+      "url": "https://duelmasters.fandom.com/wiki/Grab_It_6_Pack:_Volume_4",
+      "category": "Promotional Packs",
+      "series": "Due Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Grab It and Exchange!! Rare Killers Pack: Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Grab_It_and_Exchange!!_Rare_Killers_Pack:_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Due Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Grab It and Exchange!! Rare Killers Pack: Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Grab_It_and_Exchange!!_Rare_Killers_Pack:_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Due Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Grab It and Exchange!! Rare Killers Pack: Volume 3",
+      "url": "https://duelmasters.fandom.com/wiki/Grab_It_and_Exchange!!_Rare_Killers_Pack:_Volume_3",
+      "category": "Promotional Packs",
+      "series": "Due Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duema Fest Pack: Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Duema_Fest_Pack:_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duema Fest Pack: Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Duema_Fest_Pack:_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duema Fest Pack: Volume 3",
+      "url": "https://duelmasters.fandom.com/wiki/Duema_Fest_Pack:_Volume_3",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duema Fest Pack: Volume 4",
+      "url": "https://duelmasters.fandom.com/wiki/Duema_Fest_Pack:_Volume_4",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duema Fest Pack: Volume 5",
+      "url": "https://duelmasters.fandom.com/wiki/Duema_Fest_Pack:_Volume_5",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duema Fest Pack: Volume 6",
+      "url": "https://duelmasters.fandom.com/wiki/Duema_Fest_Pack:_Volume_6",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duema Fest Pack: Volume 7",
+      "url": "https://duelmasters.fandom.com/wiki/Duema_Fest_Pack:_Volume_7",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duema Fest Pack: Volume 8",
+      "url": "https://duelmasters.fandom.com/wiki/Duema_Fest_Pack:_Volume_8",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best! Duema Fest Pack: Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!_Duema_Fest_Pack:_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best! Duema Fest Pack: Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!_Duema_Fest_Pack:_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best! Duema Fest Pack: Volume 3",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!_Duema_Fest_Pack:_Volume_3",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best! Duema Fest Pack: Volume 4",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!_Duema_Fest_Pack:_Volume_4",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best! Duema Fest Pack: Ten Kings Series Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!_Duema_Fest_Pack:_Ten_Kings_Series_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best! Duema Fest Pack: Ten Kings Series Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!_Duema_Fest_Pack:_Ten_Kings_Series_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best! Duema Fest Pack: Ten Kings Series Volume 3",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!_Duema_Fest_Pack:_Ten_Kings_Series_Volume_3",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best! Duema Fest Pack: Ten Kings Series Volume 4",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!_Duema_Fest_Pack:_Ten_Kings_Series_Volume_4",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best!! Duema Fest Pack: The Rise of Kings Series Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!!_Duema_Fest_Pack:_The_Rise_of_Kings_Series_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best!! Duema Fest Pack: The Rise of Kings Series Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!!_Duema_Fest_Pack:_The_Rise_of_Kings_Series_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best!! Duema Fest Pack: The Rise of Kings Series Volume 3",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!!_Duema_Fest_Pack:_The_Rise_of_Kings_Series_Volume_3",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best!! Duema Fest Pack: The Rise of Kings Series Volume 4",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!!_Duema_Fest_Pack:_The_Rise_of_Kings_Series_Volume_4",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best!! Duema Fest Pack: The Rise of Kings MAX Series Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!!_Duema_Fest_Pack:_The_Rise_of_Kings_MAX_Series_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Super Best!! Duema Fest Pack: The Rise of Kings MAX Series Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Super_Best!!_Duema_Fest_Pack:_The_Rise_of_Kings_MAX_Series_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Special Promo Pack 2022: Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Special_Promo_Pack_2022:_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Special Promo Pack 2022: Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Special_Promo_Pack_2022:_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Special Promo Pack 2023: Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Special_Promo_Pack_2023:_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Special Promo Pack 2023: Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Special_Promo_Pack_2023:_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Special Promo Pack 2023: Volume 3",
+      "url": "https://duelmasters.fandom.com/wiki/Special_Promo_Pack_2023:_Volume_3",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Special Promo Pack 2023: Volume 4",
+      "url": "https://duelmasters.fandom.com/wiki/Special_Promo_Pack_2023:_Volume_4",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Special Promo Pack 2024: Volume 1",
+      "url": "https://duelmasters.fandom.com/wiki/Special_Promo_Pack_2024:_Volume_1",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Special Promo Pack 2024: Volume 2",
+      "url": "https://duelmasters.fandom.com/wiki/Special_Promo_Pack_2024:_Volume_2",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Special Promo Pack 2024: Volume 3",
+      "url": "https://duelmasters.fandom.com/wiki/Special_Promo_Pack_2024:_Volume_3",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Special Promo Pack 2024: Volume 4",
+      "url": "https://duelmasters.fandom.com/wiki/Special_Promo_Pack_2024:_Volume_4",
+      "category": "Promotional Packs",
+      "series": "Duema Festival Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Promo Card Pack (Canbello Cup)",
+      "url": "https://duelmasters.fandom.com/wiki/Promo_Card_Pack_(Canbello_Cup)",
+      "category": "Promotional Packs",
+      "series": "Packs for Special Shop Event",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Joe's History Tokyo Coro Tour Pack",
+      "url": "https://duelmasters.fandom.com/wiki/Joe's_History_Tokyo_Coro_Tour_Pack",
+      "category": "Promotional Packs",
+      "series": "Coro Tour Participation Prize Packs",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Puff Chocolate: Series 1",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Masters:_Puff_Chocolate_Series_1",
+      "category": "Promotional Packs",
+      "series": "Food Products",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Puff Chocolate: Series 2",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Masters:_Puff_Chocolate_Series_2",
+      "category": "Promotional Packs",
+      "series": "Food Products",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Puff Chocolate: Series 3",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Masters:_Puff_Chocolate_Series_3",
+      "category": "Promotional Packs",
+      "series": "Food Products",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Puff Chocolate: Series 4",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Masters:_Puff_Chocolate_Series_4",
+      "category": "Promotional Packs",
+      "series": "Food Products",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Choco Snack",
+      "url": "https://duelmasters.fandom.com/wiki/Choco_Snack",
+      "category": "Promotional Packs",
+      "series": "Food Products",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Choco Crunch",
+      "url": "https://duelmasters.fandom.com/wiki/Choco_Crunch",
+      "category": "Promotional Packs",
+      "series": "Food Products",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duel Masters Gum",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Masters_Gum",
+      "category": "Promotional Packs",
+      "series": "Food Products",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duel Masters Card Gummy",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Masters_Card_Gummy",
+      "category": "Promotional Packs",
+      "series": "Food Products",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duel Masters Card Gummy 2",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Masters_Card_Gummy_2",
+      "category": "Promotional Packs",
+      "series": "Food Products",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duel Masters Card Gummy 3",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Masters_Card_Gummy_3",
+      "category": "Promotional Packs",
+      "series": "Food Products",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Duel Masters Card Gummy 4",
+      "url": "https://duelmasters.fandom.com/wiki/Duel_Masters_Card_Gummy_4",
+      "category": "Promotional Packs",
+      "series": "Food Products",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Special King Deck: Joe's Fire Civilization",
+      "url": "https://duelmasters.fandom.com/wiki/Special_King_Deck:_Joe's_Fire_Civilization",
+      "category": "Promotional Packs",
+      "series": "Special King Deck",
+      "block": null
+    },
+    {
+      "set_code": null,
+      "name": "Special King Deck: Zero Jr.'s Darkness Civilization",
+      "url": "https://duelmasters.fandom.com/wiki/Special_King_Deck:_Zero_Jr.'s_Darkness_Civilization",
+      "category": "Promotional Packs",
+      "series": "Special King Deck",
+      "block": null
+    }
+  ]
+}

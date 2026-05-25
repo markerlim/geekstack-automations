@@ -32,16 +32,19 @@ def get_google_credentials(scopes=None):
                 creds_dict,
                 scopes=scopes
             )
-        # Fallback to credentials file in project directory
-        elif os.path.exists("credentials/service-accountkey.json"):
-            print("Loading Google credentials from file: credentials/service-accountkey.json")
-            credentials = service_account.Credentials.from_service_account_file(
-                "credentials/service-accountkey.json",
-                scopes=scopes
-            )
+        # Fallback to credentials file relative to this file's project root
         else:
-            print("⚠️ No Google credentials found")
-            return None
+            project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            local_creds = os.path.join(project_root, "credentials", "service-accountkey.json")
+            if os.path.exists(local_creds):
+                print(f"Loading Google credentials from file: {local_creds}")
+                credentials = service_account.Credentials.from_service_account_file(
+                    local_creds,
+                    scopes=scopes
+                )
+            else:
+                print("⚠️ No Google credentials found")
+                return None
         
         print("✅ Google credentials loaded successfully")
         return credentials

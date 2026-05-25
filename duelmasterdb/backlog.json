@@ -1,0 +1,70 @@
+[
+  {
+    "set_code": "DMX-19",
+    "name": "Super Rare 100% Pack",
+    "url": "https://duelmasters.fandom.com/wiki/Super_Rare_100%_Pack",
+    "category": "Other Sets",
+    "series": "DMX Packs",
+    "block": null,
+    "reason": "scrape_error",
+    "error": "Message: "
+  },
+  {
+    "set_code": "DMEX-05",
+    "name": "100% New Zone! Super GR Pack 100",
+    "url": "https://duelmasters.fandom.com/wiki/100%_New_Zone!_Super_GR_Pack_100",
+    "category": "Other Sets",
+    "series": "DMEX Packs",
+    "block": null,
+    "reason": "scrape_error",
+    "error": "Message: "
+  },
+  {
+    "set_code": "DMEX-10",
+    "name": "W-Kingdom Docking Pack: Onifuda Kingdom & Fushigi Kingdom",
+    "url": "https://duelmasters.fandom.com/wiki/W-Kingdom_Docking_Pack:_Onifuda_Kingdom_&_Fushigi_Kingdom",
+    "category": "Other Sets",
+    "series": "DMEX Packs",
+    "block": null,
+    "reason": "scrape_error",
+    "error": "Message: "
+  },
+  {
+    "set_code": "DM26-EX2",
+    "name": "",
+    "url": null,
+    "category": "Other Sets",
+    "series": "DMEX Packs",
+    "block": null,
+    "reason": "no_url"
+  },
+  {
+    "set_code": "DM26-EX3",
+    "name": "「キャラプレミアムパック ドラゴン娘になりたくないっ！ 文化祭だョ！全員集合!! ドラ娘100%パック」",
+    "url": null,
+    "category": "Other Sets",
+    "series": "DMEX Packs",
+    "block": null,
+    "reason": "no_url"
+  },
+  {
+    "set_code": "DMX-19",
+    "name": "Super Rare 100% Pack: CoroCoro Edition",
+    "url": "https://duelmasters.fandom.com/wiki/DMX-19_Super_Rare_100%_Pack:_CoroCoro_Edition",
+    "category": "Promotional Packs",
+    "series": "Magazine Appendix Packs",
+    "block": "CoroCoro Editions",
+    "reason": "scrape_error",
+    "error": "Message: "
+  },
+  {
+    "set_code": null,
+    "name": "Super Best! Duema Fest Pack: Volume 1",
+    "url": "https://duelmasters.fandom.com/wiki/Super_Best!_Duema_Fest_Pack:_Volume_1",
+    "category": "Promotional Packs",
+    "series": "Duema Festival Participation Prize Packs",
+    "block": null,
+    "reason": "scrape_error",
+    "error": "Message: "
+  }
+]
