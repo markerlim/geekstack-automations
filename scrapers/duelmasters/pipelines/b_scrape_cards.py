@@ -500,7 +500,6 @@ def startscraping(booster_list):
     driver = _new_driver()
 
     try:
-        all_final_data = []
         for booster in booster_list:
             print(f"🚀 Processing booster: {booster}")
             card_data, driver = scrape_all_pages(driver, booster)
@@ -607,14 +606,17 @@ def startscraping(booster_list):
                 print(f"⚠️ No cards scraped for booster '{booster}'. Skipping upload.")
                 continue
 
-            all_final_data.extend(detailed_card_data)
             collection_value = os.getenv("C_DUELMASTERS")
 
             booster_update = detailed_card_data[0]['booster']
             if collection_value:
                 try:
+                    collection = mongo_service._get_collection(collection_value)
+                    deleted = collection.delete_many({"booster": booster_update})
+                    if deleted.deleted_count:
+                        print(f"🗑️ Removed {deleted.deleted_count} existing docs for booster '{booster_update}' before re-insert")
                     mongo_service.upload_data(
-                        data=all_final_data,
+                        data=detailed_card_data,
                         collection_name=collection_value,
                         backup_before_upload=True
                     )
