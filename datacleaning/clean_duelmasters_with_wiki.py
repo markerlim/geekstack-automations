@@ -39,6 +39,8 @@ def normalize_jp_name(s: str) -> str:
     s = s.replace('〜', '~')
     s = (s.replace('“', '"').replace('”', '"')
            .replace('‘', "'").replace('’', "'"))
+    # Fold separator dots: wiki tends to use ASCII '.', takaratomy uses '・' or '·'
+    s = s.replace('・', '.').replace('·', '.').replace('•', '.')
     return s.replace(' ', '').replace('　', '').casefold()
 
 
