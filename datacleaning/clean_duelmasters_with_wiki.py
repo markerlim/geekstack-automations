@@ -28,6 +28,7 @@ DM_EXPORT = HERE / "dmfull25MAY2026.json"
 WIKI_EXPORT = HERE / "dmwikifull25MAY2026.json"
 CLEANED_OUT = HERE / "dmfull_cleaned.json"
 UNMATCHED_OUT = HERE / "unmatched_cards.json"
+UNMATCHED_WIKI_OUT = HERE / "unmatched_wiki.json"
 
 SERIAL_SUFFIX_RE = re.compile(r'\s*\([^)]*\)\s*$')
 
@@ -194,13 +195,49 @@ def main():
         for booster, count in booster_unmatched.most_common(15):
             print(f"     {booster:<15s} {count}")
 
+    # Reverse check: which wiki docs don't match ANY DM card?
+    # Useful for spotting wiki-side typos / wrong JP names.
+    dm_name_keys = set()
+    for card in dm_cards:
+        for field in ('cardNameJP', 'cardName2JP'):
+            v = strip_serial(card.get(field) or '')
+            k = normalize_jp_name(v)
+            if k:
+                dm_name_keys.add(k)
+        for aw in card.get('awaken', []) or []:
+            v = strip_serial(aw.get('cardNameJP') or aw.get('cardName') or '')
+            k = normalize_jp_name(v)
+            if k:
+                dm_name_keys.add(k)
+
+    unmatched_wiki = []
+    for doc in wiki_docs:
+        cards = doc.get('cards', []) or []
+        # A wiki doc is matched if ANY of its name_jp values appears in DM
+        if any(normalize_jp_name(c.get('name_jp', '')) in dm_name_keys for c in cards):
+            continue
+        unmatched_wiki.append({
+            'url': doc.get('url'),
+            'is_twinpact': doc.get('is_twinpact', False),
+            'names': [
+                {'name': c.get('name'), 'name_jp': c.get('name_jp')}
+                for c in cards
+            ],
+        })
+    unmatched_wiki.sort(key=lambda d: d.get('url') or '')
+
+    print(f"\n📊 Reverse check (wiki → DM):")
+    print(f"   ❌ Wiki docs with no DM match: {len(unmatched_wiki):,} / {len(wiki_docs):,}")
+
     CLEANED_OUT.write_text(json.dumps(dm_cards, ensure_ascii=False, indent=2))
     UNMATCHED_OUT.write_text(json.dumps(
         {'main': unmatched, 'awaken': awaken_unmatched},
         ensure_ascii=False, indent=2,
     ))
-    print(f"\n💾 Cleaned cards   → {CLEANED_OUT.name} ({len(dm_cards):,} docs)")
-    print(f"💾 Unmatched cards → {UNMATCHED_OUT.name} (main={len(unmatched)}, awaken={len(awaken_unmatched)})")
+    UNMATCHED_WIKI_OUT.write_text(json.dumps(unmatched_wiki, ensure_ascii=False, indent=2))
+    print(f"\n💾 Cleaned cards    → {CLEANED_OUT.name} ({len(dm_cards):,} docs)")
+    print(f"💾 Unmatched cards  → {UNMATCHED_OUT.name} (main={len(unmatched)}, awaken={len(awaken_unmatched)})")
+    print(f"💾 Unmatched wiki   → {UNMATCHED_WIKI_OUT.name} ({len(unmatched_wiki)} docs)")
 
 
 if __name__ == '__main__':
