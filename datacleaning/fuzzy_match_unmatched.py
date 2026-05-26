@@ -21,7 +21,7 @@ UNMATCHED_CARDS = HERE / "unmatched_cards.json"
 UNMATCHED_WIKI = HERE / "unmatched_wiki.json"
 OUT = HERE / "fuzzy_matches.json"
 
-SERIAL_RE = re.compile(r'\s*\([^)]*\)\s*$')
+SERIAL_RE = re.compile(r'(\s*\([^)]*\)\s*)+$')
 
 
 def normalize(s):

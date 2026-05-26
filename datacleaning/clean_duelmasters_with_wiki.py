@@ -36,7 +36,10 @@ UNMATCHED_WIKI_OUT = HERE / "unmatched_wiki.json"
 DM_INPUT = CLEANED_OUT if CLEANED_OUT.exists() else DM_EXPORT_ORIG
 WIKI_INPUT = WIKI_CLEANED if WIKI_CLEANED.exists() else WIKI_EXPORT_ORIG
 
-SERIAL_SUFFIX_RE = re.compile(r'\s*\([^)]*\)\s*$')
+# Match ONE OR MORE trailing parens groups so we strip both the serial
+# suffix "(DM18 55/140)" AND any rubi-in-parens like "(ルビー・グラス)" or
+# "(Avatar of Strength)" that follow the kanji.
+SERIAL_SUFFIX_RE = re.compile(r'(\s*\([^)]*\)\s*)+$')
 
 
 def normalize_jp_name(s: str) -> str:
@@ -129,7 +132,9 @@ def build_jp_lookup(wiki_docs):
             name_jp = wcard.get('name_jp', '')
             if not name_jp:
                 continue
-            key = normalize_jp_name(name_jp)
+            # Strip trailing parens on the wiki side too — wiki sometimes has
+            # "(Avatar of Strength)" EN-in-parens after the kanji.
+            key = normalize_jp_name(strip_serial(name_jp))
             if key in lookup:
                 if lookup[key].get('url') != doc.get('url'):
                     collisions += 1
@@ -247,7 +252,7 @@ def main():
     for doc in wiki_docs:
         cards = doc.get('cards', []) or []
         # A wiki doc is matched if ANY of its name_jp values appears in DM
-        if any(normalize_jp_name(c.get('name_jp', '')) in dm_name_keys for c in cards):
+        if any(normalize_jp_name(strip_serial(c.get('name_jp', ''))) in dm_name_keys for c in cards):
             continue
         unmatched_wiki.append({
             'url': doc.get('url'),
