@@ -36,9 +36,10 @@ UNMATCHED_WIKI_OUT = HERE / "unmatched_wiki.json"
 DM_INPUT = CLEANED_OUT if CLEANED_OUT.exists() else DM_EXPORT_ORIG
 WIKI_INPUT = WIKI_CLEANED if WIKI_CLEANED.exists() else WIKI_EXPORT_ORIG
 
-# Match ONE OR MORE trailing parens groups so we strip both the serial
-# suffix "(DM18 55/140)" AND any rubi-in-parens like "(ルビー・グラス)" or
-# "(Avatar of Strength)" that follow the kanji.
+# Strip all trailing parens groups (serial + rubi + EN-in-parens) so that
+# DM "紅玉草(ルビー・グラス)(DM18 55/140)" matches wiki "紅玉草". Wiki side
+# stays clean (kanji-only) — the rubi is a takaratomy display annotation
+# that we don't want polluting the canonical wiki name.
 SERIAL_SUFFIX_RE = re.compile(r'(\s*\([^)]*\)\s*)+$')
 
 
@@ -218,6 +219,40 @@ def main():
                     refreshed_awaken += 1
     print(f"\n🔄 Re-applied EN from wikiurl: {refreshed_main:,} cards, {refreshed_awaken} awaken forms")
 
+    # JP sync pass: DM is the single source of truth for JP card names because
+    # future takaratomy scrapes lookup wiki by DM cardNameJP. Push the CLEAN
+    # canonical DM name (all trailing parens stripped — both serial AND rubi)
+    # into every linked wiki doc. Matching at scrape time also runs strip on
+    # both sides, so the clean form is what they'll compare against. Wiki stays
+    # rubi-free.
+    wiki_jp_synced = 0
+    for card in dm_cards:
+        url = card.get('wikiurl')
+        if url:
+            wd = wiki_by_url.get(url)
+            if wd and wd.get('cards'):
+                dm_jp = strip_serial(card.get('cardNameJP') or '')
+                if dm_jp and wd['cards'][0].get('name_jp') != dm_jp:
+                    wd['cards'][0]['name_jp'] = dm_jp
+                    wiki_jp_synced += 1
+                if len(wd['cards']) > 1 and card.get('cardName2'):
+                    dm_jp2 = strip_serial(card.get('cardName2JP') or '')
+                    if dm_jp2 and wd['cards'][1].get('name_jp') != dm_jp2:
+                        wd['cards'][1]['name_jp'] = dm_jp2
+                        wiki_jp_synced += 1
+        for aw in card.get('awaken', []) or []:
+            aw_url = aw.get('wikiurl')
+            if not aw_url:
+                continue
+            aw_wd = wiki_by_url.get(aw_url)
+            if not aw_wd or not aw_wd.get('cards'):
+                continue
+            aw_jp = strip_serial(aw.get('cardNameJP') or '')
+            if aw_jp and aw_wd['cards'][0].get('name_jp') != aw_jp:
+                aw_wd['cards'][0]['name_jp'] = aw_jp
+                wiki_jp_synced += 1
+    print(f"🔄 Wiki name_jp synced to DM cardNameJP (clean): {wiki_jp_synced:,} entries")
+
     total = len(dm_cards) or 1
     print("\n📊 Main-card results:")
     print(f"   ✅ Matched: {matched_main:,} / {len(dm_cards):,} ({matched_main / total * 100:.1f}%)")
@@ -268,12 +303,14 @@ def main():
     print(f"   ❌ Wiki docs with no DM match: {len(unmatched_wiki):,} / {len(wiki_docs):,}")
 
     CLEANED_OUT.write_text(json.dumps(dm_cards, ensure_ascii=False, indent=2))
+    WIKI_CLEANED.write_text(json.dumps(wiki_docs, ensure_ascii=False, indent=2))
     UNMATCHED_OUT.write_text(json.dumps(
         {'main': unmatched, 'awaken': awaken_unmatched},
         ensure_ascii=False, indent=2,
     ))
     UNMATCHED_WIKI_OUT.write_text(json.dumps(unmatched_wiki, ensure_ascii=False, indent=2))
     print(f"\n💾 Cleaned cards    → {CLEANED_OUT.name} ({len(dm_cards):,} docs)")
+    print(f"💾 Cleaned wiki     → {WIKI_CLEANED.name} ({len(wiki_docs):,} docs)")
     print(f"💾 Unmatched cards  → {UNMATCHED_OUT.name} (main={len(unmatched)}, awaken={len(awaken_unmatched)})")
     print(f"💾 Unmatched wiki   → {UNMATCHED_WIKI_OUT.name} ({len(unmatched_wiki)} docs)")
 
