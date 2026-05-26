@@ -94,10 +94,14 @@ def apply_awaken_wiki(awaken_card: dict, wiki_doc: dict) -> bool:
     if not wiki_cards:
         return False
     form0 = wiki_cards[0]
-    # Back up JP fields before overwrite, mirroring Pipeline B
-    awaken_card['cardNameJP'] = awaken_card.get('cardName')
-    awaken_card['raceJP'] = awaken_card.get('race')
-    awaken_card['effectsJP'] = awaken_card.get('effects')
+    # Back up JP fields only if not already backed up — otherwise re-applies
+    # would overwrite the JP backup with the already-EN cardName.
+    if not awaken_card.get('cardNameJP'):
+        awaken_card['cardNameJP'] = awaken_card.get('cardName')
+    if not awaken_card.get('raceJP'):
+        awaken_card['raceJP'] = awaken_card.get('race')
+    if not awaken_card.get('effectsJP'):
+        awaken_card['effectsJP'] = awaken_card.get('effects')
     if form0.get('name'):
         awaken_card['cardName'] = form0['name']
     if form0.get('card_type'):
@@ -179,6 +183,27 @@ def main():
                     'awaken_cardName': aw.get('cardName'),
                     'awaken_cardNameJP': aw_jp,
                 })
+
+    # Refresh pass: for every card/awaken with an existing wikiurl, re-apply
+    # from the wiki doc by URL. Catches cases where a strict match was made in
+    # a previous run but the wiki has since been updated (or where Pipeline B
+    # set a wikiurl on an awaken but never re-pulled its EN data).
+    wiki_by_url = {d.get('url'): d for d in wiki_docs if d.get('url')}
+    refreshed_main = 0
+    refreshed_awaken = 0
+    for card in dm_cards:
+        url = card.get('wikiurl')
+        if url:
+            wd = wiki_by_url.get(url)
+            if wd and apply_wiki_to_card(card, wd):
+                refreshed_main += 1
+        for aw in card.get('awaken', []) or []:
+            url = aw.get('wikiurl')
+            if url:
+                wd = wiki_by_url.get(url)
+                if wd and apply_awaken_wiki(aw, wd):
+                    refreshed_awaken += 1
+    print(f"\n🔄 Re-applied EN from wikiurl: {refreshed_main:,} cards, {refreshed_awaken} awaken forms")
 
     total = len(dm_cards) or 1
     print("\n📊 Main-card results:")
