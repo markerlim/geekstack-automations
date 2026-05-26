@@ -17,11 +17,14 @@ import json
 from pathlib import Path
 
 HERE = Path(__file__).parent
-WIKI_EXPORT = HERE / "dmwikifull25MAY2026.json"
+WIKI_EXPORT_ORIG = HERE / "dmwikifull25MAY2026.json"
 WIKI_CLEANED = HERE / "dmwikifull_cleaned.json"
 CLEANED = HERE / "dmfull_cleaned.json"
 FUZZY = HERE / "fuzzy_matches.json"
 APPLIED_LOG = HERE / "fuzzy_applied.json"
+
+# Read from the cleaned wiki if it exists so prior JP edits are preserved
+WIKI_INPUT = WIKI_CLEANED if WIKI_CLEANED.exists() else WIKI_EXPORT_ORIG
 
 
 def split_race(s):
@@ -71,7 +74,8 @@ def main():
     args = ap.parse_args()
 
     print("📖 Loading inputs...")
-    wiki_docs = json.loads(WIKI_EXPORT.read_text())
+    print(f"   wiki: {WIKI_INPUT.name}")
+    wiki_docs = json.loads(WIKI_INPUT.read_text())
     dm_cards = json.loads(CLEANED.read_text())
     fuzzy = json.loads(FUZZY.read_text())
     print(f"   {len(wiki_docs):,} wiki docs / {len(dm_cards):,} DM cards / {len(fuzzy):,} fuzzy suggestions")

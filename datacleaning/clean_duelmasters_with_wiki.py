@@ -24,11 +24,17 @@ from collections import Counter
 from pathlib import Path
 
 HERE = Path(__file__).parent
-DM_EXPORT = HERE / "dmfull25MAY2026.json"
-WIKI_EXPORT = HERE / "dmwikifull25MAY2026.json"
+DM_EXPORT_ORIG = HERE / "dmfull25MAY2026.json"
+WIKI_EXPORT_ORIG = HERE / "dmwikifull25MAY2026.json"
 CLEANED_OUT = HERE / "dmfull_cleaned.json"
+WIKI_CLEANED = HERE / "dmwikifull_cleaned.json"
 UNMATCHED_OUT = HERE / "unmatched_cards.json"
 UNMATCHED_WIKI_OUT = HERE / "unmatched_wiki.json"
+
+# Read from cleaned versions if they exist (idempotent re-runs), otherwise
+# fall back to the original exports for the very first pass.
+DM_INPUT = CLEANED_OUT if CLEANED_OUT.exists() else DM_EXPORT_ORIG
+WIKI_INPUT = WIKI_CLEANED if WIKI_CLEANED.exists() else WIKI_EXPORT_ORIG
 
 SERIAL_SUFFIX_RE = re.compile(r'\s*\([^)]*\)\s*$')
 
@@ -134,8 +140,10 @@ def build_jp_lookup(wiki_docs):
 
 def main():
     print("📖 Loading exports...")
-    dm_cards = json.loads(DM_EXPORT.read_text())
-    wiki_docs = json.loads(WIKI_EXPORT.read_text())
+    print(f"   DM:   {DM_INPUT.name}")
+    print(f"   wiki: {WIKI_INPUT.name}")
+    dm_cards = json.loads(DM_INPUT.read_text())
+    wiki_docs = json.loads(WIKI_INPUT.read_text())
     print(f"   {len(dm_cards):,} DM cards / {len(wiki_docs):,} wiki docs")
 
     jp_lookup, collisions = build_jp_lookup(wiki_docs)
