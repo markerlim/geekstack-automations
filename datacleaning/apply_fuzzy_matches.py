@@ -18,6 +18,7 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 WIKI_EXPORT = HERE / "dmwikifull25MAY2026.json"
+WIKI_CLEANED = HERE / "dmwikifull_cleaned.json"
 CLEANED = HERE / "dmfull_cleaned.json"
 FUZZY = HERE / "fuzzy_matches.json"
 APPLIED_LOG = HERE / "fuzzy_applied.json"
@@ -85,6 +86,7 @@ def main():
     missing_wiki = 0
     missing_card = 0
     no_change = 0
+    wiki_jp_updates = 0
 
     for s in eligible:
         wiki_url = s.get('wiki_url')
@@ -98,6 +100,17 @@ def main():
         if not card:
             missing_card += 1
             continue
+
+        # ── Push DM JP name back into the wiki doc (JP follows takaratomy) ──
+        # Update the specific cards[i].name_jp entry that the fuzzy matcher hit.
+        old_jp = s.get('wiki_name_jp')
+        new_jp = s.get('dm_cardNameJP')
+        if old_jp and new_jp and old_jp != new_jp:
+            for wc in wiki_doc.get('cards', []):
+                if wc.get('name_jp') == old_jp:
+                    wc['name_jp'] = new_jp
+                    wiki_jp_updates += 1
+                    break
 
         before = {
             'cardName': card.get('cardName'),
@@ -117,12 +130,15 @@ def main():
                 'booster': card.get('booster'),
                 'cardNameJP': card.get('cardNameJP'),
                 'wiki_url': wiki_url,
+                'wiki_jp_before': old_jp,
+                'wiki_jp_after': new_jp if (old_jp and new_jp and old_jp != new_jp) else None,
                 'before': {k: v for k, v in before.items() if v},
                 'after': {k: v for k, v in after.items() if v},
             })
 
     print(f"\n📊 Apply summary:")
-    print(f"   ✅ Cards updated: {len(applied)}")
+    print(f"   ✅ DM cards updated: {len(applied)}")
+    print(f"   ✏️ Wiki name_jp updated: {wiki_jp_updates}")
     print(f"   ⏭️ No-change (wiki had nothing new): {no_change}")
     print(f"   ⚠️ Wiki url not found in export: {missing_wiki}")
     print(f"   ⚠️ DM cardUid not found in cleaned: {missing_card}")
@@ -140,8 +156,10 @@ def main():
         return
 
     CLEANED.write_text(json.dumps(dm_cards, ensure_ascii=False, indent=2))
+    WIKI_CLEANED.write_text(json.dumps(wiki_docs, ensure_ascii=False, indent=2))
     APPLIED_LOG.write_text(json.dumps(applied, ensure_ascii=False, indent=2))
     print(f"\n💾 Updated {CLEANED.name} ({len(dm_cards):,} docs)")
+    print(f"💾 Updated {WIKI_CLEANED.name} ({len(wiki_docs):,} docs, {wiki_jp_updates} name_jp edits)")
     print(f"💾 Applied changes log → {APPLIED_LOG.name} ({len(applied)} entries)")
 
 
