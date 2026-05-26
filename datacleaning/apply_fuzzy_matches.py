@@ -69,15 +69,21 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--min-ratio', type=float, default=0.9,
                     help='Minimum similarity to auto-apply (default 0.9)')
+    ap.add_argument('--source', type=str, default=str(FUZZY),
+                    help=f'Path to fuzzy suggestions JSON (default {FUZZY.name})')
+    ap.add_argument('--require-en-match', action='store_true',
+                    help='Only apply pairs where wiki_name_en == dm_cardName_en '
+                         '(case-insensitive) — much stricter, catches false positives')
     ap.add_argument('--dry-run', action='store_true',
                     help='Print what would change without writing anything')
     args = ap.parse_args()
 
     print("📖 Loading inputs...")
-    print(f"   wiki: {WIKI_INPUT.name}")
+    print(f"   wiki:   {WIKI_INPUT.name}")
+    print(f"   source: {Path(args.source).name}")
     wiki_docs = json.loads(WIKI_INPUT.read_text())
     dm_cards = json.loads(CLEANED.read_text())
-    fuzzy = json.loads(FUZZY.read_text())
+    fuzzy = json.loads(Path(args.source).read_text())
     print(f"   {len(wiki_docs):,} wiki docs / {len(dm_cards):,} DM cards / {len(fuzzy):,} fuzzy suggestions")
 
     wiki_by_url = {d.get('url'): d for d in wiki_docs if d.get('url')}
@@ -85,6 +91,17 @@ def main():
 
     eligible = [s for s in fuzzy if s.get('similarity', 0) >= args.min_ratio]
     print(f"\n🎯 {len(eligible)} suggestions at similarity ≥ {args.min_ratio}")
+
+    skipped_en = 0
+    if args.require_en_match:
+        before = len(eligible)
+        eligible = [
+            s for s in eligible
+            if (s.get('wiki_name_en') or '').strip().casefold()
+            == (s.get('dm_cardName_en') or '').strip().casefold()
+        ]
+        skipped_en = before - len(eligible)
+        print(f"   --require-en-match: kept {len(eligible)}, skipped {skipped_en} for EN mismatch")
 
     applied = []
     missing_wiki = 0
