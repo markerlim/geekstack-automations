@@ -1,1 +1,106 @@
-[]
+[
+  {
+    "cardName": "警鐘の聖沌 n4rc0",
+    "cardNameJP": "警鐘の聖沌 n4rc0(DM25EX1 74/89)",
+    "civilization": [
+      "Light"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "滝川るる＆ラフルル ー閃光のヒロインー",
+    "cardNameJP": "滝川るる＆ラフルル ー閃光のヒロインー(DM25EX1 SPR㊙1超/SPR㊙5)",
+    "civilization": [
+      "Light"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー",
+    "cardNameJP": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー(DM25EX1 SPR㊙2超/SPR㊙5)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "本能寺カレン＆カオスマントラ ー裏切のヒロインー",
+    "cardNameJP": "本能寺カレン＆カオスマントラ ー裏切のヒロインー(DM25EX1 SPR㊙3超/SPR㊙5)",
+    "civilization": [
+      "Darkness"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "うららかもも＆ミノマル ー献身のヒロインー",
+    "cardNameJP": "うららかもも＆ミノマル ー献身のヒロインー(DM25EX1 SPR㊙4超/SPR㊙5)",
+    "civilization": [
+      "Nature"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "滝川るる＆ラフルル ー閃光のヒロインー",
+    "cardNameJP": "滝川るる＆ラフルル ー閃光のヒロインー(DM25EX1 SPR㊙1/SPR㊙5)",
+    "civilization": [
+      "Light"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー",
+    "cardNameJP": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー(DM25EX1 SPR㊙2/SPR㊙5)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "本能寺カレン＆カオスマントラ ー裏切のヒロインー",
+    "cardNameJP": "本能寺カレン＆カオスマントラ ー裏切のヒロインー(DM25EX1 SPR㊙3/SPR㊙5)",
+    "civilization": [
+      "Darkness"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "うららかもも＆ミノマル ー献身のヒロインー",
+    "cardNameJP": "うららかもも＆ミノマル ー献身のヒロインー(DM25EX1 SPR㊙4/SPR㊙5)",
+    "civilization": [
+      "Nature"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "滝川るる＆ラフルル ー閃光のヒロインー",
+    "cardNameJP": "滝川るる＆ラフルル ー閃光のヒロインー(DM25EX1 SPR1/SPR5)",
+    "civilization": [
+      "Light"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー",
+    "cardNameJP": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー(DM25EX1 SPR2/SPR5)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "本能寺カレン＆カオスマントラ ー裏切のヒロインー",
+    "cardNameJP": "本能寺カレン＆カオスマントラ ー裏切のヒロインー(DM25EX1 SPR3/SPR5)",
+    "civilization": [
+      "Darkness"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "うららかもも＆ミノマル ー献身のヒロインー",
+    "cardNameJP": "うららかもも＆ミノマル ー献身のヒロインー(DM25EX1 SPR4/SPR5)",
+    "civilization": [
+      "Nature"
+    ],
+    "type": "NEO Creature"
+  }
+]
