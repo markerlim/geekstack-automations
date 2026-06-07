@@ -1,57 +1,98 @@
 [
   {
-    "cardName": "鬼丸装備【双剣】vs.鎖刃竜\r\n偽りの希望 鬼丸「終斗」",
-    "cardNameJP": "鬼丸装備【双剣】vs.鎖刃竜\r\n偽りの希望 鬼丸「終斗」(DMART26 3/6)",
+    "cardName": "滝川るる＆ラフルル ー閃光のヒロインー",
+    "cardNameJP": "滝川るる＆ラフルル ー閃光のヒロインー(DM25EX1 SPR㊙1超/SPR㊙5)",
     "civilization": [
-      "Fire"
+      "Light"
     ],
-    "type": "Creature"
+    "type": "NEO Creature"
   },
   {
-    "cardName": "ドギラH装備【大剣】vs.獄焔蛸\r\n紅き団長 ドギラゴン悪",
-    "cardNameJP": "ドギラH装備【大剣】vs.獄焔蛸\r\n紅き団長 ドギラゴン悪(DMART26 4/6)",
+    "cardName": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー",
+    "cardNameJP": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー(DM25EX1 SPR㊙2超/SPR㊙5)",
     "civilization": [
-      "Darkness",
-      "Fire"
+      "Water"
     ],
-    "type": "Creature"
+    "type": "NEO Creature"
   },
   {
-    "cardName": "ボルシャック装備【太刀】vs.護火竜\r\nボルシャック・ドリーム・ドラゴン",
-    "cardNameJP": "ボルシャック装備【太刀】vs.護火竜\r\nボルシャック・ドリーム・ドラゴン(DMART26 5/6)",
+    "cardName": "本能寺カレン＆カオスマントラ ー裏切のヒロインー",
+    "cardNameJP": "本能寺カレン＆カオスマントラ ー裏切のヒロインー(DM25EX1 SPR㊙3超/SPR㊙5)",
     "civilization": [
-      "Light",
-      "Fire",
-      "Nature"
-    ],
-    "type": "Creature"
-  },
-  {
-    "cardName": "キーナリー装備【ハンマー】vs.凍峰竜\r\n終末縫合王 ザ=キラー・キーナリー",
-    "cardNameJP": "キーナリー装備【ハンマー】vs.凍峰竜\r\n終末縫合王 ザ=キラー・キーナリー(DMART26 6/6)",
-    "civilization": [
-      "Water",
-      "Darkness",
-      "Nature"
-    ],
-    "type": "Creature"
-  },
-  {
-    "cardName": "ゲンム装備【ヘビィボウガン】vs.波衣竜\r\n∞龍 ゲンムエンペラー",
-    "cardNameJP": "ゲンム装備【ヘビィボウガン】vs.波衣竜\r\n∞龍 ゲンムエンペラー(DMART26 2/6)",
-    "civilization": [
-      "Water",
       "Darkness"
     ],
     "type": "Creature"
   },
   {
-    "cardName": "ドギラN装備【ガンランス】vs.煌雷竜\r\n蒼き守護神 ドギラゴン閃",
-    "cardNameJP": "ドギラN装備【ガンランス】vs.煌雷竜\r\n蒼き守護神 ドギラゴン閃(DMART26 1/6)",
+    "cardName": "うららかもも＆ミノマル ー献身のヒロインー",
+    "cardNameJP": "うららかもも＆ミノマル ー献身のヒロインー(DM25EX1 SPR㊙4超/SPR㊙5)",
     "civilization": [
-      "Light",
-      "Fire"
+      "Nature"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "滝川るる＆ラフルル ー閃光のヒロインー",
+    "cardNameJP": "滝川るる＆ラフルル ー閃光のヒロインー(DM25EX1 SPR㊙1/SPR㊙5)",
+    "civilization": [
+      "Light"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー",
+    "cardNameJP": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー(DM25EX1 SPR㊙2/SPR㊙5)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "本能寺カレン＆カオスマントラ ー裏切のヒロインー",
+    "cardNameJP": "本能寺カレン＆カオスマントラ ー裏切のヒロインー(DM25EX1 SPR㊙3/SPR㊙5)",
+    "civilization": [
+      "Darkness"
     ],
     "type": "Creature"
+  },
+  {
+    "cardName": "うららかもも＆ミノマル ー献身のヒロインー",
+    "cardNameJP": "うららかもも＆ミノマル ー献身のヒロインー(DM25EX1 SPR㊙4/SPR㊙5)",
+    "civilization": [
+      "Nature"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "滝川るる＆ラフルル ー閃光のヒロインー",
+    "cardNameJP": "滝川るる＆ラフルル ー閃光のヒロインー(DM25EX1 SPR1/SPR5)",
+    "civilization": [
+      "Light"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー",
+    "cardNameJP": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー(DM25EX1 SPR2/SPR5)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "本能寺カレン＆カオスマントラ ー裏切のヒロインー",
+    "cardNameJP": "本能寺カレン＆カオスマントラ ー裏切のヒロインー(DM25EX1 SPR3/SPR5)",
+    "civilization": [
+      "Darkness"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "うららかもも＆ミノマル ー献身のヒロインー",
+    "cardNameJP": "うららかもも＆ミノマル ー献身のヒロインー(DM25EX1 SPR4/SPR5)",
+    "civilization": [
+      "Nature"
+    ],
+    "type": "NEO Creature"
   }
 ]
