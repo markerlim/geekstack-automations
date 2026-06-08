@@ -1,0 +1,11 @@
+{
+  "main": [],
+  "awaken": [
+    {
+      "parent_cardUid": "dmx22b-121",
+      "booster": "dmx22b",
+      "awaken_cardName": "Blank",
+      "awaken_cardNameJP": "Blank"
+    }
+  ]
+}

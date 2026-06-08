@@ -1,12 +1,18 @@
+import re
 import sys
 import json
 import random
 import time
 from pathlib import Path
+from urllib.parse import quote, urlsplit, urlunsplit
 
+from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
 project_root = Path(__file__).parent.parent.parent.parent
@@ -19,6 +25,9 @@ load_dotenv()
 
 WIKI_COLLECTION = "CL_duelmasters_wiki"
 UNIQUE_CARDS_PATH = project_root / "duelmasterdb" / "wiki_unique_cards.json"
+SET_CARDS_PATH = project_root / "duelmasterdb" / "wiki_set_cards.json"
+WIKI_SETS_PATH = project_root / "duelmasterdb" / "wiki_sets.json"
+WIKI_BASE = "https://duelmasters.fandom.com"
 UPLOAD_BATCH_SIZE = 10
 
 USER_AGENTS = [
@@ -46,6 +55,61 @@ def create_driver():
         service=Service(ChromeDriverManager().install()),
         options=chrome_options,
     )
+
+
+def _safe_url(url: str) -> str:
+    parts = urlsplit(url)
+    return urlunsplit((
+        parts.scheme,
+        parts.netloc,
+        quote(parts.path, safe="/"),
+        parts.query,
+        parts.fragment,
+    ))
+
+
+def fetch_card_links_from_set(set_url: str) -> list[str]:
+    print(f"  Fetching card links from set page: {set_url}")
+    driver = create_driver()
+    try:
+        driver.get(_safe_url(set_url))
+        WebDriverWait(driver, 15).until(
+            EC.presence_of_element_located((By.TAG_NAME, "ul"))
+        )
+        time.sleep(1)
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+    finally:
+        driver.quit()
+
+    contents_h2 = None
+    for h2 in soup.find_all('h2'):
+        if h2.find('span', {'id': 'Contents'}):
+            contents_h2 = h2
+            break
+
+    if not contents_h2:
+        print("  -> No 'Contents' section found on set page")
+        return []
+
+    card_urls = set()
+    current = contents_h2.find_next_sibling()
+    while current:
+        if current.name == 'h2':
+            break
+        if current.name == 'ul':
+            for a in current.find_all('a', href=True):
+                href = a['href']
+                if not href.startswith('/wiki/'):
+                    continue
+                path = href[len('/wiki/'):]
+                if ':' in path:
+                    continue
+                card_urls.add(WIKI_BASE + href)
+        current = current.find_next_sibling()
+
+    result = sorted(card_urls)
+    print(f"  -> {len(result)} card links found")
+    return result
 
 
 def get_existing_urls(mongo_service):
@@ -120,9 +184,71 @@ def scrape_bulk(limit=None):
             print(f"    {u}")
 
 
+def rebuild_unique_cards():
+    with open(SET_CARDS_PATH, encoding='utf-8') as f:
+        data = json.load(f)
+    all_urls = sorted({url for v in data.values() for url in v.get('cards', [])})
+    output = {'total': len(all_urls), 'urls': all_urls}
+    with open(UNIQUE_CARDS_PATH, 'w', encoding='utf-8') as f:
+        json.dump(output, f, indent=2)
+    print(f"  wiki_unique_cards.json rebuilt: {len(all_urls)} unique URLs")
+    return all_urls
+
+
+def derive_set_code_from_url(set_url: str) -> str | None:
+    page = set_url.rstrip('/').rsplit('/', 1)[-1]
+    m = re.match(r'^(DM\d+-\d+\S*|[A-Za-z]+-\d+\S*)', page)
+    return m.group(1) if m else None
+
+
+def scrape_from_set_url(set_url: str, set_code: str | None):
+    set_code_from_lookup = None
+    if WIKI_SETS_PATH.exists():
+        with open(WIKI_SETS_PATH, encoding='utf-8') as f:
+            ws = json.load(f)
+        for s in ws.get('sets', []):
+            if s.get('url') == set_url:
+                set_code_from_lookup = s['set_code']
+                break
+
+    if not set_code:
+        set_code = set_code_from_lookup or derive_set_code_from_url(set_url)
+
+    if not set_code:
+        print("ERROR: could not determine set code from URL. Provide --set-code.")
+        return
+
+    print(f"Set code: {set_code}")
+
+    card_urls = fetch_card_links_from_set(set_url)
+    if not card_urls:
+        print("No card links found. Exiting.")
+        return
+
+    set_cards = json.loads(SET_CARDS_PATH.read_text()) if SET_CARDS_PATH.exists() else {}
+    set_cards[set_code] = {
+        "name": set_code,
+        "set_url": set_url,
+        "card_count": len(card_urls),
+        "cards": card_urls,
+    }
+    SET_CARDS_PATH.write_text(json.dumps(set_cards, indent=2, ensure_ascii=False))
+    print(f"  wiki_set_cards.json updated ({set_code}: {len(card_urls)} cards)")
+
+    rebuild_unique_cards()
+
+    scrape_bulk()
+
+
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('--test', action='store_true', help='Scrape only the first 3 cards')
+    parser.add_argument('--set-url', type=str, help='Scrape cards from a specific wiki set page URL')
+    parser.add_argument('--set-code', type=str, help='Set code for wiki_set_cards.json (auto-derived if omitted)')
     args = parser.parse_args()
-    scrape_bulk(limit=3 if args.test else None)
+
+    if args.set_url:
+        scrape_from_set_url(args.set_url, args.set_code)
+    else:
+        scrape_bulk(limit=3 if args.test else None)

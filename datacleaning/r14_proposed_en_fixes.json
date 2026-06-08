@@ -1,0 +1,280 @@
+{
+  "summary": {
+    "wiki_entries_to_patch": 34,
+    "rule": "where count(「) < count(」), prefix `「` to each closer-delimited segment that needs one (mirrors JP bracket pattern); same for 『』"
+  },
+  "changes": [
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CBehold,_this_is_the_essence_of_super_science!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Behold, this is the essence of super science!」",
+      "after": "「Behold, this is the essence of super science!」",
+      "name_jp": "「見よ、これぞ超科学の神髄なり！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CChikushoooooo!!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Chikushoooooo!!」",
+      "after": "「Chikushoooooo!!」",
+      "name_jp": "「ちくしょおおおおおおっー!!」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CDestructive_Red!_Scrapper_Red!%E3%80%8D%E3%80%8CKnowledgeable_Blue!_Brain_Blue!%E3%80%8D%E3%80%8CEnchanting_Green!_Trap_Green!%E3%80%8D%E3%80%8CFlashy_Yellow!_Spark_Yellow!%E3%80%8D%E3%80%8CGreedy_Purple!_Hand_Purple!%E3%80%8D%E3%80%8CWe_are_where_the_break_is!_Shield_Sentai,_Triggerger!!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Destructive Red! Scrapper Red!」Knowledgeable Blue! Brain Blue!」Enchanting Green! Trap Green!」Flashy Yellow! Spark Yellow!」Greedy Purple! Hand Purple!」We are where the break is! Shield Sentai, Triggerger!!」",
+      "after": "「Destructive Red! Scrapper Red!」「Knowledgeable Blue! Brain Blue!」「Enchanting Green! Trap Green!」「Flashy Yellow! Spark Yellow!」「Greedy Purple! Hand Purple!」「We are where the break is! Shield Sentai, Triggerger!!」",
+      "name_jp": "「破壊の赤！スクラッパーレッド！」「知識の青！ブレインブルー！」「魅惑の緑！トラップグリーン！」「閃光の黄色！スパークイエロー！」「強欲の紫！ハンドパープル！」「ブレイクあるところに我らあり！シールド戦隊、トリガージャー!!」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CI_remember_the_names_of_those_I_killed!!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "I remember the names of those I killed!!」",
+      "after": "「I remember the names of those I killed!!」",
+      "name_jp": "「殺した人間の名くらい、おぼえているよ!!」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CThe_Sky_Burns_Bright_Red!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "The Sky Burns Bright Red!」",
+      "after": "「The Sky Burns Bright Red!」",
+      "name_jp": "「空が真っ赤に燃え尽きる！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CDedicate_all_my_strength!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Dedicate all my strength!」",
+      "after": "「Dedicate all my strength!」",
+      "name_jp": "「我の全ての力を捧げる！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CFlying%EF%BD%9E!!%E3%80%8DSENKKO",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Flying～!!」SENKKO",
+      "after": "「Flying～!!」SENKKO",
+      "name_jp": "「かっ飛び～!!」SENKKO"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CPress!_Crush!_Great_Collapse!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Press! Crush! Great Collapse!」",
+      "after": "「Press! Crush! Great Collapse!」",
+      "name_jp": "「プレス！粉砕！大圧壊！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CTime,_Go_Back!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Time, Go Back!」",
+      "after": "「Time, Go Back!」",
+      "name_jp": "「時間よ、戻れ！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CCelebrate!_The_final_curtain_of_this_story!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Celebrate! The final curtain of this story!」",
+      "after": "「Celebrate! The final curtain of this story!」",
+      "name_jp": "「祝え！この物語の終幕を！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CCome_on,_You%27re_on_your_Way_Home!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Come on, You're on your Way Home!」",
+      "after": "「Come on, You're on your Way Home!」",
+      "name_jp": "「さぁさぁ、お代は見てのお帰りだよ！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CRaijin-Oh_Kenzan!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Raijin-Oh Kenzan!」",
+      "after": "「Raijin-Oh Kenzan!」",
+      "name_jp": "「ライジンオー見参！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CBreak_Through_Even_Spacetime!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Break Through Even Spacetime!」",
+      "after": "「Break Through Even Spacetime!」",
+      "name_jp": "「時空さえも突き抜けろ！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CI%27ll_eat_curry_bread!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "I'll eat curry bread!」",
+      "after": "「I'll eat curry bread!」",
+      "name_jp": "「カレーパンを食ってやるぜぇ！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CStart_all_over_from_your_previous_life!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Start all over from your previous life!」",
+      "after": "「Start all over from your previous life!」",
+      "name_jp": "「生まれる前からやりなおしたら？」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/%E3%80%8CThe_future_can_be_changed_with_effort!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "The future can be changed with effort!」",
+      "after": "「The future can be changed with effort!」",
+      "name_jp": "「未来は努力で変えられる！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Bebe_Village%27s_Gigamantis,_Giant_Insect_/_%E3%80%8CInsect_Great_March!!%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "Insect Great March!!」",
+      "after": "「Insect Great March!!」",
+      "name_jp": "「虫虫大行進!!」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Bishamons_Deken_/_%E3%80%8CCome_from_the_Abyss,_The_Soul%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "Come from the Abyss, The Soul」",
+      "after": "「Come from the Abyss, The Soul」",
+      "name_jp": "「深淵より来たれ、魂よ」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Glenglassaugh-Zerozeroone",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Glenglassaugh-Zerozeroone GG 」- 001",
+      "after": "「Glenglassaugh-Zerozeroone GG 」- 001",
+      "name_jp": "「GG」-001"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Glenturret-Zerozerotwo",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Glenturret-Zerozerotwo GT 」- 002",
+      "after": "「Glenturret-Zerozerotwo GT 」- 002",
+      "name_jp": "「GT」-002"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Haileader,_Play_Music_/_Melody_3_%E3%80%8CTemptation%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "Melody 3Temptation」",
+      "after": "「Melody 3Temptation」",
+      "name_jp": "音奏曲第3番「幻惑」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Kabuto-Ninetynine",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "Kabuto-Ninetynine K 」- 9+9",
+      "after": "「Kabuto-Ninetynine K 」- 9+9",
+      "name_jp": "「K」-9+9"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Katsudon_%E3%80%8CI%27ll_do_it!%E3%80%8D",
+      "card_index": 0,
+      "is_twinpact": false,
+      "before": "KatsudonI'll do it!」",
+      "after": "「KatsudonI'll do it!」",
+      "name_jp": "カツドン「やったるで！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Katsuraderansu_/_%E3%80%8CI%27m_going_to_Afro!!%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "I'm going to Afro!!」",
+      "after": "「I'm going to Afro!!」",
+      "name_jp": "「アフロ行きま～す!!」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Magi,_Mechanic_/_%E3%80%8CPower_of_Hand_Des%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "Power of Hand Desu」",
+      "after": "「Power of Hand Desu」",
+      "name_jp": "「ハンドのパワーです」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Megaboost_Churis_/_%E3%80%8CCrazy_Suicide_Tactics!%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "Crazy Suicide Tactics!」",
+      "after": "「Crazy Suicide Tactics!」",
+      "name_jp": "「ぶっ飛び特攻ッス！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Oblady_Hornet_/%E3%80%8CLet_it_Bee!%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "Let it Bee!」 Let it Bee !」",
+      "after": "「Let it Bee!」「 Let it Bee !」",
+      "name_jp": "「Let it Bee！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Og_Val,_Dragon_Armored_/_%E3%80%8CQuietness,_Fill_the_World%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "Quietness, Fill the World」",
+      "after": "「Quietness, Fill the World」",
+      "name_jp": "「静謐よ、世界に満ちよ」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Pea_Tanpan_/_%E3%80%8CHaichadame%F0%9F%92%A2%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "Haichadame💢」",
+      "after": "「Haichadame💢」",
+      "name_jp": "「はいちゃダメ💢」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Rafululu_Love,_Acoustic_Dragon_Elemental_/_%E3%80%8CIt%27s_coming_from_the_future,_so_it%27s_a_Miracle%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "It's coming from the future, so it's a Miracle」",
+      "after": "「It's coming from the future, so it's a Miracle」",
+      "name_jp": "「未来から来る、だからミラクル」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Torakuru,_Play_Music_/_Melody_5_%E3%80%8CSound_Tornado%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "Melody 5Sound Tornado」",
+      "after": "「Melody 5Sound Tornado」",
+      "name_jp": "音奏曲第5番「音竜巻」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Trash_Nac,_Dragon_Armored_/_%E3%80%8CYou_and_Your_Friends!%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "You and Your Friends!」",
+      "after": "「You and Your Friends!」",
+      "name_jp": "「お前もやったれや！」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Twin_Les_Paul_/%E3%80%8CMusic_Staaart!!!%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "Music Staaart!!!」",
+      "after": "「Music Staaart!!!」",
+      "name_jp": "「ミュージック・スタァァァト!!!」"
+    },
+    {
+      "url": "https://duelmasters.fandom.com/wiki/Deal,_Mechanic_/_%E3%80%8CToday%27s_Lucky_Number!%E3%80%8D",
+      "card_index": 1,
+      "is_twinpact": true,
+      "before": "Today's Lucky Number!」",
+      "after": "「Today's Lucky Number!」",
+      "name_jp": "「本日のラッキーナンバー！」"
+    }
+  ]
+}

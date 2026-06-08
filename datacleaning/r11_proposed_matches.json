@@ -1,0 +1,762 @@
+{
+  "summary": {
+    "tier_1_typographic": 16,
+    "tier_2_kana_folds_additional": 7,
+    "tier_3a_PS_fallback": 8,
+    "tier_3b_art_bracket": 6,
+    "tier_3d_awaken_brace_strip": 2,
+    "main_total_new_matches": 37,
+    "main_remaining_unmatched_after_r11": 49,
+    "projected_match_rate_pct": 99.777
+  },
+  "tier_1_typographic_folds": [
+    {
+      "cardUid": "dm24ex3-rp3TR1",
+      "booster": "dm24ex3",
+      "dm_jp": "der'Zen Mondo",
+      "dm_en": "der`Zen Mondo der`Zen Mondo",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Der%60Zen_Mondo_/_%E2%99%AA_With_a_Signature_Move,_Strongest_are_the_Traces_of_a_Dream",
+      "wiki_name_jp": "der`ZenMondo",
+      "wiki_en": "der`Zen Mondo der`Zen Mondo",
+      "is_twinpact": true
+    },
+    {
+      "cardUid": "dm24ex2-Cho018",
+      "booster": "dm24ex2",
+      "dm_jp": "八頭竜 ACE-Yamata",
+      "dm_en": "ACE-Yamata, Eight-headed Dragon",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/ACE-Yamata,_Eight-headed_Dragon_/_Mystic_Treasure_Sword",
+      "wiki_name_jp": "八頭龍ACE-Yamata",
+      "wiki_en": "ACE-Yamata, Eight-headed Dragon",
+      "is_twinpact": true
+    },
+    {
+      "cardUid": "dm23rp1-S3",
+      "booster": "dm23rp1",
+      "dm_jp": "der'Zen Mondo",
+      "dm_en": "der`Zen Mondo der`Zen Mondo",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Der%60Zen_Mondo_/_%E2%99%AA_With_a_Signature_Move,_Strongest_are_the_Traces_of_a_Dream",
+      "wiki_name_jp": "der`ZenMondo",
+      "wiki_en": "der`Zen Mondo der`Zen Mondo",
+      "is_twinpact": true
+    },
+    {
+      "cardUid": "dm23rp1-3A",
+      "booster": "dm23rp1",
+      "dm_jp": "der'Zen Mondo",
+      "dm_en": "der`Zen Mondo der`Zen Mondo",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Der%60Zen_Mondo_/_%E2%99%AA_With_a_Signature_Move,_Strongest_are_the_Traces_of_a_Dream",
+      "wiki_name_jp": "der`ZenMondo",
+      "wiki_en": "der`Zen Mondo der`Zen Mondo",
+      "is_twinpact": true
+    },
+    {
+      "cardUid": "dm23rp1-5B",
+      "booster": "dm23rp1",
+      "dm_jp": "der'Zen Mondo",
+      "dm_en": "der`Zen Mondo der`Zen Mondo",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Der%60Zen_Mondo_/_%E2%99%AA_With_a_Signature_Move,_Strongest_are_the_Traces_of_a_Dream",
+      "wiki_name_jp": "der`ZenMondo",
+      "wiki_en": "der`Zen Mondo der`Zen Mondo",
+      "is_twinpact": true
+    },
+    {
+      "cardUid": "dm22ex1-033",
+      "booster": "dm22ex1",
+      "dm_jp": "八頭竜 ACE-Yamata",
+      "dm_en": "ACE-Yamata, Eight-headed Dragon",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/ACE-Yamata,_Eight-headed_Dragon_/_Mystic_Treasure_Sword",
+      "wiki_name_jp": "八頭龍ACE-Yamata",
+      "wiki_en": "ACE-Yamata, Eight-headed Dragon",
+      "is_twinpact": true
+    },
+    {
+      "cardUid": "dmbd18-003",
+      "booster": "dmbd18",
+      "dm_jp": "八頭竜 ACE-Yamata",
+      "dm_en": "ACE-Yamata, Eight-headed Dragon",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/ACE-Yamata,_Eight-headed_Dragon_/_Mystic_Treasure_Sword",
+      "wiki_name_jp": "八頭龍ACE-Yamata",
+      "wiki_en": "ACE-Yamata, Eight-headed Dragon",
+      "is_twinpact": true
+    },
+    {
+      "cardUid": "dmex01-066",
+      "booster": "dmex01",
+      "dm_jp": "禁断 ー封印されしXー",
+      "dm_en": "Forbidden ~The Sealed X~",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Forbidden_~The_Sealed_X~",
+      "wiki_name_jp": "禁断 ～封印されしX～",
+      "wiki_en": "Forbidden ~The Sealed X~",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmrp01-023",
+      "booster": "dmrp01",
+      "dm_jp": "ラウド NYZ ノイジー",
+      "dm_en": "Loud Noise Noisy",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Loud_Noise_Noisy",
+      "wiki_name_jp": "ラウド “NYZ” ノイジー",
+      "wiki_en": "Loud Noise Noisy",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmrp01-s08",
+      "booster": "dmrp01",
+      "dm_jp": "ドープ DBL ボーダー",
+      "dm_en": "Dope Double Boarder",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Dope_Double_Boarder",
+      "wiki_name_jp": "ドープ“DBL”ボーダー",
+      "wiki_en": "Dope Double Boarder",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmrp02-009",
+      "booster": "dmrp02",
+      "dm_jp": "ロックSPKスピーカー",
+      "dm_en": "Rock Speak Speaker",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Rock_Speak_Speaker",
+      "wiki_name_jp": "ロック“SPK”スピーカー",
+      "wiki_en": "Rock Speak Speaker",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmr22-043",
+      "booster": "dmr22",
+      "dm_jp": "【問１】 テック__",
+      "dm_en": "Tech, \"Question 1\" 【",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Tech,_%22Question_1%22",
+      "wiki_name_jp": "【問１】 テック",
+      "wiki_en": "Tech, \"Question 1\" 【",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmr19-fl01",
+      "booster": "dmr19",
+      "dm_jp": "禁断 ー封印されしXー",
+      "dm_en": "Forbidden ~The Sealed X~",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Forbidden_~The_Sealed_X~",
+      "wiki_name_jp": "禁断 ～封印されしX～",
+      "wiki_en": "Forbidden ~The Sealed X~",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "promoy15-078",
+      "booster": "promoy15",
+      "dm_jp": "終断デルタ ドルハカバ",
+      "dm_en": "Dorhakaba, Final Forbidden Delta",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Dorhakaba,_Final_Forbidden_Delta",
+      "wiki_name_jp": "終断Δ ドルハカバ",
+      "wiki_en": "Dorhakaba, Final Forbidden Delta",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dm25rp4-SP4",
+      "booster": "dm25rp4",
+      "dm_jp": "八頭竜 ACE-Yamata",
+      "dm_en": "ACE-Yamata, Eight-headed Dragon",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/ACE-Yamata,_Eight-headed_Dragon_/_Mystic_Treasure_Sword",
+      "wiki_name_jp": "八頭龍ACE-Yamata",
+      "wiki_en": "ACE-Yamata, Eight-headed Dragon",
+      "is_twinpact": true
+    },
+    {
+      "cardUid": "dmx22b-014",
+      "booster": "dmx22b",
+      "dm_jp": "超法無敵宇宙合金武闘鼓笛魔槍絶頂百仙閻魔神拳銃極太陽友情暴剣R・M・G チーム・エグザイル ーカツドンと仲間たちー",
+      "dm_en": "Victorage Outlaw Cosmo Alchemy Kung Fu Horn Blues Cli Byte Hell Shen Gunman Gonbutreasure Friends Cross Robin Michaelan Global, Team Exile ~Katsudon and Friends~",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Victorage_Outlaw_Cosmo_Alchemy_Kung_Fu_Horn_Blues_Cli_Byte_Hell_Shen_Gunman_Gonbutreasure_Friends_Cross_Robin_Michaelan_Global,_Team_Exile_~Katsudon_and_Friends~",
+      "wiki_name_jp": "超法無敵宇宙合金武闘鼓笛魔槍絶頂百仙閻魔神拳銃極太陽友情暴剣R・M・G　チーム・エグザイル ～カツドンと仲間たち～",
+      "wiki_en": "Victorage Outlaw Cosmo Alchemy Kung Fu Horn Blues Cli Byte Hell Shen Gunman Gonbutreasure Friends Cross Robin Michaelan Global, Team Exile ~Katsudon and Friends~",
+      "is_twinpact": false
+    }
+  ],
+  "tier_2_kana_folds_additional": [
+    {
+      "cardUid": "dm24bd4-014",
+      "booster": "dm24bd4",
+      "dm_jp": "従獄の死神シンベロス",
+      "dm_en": "Shinberos, Imprisoning Reaper",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Shinberos,_Imprisoning_Reaper_/_%22Follow_me_to_hell.%22",
+      "wiki_name_jp": "従獄の死神シンべロス",
+      "wiki_en": "Shinberos, Imprisoning Reaper",
+      "is_twinpact": true
+    },
+    {
+      "cardUid": "dmc42-070",
+      "booster": "dmc42",
+      "dm_jp": "騒乱の影ウェスタン・バレル",
+      "dm_en": "Western Barrel, Shadow of Riots",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Western_Barrel,_Shadow_of_Riots",
+      "wiki_name_jp": "騒乱の影ウエスタン・バレル",
+      "wiki_en": "Western Barrel, Shadow of Riots",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dm10-096",
+      "booster": "dm10",
+      "dm_jp": "撃墜団長メッツアー",
+      "dm_en": "Mezger, Commando Leader",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Mezger,_Commando_Leader",
+      "wiki_name_jp": "撃墜団長メッツァー",
+      "wiki_en": "Mezger, Commando Leader",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dm14-090",
+      "booster": "dm14",
+      "dm_jp": "騒乱の影ウェスタン・バレル",
+      "dm_en": "Western Barrel, Shadow of Riots",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Western_Barrel,_Shadow_of_Riots",
+      "wiki_name_jp": "騒乱の影ウエスタン・バレル",
+      "wiki_en": "Western Barrel, Shadow of Riots",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dm02-015",
+      "booster": "dm02",
+      "dm_jp": "メタルウィング・ワイバーン",
+      "dm_en": "Metalwing Skyterror",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Metalwing_Skyterror",
+      "wiki_name_jp": "メタルウイング・ワイバーン",
+      "wiki_en": "Metalwing Skyterror",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "promoy14-spd07",
+      "booster": "promoy14",
+      "dm_jp": "撃墜団長メッツアー",
+      "dm_en": "Mezger, Commando Leader",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Mezger,_Commando_Leader",
+      "wiki_name_jp": "撃墜団長メッツァー",
+      "wiki_en": "Mezger, Commando Leader",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "promoy16-sp3d10",
+      "booster": "promoy16",
+      "dm_jp": "撃墜団長メッツアー",
+      "dm_en": "Mezger, Commando Leader",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Mezger,_Commando_Leader",
+      "wiki_name_jp": "撃墜団長メッツァー",
+      "wiki_en": "Mezger, Commando Leader",
+      "is_twinpact": false
+    }
+  ],
+  "tier_3a_PS_suffix_fallback": [
+    {
+      "cardUid": "dmpcd03-a01",
+      "booster": "dmpcd03",
+      "dm_jp": "ガイアール・カイザーP'S",
+      "dm_jp_stripped": "ガイアール・カイザー",
+      "dm_en": "Gaial Kaiser Play's",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Gaial_Kaiser",
+      "wiki_name_jp": "ガイアール・カイザー",
+      "wiki_en": "Gaial Kaiser",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmpcd03-a03",
+      "booster": "dmpcd03",
+      "dm_jp": "ブーストグレンオーP'S",
+      "dm_jp_stripped": "ブーストグレンオー",
+      "dm_en": "Boost Play's, Crimson Lord",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Boost,_Crimson_Lord",
+      "wiki_name_jp": "ブーストグレンオー",
+      "wiki_en": "Boost, Crimson Lord",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmrp22-TR7",
+      "booster": "dmrp22",
+      "dm_jp": "聖鎧亜キング・アルカディアスP'S",
+      "dm_jp_stripped": "聖鎧亜キング・アルカディアス",
+      "dm_en": "King Alcadeias Play's, Holy Gaia",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/King_Alcadeias,_Holy_Gaia",
+      "wiki_name_jp": "聖鎧亜キング・アルカディアス",
+      "wiki_en": "King Alcadeias, Holy Gaia",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmpcd02-a03",
+      "booster": "dmpcd02",
+      "dm_jp": "ボルバルザーク・紫電・ドラゴンP'S",
+      "dm_jp_stripped": "ボルバルザーク・紫電・ドラゴン",
+      "dm_en": "Bolbalzak \"Sword Flash\" Dragon, Blue Divine Dragon",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Bolbalzak_%22Sword_Flash%22_Dragon",
+      "wiki_name_jp": "ボルバルザーク・紫電・ドラゴン",
+      "wiki_en": "Bolbalzak \"Sword Flash\" Dragon",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmpcd02-b01",
+      "booster": "dmpcd02",
+      "dm_jp": "聖鎧亜キング・アルカディアスP'S",
+      "dm_jp_stripped": "聖鎧亜キング・アルカディアス",
+      "dm_en": "King Alcadeias Play's, Holy Gaia",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/King_Alcadeias,_Holy_Gaia",
+      "wiki_name_jp": "聖鎧亜キング・アルカディアス",
+      "wiki_en": "King Alcadeias, Holy Gaia",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmpcd02-a01",
+      "booster": "dmpcd02",
+      "dm_jp": "ボルメテウス・武者・ドラゴンP'S",
+      "dm_jp_stripped": "ボルメテウス・武者・ドラゴン",
+      "dm_en": "Bolmeteus Musha Dragon Play's",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Bolmeteus_Musha_Dragon",
+      "wiki_name_jp": "ボルメテウス・武者・ドラゴン",
+      "wiki_en": "Bolmeteus Musha Dragon",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dm24ex4-013",
+      "booster": "dm24ex4",
+      "dm_jp": "聖鎧亜キング・アルカディアスP'S",
+      "dm_jp_stripped": "聖鎧亜キング・アルカディアス",
+      "dm_en": "King Alcadeias Play's, Holy Gaia",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/King_Alcadeias,_Holy_Gaia",
+      "wiki_name_jp": "聖鎧亜キング・アルカディアス",
+      "wiki_en": "King Alcadeias, Holy Gaia",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmpcd03-a02",
+      "booster": "dmpcd03",
+      "dm_jp": "ドラゴニック・ピッピーP'S",
+      "dm_jp_stripped": "ドラゴニック・ピッピー",
+      "dm_en": "Dragonic Pippi Play's",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Dragonic_Pippi_Play%27s",
+      "wiki_name_jp": "ドラゴニック・ピッピー",
+      "wiki_en": "Dragonic Pippi Play's",
+      "is_twinpact": false
+    }
+  ],
+  "tier_3b_art_bracket_extraction": [
+    {
+      "cardUid": "dmart10-003",
+      "booster": "dmart10",
+      "dm_jp": "バンブルビー [切札勝太&カツキング ー熱血の物語ー]",
+      "dm_jp_inner_bracket": "切札勝太&カツキング ー熱血の物語ー",
+      "dm_en": "Katta Kirifuda & Katsuking -Story of Passion-",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Katta_Kirifuda_%26_Katsuking_-Story_of_Passion-",
+      "wiki_name_jp": "切札勝太&カツキング ー熱血の物語ー",
+      "wiki_en": "Katta Kirifuda & Katsuking -Story of Passion-",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmart10-004",
+      "booster": "dmart10",
+      "dm_jp": "スカージ [ガチャンコ　ガチロボ]",
+      "dm_jp_inner_bracket": "ガチャンコ　ガチロボ",
+      "dm_en": "Gachanko Gachirobo",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Gachanko_Gachirobo",
+      "wiki_name_jp": "ガチャンコ ガチロボ",
+      "wiki_en": "Gachanko Gachirobo",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmart10-005",
+      "booster": "dmart10",
+      "dm_jp": "チーター [奇天烈 シャッフ]",
+      "dm_jp_inner_bracket": "奇天烈 シャッフ",
+      "dm_en": "Shuff, Eureka",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Shuff,_Eureka",
+      "wiki_name_jp": "奇天烈 シャッフ",
+      "wiki_en": "Shuff, Eureka",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmart10-002",
+      "booster": "dmart10",
+      "dm_jp": "オプティマスプライマル [我我我ガイアール・ブランド]",
+      "dm_jp_inner_bracket": "我我我ガイアール・ブランド",
+      "dm_en": "Gagaga Gaial Brand",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Gagaga_Gaial_Brand",
+      "wiki_name_jp": "我我我ガイアール・ブランド",
+      "wiki_en": "Gagaga Gaial Brand",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmart10-006",
+      "booster": "dmart10",
+      "dm_jp": "アーシー [最終龍覇 ロージア]",
+      "dm_jp_inner_bracket": "最終龍覇 ロージア",
+      "dm_en": "Rosia, Final Dragon Ruler",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Rosia,_Final_Dragon_Ruler",
+      "wiki_name_jp": "最終龍覇 ロージア",
+      "wiki_en": "Rosia, Final Dragon Ruler",
+      "is_twinpact": false
+    },
+    {
+      "cardUid": "dmart10-001",
+      "booster": "dmart10",
+      "dm_jp": "オプティマスプライム [“罰怒“ブランド]",
+      "dm_jp_inner_bracket": "“罰怒“ブランド",
+      "dm_en": "Bad Brand “",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Bad_Brand",
+      "wiki_name_jp": "“罰怒“ブランド",
+      "wiki_en": "Bad Brand “",
+      "is_twinpact": false
+    }
+  ],
+  "tier_3d_awaken_brace_strip": [
+    {
+      "parent_cardUid": "dmex17-090",
+      "booster": "dmex17",
+      "awaken_jp_raw": "{雷獣ヴォルグ・ティーガー}",
+      "awaken_jp_cleaned": "雷獣ヴォルグ・ティーガー",
+      "awaken_en": "Volg Tiger, Thunder Beast",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Volg_Tiger,_Thunder_Beast",
+      "wiki_name_jp": "雷獣ヴォルグ・ティーガー",
+      "wiki_en": "Volg Tiger, Thunder Beast",
+      "is_twinpact": false
+    },
+    {
+      "parent_cardUid": "dmex08-111",
+      "booster": "dmex08",
+      "awaken_jp_raw": "{撃墜王ガイアール・キラードラゴン} Bottom",
+      "awaken_jp_cleaned": "撃墜王ガイアール・キラードラゴン",
+      "awaken_en": "Gaial Killer Dragon, Gunlord",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Gaial_Killer_Dragon,_Gunlord",
+      "wiki_name_jp": "撃墜王ガイアール・キラードラゴン",
+      "wiki_en": "Gaial Killer Dragon, Gunlord",
+      "is_twinpact": false
+    }
+  ],
+  "still_unmatched_main_after_all_tiers": [
+    {
+      "cardUid": "dm24bd4-013",
+      "booster": "dm24bd4",
+      "dm_jp": "戦慄の死神アゲゾール",
+      "dm_en": "Agesol, Bloodcurdling Reaper"
+    },
+    {
+      "cardUid": "dm24bd2-013",
+      "booster": "dm24bd2",
+      "dm_jp": "ネフェルカーネン",
+      "dm_en": "Neferkhanen"
+    },
+    {
+      "cardUid": "dm24ex1-078",
+      "booster": "dm24ex1",
+      "dm_jp": "ファイン・撃・ピヨッチ",
+      "dm_en": "Fine Shoot Piyocchi"
+    },
+    {
+      "cardUid": "dm23bd6-034",
+      "booster": "dm23bd6",
+      "dm_jp": "カワモリデン",
+      "dm_en": "Kawamoriden"
+    },
+    {
+      "cardUid": "dm23bd6-042",
+      "booster": "dm23bd6",
+      "dm_jp": "Bronze Bambishi Cut",
+      "dm_en": "Bambishikatto of Bronze"
+    },
+    {
+      "cardUid": "dm23rp4x-016",
+      "booster": "dm23rp4x",
+      "dm_jp": "Shekedan Dome Gers",
+      "dm_en": "Shakedown Dome Gels"
+    },
+    {
+      "cardUid": "dm23ex1-043",
+      "booster": "dm23ex1",
+      "dm_jp": "戦武の無限皇 ジャッキー",
+      "dm_en": "Jackie, Infinity Dream"
+    },
+    {
+      "cardUid": "dm23sd1-012",
+      "booster": "dm23sd1",
+      "dm_jp": "ファイン・撃・ピヨッチ",
+      "dm_en": "Fine Shoot Piyocchi"
+    },
+    {
+      "cardUid": "dm23rp1-21B",
+      "booster": "dm23rp1",
+      "dm_jp": "ファイン・撃・ピヨッチ",
+      "dm_en": "Fine Shoot Piyocchi"
+    },
+    {
+      "cardUid": "dm23rp1-065",
+      "booster": "dm23rp1",
+      "dm_jp": "ファイン・撃・ピヨッチ",
+      "dm_en": "Fine Shoot Piyocchi"
+    },
+    {
+      "cardUid": "dm23rp1-19A",
+      "booster": "dm23rp1",
+      "dm_jp": "ファイン・撃・ピヨッチ",
+      "dm_en": "Fine Shoot Piyocchi"
+    },
+    {
+      "cardUid": "dm22ex2-005",
+      "booster": "dm22ex2",
+      "dm_jp": "ゲオルグ・バーボシュタイン",
+      "dm_en": "George Barbstein"
+    },
+    {
+      "cardUid": "dm22ex1-080",
+      "booster": "dm22ex1",
+      "dm_jp": "神豚 ブータンPUNK",
+      "dm_en": "Bhutan PUNK, Shenton"
+    },
+    {
+      "cardUid": "dm22ex1-065",
+      "booster": "dm22ex1",
+      "dm_jp": "戦武の無限皇 ジャッキー",
+      "dm_en": "Jackie, Infinity Beat"
+    },
+    {
+      "cardUid": "dm22rp1-TR4",
+      "booster": "dm22rp1",
+      "dm_jp": "フェルナンド・ソシュール",
+      "dm_en": "Fernando Sesseur"
+    },
+    {
+      "cardUid": "dm22ex1-052",
+      "booster": "dm22ex1",
+      "dm_jp": "キャベッジ・セッションズ",
+      "dm_en": "Cabbage Sessions"
+    },
+    {
+      "cardUid": "dmrp21-T1",
+      "booster": "dmrp21",
+      "dm_jp": "めっちゃ！デンヂャラスG３",
+      "dm_en": "Metcha! Dangerous Grandpa"
+    },
+    {
+      "cardUid": "dmrp21-TF1",
+      "booster": "dmrp21",
+      "dm_jp": "めっちゃ！デンヂャラスG３",
+      "dm_en": "Metcha! Dangerous Grandpa"
+    },
+    {
+      "cardUid": "dmrp20-063",
+      "booster": "dmrp20",
+      "dm_jp": "神聖十二神騎:||",
+      "dm_en": "Risingstar General"
+    },
+    {
+      "cardUid": "dmex17-110",
+      "booster": "dmex17",
+      "dm_jp": "緊急機装エクス・コプター",
+      "dm_en": "Ex Copter, Emergency Equipment"
+    },
+    {
+      "cardUid": "dmex17-131",
+      "booster": "dmex17",
+      "dm_jp": "味息子サン・グリル",
+      "dm_en": "Son Grill, Taste Son"
+    },
+    {
+      "cardUid": "dmex17-028",
+      "booster": "dmex17",
+      "dm_jp": "遣宮使 ネオンクス",
+      "dm_en": "Neonkus, Palace Missionary"
+    },
+    {
+      "cardUid": "dmbd17-001",
+      "booster": "dmbd17",
+      "dm_jp": "戦武の無限皇 ジャッキー",
+      "dm_en": "Jackie, Infinity Beat"
+    },
+    {
+      "cardUid": "dmbd15-se3",
+      "booster": "dmbd15",
+      "dm_jp": "マグナム・ルピア",
+      "dm_en": "Magnum Lupia"
+    },
+    {
+      "cardUid": "dmrp11-008",
+      "booster": "dmrp11",
+      "dm_jp": "Pee Tampan",
+      "dm_en": "Pea Tanpan"
+    },
+    {
+      "cardUid": "dmrp10-011",
+      "booster": "dmrp10",
+      "dm_jp": "グリージー・ファブノーレ",
+      "dm_en": "Greeji Fabnore"
+    },
+    {
+      "cardUid": "dmrp08-003",
+      "booster": "dmrp08",
+      "dm_jp": "奇石 ベイブレンラ",
+      "dm_en": "Babylenra, Strange Stone"
+    },
+    {
+      "cardUid": "dmex04-002",
+      "booster": "dmex04",
+      "dm_jp": "マグナム・ルピア",
+      "dm_en": "Magnum Lupia"
+    },
+    {
+      "cardUid": "dmrp08-011",
+      "booster": "dmrp08",
+      "dm_jp": "カワモリデン",
+      "dm_en": "Kawamoriden"
+    },
+    {
+      "cardUid": "dmex04-066",
+      "booster": "dmex04",
+      "dm_jp": "フェルナンド・ソシュール",
+      "dm_en": "Fernando Sesseur"
+    },
+    {
+      "cardUid": "dmrp08-007",
+      "booster": "dmrp08",
+      "dm_jp": "ゲオルグ・バーボシュタイン",
+      "dm_en": "George Barbstein"
+    },
+    {
+      "cardUid": "dmex04-042",
+      "booster": "dmex04",
+      "dm_jp": "アーチャー・チュリス",
+      "dm_en": "Archer Churis"
+    },
+    {
+      "cardUid": "dmrp07-014",
+      "booster": "dmrp07",
+      "dm_jp": "南海の捜索者 モルガラ",
+      "dm_en": "Molgara, Northern Searcher"
+    },
+    {
+      "cardUid": "dmrp06-006",
+      "booster": "dmrp06",
+      "dm_jp": "マッド・デーモン閣下",
+      "dm_en": "Mad Demon Excellency"
+    },
+    {
+      "cardUid": "dmrp06-003",
+      "booster": "dmrp06",
+      "dm_jp": "遣宮使 ネオンクス",
+      "dm_en": "Neonkus, Palace Missionary"
+    },
+    {
+      "cardUid": "dmx16-073",
+      "booster": "dmx16",
+      "dm_jp": "駱駝の御輿",
+      "dm_en": "Arashizuwari Alpaca"
+    },
+    {
+      "cardUid": "dmr07-034",
+      "booster": "dmr07",
+      "dm_jp": "駱駝の御輿",
+      "dm_en": "Arashizuwari Alpaca"
+    },
+    {
+      "cardUid": "dmc55-002",
+      "booster": "dmc55",
+      "dm_jp": "暗黒導師ブラック・ルシファー",
+      "dm_en": "Black Lucifer, Sorcerer of Darkness"
+    },
+    {
+      "cardUid": "dmc27-037",
+      "booster": "dmc27",
+      "dm_jp": "預言者フィンチ",
+      "dm_en": "Fonch, the Oracle"
+    },
+    {
+      "cardUid": "dm17-049",
+      "booster": "dm17",
+      "dm_jp": "クラッシャー・ノヴァ",
+      "dm_en": "Kushikatsu, Fate of Nova"
+    },
+    {
+      "cardUid": "dm02-037",
+      "booster": "dm02",
+      "dm_jp": "預言者フィンチ",
+      "dm_en": "Fonch, the Oracle"
+    },
+    {
+      "cardUid": "promoy17-057",
+      "booster": "promoy17",
+      "dm_jp": "めっちゃ！デンヂャラスG3",
+      "dm_en": "Metcha! Dangerous Grandpa"
+    },
+    {
+      "cardUid": "promoy15-072",
+      "booster": "promoy15",
+      "dm_jp": "新時代の幕開け",
+      "dm_en": "New Generation"
+    },
+    {
+      "cardUid": "dm25ex1-029",
+      "booster": "dm25ex1",
+      "dm_jp": "超時空罠 デンジャデオン",
+      "dm_en": "Dangerdeon, Super Mechanical Trap"
+    },
+    {
+      "cardUid": "dm25sp2-015",
+      "booster": "dm25sp2",
+      "dm_jp": "伍代ドーラ",
+      "dm_en": "Dorago the Great, Dragon World"
+    },
+    {
+      "cardUid": "dm25sp2-TD5",
+      "booster": "dm25sp2",
+      "dm_jp": "伍代ドーラ",
+      "dm_en": "Dorago the Great, Dragon World"
+    },
+    {
+      "cardUid": "dm25rp3-Sec24",
+      "booster": "dm25rp3",
+      "dm_jp": "危識:この先、レッドゾーンあり",
+      "dm_en": "Redzone, Roaring Heresy"
+    },
+    {
+      "cardUid": "dm25rp3-077",
+      "booster": "dm25rp3",
+      "dm_jp": "危識:この先、レッドゾーンあり",
+      "dm_en": "Redzone, Roaring Heresy"
+    },
+    {
+      "cardUid": "dm26sd1-n008",
+      "booster": "dm26sd1",
+      "dm_jp": "めっちゃ！デンヂャラスG３",
+      "dm_en": "So much! Dangerous G3 (DM26SD1 8/12)"
+    }
+  ],
+  "still_unmatched_awaken_after_all_tiers": [
+    {
+      "parent_cardUid": "dm23ex2-082",
+      "booster": "dm23ex2",
+      "awaken_cardName": "Mega Innocent Sword",
+      "awaken_cardNameJP": "次元のメガ・イノセントソード"
+    },
+    {
+      "parent_cardUid": "dmex01-046",
+      "booster": "dmex01",
+      "awaken_cardName": "Gaial King Dragon, Raging Dragon Lord",
+      "awaken_cardNameJP": "激竜王ガイアール・オウドラゴン{side B} {Top}"
+    },
+    {
+      "parent_cardUid": "dmx22b-116",
+      "booster": "dmx22b",
+      "awaken_cardName": "Convoy, Awakened Commander",
+      "awaken_cardNameJP": "司令官の覚醒者 コンボイ"
+    },
+    {
+      "parent_cardUid": "dmx22b-026",
+      "booster": "dmx22b",
+      "awaken_cardName": "Recommend! Haraguro Festival!",
+      "awaken_cardNameJP": "イチオシ！ ハラグロフェスティバル！"
+    },
+    {
+      "parent_cardUid": "dmx22b-065",
+      "booster": "dmx22b",
+      "awaken_cardName": "Duema Land ~Night Parade~",
+      "awaken_cardNameJP": "デュエマーランド ーナイト・パレードー"
+    },
+    {
+      "parent_cardUid": "dmx22b-121",
+      "booster": "dmx22b",
+      "awaken_cardName": "Blank",
+      "awaken_cardNameJP": "Blank"
+    }
+  ]
+}

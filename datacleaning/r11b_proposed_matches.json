@@ -1,0 +1,825 @@
+{
+  "summary": {
+    "unmatched_main_before": 49,
+    "sideB_fallback_matches": 37,
+    "projected_unmatched_main_after": 12,
+    "projected_match_rate_pct": 99.945,
+    "sideB_keys_that_collide_with_other_DM_sideA": 19
+  },
+  "sideB_proposed_matches": [
+    {
+      "cardUid": "dm24bd4-013",
+      "booster": "dm24bd4",
+      "dm_cardNameJP_sideA": "戦慄の死神アゲゾール",
+      "dm_cardName2JP_sideB": "「我が一撃に戦慄せよ」",
+      "dm_cardName_en": "Agesol, Bloodcurdling Reaper",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Agesol,_Bloodcurdling_Reaper_/_%22Tremble_before_my_strike.%22",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Agesol, Bloodcurdling Reaper",
+          "name_jp": "戦慄の死神従獄アゲゾール"
+        },
+        {
+          "name": "\"Tremble before my strike.\"",
+          "name_jp": "「我が一撃に戦慄せよ」"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dm24bd2-013",
+      "booster": "dm24bd2",
+      "dm_cardNameJP_sideA": "ネフェルカーネン",
+      "dm_cardName2JP_sideB": "タイム・ストップン",
+      "dm_cardName_en": "Neferkhanen",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Neferkhanen_/_Time_Stopon",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Neferkhanen",
+          "name_jp": "タイム・ストップン"
+        },
+        {
+          "name": "Time Stopon",
+          "name_jp": "タイム・ストップン"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 4
+    },
+    {
+      "cardUid": "dm24ex1-078",
+      "booster": "dm24ex1",
+      "dm_cardNameJP_sideA": "ファイン・撃・ピヨッチ",
+      "dm_cardName2JP_sideB": "「暴竜爵は不滅なり！」",
+      "dm_cardName_en": "Fine Shoot Piyocchi",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Fine_Shoot_Piyocchi_/_%22Raging_Dragon_is_Immortal!%22",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Fine Shoot Piyocchi",
+          "name_jp": "ファイン・襲・ピヨッチ"
+        },
+        {
+          "name": "\"Raging Dragon is Immortal!\"",
+          "name_jp": "「暴竜爵は不滅なり！」"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dm23bd6-034",
+      "booster": "dm23bd6",
+      "dm_cardNameJP_sideA": "カワモリデン",
+      "dm_cardName2JP_sideB": "リーフストーム・トラップ",
+      "dm_cardName_en": "Kawamoriden",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Kawamoriden_/_Leaf_Storm_Trap",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Kawamoriden",
+          "name_jp": "リーフストーム・トラップ"
+        },
+        {
+          "name": "Leaf Storm Trap",
+          "name_jp": "リーフストーム・トラップ"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 3
+    },
+    {
+      "cardUid": "dm23bd6-042",
+      "booster": "dm23bd6",
+      "dm_cardNameJP_sideA": "Bronze Bambishi Cut",
+      "dm_cardName2JP_sideB": "「我が力、しかと見よ！」",
+      "dm_cardName_en": "Bambishikatto of Bronze",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Bambishikatto_of_Bronze_/_Behold_my_Strength!",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Bambishikatto of Bronze",
+          "name_jp": "青銅のバンビシカット"
+        },
+        {
+          "name": "Behold my Strength!",
+          "name_jp": "「我が力、しかと見よ！」"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dm23rp4x-016",
+      "booster": "dm23rp4x",
+      "dm_cardNameJP_sideA": "Shekedan Dome Gers",
+      "dm_cardName2JP_sideB": "ドメスティック・アイ",
+      "dm_cardName_en": "Shakedown Dome Gels",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Shakedown_Dome_Gels_/_Domestic_Eye",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Shakedown Dome Gels",
+          "name_jp": "シェケダン・ドメ・ゲルス"
+        },
+        {
+          "name": "Domestic Eye",
+          "name_jp": "ドメスティック・アイ"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dm23ex1-043",
+      "booster": "dm23ex1",
+      "dm_cardNameJP_sideA": "戦武の無限皇 ジャッキー",
+      "dm_cardName2JP_sideB": "「俺たちの夢は終わらねぇ！」",
+      "dm_cardName_en": "Jackie, Infinity Dream",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Jackie,_Infinity_Dream_/_%22Our_Dreams_Will_Never_End!%22",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Jackie, Infinity Dream",
+          "name_jp": "戦武の無限ジャッキー"
+        },
+        {
+          "name": "\"Our Dreams Will Never End!\"",
+          "name_jp": "「俺たちの夢は終わらねぇ!」"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dm23sd1-012",
+      "booster": "dm23sd1",
+      "dm_cardNameJP_sideA": "ファイン・撃・ピヨッチ",
+      "dm_cardName2JP_sideB": "「暴竜爵は不滅なり！」",
+      "dm_cardName_en": "Fine Shoot Piyocchi",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Fine_Shoot_Piyocchi_/_%22Raging_Dragon_is_Immortal!%22",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Fine Shoot Piyocchi",
+          "name_jp": "ファイン・襲・ピヨッチ"
+        },
+        {
+          "name": "\"Raging Dragon is Immortal!\"",
+          "name_jp": "「暴竜爵は不滅なり！」"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dm23rp1-21B",
+      "booster": "dm23rp1",
+      "dm_cardNameJP_sideA": "ファイン・撃・ピヨッチ",
+      "dm_cardName2JP_sideB": "「暴竜爵は不滅なり！」",
+      "dm_cardName_en": "Fine Shoot Piyocchi",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Fine_Shoot_Piyocchi_/_%22Raging_Dragon_is_Immortal!%22",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Fine Shoot Piyocchi",
+          "name_jp": "ファイン・襲・ピヨッチ"
+        },
+        {
+          "name": "\"Raging Dragon is Immortal!\"",
+          "name_jp": "「暴竜爵は不滅なり！」"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dm23rp1-065",
+      "booster": "dm23rp1",
+      "dm_cardNameJP_sideA": "ファイン・撃・ピヨッチ",
+      "dm_cardName2JP_sideB": "「暴竜爵は不滅なり！」",
+      "dm_cardName_en": "Fine Shoot Piyocchi",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Fine_Shoot_Piyocchi_/_%22Raging_Dragon_is_Immortal!%22",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Fine Shoot Piyocchi",
+          "name_jp": "ファイン・襲・ピヨッチ"
+        },
+        {
+          "name": "\"Raging Dragon is Immortal!\"",
+          "name_jp": "「暴竜爵は不滅なり！」"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dm23rp1-19A",
+      "booster": "dm23rp1",
+      "dm_cardNameJP_sideA": "ファイン・撃・ピヨッチ",
+      "dm_cardName2JP_sideB": "「暴竜爵は不滅なり！」",
+      "dm_cardName_en": "Fine Shoot Piyocchi",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Fine_Shoot_Piyocchi_/_%22Raging_Dragon_is_Immortal!%22",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Fine Shoot Piyocchi",
+          "name_jp": "ファイン・襲・ピヨッチ"
+        },
+        {
+          "name": "\"Raging Dragon is Immortal!\"",
+          "name_jp": "「暴竜爵は不滅なり！」"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dm22ex2-005",
+      "booster": "dm22ex2",
+      "dm_cardNameJP_sideA": "ゲオルグ・バーボシュタイン",
+      "dm_cardName2JP_sideB": "ゴースト・タッチ",
+      "dm_cardName_en": "George Barbstein",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/George_Barbstein_/_Ghost_Touch",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "George Barbstein",
+          "name_jp": "ゴースト・タッチ"
+        },
+        {
+          "name": "Ghost Touch",
+          "name_jp": "ゴースト・タッチ"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 10
+    },
+    {
+      "cardUid": "dm22ex1-080",
+      "booster": "dm22ex1",
+      "dm_cardNameJP_sideA": "神豚 ブータンPUNK",
+      "dm_cardName2JP_sideB": "ブータン両成敗",
+      "dm_cardName_en": "Bhutan PUNK, Shenton",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Bhutan_PUNK,_Shenton_/_Bhutan_Judgment",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Bhutan PUNK, Shenton",
+          "name_jp": "ブータン両成敗"
+        },
+        {
+          "name": "Bhutan Judgment",
+          "name_jp": "ブータン両成敗"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 1
+    },
+    {
+      "cardUid": "dm22ex1-065",
+      "booster": "dm22ex1",
+      "dm_cardNameJP_sideA": "戦武の無限皇 ジャッキー",
+      "dm_cardName2JP_sideB": "「俺たちの夢は終わらねぇ！」",
+      "dm_cardName_en": "Jackie, Infinity Beat",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Jackie,_Infinity_Dream_/_%22Our_Dreams_Will_Never_End!%22",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Jackie, Infinity Dream",
+          "name_jp": "戦武の無限ジャッキー"
+        },
+        {
+          "name": "\"Our Dreams Will Never End!\"",
+          "name_jp": "「俺たちの夢は終わらねぇ!」"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dm22rp1-TR4",
+      "booster": "dm22rp1",
+      "dm_cardNameJP_sideA": "フェルナンド・ソシュール",
+      "dm_cardName2JP_sideB": "プライマル・スクリーム",
+      "dm_cardName_en": "Fernando Sesseur",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Fernando_Sesseur_/_Primal_Scream",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Fernando Sesseur",
+          "name_jp": "プライマル・スクリーム"
+        },
+        {
+          "name": "Primal Scream",
+          "name_jp": "プライマル・スクリーム"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 6
+    },
+    {
+      "cardUid": "dm22ex1-052",
+      "booster": "dm22ex1",
+      "dm_cardNameJP_sideA": "キャベッジ・セッションズ",
+      "dm_cardName2JP_sideB": "ソイルピンプ・キャベッジ",
+      "dm_cardName_en": "Cabbage Sessions",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Cabbage_Sessions_/_Soilpimp_Cabbage",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Cabbage Sessions",
+          "name_jp": "ソイルピンプ・キャベッジ"
+        },
+        {
+          "name": "Soilpimp Cabbage",
+          "name_jp": "ソイルピンプ・キャベッジ"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 1
+    },
+    {
+      "cardUid": "dmrp21-T1",
+      "booster": "dmrp21",
+      "dm_cardNameJP_sideA": "めっちゃ！デンヂャラスG３",
+      "dm_cardName2JP_sideB": "ケッシング・ゼロ",
+      "dm_cardName_en": "Metcha! Dangerous Grandpa",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Metcha!_Dangerous_Grandpa_/_Kesshing_Zero",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Metcha! Dangerous Grandpa",
+          "name_jp": "めっちゃ!デンジャラスG3"
+        },
+        {
+          "name": "Kesshing Zero",
+          "name_jp": "ケッシング・ゼロ"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dmrp21-TF1",
+      "booster": "dmrp21",
+      "dm_cardNameJP_sideA": "めっちゃ！デンヂャラスG３",
+      "dm_cardName2JP_sideB": "ケッシング・ゼロ",
+      "dm_cardName_en": "Metcha! Dangerous Grandpa",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Metcha!_Dangerous_Grandpa_/_Kesshing_Zero",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Metcha! Dangerous Grandpa",
+          "name_jp": "めっちゃ!デンジャラスG3"
+        },
+        {
+          "name": "Kesshing Zero",
+          "name_jp": "ケッシング・ゼロ"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dmex17-110",
+      "booster": "dmex17",
+      "dm_cardNameJP_sideA": "緊急機装エクス・コプター",
+      "dm_cardName2JP_sideB": "合身秘伝メカ・マシーン",
+      "dm_cardName_en": "Ex Copter, Emergency Equipment",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Ex_Copter,_Emergency_Equipment_/_Mecha_Machine,_Secret_Fusion",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Ex Copter, Emergency Equipment",
+          "name_jp": "合身秘伝メカ・マシーン"
+        },
+        {
+          "name": "Mecha Machine, Secret Fusion",
+          "name_jp": "合身秘伝メカ・マシーン"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 1
+    },
+    {
+      "cardUid": "dmex17-131",
+      "booster": "dmex17",
+      "dm_cardNameJP_sideA": "味息子サン・グリル",
+      "dm_cardName2JP_sideB": "千切秘伝ワイルド・ベジタブル",
+      "dm_cardName_en": "Son Grill, Taste Son",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Son_Grill,_Taste_Son_/_Wild_Vegetable,_Secret_Thousand_Cut",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Son Grill, Taste Son",
+          "name_jp": "千切秘伝ワイルド・ベジタブル"
+        },
+        {
+          "name": "Wild Vegetable, Secret Thousand Cut",
+          "name_jp": "千切秘伝ワイルド・ベジタブル"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 1
+    },
+    {
+      "cardUid": "dmex17-028",
+      "booster": "dmex17",
+      "dm_cardNameJP_sideA": "遣宮使 ネオンクス",
+      "dm_cardName2JP_sideB": "ネオ・ブレイン",
+      "dm_cardName_en": "Neonkus, Palace Missionary",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Neonkus,_Palace_Missionary_/_Neo_Brain",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Neonkus, Palace Missionary",
+          "name_jp": "ネオ・ブレイン"
+        },
+        {
+          "name": "Neo Brain",
+          "name_jp": "ネオ・ブレイン"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 1
+    },
+    {
+      "cardUid": "dmbd17-001",
+      "booster": "dmbd17",
+      "dm_cardNameJP_sideA": "戦武の無限皇 ジャッキー",
+      "dm_cardName2JP_sideB": "「俺たちの夢は終わらねぇ！」",
+      "dm_cardName_en": "Jackie, Infinity Beat",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Jackie,_Infinity_Dream_/_%22Our_Dreams_Will_Never_End!%22",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Jackie, Infinity Dream",
+          "name_jp": "戦武の無限ジャッキー"
+        },
+        {
+          "name": "\"Our Dreams Will Never End!\"",
+          "name_jp": "「俺たちの夢は終わらねぇ!」"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dmbd15-se3",
+      "booster": "dmbd15",
+      "dm_cardNameJP_sideA": "マグナム・ルピア",
+      "dm_cardName2JP_sideB": "クリムゾン・チャージャー",
+      "dm_cardName_en": "Magnum Lupia",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Magnum_Lupia_/_Crimson_Charger",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Magnum Lupia",
+          "name_jp": "クリムゾン・チャージャー"
+        },
+        {
+          "name": "Crimson Charger",
+          "name_jp": "クリムゾン・チャージャー"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 6
+    },
+    {
+      "cardUid": "dmrp11-008",
+      "booster": "dmrp11",
+      "dm_cardNameJP_sideA": "Pee Tampan",
+      "dm_cardName2JP_sideB": "「はいちゃダメ💢」",
+      "dm_cardName_en": "Pea Tanpan",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Pea_Tanpan_/_%E3%80%8CHaichadame%F0%9F%92%A2%E3%80%8D",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Pea Tanpan",
+          "name_jp": "ピー・タンパン"
+        },
+        {
+          "name": "Haichadame💢」",
+          "name_jp": "「はいちゃダメ💢」"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dmrp10-011",
+      "booster": "dmrp10",
+      "dm_cardNameJP_sideA": "グリージー・ファブノーレ",
+      "dm_cardName2JP_sideB": "死的で詩的な制裁",
+      "dm_cardName_en": "Greeji Fabnore",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Greeji_Fabnore_/_Vanish_Death",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Greeji Fabnore",
+          "name_jp": "グリージ・ファブノーレ"
+        },
+        {
+          "name": "Vanish Death",
+          "name_jp": "死的で詩的な制裁"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dmrp08-003",
+      "booster": "dmrp08",
+      "dm_cardNameJP_sideA": "奇石 ベイブレンラ",
+      "dm_cardName2JP_sideB": "スーパー・エターナル・スパーク",
+      "dm_cardName_en": "Babylenra, Strange Stone",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Babylenra,_Strange_Stone_/_Super_Eternal_Spark",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Babylenra, Strange Stone",
+          "name_jp": "スーパー・エターナル・スパーク"
+        },
+        {
+          "name": "Super Eternal Spark",
+          "name_jp": "スーパー・エターナル・スパーク"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 2
+    },
+    {
+      "cardUid": "dmex04-002",
+      "booster": "dmex04",
+      "dm_cardNameJP_sideA": "マグナム・ルピア",
+      "dm_cardName2JP_sideB": "クリムゾン・チャージャー",
+      "dm_cardName_en": "Magnum Lupia",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Magnum_Lupia_/_Crimson_Charger",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Magnum Lupia",
+          "name_jp": "クリムゾン・チャージャー"
+        },
+        {
+          "name": "Crimson Charger",
+          "name_jp": "クリムゾン・チャージャー"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 6
+    },
+    {
+      "cardUid": "dmrp08-011",
+      "booster": "dmrp08",
+      "dm_cardNameJP_sideA": "カワモリデン",
+      "dm_cardName2JP_sideB": "リーフストーム・トラップ",
+      "dm_cardName_en": "Kawamoriden",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Kawamoriden_/_Leaf_Storm_Trap",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Kawamoriden",
+          "name_jp": "リーフストーム・トラップ"
+        },
+        {
+          "name": "Leaf Storm Trap",
+          "name_jp": "リーフストーム・トラップ"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 3
+    },
+    {
+      "cardUid": "dmex04-066",
+      "booster": "dmex04",
+      "dm_cardNameJP_sideA": "フェルナンド・ソシュール",
+      "dm_cardName2JP_sideB": "プライマル・スクリーム",
+      "dm_cardName_en": "Fernando Sesseur",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Fernando_Sesseur_/_Primal_Scream",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Fernando Sesseur",
+          "name_jp": "プライマル・スクリーム"
+        },
+        {
+          "name": "Primal Scream",
+          "name_jp": "プライマル・スクリーム"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 6
+    },
+    {
+      "cardUid": "dmrp08-007",
+      "booster": "dmrp08",
+      "dm_cardNameJP_sideA": "ゲオルグ・バーボシュタイン",
+      "dm_cardName2JP_sideB": "ゴースト・タッチ",
+      "dm_cardName_en": "George Barbstein",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/George_Barbstein_/_Ghost_Touch",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "George Barbstein",
+          "name_jp": "ゴースト・タッチ"
+        },
+        {
+          "name": "Ghost Touch",
+          "name_jp": "ゴースト・タッチ"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 10
+    },
+    {
+      "cardUid": "dmex04-042",
+      "booster": "dmex04",
+      "dm_cardNameJP_sideA": "アーチャー・チュリス",
+      "dm_cardName2JP_sideB": "ボルカニック・アロー",
+      "dm_cardName_en": "Archer Churis",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Archer_Churis_/_Volcanic_Arrows",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Archer Churis",
+          "name_jp": "ボルカニック・アロー"
+        },
+        {
+          "name": "Volcanic Arrows",
+          "name_jp": "ボルカニック・アロー"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 6
+    },
+    {
+      "cardUid": "dmrp07-014",
+      "booster": "dmrp07",
+      "dm_cardNameJP_sideA": "南海の捜索者 モルガラ",
+      "dm_cardName2JP_sideB": "トリプル・ブレイン",
+      "dm_cardName_en": "Molgara, Northern Searcher",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Molgara,_Northern_Searcher_/_Triple_Brain",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Molgara, Northern Searcher",
+          "name_jp": "トリプル・ブレイン"
+        },
+        {
+          "name": "Triple Brain",
+          "name_jp": "トリプル・ブレイン"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 5
+    },
+    {
+      "cardUid": "dmrp06-006",
+      "booster": "dmrp06",
+      "dm_cardNameJP_sideA": "マッド・デーモン閣下",
+      "dm_cardName2JP_sideB": "デーモン・ハンド",
+      "dm_cardName_en": "Mad Demon Excellency",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Mad_Demon_Excellency_/_Demon_Hand",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Mad Demon Excellency",
+          "name_jp": "デーモン・ハンド"
+        },
+        {
+          "name": "Demon Hand",
+          "name_jp": "デーモン・ハンド"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 44
+    },
+    {
+      "cardUid": "dmrp06-003",
+      "booster": "dmrp06",
+      "dm_cardNameJP_sideA": "遣宮使 ネオンクス",
+      "dm_cardName2JP_sideB": "ネオ・ブレイン",
+      "dm_cardName_en": "Neonkus, Palace Missionary",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Neonkus,_Palace_Missionary_/_Neo_Brain",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Neonkus, Palace Missionary",
+          "name_jp": "ネオ・ブレイン"
+        },
+        {
+          "name": "Neo Brain",
+          "name_jp": "ネオ・ブレイン"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 1
+    },
+    {
+      "cardUid": "promoy17-057",
+      "booster": "promoy17",
+      "dm_cardNameJP_sideA": "めっちゃ！デンヂャラスG3",
+      "dm_cardName2JP_sideB": "ケッシング・ゼロ",
+      "dm_cardName_en": "Metcha! Dangerous Grandpa",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Metcha!_Dangerous_Grandpa_/_Kesshing_Zero",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Metcha! Dangerous Grandpa",
+          "name_jp": "めっちゃ!デンジャラスG3"
+        },
+        {
+          "name": "Kesshing Zero",
+          "name_jp": "ケッシング・ゼロ"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dm25ex1-029",
+      "booster": "dm25ex1",
+      "dm_cardNameJP_sideA": "超時空罠 デンジャデオン",
+      "dm_cardName2JP_sideB": "「トラップ？ちがうわ、お願いしてるだけ！」",
+      "dm_cardName_en": "Dangerdeon, Super Mechanical Trap",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Dangerdeon,_Super_Temporal_Trap_/_%22Trap%3F_No,_I%27m_just_asking_a_favor!%22",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Dangerdeon, Super Temporal Trap",
+          "name_jp": "超時空罠デンジャデオ"
+        },
+        {
+          "name": "\"Trap? No, I'm just asking a favor!\"",
+          "name_jp": "「トラップ? ちがうわ、お願いしてるだけ!」"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    },
+    {
+      "cardUid": "dm26sd1-n008",
+      "booster": "dm26sd1",
+      "dm_cardNameJP_sideA": "めっちゃ！デンヂャラスG３",
+      "dm_cardName2JP_sideB": "ケッシング・ゼロ",
+      "dm_cardName_en": "So much! Dangerous G3 (DM26SD1 8/12)",
+      "wiki_url": "https://duelmasters.fandom.com/wiki/Metcha!_Dangerous_Grandpa_/_Kesshing_Zero",
+      "wiki_is_twinpact": true,
+      "wiki_forms": [
+        {
+          "name": "Metcha! Dangerous Grandpa",
+          "name_jp": "めっちゃ!デンジャラスG3"
+        },
+        {
+          "name": "Kesshing Zero",
+          "name_jp": "ケッシング・ゼロ"
+        }
+      ],
+      "sideB_collides_with_sideA_count": 0
+    }
+  ],
+  "still_unmatched_main_after_sideB": [
+    {
+      "cardUid": "dmrp20-063",
+      "booster": "dmrp20",
+      "dm_jp": "神聖十二神騎:||",
+      "dm_en": "Risingstar General"
+    },
+    {
+      "cardUid": "dmx16-073",
+      "booster": "dmx16",
+      "dm_jp": "駱駝の御輿",
+      "dm_en": "Arashizuwari Alpaca"
+    },
+    {
+      "cardUid": "dmr07-034",
+      "booster": "dmr07",
+      "dm_jp": "駱駝の御輿",
+      "dm_en": "Arashizuwari Alpaca"
+    },
+    {
+      "cardUid": "dmc55-002",
+      "booster": "dmc55",
+      "dm_jp": "暗黒導師ブラック・ルシファー",
+      "dm_en": "Black Lucifer, Sorcerer of Darkness"
+    },
+    {
+      "cardUid": "dmc27-037",
+      "booster": "dmc27",
+      "dm_jp": "預言者フィンチ",
+      "dm_en": "Fonch, the Oracle"
+    },
+    {
+      "cardUid": "dm17-049",
+      "booster": "dm17",
+      "dm_jp": "クラッシャー・ノヴァ",
+      "dm_en": "Kushikatsu, Fate of Nova"
+    },
+    {
+      "cardUid": "dm02-037",
+      "booster": "dm02",
+      "dm_jp": "預言者フィンチ",
+      "dm_en": "Fonch, the Oracle"
+    },
+    {
+      "cardUid": "promoy15-072",
+      "booster": "promoy15",
+      "dm_jp": "新時代の幕開け",
+      "dm_en": "New Generation"
+    },
+    {
+      "cardUid": "dm25sp2-015",
+      "booster": "dm25sp2",
+      "dm_jp": "伍代ドーラ",
+      "dm_en": "Dorago the Great, Dragon World"
+    },
+    {
+      "cardUid": "dm25sp2-TD5",
+      "booster": "dm25sp2",
+      "dm_jp": "伍代ドーラ",
+      "dm_en": "Dorago the Great, Dragon World"
+    },
+    {
+      "cardUid": "dm25rp3-Sec24",
+      "booster": "dm25rp3",
+      "dm_jp": "危識:この先、レッドゾーンあり",
+      "dm_en": "Redzone, Roaring Heresy"
+    },
+    {
+      "cardUid": "dm25rp3-077",
+      "booster": "dm25rp3",
+      "dm_jp": "危識:この先、レッドゾーンあり",
+      "dm_en": "Redzone, Roaring Heresy"
+    }
+  ]
+}

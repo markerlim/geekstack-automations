@@ -1,0 +1,52 @@
+[
+  {
+    "similarity": 1.0,
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Mic,_Carrying_Voice_Everywhere_(For_Live)",
+    "wiki_name_jp": "どこまでも声乗るマイク(ライブ用)",
+    "wiki_name_en": "Mic, Carrying Voice Everywhere (For Live)",
+    "dm_cardUid": "dm22rp2-036",
+    "dm_booster": "dm22rp2",
+    "dm_cardNameJP": "どこまでも声乗るマイク（ライブ用）",
+    "dm_cardName_en": "Mic, Carrying Voice Everywhere (For Live)"
+  },
+  {
+    "similarity": 0.824,
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Tech_Up,_%22Question_1%22",
+    "wiki_name_jp": "【問1】テック⤴",
+    "wiki_name_en": "Tech Up, \"Question 1\"",
+    "dm_cardUid": "dmr22-043",
+    "dm_booster": "dmr22",
+    "dm_cardNameJP": "【問１】 テック__",
+    "dm_cardName_en": "Tech, \"Question 1\" 【"
+  },
+  {
+    "similarity": 0.8,
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Matsurida_Wasshoi",
+    "wiki_name_jp": "駱駝の御興",
+    "wiki_name_en": "Matsurida Wasshoi",
+    "dm_cardUid": "dmx16-073",
+    "dm_booster": "dmx16",
+    "dm_cardNameJP": "駱駝の御輿",
+    "dm_cardName_en": "Arashizuwari Alpaca"
+  },
+  {
+    "similarity": 0.75,
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Return_of_the_Twelves",
+    "wiki_name_jp": "神聖十二神騎𝄇",
+    "wiki_name_en": "Return of the Twelves",
+    "dm_cardUid": "dmrp20-063",
+    "dm_booster": "dmrp20",
+    "dm_cardNameJP": "神聖十二神騎:||",
+    "dm_cardName_en": "Risingstar General"
+  },
+  {
+    "similarity": 0.7,
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Crasher_Burn",
+    "wiki_name_jp": "クラッシャー・バーン",
+    "wiki_name_en": "Crasher Burn",
+    "dm_cardUid": "dm17-049",
+    "dm_booster": "dm17",
+    "dm_cardNameJP": "クラッシャー・ノヴァ",
+    "dm_cardName_en": "Kushikatsu, Fate of Nova"
+  }
+]

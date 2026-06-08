@@ -1,0 +1,2046 @@
+[
+  {
+    "similarity": 0.491,
+    "cardUid": "dmc66-018",
+    "booster": "dmc66",
+    "cardNameJP": "陽炎の守護者ブルー・メルキス(DMC66 18/36)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Bluum_Erkis,_Flare_Guardian",
+    "wiki_jp_before": "陽炎の守護者ブルー・メルキス(Blue Merkis, Heat Haze Guardian)",
+    "wiki_jp_after": "陽炎の守護者ブルー・メルキス",
+    "before": {
+      "cardName": "Bluum Erkis, Flare Guardian",
+      "type": "Creature",
+      "effects": "​■ (This creature is put into your mana zone tapped .)\n■ Whenever this creature would break one of your opponent 's shields , your opponent shows that shield to you instead of putting it into his hand . If it's a spell that has \" shield trigger ,\" you cast it for no cost , then put it into your opponent 's graveyard . If it's not, your opponent puts it into his hand .\n■ Double breaker",
+      "race": [
+        "Guardian"
+      ]
+    },
+    "after": {
+      "cardName": "Bluum Erkis, Flare Guardian",
+      "type": "Creature",
+      "effects": "■ (This creature is put into your mana zone tapped .)\n■ Whenever this creature would break one of your opponent 's shields , your opponent shows that shield to you instead of putting it into his hand . If it's a spell that has \" shield trigger ,\" you cast it for no cost , then put it into your opponent 's graveyard . If it's not, your opponent puts it into his hand .\n■ Double breaker",
+      "race": [
+        "Guardian"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Bluum_Erkis,_Flare_Guardian"
+    }
+  },
+  {
+    "similarity": 0.486,
+    "cardUid": "dmex08-095",
+    "booster": "dmex08",
+    "cardNameJP": "フウセンアワダケβ(DMEX08 95/???)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Balloonshroom_Q",
+    "wiki_jp_before": "フウセンアワダケβ(Fuusenawadake Beta)",
+    "wiki_jp_after": "フウセンアワダケβ",
+    "before": {
+      "cardName": "Balloonshroom Q",
+      "type": "Creature",
+      "effects": "■ Survivor (Each of your Survivors has this creature 's ​ ability .) ​ When this creature would be destroyed , put it into your mana zone instead .",
+      "race": [
+        "Survivor",
+        "Balloon Mushroom"
+      ]
+    },
+    "after": {
+      "cardName": "Balloonshroom Q",
+      "type": "Creature",
+      "effects": "■ Survivor (Each of your Survivors has this creature 's  ability .)  When this creature would be destroyed , put it into your mana zone instead .",
+      "race": [
+        "Survivor",
+        "Balloon Mushroom"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Balloonshroom_Q"
+    }
+  },
+  {
+    "similarity": 0.485,
+    "cardUid": "dm10-066",
+    "booster": "dm10",
+    "cardNameJP": "不屈のウレックス(DM10 66/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Ulex,_the_Dauntless",
+    "wiki_jp_before": "不屈のウレックス(Indomitable Ulex)",
+    "wiki_jp_after": "不屈のウレックス",
+    "before": {
+      "cardName": "Ulex, the Dauntless",
+      "type": "Creature",
+      "effects": "​■ (This creature is put into your mana zone tapped .)\n■ Your opponent can't tap this creature .",
+      "race": [
+        "Spirit Quartz"
+      ]
+    },
+    "after": {
+      "cardName": "Ulex, the Dauntless",
+      "type": "Creature",
+      "effects": "■ (This creature is put into your mana zone tapped .)\n■ Your opponent can't tap this creature .",
+      "race": [
+        "Spirit Quartz"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Ulex,_the_Dauntless"
+    }
+  },
+  {
+    "similarity": 0.483,
+    "cardUid": "dm37-052",
+    "booster": "dm37",
+    "cardNameJP": "オニフスベダケ(DM37 52/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Puffball_Mushroom",
+    "wiki_jp_before": "オニフスベダケ(Onifusubedake)",
+    "wiki_jp_after": "オニフスベダケ",
+    "before": {
+      "cardName": "Puffball Mushroom",
+      "type": "Creature",
+      "effects": "■ When you put this creature into the battle zone , destroy it unless you have another creature in the battle zone that has power 6000 or more .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Balloon Mushroom"
+      ]
+    },
+    "after": {
+      "cardName": "Puffball Mushroom",
+      "type": "Creature",
+      "effects": "■ When you put this creature into the battle zone , destroy it unless you have another creature in the battle zone that has power 6000 or more .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Balloon Mushroom"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Puffball_Mushroom"
+    }
+  },
+  {
+    "similarity": 0.481,
+    "cardUid": "dmex11-016",
+    "booster": "dmex11",
+    "cardNameJP": "雷鳴の守護者ミスト・リエス(DMEX11 16/42)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Mist_Rias,_Sonic_Guardian",
+    "wiki_jp_before": "雷鳴の守護者ミスト・リエス(Mist Ries, Guardian of Thunder)",
+    "wiki_jp_after": "雷鳴の守護者ミスト・リエス",
+    "before": {
+      "cardName": "Mist Rias, Sonic Guardian",
+      "type": "Creature",
+      "effects": "■ Whenever another creature is put into the battle zone , you may draw a card .",
+      "race": [
+        "Guardian"
+      ]
+    },
+    "after": {
+      "cardName": "Mist Rias, Sonic Guardian",
+      "type": "Creature",
+      "effects": "■ Whenever another creature is put into the battle zone , you may draw a card .",
+      "race": [
+        "Guardian"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Mist_Rias,_Sonic_Guardian"
+    }
+  },
+  {
+    "similarity": 0.48,
+    "cardUid": "dmc61-086",
+    "booster": "dmc61",
+    "cardNameJP": "炎のたてがみ(DMC61 86/94)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Burning_Mane",
+    "wiki_jp_before": "炎のたてがみ(Mane of Flame)",
+    "wiki_jp_after": "炎のたてがみ",
+    "before": {
+      "cardName": "Burning Mane",
+      "type": "Creature",
+      "race": [
+        "Beast Folk"
+      ]
+    },
+    "after": {
+      "cardName": "Burning Mane",
+      "type": "Creature",
+      "race": [
+        "Beast Folk"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Burning_Mane"
+    }
+  },
+  {
+    "similarity": 0.478,
+    "cardUid": "dm18-031",
+    "booster": "dm18",
+    "cardNameJP": "虚空の翼ダークモルダー(DM18 31/140)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Vile_Mulder,_Wing_of_the_Void",
+    "wiki_jp_before": "虚空の翼ダークモルダー(Darkmulder, Wings of Void)",
+    "wiki_jp_after": "虚空の翼ダークモルダー",
+    "before": {
+      "cardName": "Vile Mulder, Wing of the Void",
+      "type": "Creature",
+      "effects": "■ This creature can't attack creatures .\n■ Double breaker (This creature breaks 2 shields .)\n■ When this creature battles , destroy it after the battle .",
+      "race": [
+        "Demon Command"
+      ]
+    },
+    "after": {
+      "cardName": "Vile Mulder, Wing of the Void",
+      "type": "Creature",
+      "effects": "■ This creature can't attack creatures .\n■ Double breaker (This creature breaks 2 shields .)\n■ When this creature battles , destroy it after the battle .",
+      "race": [
+        "Demon Command"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Vile_Mulder,_Wing_of_the_Void"
+    }
+  },
+  {
+    "similarity": 0.478,
+    "cardUid": "dm06-s09",
+    "booster": "dm06",
+    "cardNameJP": "大昆虫ガイアマンティス(DM6 S9/S10)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Ultra_Mantis,_Scourge_of_Fate",
+    "wiki_jp_before": "大昆虫ガイアマンティス(Gaiamantis, Giant Insect)",
+    "wiki_jp_after": "大昆虫ガイアマンティス",
+    "before": {
+      "cardName": "Ultra Mantis, Scourge of Fate",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Giant Insects .\n■ This creature can't be blocked by any creature that has power 8000 or less.\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Giant Insect"
+      ]
+    },
+    "after": {
+      "cardName": "Ultra Mantis, Scourge of Fate",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Giant Insects .\n■ This creature can't be blocked by any creature that has power 8000 or less.\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Giant Insect"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Ultra_Mantis,_Scourge_of_Fate"
+    }
+  },
+  {
+    "similarity": 0.476,
+    "cardUid": "dm07-018",
+    "booster": "dm07",
+    "cardNameJP": "世界樹ユグドラジーガ(DM7 18/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/World_Tree,_Root_of_Life",
+    "wiki_jp_before": "世界樹ユグドラジーガ(Yggdrasiga, World Tree)",
+    "wiki_jp_after": "世界樹ユグドラジーガ",
+    "before": {
+      "cardName": "World Tree, Root of Life",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Tree Folk .\n■ Power attacker +2000 (While attacking , this creature gets +2000 power .)\n■ Darkness stealth (This creature can't be blocked while your opponent has any darkness cards in his mana zone .)\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Tree Folk"
+      ]
+    },
+    "after": {
+      "cardName": "World Tree, Root of Life",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Tree Folk .\n■ Power attacker +2000 (While attacking , this creature gets +2000 power .)\n■ Darkness stealth (This creature can't be blocked while your opponent has any darkness cards in his mana zone .)\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Tree Folk"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/World_Tree,_Root_of_Life"
+    }
+  },
+  {
+    "similarity": 0.474,
+    "cardUid": "dm07-s01",
+    "booster": "dm07",
+    "cardNameJP": "栄光の精霊アイリス(DM7 S1/S5)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Siri,_Glory_Elemental",
+    "wiki_jp_before": "栄光の精霊アイリス(Iris, Spirit of Glory)",
+    "wiki_jp_after": "栄光の精霊アイリス",
+    "before": {
+      "cardName": "Siri, Glory Elemental",
+      "type": "Creature",
+      "effects": "​■ Double breaker (This creature breaks 2 shields .)\n■ While you have no shields , this creature has \" blocker \" and \" At the end of each of your turns , you may untap this creature .\"",
+      "race": [
+        "Angel Command"
+      ]
+    },
+    "after": {
+      "cardName": "Siri, Glory Elemental",
+      "type": "Creature",
+      "effects": "■ Double breaker (This creature breaks 2 shields .)\n■ While you have no shields , this creature has \" blocker \" and \" At the end of each of your turns , you may untap this creature .\"",
+      "race": [
+        "Angel Command"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Siri,_Glory_Elemental"
+    }
+  },
+  {
+    "similarity": 0.474,
+    "cardUid": "dmex11-025",
+    "booster": "dmex11",
+    "cardNameJP": "電脳聖者タージマル(DMEX11 25/42)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Tajimal,_Vizier_of_Aqua",
+    "wiki_jp_before": "電脳聖者タージマル(Tajimal, Cyber Saint)",
+    "wiki_jp_after": "電脳聖者タージマル",
+    "before": {
+      "cardName": "Tajimal, Vizier of Aqua",
+      "type": "Creature",
+      "effects": "​​ Blocker (Whenever an opponent 's creature attacks , you may tap this creature to stop the attack . Then the 2 creatures battle .)\n■ (This creature is put into your mana zone tapped .)\n■ This creature can't attack players .\n■ While battling a fire creature , this creature gets +4000 power .",
+      "race": [
+        "Initiate",
+        "Liquid People"
+      ]
+    },
+    "after": {
+      "cardName": "Tajimal, Vizier of Aqua",
+      "type": "Creature",
+      "effects": "■ Blocker (Whenever an opponent 's creature attacks , you may tap this creature to stop the attack . Then the 2 creatures battle .)\n■ (This creature is put into your mana zone tapped .)\n■ This creature can't attack players .\n■ While battling a fire creature , this creature gets +4000 power .",
+      "race": [
+        "Initiate",
+        "Liquid People"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Tajimal,_Vizier_of_Aqua"
+    }
+  },
+  {
+    "similarity": 0.471,
+    "cardUid": "dmex15-a034",
+    "booster": "dmex15",
+    "cardNameJP": "暗黒王デス・フェニックス(DMEX15 34/50)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Death_Phoenix,_Avatar_of_Doom",
+    "wiki_jp_before": "暗黒王デス・フェニックス(Death Phoenix, Darkness King)",
+    "wiki_jp_after": "暗黒王デス・フェニックス",
+    "before": {
+      "cardName": "Death Phoenix, Avatar of Doom",
+      "type": "Evolution Creature",
+      "effects": "​■ (This creature is put into your mana zone tapped .)\n■ Vortex evolution —Put on one of your Zombie Dragons and one of your Fire Birds .\n■ Double breaker (This creature breaks 2 shields .)\n■ Whenever this creature would break a shield , your opponent puts that shield into his graveyard instead .\n■ When this creature leaves the battle zone , your opponent discards his hand .",
+      "race": [
+        "Phoenix"
+      ]
+    },
+    "after": {
+      "cardName": "Death Phoenix, Avatar of Doom",
+      "type": "Evolution Creature",
+      "effects": "■ (This creature is put into your mana zone tapped .)\n■ Vortex evolution —Put on one of your Zombie Dragons and one of your Fire Birds .\n■ Double breaker (This creature breaks 2 shields .)\n■ Whenever this creature would break a shield , your opponent puts that shield into his graveyard instead .\n■ When this creature leaves the battle zone , your opponent discards his hand .",
+      "race": [
+        "Phoenix"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Death_Phoenix,_Avatar_of_Doom"
+    }
+  },
+  {
+    "similarity": 0.467,
+    "cardUid": "dm10-022",
+    "booster": "dm10",
+    "cardNameJP": "邪悪の魔黒デビル・マーシャル(DM10 22/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Zero_Nemesis,_Shadow_of_Panic",
+    "wiki_jp_before": "邪悪の魔黒デビル・マーシャル(Devil Marshall, Wicked Black Demon)",
+    "wiki_jp_after": "邪悪の魔黒デビル・マーシャル",
+    "before": {
+      "cardName": "Zero Nemesis, Shadow of Panic",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Ghosts .\n■ Whenever one of your creatures attacks , your opponent discards a card at random from their hand .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Ghost"
+      ]
+    },
+    "after": {
+      "cardName": "Zero Nemesis, Shadow of Panic",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Ghosts .\n■ Whenever one of your creatures attacks , your opponent discards a card at random from their hand .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Ghost"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Zero_Nemesis,_Shadow_of_Panic"
+    }
+  },
+  {
+    "similarity": 0.465,
+    "cardUid": "dm35-018",
+    "booster": "dm35",
+    "cardNameJP": "大勇者「銀河の誘発」(DM35 18/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Sarutahiko,_the_Great_Hero",
+    "wiki_jp_before": "大勇者「銀河の誘発」(Great Hero \"Sarutahiko\")",
+    "wiki_jp_after": "大勇者「銀河の誘発」",
+    "before": {
+      "cardName": "Sarutahiko, the Great Hero",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Beast Folk or Origins .\n■ When you put this creature into the battle zone , search your deck . You may take up to 2 creatures that have \" Ultimate evolution \" or \" Ultimate evolution MAX \" from your deck , show those creatures to your opponent , and put them into your hand . Then shuffle your deck .",
+      "race": [
+        "Beast Folk",
+        "Origin"
+      ]
+    },
+    "after": {
+      "cardName": "Sarutahiko, the Great Hero",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Beast Folk or Origins .\n■ When you put this creature into the battle zone , search your deck . You may take up to 2 creatures that have \" Ultimate evolution \" or \" Ultimate evolution MAX \" from your deck , show those creatures to your opponent , and put them into your hand . Then shuffle your deck .",
+      "race": [
+        "Beast Folk",
+        "Origin"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Sarutahiko,_the_Great_Hero"
+    }
+  },
+  {
+    "similarity": 0.462,
+    "cardUid": "dm06-024",
+    "booster": "dm06",
+    "cardNameJP": "戦慄の剛将アブリン(DM6 24/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Gnarvash,_Merchant_of_Blood",
+    "wiki_jp_before": "戦慄の剛将アブリン(Ablin, General of Fear)",
+    "wiki_jp_after": "戦慄の剛将アブリン",
+    "before": {
+      "cardName": "Gnarvash, Merchant of Blood",
+      "type": "Creature",
+      "effects": "​■ Double breaker (This creature breaks 2 shields .)\n■ At the end of each of your turns , if this is your only creature in the battle zone , destroy it.",
+      "race": [
+        "Demon Command"
+      ]
+    },
+    "after": {
+      "cardName": "Gnarvash, Merchant of Blood",
+      "type": "Creature",
+      "effects": "■ Double breaker (This creature breaks 2 shields .)\n■ At the end of each of your turns , if this is your only creature in the battle zone , destroy it.",
+      "race": [
+        "Demon Command"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Gnarvash,_Merchant_of_Blood"
+    }
+  },
+  {
+    "similarity": 0.459,
+    "cardUid": "dmx22a-046",
+    "booster": "dmx22a",
+    "cardNameJP": "孤独の影ロンリー・ウォーカー(DMX22 46/59)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Lone_Tear,_Shadow_of_Solitude",
+    "wiki_jp_before": "孤独の影ロンリー・ウォーカー(Lonely Walker, Shadow of Loneliness)",
+    "wiki_jp_after": "孤独の影ロンリー・ウォーカー",
+    "before": {
+      "cardName": "Lone Tear, Shadow of Solitude",
+      "type": "Creature",
+      "effects": "■ At the end of each of your turns , if this is your only creature in the battle zone , destroy it.",
+      "race": [
+        "Ghost"
+      ]
+    },
+    "after": {
+      "cardName": "Lone Tear, Shadow of Solitude",
+      "type": "Creature",
+      "effects": "■ At the end of each of your turns , if this is your only creature in the battle zone , destroy it.",
+      "race": [
+        "Ghost"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Lone_Tear,_Shadow_of_Solitude"
+    }
+  },
+  {
+    "similarity": 0.456,
+    "cardUid": "dm18-s05",
+    "booster": "dm18",
+    "cardNameJP": "魔翼虫ジェノサイド・ワーム(DM18 S5/S10)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Ultracide_Worm",
+    "wiki_jp_before": "魔翼虫ジェノサイド・ワーム(Genocide Worm, Magical Winged Bug)",
+    "wiki_jp_after": "魔翼虫ジェノサイド・ワーム",
+    "before": {
+      "cardName": "Ultracide Worm",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Parasite Worms .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Parasite Worm"
+      ]
+    },
+    "after": {
+      "cardName": "Ultracide Worm",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Parasite Worms .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Parasite Worm"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Ultracide_Worm"
+    }
+  },
+  {
+    "similarity": 0.455,
+    "cardUid": "dmc61-044",
+    "booster": "dmc61",
+    "cardNameJP": "魔獣虫カオス・ワーム(DMC61 44/94)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Chaos_Worm",
+    "wiki_jp_before": "魔獣虫カオス・ワーム(Chaos Worm, Monstrous Bug)",
+    "wiki_jp_after": "魔獣虫カオス・ワーム",
+    "before": {
+      "cardName": "Chaos Worm",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Parasite Worms .\n■ When you put this creature into the battle zone , you may destroy one of your opponent 's creatures .",
+      "race": [
+        "Parasite Worm"
+      ]
+    },
+    "after": {
+      "cardName": "Chaos Worm",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Parasite Worms .\n■ When you put this creature into the battle zone , you may destroy one of your opponent 's creatures .",
+      "race": [
+        "Parasite Worm"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Chaos_Worm"
+    }
+  },
+  {
+    "similarity": 0.455,
+    "cardUid": "dm02-012",
+    "booster": "dm02",
+    "cardNameJP": "魔将ダーク・フリード(DM2 12/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/General_Dark_Fiend",
+    "wiki_jp_before": "魔将ダーク・フリード(Dark Freed, Demon General)",
+    "wiki_jp_after": "魔将ダーク・フリード",
+    "before": {
+      "cardName": "General Dark Fiend",
+      "type": "Creature",
+      "effects": "■ Whenever this creature attacks , choose one of your shields without looking and put it into your graveyard . You can't use the \" shield trigger \" ability of that shield .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Dark Lord"
+      ]
+    },
+    "after": {
+      "cardName": "General Dark Fiend",
+      "type": "Creature",
+      "effects": "■ Whenever this creature attacks , choose one of your shields without looking and put it into your graveyard . You can't use the \" shield trigger \" ability of that shield .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Dark Lord"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/General_Dark_Fiend"
+    }
+  },
+  {
+    "similarity": 0.453,
+    "cardUid": "dm10-063",
+    "booster": "dm10",
+    "cardNameJP": "腐敗電脳アクアポインター(DM10 63/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Pointa,_the_Aqua_Shadow",
+    "wiki_jp_before": "腐敗電脳アクアポインター(Aqua Pointer, Cyber Corruption)",
+    "wiki_jp_after": "腐敗電脳アクアポインター",
+    "before": {
+      "cardName": "Pointa, the Aqua Shadow",
+      "type": "Creature",
+      "effects": "​■ (This creature is put into your mana zone tapped .)\n■ When you put this creature into the battle zone , look at one of your opponent 's shields . Then your opponent discards a card at random from his hand .",
+      "race": [
+        "Liquid People",
+        "Ghost"
+      ]
+    },
+    "after": {
+      "cardName": "Pointa, the Aqua Shadow",
+      "type": "Creature",
+      "effects": "■ (This creature is put into your mana zone tapped .)\n■ When you put this creature into the battle zone , look at one of your opponent 's shields . Then your opponent discards a card at random from his hand .",
+      "race": [
+        "Liquid People",
+        "Ghost"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Pointa,_the_Aqua_Shadow"
+    }
+  },
+  {
+    "similarity": 0.45,
+    "cardUid": "dmc27-008",
+    "booster": "dmc27",
+    "cardNameJP": "飛翔の精霊アリエス(DMC27 8/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Aeris,_Flight_Elemental",
+    "wiki_jp_before": "飛翔の精霊アリエス(Aries, Spirit of Flying)",
+    "wiki_jp_after": "飛翔の精霊アリエス",
+    "before": {
+      "cardName": "Aeris, Flight Elemental",
+      "type": "Creature",
+      "effects": "■ This creature can't attack players .\n■ This creature can attack untapped darkness creatures .",
+      "race": [
+        "Angel Command"
+      ]
+    },
+    "after": {
+      "cardName": "Aeris, Flight Elemental",
+      "type": "Creature",
+      "effects": "■ This creature can't attack players .\n■ This creature can attack untapped darkness creatures .",
+      "race": [
+        "Angel Command"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Aeris,_Flight_Elemental"
+    }
+  },
+  {
+    "similarity": 0.45,
+    "cardUid": "dm01-061",
+    "booster": "dm01",
+    "cardNameJP": "走神兵ウルヘリオン(DM1 61/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Armored_Walker_Urherion",
+    "wiki_jp_before": "走神兵ウルヘリオン(Divine Walker Urherion)",
+    "wiki_jp_after": "走神兵ウルヘリオン",
+    "before": {
+      "cardName": "Armored Walker Urherion",
+      "type": "Creature",
+      "effects": "■ While you have at least 1 Human in the battle zone , this creature gets +2000 power during its attacks .",
+      "race": [
+        "Armorloid"
+      ]
+    },
+    "after": {
+      "cardName": "Armored Walker Urherion",
+      "type": "Creature",
+      "effects": "■ While you have at least 1 Human in the battle zone , this creature gets +2000 power during its attacks .",
+      "race": [
+        "Armorloid"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Armored_Walker_Urherion"
+    }
+  },
+  {
+    "similarity": 0.45,
+    "cardUid": "dm06-015",
+    "booster": "dm06",
+    "cardNameJP": "宣凶師エルリオット(DM6 15/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Telitol,_the_Explorer",
+    "wiki_jp_before": "宣凶師エルリオット(Elliot, the Missionary)",
+    "wiki_jp_after": "宣凶師エルリオット",
+    "before": {
+      "cardName": "Telitol, the Explorer",
+      "type": "Creature",
+      "effects": "​​ Blocker\n■ When you put this creature into the battle zone , you may look at your shields . Then put them back where they were.\n■ This creature can't attack players .",
+      "race": [
+        "Gladiator"
+      ]
+    },
+    "after": {
+      "cardName": "Telitol, the Explorer",
+      "type": "Creature",
+      "effects": "■ Blocker\n■ When you put this creature into the battle zone , you may look at your shields . Then put them back where they were.\n■ This creature can't attack players .",
+      "race": [
+        "Gladiator"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Telitol,_the_Explorer"
+    }
+  },
+  {
+    "similarity": 0.449,
+    "cardUid": "dm18-s07",
+    "booster": "dm18",
+    "cardNameJP": "機神装甲ヴァルディオス(DM18 S7/S10)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Armored_Blaster_Valdios",
+    "wiki_jp_before": "機神装甲ヴァルディオス(Divine Machine Armor Valdios)",
+    "wiki_jp_after": "機神装甲ヴァルディオス",
+    "before": {
+      "cardName": "Armored Blaster Valdios",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Humans .\n■ Each of your other Humans in the battle zone gets +1000 power .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Human"
+      ]
+    },
+    "after": {
+      "cardName": "Armored Blaster Valdios",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Humans .\n■ Each of your other Humans in the battle zone gets +1000 power .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Human"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Armored_Blaster_Valdios"
+    }
+  },
+  {
+    "similarity": 0.449,
+    "cardUid": "dm02-013",
+    "booster": "dm02",
+    "cardNameJP": "毒煙虫ポイズン・ワーム(DM2 13/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Poison_Worm",
+    "wiki_jp_before": "毒煙虫ポイズン・ワーム(Poison Worm, Poison Smoke Bug)",
+    "wiki_jp_after": "毒煙虫ポイズン・ワーム",
+    "before": {
+      "cardName": "Poison Worm",
+      "type": "Creature",
+      "effects": "■ When you put this creature into the battle zone , destroy one of your creatures that has power 3000 or less.",
+      "race": [
+        "Parasite Worm"
+      ]
+    },
+    "after": {
+      "cardName": "Poison Worm",
+      "type": "Creature",
+      "effects": "■ When you put this creature into the battle zone , destroy one of your creatures that has power 3000 or less.",
+      "race": [
+        "Parasite Worm"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Poison_Worm"
+    }
+  },
+  {
+    "similarity": 0.449,
+    "cardUid": "dm04-027",
+    "booster": "dm04",
+    "cardNameJP": "偽りの影ヘル・スモーク(DM4 27/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Volcano_Smog,_Deceptive_Shade",
+    "wiki_jp_before": "偽りの影ヘル・スモーク(Hell Smoke, Ghost of Fakeness)",
+    "wiki_jp_after": "偽りの影ヘル・スモーク",
+    "before": {
+      "cardName": "Volcano Smog, Deceptive Shade",
+      "type": "Creature",
+      "effects": "■ Each light creature costs 2 more to summon and each light spell costs 2 more to cast .",
+      "race": [
+        "Ghost"
+      ]
+    },
+    "after": {
+      "cardName": "Volcano Smog, Deceptive Shade",
+      "type": "Creature",
+      "effects": "■ Each light creature costs 2 more to summon and each light spell costs 2 more to cast .",
+      "race": [
+        "Ghost"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Volcano_Smog,_Deceptive_Shade"
+    }
+  },
+  {
+    "similarity": 0.444,
+    "cardUid": "dmc27-017",
+    "booster": "dmc27",
+    "cardNameJP": "地獄万力(DMC27 17/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Apocalypse_Vise",
+    "wiki_jp_before": "地獄万力(Hell Vise)",
+    "wiki_jp_after": "地獄万力",
+    "before": {
+      "cardName": "Apocalypse Vise",
+      "type": "Spell",
+      "effects": "■ Destroy any number of your opponent 's creatures that have total power 8000 or less."
+    },
+    "after": {
+      "cardName": "Apocalypse Vise",
+      "type": "Spell",
+      "effects": "■ Destroy any number of your opponent 's creatures that have total power 8000 or less.",
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Apocalypse_Vise"
+    }
+  },
+  {
+    "similarity": 0.444,
+    "cardUid": "dm12-031",
+    "booster": "dm12",
+    "cardNameJP": "電磁賢者シリオン(DM12 31/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Electro_Explorer_Syrion",
+    "wiki_jp_before": "電磁賢者シリオン(Syrion, Electro Sage)",
+    "wiki_jp_after": "電磁賢者シリオン",
+    "before": {
+      "cardName": "Electro Explorer Syrion",
+      "type": "Creature",
+      "effects": "​■ (This creature is put into your mana zone tapped .)",
+      "race": [
+        "Gladiator",
+        "Cyber Lord"
+      ]
+    },
+    "after": {
+      "cardName": "Electro Explorer Syrion",
+      "type": "Creature",
+      "effects": "■ (This creature is put into your mana zone tapped .)",
+      "race": [
+        "Gladiator",
+        "Cyber Lord"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Electro_Explorer_Syrion"
+    }
+  },
+  {
+    "similarity": 0.444,
+    "cardUid": "dmr12-001",
+    "booster": "dmr12",
+    "cardNameJP": "極大左神 マックス(DMR12 1/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Max,_Rage_Crystal",
+    "wiki_jp_before": "極大左神マックス(Max, Maximum Left God)",
+    "wiki_jp_after": "極大左神 マックス",
+    "before": {
+      "cardName": "Max, Rage Crystal",
+      "type": "Creature",
+      "effects": "■ When you summon this creature or one of your other Gods into the battle zone , you may add the top card of your deck to your shields face down .\n■ Whenever a card is put into your shields , choose one of your opponent 's creatures in the battle zone and tap it.\n■ Double breaker\n■ Left God Link ( As you put this creature this creature into the battle zone , you may link this creature to a God that has \" Center God Link \" or \" Right God Link \". The linked god gets each god 's characteristics ( power and abilities ) and becomes one creature . When the linked creature would leave the battle zone , choose one side instead .)\n■ While this creature is linked , it breaks an additional shield .",
+      "race": [
+        "God Nova OMG",
+        "Outrage MAX"
+      ]
+    },
+    "after": {
+      "cardName": "Max, Rage Crystal",
+      "type": "Creature",
+      "effects": "■ When you summon this creature or one of your other Gods into the battle zone , you may add the top card of your deck to your shields face down .\n■ Whenever a card is put into your shields , choose one of your opponent 's creatures in the battle zone and tap it.\n■ Double breaker\n■ Left God Link ( As you put this creature this creature into the battle zone , you may link this creature to a God that has \" Center God Link \" or \" Right God Link \". The linked god gets each god 's characteristics ( power and abilities ) and becomes one creature . When the linked creature would leave the battle zone , choose one side instead .)\n■ While this creature is linked , it breaks an additional shield .",
+      "race": [
+        "God Nova OMG",
+        "Outrage MAX"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Max,_Rage_Crystal"
+    }
+  },
+  {
+    "similarity": 0.444,
+    "cardUid": "dm06-099",
+    "booster": "dm06",
+    "cardNameJP": "炎獣兵マグナム・ブルース(DM6 99/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Torchclencher",
+    "wiki_jp_before": "炎獣兵マグナム・ブルース(Flame Beast Soldier Magnum Blues)",
+    "wiki_jp_after": "炎獣兵マグナム・ブルース",
+    "before": {
+      "cardName": "Torchclencher",
+      "type": "Creature",
+      "effects": "■ While you have at least one other fire creature in the battle zone , this creature has \" Power attacker +3000 (While attacking , this creature gets +3000 power ) .\"",
+      "race": [
+        "Dragonoid"
+      ]
+    },
+    "after": {
+      "cardName": "Torchclencher",
+      "type": "Creature",
+      "effects": "■ While you have at least one other fire creature in the battle zone , this creature has \" Power attacker +3000 (While attacking , this creature gets +3000 power ) .\"",
+      "race": [
+        "Dragonoid"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Torchclencher"
+    }
+  },
+  {
+    "similarity": 0.444,
+    "cardUid": "dm06-s06",
+    "booster": "dm06",
+    "cardNameJP": "憤怒の猛将ダイダロス(DM6 S6/S10)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Daidalos,_General_of_Fury",
+    "wiki_jp_before": "憤怒の猛将ダイダロス(Daedalus, Furious General)",
+    "wiki_jp_after": "憤怒の猛将ダイダロス",
+    "before": {
+      "cardName": "Daidalos, General of Fury",
+      "type": "Creature",
+      "effects": "■ Whenever this creature attacks , destroy one of your creatures .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Demon Command"
+      ]
+    },
+    "after": {
+      "cardName": "Daidalos, General of Fury",
+      "type": "Creature",
+      "effects": "■ Whenever this creature attacks , destroy one of your creatures .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Demon Command"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Daidalos,_General_of_Fury"
+    }
+  },
+  {
+    "similarity": 0.439,
+    "cardUid": "dm18-078",
+    "booster": "dm18",
+    "cardNameJP": "超砲手ボルカノドン(DM18 78/140)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Super_Explosive_Volcanodon",
+    "wiki_jp_before": "超砲手ボルカノドン(Ultra Gunner Volcanodon)",
+    "wiki_jp_after": "超砲手ボルカノドン",
+    "before": {
+      "cardName": "Super Explosive Volcanodon",
+      "type": "Creature",
+      "effects": "■ Power attacker +4000 (While attacking , this creature gets +4000 power .)",
+      "race": [
+        "Dragonoid"
+      ]
+    },
+    "after": {
+      "cardName": "Super Explosive Volcanodon",
+      "type": "Creature",
+      "effects": "■ Power attacker +4000 (While attacking , this creature gets +4000 power .)",
+      "race": [
+        "Dragonoid"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Super_Explosive_Volcanodon"
+    }
+  },
+  {
+    "similarity": 0.436,
+    "cardUid": "dmc61-006",
+    "booster": "dmc61",
+    "cardNameJP": "冥府の覇者ガジラビュート(DMC61 6/94)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Gajirabute,_Vile_Centurion",
+    "wiki_jp_before": "冥府の覇者ガジラビュート(Gajirabute, Underworld Champion)",
+    "wiki_jp_after": "冥府の覇者ガジラビュート",
+    "before": {
+      "cardName": "Gajirabute, Vile Centurion",
+      "type": "Creature",
+      "effects": "■ When you put this creature into the battle zone , choose one of your opponent 's shields and put it into his graveyard .",
+      "race": [
+        "Demon Command"
+      ]
+    },
+    "after": {
+      "cardName": "Gajirabute, Vile Centurion",
+      "type": "Creature",
+      "effects": "■ When you put this creature into the battle zone , choose one of your opponent 's shields and put it into his graveyard .",
+      "race": [
+        "Demon Command"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Gajirabute,_Vile_Centurion"
+    }
+  },
+  {
+    "similarity": 0.435,
+    "cardUid": "dm06-096",
+    "booster": "dm06",
+    "cardNameJP": "捜神兵グチェラリオン(DM6 96/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Armored_Scout_Gestuchar",
+    "wiki_jp_before": "捜神兵グチェラリオン(Divine Armored Gucheralion)",
+    "wiki_jp_after": "捜神兵グチェラリオン",
+    "before": {
+      "cardName": "Armored Scout Gestuchar",
+      "type": "Creature",
+      "effects": "■ While you have no other fire creatures in the battle zone , this creature has \" power attacker +3000\" and \" double breaker .\" (A creature that has \" power attacker +3000\" and \" double breaker \" gets +3000 power while attacking and breaks 2 shields .)",
+      "race": [
+        "Armorloid"
+      ]
+    },
+    "after": {
+      "cardName": "Armored Scout Gestuchar",
+      "type": "Creature",
+      "effects": "■ While you have no other fire creatures in the battle zone , this creature has \" power attacker +3000\" and \" double breaker .\" (A creature that has \" power attacker +3000\" and \" double breaker \" gets +3000 power while attacking and breaks 2 shields .)",
+      "race": [
+        "Armorloid"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Armored_Scout_Gestuchar"
+    }
+  },
+  {
+    "similarity": 0.435,
+    "cardUid": "dm33-012",
+    "booster": "dm33",
+    "cardNameJP": "死神獣ヤミノイッカク(DM33 12/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Dark_Ikkaku,_Reaper_Beast",
+    "wiki_jp_before": "死神獣ヤミノイッカク(Yaminoikkaku, Reaper Beast)",
+    "wiki_jp_after": "死神獣ヤミノイッカク",
+    "before": {
+      "cardName": "Dark Ikkaku, Reaper Beast",
+      "type": "Creature",
+      "effects": "■ Whenever your creatures that have \" Reaper \" in its name would leave the battle zone due to an opponent 's spell , they stay in the battle zone instead .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Dark Monster"
+      ]
+    },
+    "after": {
+      "cardName": "Dark Ikkaku, Reaper Beast",
+      "type": "Creature",
+      "effects": "■ Whenever your creatures that have \" Reaper \" in its name would leave the battle zone due to an opponent 's spell , they stay in the battle zone instead .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Dark Monster"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Dark_Ikkaku,_Reaper_Beast"
+    }
+  },
+  {
+    "similarity": 0.431,
+    "cardUid": "dmx12b-049",
+    "booster": "dmx12b",
+    "cardNameJP": "鬼面超人エル・アンドレ(DMX12 49/？？？)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Evil_Incarnate",
+    "wiki_jp_before": "鬼面超人エル・アンドレ(El Andre, Superhuman Devil Mask)",
+    "wiki_jp_after": "鬼面超人エル・アンドレ",
+    "before": {
+      "cardName": "Evil Incarnate",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Devil Masks .\n■ At the start of each player 's turn , that player chooses one of his creatures and destroys it.\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Devil Mask"
+      ]
+    },
+    "after": {
+      "cardName": "Evil Incarnate",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Devil Masks .\n■ At the start of each player 's turn , that player chooses one of his creatures and destroys it.\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Devil Mask"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Evil_Incarnate"
+    }
+  },
+  {
+    "similarity": 0.431,
+    "cardUid": "dm36-029",
+    "booster": "dm36",
+    "cardNameJP": "機神装甲ヴァルタイソン(DM36 29/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Valtyson,_Fierce_Armor",
+    "wiki_jp_before": "機神装甲ヴァルタイソン(Valtyson, Divine Machine Armor)",
+    "wiki_jp_after": "機神装甲ヴァルタイソン",
+    "before": {
+      "cardName": "Valtyson, Fierce Armor",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your ( Kung Fu Soul ) creatures .\n■ When you put this creature into the battle zone , choose one of your ( Kung Fu Soul ) creatures . That creature gets +3000 power and \" double breaker \" until the end of the turn .",
+      "race": [
+        "Human"
+      ]
+    },
+    "after": {
+      "cardName": "Valtyson, Fierce Armor",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your ( Kung Fu Soul ) creatures .\n■ When you put this creature into the battle zone , choose one of your ( Kung Fu Soul ) creatures . That creature gets +3000 power and \" double breaker \" until the end of the turn .",
+      "race": [
+        "Human"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Valtyson,_Fierce_Armor"
+    }
+  },
+  {
+    "similarity": 0.431,
+    "cardUid": "dmc68-012",
+    "booster": "dmc68",
+    "cardNameJP": "死神獣ヤミノストライク(DMC68 12/22)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Yaminostrike,_Reaper_Beast",
+    "wiki_jp_before": "死神獣ヤミノストライク(Yaminosutoraiku, Reaper Beast)",
+    "wiki_jp_after": "死神獣ヤミノストライク",
+    "before": {
+      "cardName": "Yaminostrike, Reaper Beast",
+      "type": "Creature",
+      "effects": "■ When this creature is destroyed , you may put a Demon Command that costs 7 or less from your hand into the battle zone .",
+      "race": [
+        "Dark Monster"
+      ]
+    },
+    "after": {
+      "cardName": "Yaminostrike, Reaper Beast",
+      "type": "Creature",
+      "effects": "■ When this creature is destroyed , you may put a Demon Command that costs 7 or less from your hand into the battle zone .",
+      "race": [
+        "Dark Monster"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Yaminostrike,_Reaper_Beast"
+    }
+  },
+  {
+    "similarity": 0.429,
+    "cardUid": "dm12-035",
+    "booster": "dm12",
+    "cardNameJP": "勇猛幻風グリタリス(DM12 35/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Spectral_Horn_Glitalis",
+    "wiki_jp_before": "勇猛幻風グリタリス(Glitalis, Brave Spectral)",
+    "wiki_jp_after": "勇猛幻風グリタリス",
+    "before": {
+      "cardName": "Spectral Horn Glitalis",
+      "type": "Creature",
+      "effects": "​■ (This creature is put into your mana zone tapped .)",
+      "race": [
+        "Horned Beast",
+        "Rainbow Phantom"
+      ]
+    },
+    "after": {
+      "cardName": "Spectral Horn Glitalis",
+      "type": "Creature",
+      "effects": "■ (This creature is put into your mana zone tapped .)",
+      "race": [
+        "Horned Beast",
+        "Rainbow Phantom"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Spectral_Horn_Glitalis"
+    }
+  },
+  {
+    "similarity": 0.429,
+    "cardUid": "dm02-022",
+    "booster": "dm02",
+    "cardNameJP": "予言者ウィン(DM2 22/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Wyn,_the_Oracle",
+    "wiki_jp_before": "予言者ウィン(Wyn, the Prophet)",
+    "wiki_jp_after": "予言者ウィン",
+    "before": {
+      "cardName": "Wyn, the Oracle",
+      "type": "Creature",
+      "effects": "■ Whenever this creature attacks , you may look at one of your opponent 's shields . Then put it back where it was.",
+      "race": [
+        "Light Bringer"
+      ]
+    },
+    "after": {
+      "cardName": "Wyn, the Oracle",
+      "type": "Creature",
+      "effects": "■ Whenever this creature attacks , you may look at one of your opponent 's shields . Then put it back where it was.",
+      "race": [
+        "Light Bringer"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Wyn,_the_Oracle"
+    }
+  },
+  {
+    "similarity": 0.426,
+    "cardUid": "dmc61-026",
+    "booster": "dmc61",
+    "cardNameJP": "銃神兵ディオライオス(DMC61 26/94)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Rothus,_the_Traveler",
+    "wiki_jp_before": "銃神兵ディオライオス(Dio Raios, Divine Gun Soldier)",
+    "wiki_jp_after": "銃神兵ディオライオス",
+    "before": {
+      "cardName": "Rothus, the Traveler",
+      "type": "Creature",
+      "effects": "■ When you put this creature into the battle zone , destroy one of your creatures . Then your opponent chooses one of his creatures and destroys it.",
+      "race": [
+        "Armorloid"
+      ]
+    },
+    "after": {
+      "cardName": "Rothus, the Traveler",
+      "type": "Creature",
+      "effects": "■ When you put this creature into the battle zone , destroy one of your creatures . Then your opponent chooses one of his creatures and destroys it.",
+      "race": [
+        "Armorloid"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Rothus,_the_Traveler"
+    }
+  },
+  {
+    "similarity": 0.426,
+    "cardUid": "dm12-012",
+    "booster": "dm12",
+    "cardNameJP": "独神兵ローンスピナー(DM12 12/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Whirling_Warrior_Malian",
+    "wiki_jp_before": "独神兵ローンスピナー(Lone Spinner, Divine Soldier)",
+    "wiki_jp_after": "独神兵ローンスピナー",
+    "before": {
+      "cardName": "Whirling Warrior Malian",
+      "type": "Creature",
+      "effects": "■ Whenever another creature is put into the battle zone , tap this creature .",
+      "race": [
+        "Armorloid"
+      ]
+    },
+    "after": {
+      "cardName": "Whirling Warrior Malian",
+      "type": "Creature",
+      "effects": "■ Whenever another creature is put into the battle zone , tap this creature .",
+      "race": [
+        "Armorloid"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Whirling_Warrior_Malian"
+    }
+  },
+  {
+    "similarity": 0.424,
+    "cardUid": "dm10-013",
+    "booster": "dm10",
+    "cardNameJP": "粛清者アイザク(DM10 13/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Ikaz,_the_Spydroid",
+    "wiki_jp_before": "粛清者アイザク(Isaac, the Spydroid)",
+    "wiki_jp_after": "粛清者アイザク",
+    "before": {
+      "cardName": "Ikaz, the Spydroid",
+      "type": "Creature",
+      "effects": "​​ Blocker (Whenever an opponent 's creature attacks , you may tap this creature to stop the attack . Then the 2 creatures battle .)\n■ Whenever this creature blocks , choose one of your creatures in the battle zone . Untap it after the battle .\n■ This creature can't attack players .",
+      "race": [
+        "Soltrooper"
+      ]
+    },
+    "after": {
+      "cardName": "Ikaz, the Spydroid",
+      "type": "Creature",
+      "effects": "■ Blocker (Whenever an opponent 's creature attacks , you may tap this creature to stop the attack . Then the 2 creatures battle .)\n■ Whenever this creature blocks , choose one of your creatures in the battle zone . Untap it after the battle .\n■ This creature can't attack players .",
+      "race": [
+        "Soltrooper"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Ikaz,_the_Spydroid"
+    }
+  },
+  {
+    "similarity": 0.423,
+    "cardUid": "dm06-030",
+    "booster": "dm06",
+    "cardNameJP": "機神装甲ヴァルカイザー(DM6 30/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Armored_Decimator_Valkaizer",
+    "wiki_jp_before": "機神装甲ヴァルカイザー(Valkaizer, Divine Machine Armor)",
+    "wiki_jp_after": "機神装甲ヴァルカイザー",
+    "before": {
+      "cardName": "Armored Decimator Valkaizer",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Humans .\n■ When you put this creature into the battle zone , you may destroy one of your opponent 's creatures that has power 4000 or less.",
+      "race": [
+        "Human"
+      ]
+    },
+    "after": {
+      "cardName": "Armored Decimator Valkaizer",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Humans .\n■ When you put this creature into the battle zone , you may destroy one of your opponent 's creatures that has power 4000 or less.",
+      "race": [
+        "Human"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Armored_Decimator_Valkaizer"
+    }
+  },
+  {
+    "similarity": 0.423,
+    "cardUid": "dm12-018",
+    "booster": "dm12",
+    "cardNameJP": "超機動魔獣ギガランテス(DM12 18/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Phantomach,_the_Gigatrooper",
+    "wiki_jp_before": "超機動魔獣ギガランテス(Gigarandes, Super-Mobile Beast)",
+    "wiki_jp_after": "超機動魔獣ギガランテス",
+    "before": {
+      "cardName": "Phantomach, the Gigatrooper",
+      "type": "Evolution Creature",
+      "effects": "■ (This creature is put into your mana zone tapped .)\n■ Evolution —Put on one of your Chimeras or Armorloids .\n■ Each of your other Chimeras and Armorloids in the battle zone gets +2000 power .\n■ Each of your Chimeras and Armorloids in the battle zone has \" double breaker .\" (A creature that has \" double breaker \" breaks 2 shields .)",
+      "race": [
+        "Chimera",
+        "Armorloid"
+      ]
+    },
+    "after": {
+      "cardName": "Phantomach, the Gigatrooper",
+      "type": "Evolution Creature",
+      "effects": "■ (This creature is put into your mana zone tapped .)\n■ Evolution —Put on one of your Chimeras or Armorloids .\n■ Each of your other Chimeras and Armorloids in the battle zone gets +2000 power .\n■ Each of your Chimeras and Armorloids in the battle zone has \" double breaker .\" (A creature that has \" double breaker \" breaks 2 shields .)",
+      "race": [
+        "Chimera",
+        "Armorloid"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Phantomach,_the_Gigatrooper"
+    }
+  },
+  {
+    "similarity": 0.421,
+    "cardUid": "dm12-034",
+    "booster": "dm12",
+    "cardNameJP": "翔天鎧冑ビトッチ(DM12 34/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Buzz_Betocchi",
+    "wiki_jp_before": "翔天鎧冑ビトッチ(Betocchi, Winged Armor)",
+    "wiki_jp_after": "翔天鎧冑ビトッチ",
+    "before": {
+      "cardName": "Buzz Betocchi",
+      "type": "Creature",
+      "effects": "​■ (This creature is put into your mana zone tapped .)",
+      "race": [
+        "Fire Bird",
+        "Giant Insect"
+      ]
+    },
+    "after": {
+      "cardName": "Buzz Betocchi",
+      "type": "Creature",
+      "effects": "■ (This creature is put into your mana zone tapped .)",
+      "race": [
+        "Fire Bird",
+        "Giant Insect"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Buzz_Betocchi"
+    }
+  },
+  {
+    "similarity": 0.421,
+    "cardUid": "dm22ex1-035",
+    "booster": "dm22ex1",
+    "cardNameJP": "幻想妖精カチュア(DM22EX1 35/130)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Kachua,_Keeper_of_the_Icegate",
+    "wiki_jp_before": "幻想妖精カチュア(Kachua, Fantasy Faerie)",
+    "wiki_jp_after": "幻想妖精カチュア",
+    "before": {
+      "cardName": "Kachua, Keeper of the Icegate",
+      "type": "Creature",
+      "effects": "■ Instead of having this creature attack , you may tap it to use its ability . Search your deck . You may take a creature that has Dragon in its race from your deck and put it into the battle zone . Then shuffle your deck . That creature has \" speed attacker .\" At the end of the turn , destroy it.",
+      "race": [
+        "Snow Faerie"
+      ]
+    },
+    "after": {
+      "cardName": "Kachua, Keeper of the Icegate",
+      "type": "Creature",
+      "effects": "■ Instead of having this creature attack , you may tap it to use its ability . Search your deck . You may take a creature that has Dragon in its race from your deck and put it into the battle zone . Then shuffle your deck . That creature has \" speed attacker .\" At the end of the turn , destroy it.",
+      "race": [
+        "Snow Faerie"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Kachua,_Keeper_of_the_Icegate"
+    }
+  },
+  {
+    "similarity": 0.419,
+    "cardUid": "dm05-046",
+    "booster": "dm05",
+    "cardNameJP": "魔幻の影エターナル・クライ(DM5 46/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Wisp_Howler,_Shadow_of_Tears",
+    "wiki_jp_before": "魔幻の影エターナル・クライ(Eternal Cry, Shadow of Demonic Illusion)",
+    "wiki_jp_after": "魔幻の影エターナル・クライ",
+    "before": {
+      "cardName": "Wisp Howler, Shadow of Tears",
+      "type": "Creature",
+      "effects": "■ Nature and light slayer (Whenever this creature battles a nature or light creature , destroy the other creature after the battle .)",
+      "race": [
+        "Ghost"
+      ]
+    },
+    "after": {
+      "cardName": "Wisp Howler, Shadow of Tears",
+      "type": "Creature",
+      "effects": "■ Nature and light slayer (Whenever this creature battles a nature or light creature , destroy the other creature after the battle .)",
+      "race": [
+        "Ghost"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Wisp_Howler,_Shadow_of_Tears"
+    }
+  },
+  {
+    "similarity": 0.419,
+    "cardUid": "dm32-025",
+    "booster": "dm32",
+    "cardNameJP": "死神獣ヤミノゼキア(DM32 25/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Yaminozekia,_Reaper_Beast",
+    "wiki_jp_before": "死神獣ヤミノゼキア(Yaminozekia, Reaper Beast)",
+    "wiki_jp_after": "死神獣ヤミノゼキア",
+    "before": {
+      "cardName": "Yaminozekia, Reaper Beast",
+      "type": "Creature",
+      "effects": "​​ Blocker\n■ When you put this creature into the battle zone , reveal any number of evolution creatures in your hand . For each evolution creature shown, choose one of your opponent 's creatures in the battle zone . That creature gets -2000 power until the end of the turn . You may choose the same creature more than once.",
+      "race": [
+        "Dark Monster"
+      ]
+    },
+    "after": {
+      "cardName": "Yaminozekia, Reaper Beast",
+      "type": "Creature",
+      "effects": "■ Blocker\n■ When you put this creature into the battle zone , reveal any number of evolution creatures in your hand . For each evolution creature shown, choose one of your opponent 's creatures in the battle zone . That creature gets -2000 power until the end of the turn . You may choose the same creature more than once.",
+      "race": [
+        "Dark Monster"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Yaminozekia,_Reaper_Beast"
+    }
+  },
+  {
+    "similarity": 0.417,
+    "cardUid": "dmx09-002",
+    "booster": "dmx09",
+    "cardNameJP": "機神装甲ヴァルボーグ(DMX09 2/56)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Divine_Machine_Armor_Valborg",
+    "wiki_jp_before": "機神装甲ヴァルボーグ(Valborg, Divine Machine Armor)",
+    "wiki_jp_after": "機神装甲ヴァルボーグ",
+    "before": {
+      "cardName": "Divine Machine Armor Valborg",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Humans .\n■ While attacking , this creature gets +1000 power for each other fire creature in the battle zone .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Human"
+      ]
+    },
+    "after": {
+      "cardName": "Divine Machine Armor Valborg",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Humans .\n■ While attacking , this creature gets +1000 power for each other fire creature in the battle zone .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Human"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Divine_Machine_Armor_Valborg"
+    }
+  },
+  {
+    "similarity": 0.417,
+    "cardUid": "dmex08-012",
+    "booster": "dmex08",
+    "cardNameJP": "技師ピーポ(DMEX08 12/???)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Engineer_Kipo",
+    "wiki_jp_before": "技師ピーポ(Engineer Pipo)",
+    "wiki_jp_after": "技師ピーポ",
+    "before": {
+      "cardName": "Engineer Kipo",
+      "type": "Creature",
+      "effects": "■ When this creature is destroyed , each player chooses a card in his mana zone and puts it into his graveyard .",
+      "race": [
+        "Machine Eater"
+      ]
+    },
+    "after": {
+      "cardName": "Engineer Kipo",
+      "type": "Creature",
+      "effects": "■ When this creature is destroyed , each player chooses a card in his mana zone and puts it into his graveyard .",
+      "race": [
+        "Machine Eater"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Engineer_Kipo"
+    }
+  },
+  {
+    "similarity": 0.415,
+    "cardUid": "dmex17-w02",
+    "booster": "dmex17",
+    "cardNameJP": "無双竜機ボルバルザーク(DMEX17 w2/W20)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Bombazar,_Dragon_of_Destiny",
+    "wiki_jp_before": "無双竜機ボルバルザーク(Bolbalzak, Matchless Dragonmech)",
+    "wiki_jp_after": "無双竜機ボルバルザーク",
+    "before": {
+      "cardName": "Bombazar, Dragon of Destiny",
+      "type": "Creature",
+      "effects": "​■ (This creature is put into your mana zone tapped .)\n■ When you put this creature into the battle zone , destroy all other creatures that have 6000 power . Take an extra turn after this one. You lose the game at the end of that turn .\n■ Speed attacker (This creature doesn't get summoning sickness .)\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Armored Dragon",
+        "Earth Dragon"
+      ]
+    },
+    "after": {
+      "cardName": "Bombazar, Dragon of Destiny",
+      "type": "Creature",
+      "effects": "■ (This creature is put into your mana zone tapped .)\n■ When you put this creature into the battle zone , destroy all other creatures that have 6000 power . Take an extra turn after this one. You lose the game at the end of that turn .\n■ Speed attacker (This creature doesn't get summoning sickness .)\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Armored Dragon",
+        "Earth Dragon"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Bombazar,_Dragon_of_Destiny"
+    }
+  },
+  {
+    "similarity": 0.415,
+    "cardUid": "dm18-121",
+    "booster": "dm18",
+    "cardNameJP": "掃討兵バーニング・ヘル(DM18 121/140)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Fire_Sweeper_Burning_Hellion",
+    "wiki_jp_before": "掃討兵バーニング・ヘル(Burning Hell, the Sweeper Soldier)",
+    "wiki_jp_after": "掃討兵バーニング・ヘル",
+    "before": {
+      "cardName": "Fire Sweeper Burning Hellion",
+      "type": "Creature",
+      "effects": "■ Power attacker +2000 (While attacking , this creature gets +2000 power .)",
+      "race": [
+        "Dragonoid"
+      ]
+    },
+    "after": {
+      "cardName": "Fire Sweeper Burning Hellion",
+      "type": "Creature",
+      "effects": "■ Power attacker +2000 (While attacking , this creature gets +2000 power .)",
+      "race": [
+        "Dragonoid"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Fire_Sweeper_Burning_Hellion"
+    }
+  },
+  {
+    "similarity": 0.415,
+    "cardUid": "dmc27-012",
+    "booster": "dmc27",
+    "cardNameJP": "荒廃の巨王ジェノサイド(DMC27 12/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Photocide,_Lord_of_the_Wastes",
+    "wiki_jp_before": "荒廃の巨王ジェノサイド(Genocide, Giant Lord of the Wastes)",
+    "wiki_jp_after": "荒廃の巨王ジェノサイド",
+    "before": {
+      "cardName": "Photocide, Lord of the Wastes",
+      "type": "Creature",
+      "effects": "■ This creature can't attack players .\n■ This creature can attack untapped light creatures .",
+      "race": [
+        "Demon Command"
+      ]
+    },
+    "after": {
+      "cardName": "Photocide, Lord of the Wastes",
+      "type": "Creature",
+      "effects": "■ This creature can't attack players .\n■ This creature can attack untapped light creatures .",
+      "race": [
+        "Demon Command"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Photocide,_Lord_of_the_Wastes"
+    }
+  },
+  {
+    "similarity": 0.414,
+    "cardUid": "dmx06-011",
+    "booster": "dmx06",
+    "cardNameJP": "カチコミの哲(DMX06 11/21)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Chain_Arm_Tribe",
+    "wiki_jp_before": "カチコミの哲(Sage of Kachikomi)",
+    "wiki_jp_after": "カチコミの哲",
+    "before": {
+      "cardName": "Chain Arm Tribe",
+      "type": "Psychic Creature",
+      "effects": "■ Psychic Link —At the start of your turn , if you have Kiryuin Jin, Crimson Rage and Quattro Fang, Soul Gang Leader in the battle zone , link them to this creature and flip this creature to its higher cost side.\n■ Hunting (While battling , this creature gets +1000 power for each of your Hunters in the battle zone .) (At the start of the game , psychic creatures aren't put into your deck and are put into your hyperspatial zone , and if a psychic creature is put into a zone other than the battle zone , they are returned there.)",
+      "race": [
+        "Beast Folk",
+        "Hunter"
+      ]
+    },
+    "after": {
+      "cardName": "Chain Arm Tribe",
+      "type": "Psychic Creature",
+      "effects": "■ Psychic Link —At the start of your turn , if you have Kiryuin Jin, Crimson Rage and Quattro Fang, Soul Gang Leader in the battle zone , link them to this creature and flip this creature to its higher cost side.\n■ Hunting (While battling , this creature gets +1000 power for each of your Hunters in the battle zone .) (At the start of the game , psychic creatures aren't put into your deck and are put into your hyperspatial zone , and if a psychic creature is put into a zone other than the battle zone , they are returned there.)",
+      "race": [
+        "Beast Folk",
+        "Hunter"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Chain_Arm_Tribe"
+    }
+  },
+  {
+    "similarity": 0.414,
+    "cardUid": "dmex08-231",
+    "booster": "dmex08",
+    "cardNameJP": "雷雲の守護者ラーザ・ベガ(DMEX08 231/???)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Raza_Vega,_Thunder_Guardian",
+    "wiki_jp_before": "雷雲の守護者ラーザ・ベガ(Raza Vega, Guardian of Thunderclouds)",
+    "wiki_jp_after": "雷雲の守護者ラーザ・ベガ",
+    "before": {
+      "cardName": "Raza Vega, Thunder Guardian",
+      "type": "Creature",
+      "effects": "​​ Blocker (Whenever an opponent 's creature attacks , you may tap this creature to stop the attack . Then the 2 creatures battle .)\n■ When this creature would be put into your graveyard from the battle zone , add it to your shields face down instead .",
+      "race": [
+        "Guardian"
+      ]
+    },
+    "after": {
+      "cardName": "Raza Vega, Thunder Guardian",
+      "type": "Creature",
+      "effects": "■ Blocker (Whenever an opponent 's creature attacks , you may tap this creature to stop the attack . Then the 2 creatures battle .)\n■ When this creature would be put into your graveyard from the battle zone , add it to your shields face down instead .",
+      "race": [
+        "Guardian"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Raza_Vega,_Thunder_Guardian"
+    }
+  },
+  {
+    "similarity": 0.412,
+    "cardUid": "dmc27-019",
+    "booster": "dmc27",
+    "cardNameJP": "念仏エルフィン(DMC27 19/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Elf-X",
+    "wiki_jp_before": "念仏エルフィン(Praying Buddha Elfin)",
+    "wiki_jp_after": "念仏エルフィン",
+    "before": {
+      "cardName": "Elf-X",
+      "type": "Creature",
+      "effects": "■ Your creatures each cost 1 less to summon . They can't cost less than 1.",
+      "race": [
+        "Tree Folk"
+      ]
+    },
+    "after": {
+      "cardName": "Elf-X",
+      "type": "Creature",
+      "effects": "■ Your creatures each cost 1 less to summon . They can't cost less than 1.",
+      "race": [
+        "Tree Folk"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Elf-X"
+    }
+  },
+  {
+    "similarity": 0.412,
+    "cardUid": "dmex08-196",
+    "booster": "dmex08",
+    "cardNameJP": "闇侯爵ハウクス(DMEX08 196/???)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Schuka,_Duke_of_Amnesia",
+    "wiki_jp_before": "闇侯爵ハウクス(Hawkes, Dark Marquis)",
+    "wiki_jp_after": "闇侯爵ハウクス",
+    "before": {
+      "cardName": "Schuka, Duke of Amnesia",
+      "type": "Creature",
+      "effects": "■ When this creature is destroyed , each player discards his hand .",
+      "race": [
+        "Dark Lord"
+      ]
+    },
+    "after": {
+      "cardName": "Schuka, Duke of Amnesia",
+      "type": "Creature",
+      "effects": "■ When this creature is destroyed , each player discards his hand .",
+      "race": [
+        "Dark Lord"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Schuka,_Duke_of_Amnesia"
+    }
+  },
+  {
+    "similarity": 0.412,
+    "cardUid": "dm23ex3-T08",
+    "booster": "dm23ex3",
+    "cardNameJP": "天頂開戦ゼニス(DM23EX3 T8/T20)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/World_War_Zenith",
+    "wiki_jp_before": "天頂開戦ゼニス(Tenchō Kaisen Zenith)",
+    "wiki_jp_after": "天頂開戦ゼニス",
+    "before": {
+      "cardName": "World War Zenith",
+      "type": "Spell",
+      "effects": "■ This spell cost 2 less to cast for each of your creatures that have both Unknown and Zenith races . They can't cost 0 or less.\n■ Destroy all creatures except for Unknown ."
+    },
+    "after": {
+      "cardName": "World War Zenith",
+      "type": "Spell",
+      "effects": "■ This spell cost 2 less to cast for each of your creatures that have both Unknown and Zenith races . They can't cost 0 or less.\n■ Destroy all creatures except for Unknown .",
+      "wikiurl": "https://duelmasters.fandom.com/wiki/World_War_Zenith"
+    }
+  },
+  {
+    "similarity": 0.409,
+    "cardUid": "dmc34-001",
+    "booster": "dmc34",
+    "cardNameJP": "星海の精霊エーテル(DMC34 1/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Ethel,_Star_Sea_Elemental",
+    "wiki_jp_before": "星海の精霊エーテル(Ethel, Spirit of the Star Sea)",
+    "wiki_jp_after": "星海の精霊エーテル",
+    "before": {
+      "cardName": "Ethel, Star Sea Elemental",
+      "type": "Creature",
+      "effects": "■ This creature can't be blocked .",
+      "race": [
+        "Angel Command"
+      ]
+    },
+    "after": {
+      "cardName": "Ethel, Star Sea Elemental",
+      "type": "Creature",
+      "effects": "■ This creature can't be blocked .",
+      "race": [
+        "Angel Command"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Ethel,_Star_Sea_Elemental"
+    }
+  },
+  {
+    "similarity": 0.408,
+    "cardUid": "dm18-075",
+    "booster": "dm18",
+    "cardNameJP": "機神装甲ヴァルバロス(DM18 75/140)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Armored_Cannon_Balbaro",
+    "wiki_jp_before": "機神装甲ヴァルバロス(Balbaros, Divine Machine Armor)",
+    "wiki_jp_after": "機神装甲ヴァルバロス",
+    "before": {
+      "cardName": "Armored Cannon Balbaro",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Humans .\n■ While attacking , this creature gets +2000 power for each other Human in the battle zone .",
+      "race": [
+        "Human"
+      ]
+    },
+    "after": {
+      "cardName": "Armored Cannon Balbaro",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Humans .\n■ While attacking , this creature gets +2000 power for each other Human in the battle zone .",
+      "race": [
+        "Human"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Armored_Cannon_Balbaro"
+    }
+  },
+  {
+    "similarity": 0.408,
+    "cardUid": "dm10-027",
+    "booster": "dm10",
+    "cardNameJP": "機神装甲ガンダヴァル(DM10 27/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Armored_Raider_Gandaval",
+    "wiki_jp_before": "機神装甲ガンダヴァル(Gandaval, Divine Machine Armor)",
+    "wiki_jp_after": "機神装甲ガンダヴァル",
+    "before": {
+      "cardName": "Armored Raider Gandaval",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Humans .\n■ While attacking , this creature gets +2000 power for each of your other tapped creatures in the battle zone .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Human"
+      ]
+    },
+    "after": {
+      "cardName": "Armored Raider Gandaval",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Humans .\n■ While attacking , this creature gets +2000 power for each of your other tapped creatures in the battle zone .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Human"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Armored_Raider_Gandaval"
+    }
+  },
+  {
+    "similarity": 0.408,
+    "cardUid": "dmc42-052",
+    "booster": "dmc42",
+    "cardNameJP": "大勇者「大地の猛攻」(DMC42 52/90)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Barkwhip,_the_Smasher",
+    "wiki_jp_before": "大勇者「大地の猛攻」(Great Hero \"Onslaught of Earth\")",
+    "wiki_jp_after": "大勇者「大地の猛攻」",
+    "before": {
+      "cardName": "Barkwhip, the Smasher",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Beast Folk .\n■ While this creature is tapped , each of your other Beast Folk in the battle zone gets +2000 power .",
+      "race": [
+        "Beast Folk"
+      ]
+    },
+    "after": {
+      "cardName": "Barkwhip, the Smasher",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Beast Folk .\n■ While this creature is tapped , each of your other Beast Folk in the battle zone gets +2000 power .",
+      "race": [
+        "Beast Folk"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Barkwhip,_the_Smasher"
+    }
+  },
+  {
+    "similarity": 0.408,
+    "cardUid": "dm09-013",
+    "booster": "dm09",
+    "cardNameJP": "崩壊の影デス・タギア(DM9 13/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Ice_Vapor,_Shadow_of_Anguish",
+    "wiki_jp_before": "崩壊の影デス・タギア(Death Tagia, Shadow of Collapse)",
+    "wiki_jp_after": "崩壊の影デス・タギア",
+    "before": {
+      "cardName": "Ice Vapor, Shadow of Anguish",
+      "type": "Creature",
+      "effects": "■ Whenever your opponent casts a spell , he chooses and discards a card from his hand , then chooses a card in his mana zone and puts it into his graveyard .",
+      "race": [
+        "Ghost"
+      ]
+    },
+    "after": {
+      "cardName": "Ice Vapor, Shadow of Anguish",
+      "type": "Creature",
+      "effects": "■ Whenever your opponent casts a spell , he chooses and discards a card from his hand , then chooses a card in his mana zone and puts it into his graveyard .",
+      "race": [
+        "Ghost"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Ice_Vapor,_Shadow_of_Anguish"
+    }
+  },
+  {
+    "similarity": 0.408,
+    "cardUid": "dm09-018",
+    "booster": "dm09",
+    "cardNameJP": "大勇者「猛虎の怒り」(DM9 18/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Storm_Wrangler,_the_Furious",
+    "wiki_jp_before": "大勇者「猛虎の怒り」(Big Hero \"Wrath of Fierce Tiger\")",
+    "wiki_jp_after": "大勇者「猛虎の怒り」",
+    "before": {
+      "cardName": "Storm Wrangler, the Furious",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Beast Folk .\n■ Whenever this creature attacks , you may choose one of your opponent 's untapped creatures that has \" blocker .\" This turn , that creature blocks this creature if able and this creature can't be blocked by other creatures .\n■ Whenever this creature becomes blocked , it gets +3000 power until the end of the turn .",
+      "race": [
+        "Beast Folk"
+      ]
+    },
+    "after": {
+      "cardName": "Storm Wrangler, the Furious",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Beast Folk .\n■ Whenever this creature attacks , you may choose one of your opponent 's untapped creatures that has \" blocker .\" This turn , that creature blocks this creature if able and this creature can't be blocked by other creatures .\n■ Whenever this creature becomes blocked , it gets +3000 power until the end of the turn .",
+      "race": [
+        "Beast Folk"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Storm_Wrangler,_the_Furious"
+    }
+  },
+  {
+    "similarity": 0.4,
+    "cardUid": "dmc27-033",
+    "booster": "dmc27",
+    "cardNameJP": "恵みの化身(DMC27 33/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Bliss_Totem,_Avatar_of_Luck",
+    "wiki_jp_before": "恵みの化身(Avatar of Grace)",
+    "wiki_jp_after": "恵みの化身",
+    "before": {
+      "cardName": "Bliss Totem, Avatar of Luck",
+      "type": "Creature",
+      "effects": "■ Instead of having this creature attack , you may tap it to use its ability . Put up to 3 cards from your graveyard into your mana zone .",
+      "race": [
+        "Mystery Totem"
+      ]
+    },
+    "after": {
+      "cardName": "Bliss Totem, Avatar of Luck",
+      "type": "Creature",
+      "effects": "■ Instead of having this creature attack , you may tap it to use its ability . Put up to 3 cards from your graveyard into your mana zone .",
+      "race": [
+        "Mystery Totem"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Bliss_Totem,_Avatar_of_Luck"
+    }
+  },
+  {
+    "similarity": 0.4,
+    "cardUid": "dmx01-020",
+    "booster": "dmx01",
+    "cardNameJP": "威牙忍ヤミノザンジ(DMX01 20/40)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Dark_Sanji,_Darkfang_Ninja",
+    "wiki_jp_before": "威牙忍ヤミノザンジ(Yaminozanji, Darkfang Ninja)",
+    "wiki_jp_after": "威牙忍ヤミノザンジ",
+    "before": {
+      "cardName": "Dark Sanji, Darkfang Ninja",
+      "type": "Creature",
+      "effects": "​■ Ninja Strike 4 (Whenever one of your opponent 's creatures attacks or blocks , if you have 4 or more cards in your mana zone and if during that attack you didn't use a \" Ninja Strike \" ability , you may summon this Shinobi for no cost . At the end of that turn , put this Shinobi on the bottom of your deck .)\n■ When you put this creature into the battle zone , choose one of your opponent 's creatures in the battle zone . That creature gets -2000 power until the end of the turn . (A creature that has power 0 or less is destroyed .)",
+      "race": [
+        "Dark Monster",
+        "Shinobi"
+      ]
+    },
+    "after": {
+      "cardName": "Dark Sanji, Darkfang Ninja",
+      "type": "Creature",
+      "effects": "■ Ninja Strike 4 (Whenever one of your opponent 's creatures attacks or blocks , if you have 4 or more cards in your mana zone and if during that attack you didn't use a \" Ninja Strike \" ability , you may summon this Shinobi for no cost . At the end of that turn , put this Shinobi on the bottom of your deck .)\n■ When you put this creature into the battle zone , choose one of your opponent 's creatures in the battle zone . That creature gets -2000 power until the end of the turn . (A creature that has power 0 or less is destroyed .)",
+      "race": [
+        "Dark Monster",
+        "Shinobi"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Dark_Sanji,_Darkfang_Ninja"
+    }
+  },
+  {
+    "similarity": 0.4,
+    "cardUid": "dmc34-018",
+    "booster": "dmc34",
+    "cardNameJP": "超剛勇幻風ジャガスター(DMC34 18/55)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Comet_Eye,_the_Spectral_Spud",
+    "wiki_jp_before": "超剛勇幻風ジャガスター(Jagastar, Super Brave Spectral Wind)",
+    "wiki_jp_after": "超剛勇幻風ジャガスター",
+    "before": {
+      "cardName": "Comet Eye, the Spectral Spud",
+      "type": "Evolution Creature",
+      "effects": "​■ (This creature is put into your mana zone tapped .)\n■ Evolution —Put on one of your Wild Veggies or Rainbow Phantoms .\n■ Each of your other Wild Veggies and Rainbow Phantoms in the battle zone gets +2000 power .\n■ At the end of each of your turns , you may untap any number of your Wild Veggies and Rainbow Phantoms in the battle zone .",
+      "race": [
+        "Wild Veggies",
+        "Rainbow Phantom"
+      ]
+    },
+    "after": {
+      "cardName": "Comet Eye, the Spectral Spud",
+      "type": "Evolution Creature",
+      "effects": "■ (This creature is put into your mana zone tapped .)\n■ Evolution —Put on one of your Wild Veggies or Rainbow Phantoms .\n■ Each of your other Wild Veggies and Rainbow Phantoms in the battle zone gets +2000 power .\n■ At the end of each of your turns , you may untap any number of your Wild Veggies and Rainbow Phantoms in the battle zone .",
+      "race": [
+        "Wild Veggies",
+        "Rainbow Phantom"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Comet_Eye,_the_Spectral_Spud"
+    }
+  },
+  {
+    "similarity": 0.4,
+    "cardUid": "dm14-065",
+    "booster": "dm14",
+    "cardNameJP": "乱戦の化身(DM14 65/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Cyclone_Totem",
+    "wiki_jp_before": "乱戦の化身(Avatar of Melee)",
+    "wiki_jp_after": "乱戦の化身",
+    "before": {
+      "cardName": "Cyclone Totem",
+      "type": "Creature",
+      "effects": "■ This creature gets -1000 power for each water or darkness creature in the battle zone . (A creature that has power 0 or less is destroyed .)\n■ While this creature has 6000 or more power , it gets \" Double breaker (This creature breaks 2 shields ) .\"",
+      "race": [
+        "Mystery Totem"
+      ]
+    },
+    "after": {
+      "cardName": "Cyclone Totem",
+      "type": "Creature",
+      "effects": "■ This creature gets -1000 power for each water or darkness creature in the battle zone . (A creature that has power 0 or less is destroyed .)\n■ While this creature has 6000 or more power , it gets \" Double breaker (This creature breaks 2 shields ) .\"",
+      "race": [
+        "Mystery Totem"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Cyclone_Totem"
+    }
+  },
+  {
+    "similarity": 0.4,
+    "cardUid": "dmx22a-017",
+    "booster": "dmx22a",
+    "cardNameJP": "大勇者「鎖風車」(DMX22 17/59)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Earth_Ripper,_Talon_of_Rage",
+    "wiki_jp_before": "大勇者「鎖風車」(Big Hero \"Chain Windmill\")",
+    "wiki_jp_after": "大勇者「鎖風車」",
+    "before": {
+      "cardName": "Earth Ripper, Talon of Rage",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Beast Folk .\n■ When you put this creature into the battle zone , return all tapped cards from your mana zone to your hand .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Beast Folk"
+      ]
+    },
+    "after": {
+      "cardName": "Earth Ripper, Talon of Rage",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Beast Folk .\n■ When you put this creature into the battle zone , return all tapped cards from your mana zone to your hand .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Beast Folk"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Earth_Ripper,_Talon_of_Rage"
+    }
+  },
+  {
+    "similarity": 0.4,
+    "cardUid": "sp-009",
+    "booster": "sp",
+    "cardNameJP": "大勇者「密林の剣」(DMSI /)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Forest_Sword,_Great_Hero",
+    "wiki_jp_before": "大勇者「密林の剣」(Big Hero \"Sword of the Jungle\")",
+    "wiki_jp_after": "大勇者「密林の剣」",
+    "before": {
+      "cardName": "Forest Sword, Great Hero",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Beast Folk .\n■ When you put this creature into the battle zone , put the top card of your deck into your mana zone .\n■ Power attacker +2000 (While attacking , this creature gets +2000 power .)",
+      "race": [
+        "Beast Folk"
+      ]
+    },
+    "after": {
+      "cardName": "Forest Sword, Great Hero",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Beast Folk .\n■ When you put this creature into the battle zone , put the top card of your deck into your mana zone .\n■ Power attacker +2000 (While attacking , this creature gets +2000 power .)",
+      "race": [
+        "Beast Folk"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Forest_Sword,_Great_Hero"
+    }
+  },
+  {
+    "similarity": 0.4,
+    "cardUid": "dm01-104",
+    "booster": "dm01",
+    "cardNameJP": "黄金の翼(DM1 104/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Golden_Wing_Striker",
+    "wiki_jp_before": "黄金の翼(Wing of Gold)",
+    "wiki_jp_after": "黄金の翼",
+    "before": {
+      "cardName": "Golden Wing Striker",
+      "type": "Creature",
+      "effects": "■ Power attacker +2000 (While attacking , this creature gets +2000 power .)",
+      "race": [
+        "Beast Folk"
+      ]
+    },
+    "after": {
+      "cardName": "Golden Wing Striker",
+      "type": "Creature",
+      "effects": "■ Power attacker +2000 (While attacking , this creature gets +2000 power .)",
+      "race": [
+        "Beast Folk"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Golden_Wing_Striker"
+    }
+  },
+  {
+    "similarity": 0.4,
+    "cardUid": "dmc55-045",
+    "booster": "dmc55",
+    "cardNameJP": "超電磁妖魔ロメール(DMC55 45/84)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Hydrooze,_the_Mutant_Emperor",
+    "wiki_jp_before": "超電磁妖魔ロメール(Rohmer, Super-Electro Ghost)",
+    "wiki_jp_after": "超電磁妖魔ロメール",
+    "before": {
+      "cardName": "Hydrooze, the Mutant Emperor",
+      "type": "Evolution Creature",
+      "effects": "​■ (This creature is put into your mana zone tapped .)\n■ Evolution —Put on one of your Cyber Lords or Hedrians .\n■ Each of your other Cyber Lords and Hedrians in the battle zone gets +2000 power .\n■ Your Cyber Lords and Hedrians can't be blocked .",
+      "race": [
+        "Cyber Lord",
+        "Hedrian"
+      ]
+    },
+    "after": {
+      "cardName": "Hydrooze, the Mutant Emperor",
+      "type": "Evolution Creature",
+      "effects": "■ (This creature is put into your mana zone tapped .)\n■ Evolution —Put on one of your Cyber Lords or Hedrians .\n■ Each of your other Cyber Lords and Hedrians in the battle zone gets +2000 power .\n■ Your Cyber Lords and Hedrians can't be blocked .",
+      "race": [
+        "Cyber Lord",
+        "Hedrian"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Hydrooze,_the_Mutant_Emperor"
+    }
+  },
+  {
+    "similarity": 0.4,
+    "cardUid": "dmc42-058",
+    "booster": "dmc42",
+    "cardNameJP": "磁力の使徒マグリス(DMC42 58/90)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Magris,_Vizier_of_Magnetism",
+    "wiki_jp_before": "磁力の使徒マグリス(Magris, Apostle of Magnetism)",
+    "wiki_jp_after": "磁力の使徒マグリス",
+    "before": {
+      "cardName": "Magris, Vizier of Magnetism",
+      "type": "Creature",
+      "effects": "■ When you put this creature into the battle zone , you may draw a card .",
+      "race": [
+        "Initiate"
+      ]
+    },
+    "after": {
+      "cardName": "Magris, Vizier of Magnetism",
+      "type": "Creature",
+      "effects": "■ When you put this creature into the battle zone , you may draw a card .",
+      "race": [
+        "Initiate"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Magris,_Vizier_of_Magnetism"
+    }
+  },
+  {
+    "similarity": 0.4,
+    "cardUid": "dm18-s09",
+    "booster": "dm18",
+    "cardNameJP": "護りの角フィオナ(DM18 S9/S10)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Niofa,_Horned_Protector",
+    "wiki_jp_before": "護りの角フィオナ(Fiona, Horn of Protection)",
+    "wiki_jp_after": "護りの角フィオナ",
+    "before": {
+      "cardName": "Niofa, Horned Protector",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Horned Beasts .\n■ When you put this creature into the battle zone , search your deck . You may take a nature creature from your deck , show that creature to your opponent , and put it into your hand . Then shuffle your deck .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Horned Beast"
+      ]
+    },
+    "after": {
+      "cardName": "Niofa, Horned Protector",
+      "type": "Evolution Creature",
+      "effects": "■ Evolution —Put on one of your Horned Beasts .\n■ When you put this creature into the battle zone , search your deck . You may take a nature creature from your deck , show that creature to your opponent , and put it into your hand . Then shuffle your deck .\n■ Double breaker (This creature breaks 2 shields .)",
+      "race": [
+        "Horned Beast"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Niofa,_Horned_Protector"
+    }
+  },
+  {
+    "similarity": 0.4,
+    "cardUid": "dm28-065",
+    "booster": "dm28",
+    "cardNameJP": "天狗の化身(DM28 65/110)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Oak_Totem",
+    "wiki_jp_before": "天狗の化身(Avatar of Tengu)",
+    "wiki_jp_after": "天狗の化身",
+    "before": {
+      "cardName": "Oak Totem",
+      "type": "Creature",
+      "effects": "​■ Samurai Generation ( When you put this creature , you may generate a cross gear from your hand for no cost .)\n■ Accelerator (While this creature is crossed with a cross gear , this creature gets the following ​ ability .) ​ This creature gets +4000 power and \" double breaker \".",
+      "race": [
+        "Mystery Totem",
+        "Samurai"
+      ]
+    },
+    "after": {
+      "cardName": "Oak Totem",
+      "type": "Creature",
+      "effects": "■ Samurai Generation ( When you put this creature , you may generate a cross gear from your hand for no cost .)\n■ Accelerator (While this creature is crossed with a cross gear , this creature gets the following  ability .)  This creature gets +4000 power and \" double breaker \".",
+      "race": [
+        "Mystery Totem",
+        "Samurai"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Oak_Totem"
+    }
+  },
+  {
+    "similarity": 0.4,
+    "cardUid": "dm18-079",
+    "booster": "dm18",
+    "cardNameJP": "強襲兵ギガントス(DM18 79/140)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Onslaughter_Triceps",
+    "wiki_jp_before": "強襲兵ギガントス(Assault Soldier Gigantos)",
+    "wiki_jp_after": "強襲兵ギガントス",
+    "before": {
+      "cardName": "Onslaughter Triceps",
+      "type": "Creature",
+      "effects": "■ When you put this creature into the battle zone , put 1 card from your mana zone into your graveyard .",
+      "race": [
+        "Dragonoid"
+      ]
+    },
+    "after": {
+      "cardName": "Onslaughter Triceps",
+      "type": "Creature",
+      "effects": "■ When you put this creature into the battle zone , put 1 card from your mana zone into your graveyard .",
+      "race": [
+        "Dragonoid"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Onslaughter_Triceps"
+    }
+  },
+  {
+    "similarity": 0.4,
+    "cardUid": "dmex08-220",
+    "booster": "dmex08",
+    "cardNameJP": "呪縛の剣豪バロスト(DMEX08 220/???)",
+    "wiki_url": "https://duelmasters.fandom.com/wiki/Stallob,_the_Lifequasher",
+    "wiki_jp_before": "呪縛の剣豪バロスト(Ballost, Cursed Swordmaster)",
+    "wiki_jp_after": "呪縛の剣豪バロスト",
+    "before": {
+      "cardName": "Stallob, the Lifequasher",
+      "type": "Creature",
+      "effects": "​■ Double breaker (This creature breaks 2 shields .)\n■ When this creature is destroyed , destroy all creatures .",
+      "race": [
+        "Demon Command"
+      ]
+    },
+    "after": {
+      "cardName": "Stallob, the Lifequasher",
+      "type": "Creature",
+      "effects": "■ Double breaker (This creature breaks 2 shields .)\n■ When this creature is destroyed , destroy all creatures .",
+      "race": [
+        "Demon Command"
+      ],
+      "wikiurl": "https://duelmasters.fandom.com/wiki/Stallob,_the_Lifequasher"
+    }
+  }
+]
