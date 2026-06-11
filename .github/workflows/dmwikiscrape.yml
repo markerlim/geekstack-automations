@@ -12,7 +12,7 @@ on:
         required: false
         type: string
   schedule:
-    - cron: '0 10 * * 0'  # Runs weekly at 6:00PM SGT on Sundays
+    - cron: '0 10 * * 5'  # Runs weekly at 6:00PM SGT on Fridays (before dmscrape on Saturday)
 
 jobs:
   scrape:
@@ -37,7 +37,8 @@ jobs:
         echo '${{ secrets.GCP_CREDENTIALS }}' > gcp-credentials.json
         echo "GOOGLE_APPLICATION_CREDENTIALS=$(pwd)/gcp-credentials.json" >> $GITHUB_ENV
 
-    - name: Scrape wiki cards
+    - name: Scrape wiki cards (set mode)
+      if: ${{ inputs.set_url != '' }}
       env:
         MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
         MONGO_USER: ${{ secrets.MONGO_USER }}
@@ -46,11 +47,18 @@ jobs:
         C_DUELMASTERS: ${{vars.C_DUELMASTERS}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        ARGS=""
-        if [ -n "${{ inputs.set_url }}" ]; then
-          ARGS="$ARGS --set-url '${{ inputs.set_url }}'"
-        fi
-        if [ -n "${{ inputs.set_code }}" ]; then
-          ARGS="$ARGS --set-code '${{ inputs.set_code }}'"
-        fi
-        python scrapers/duelmasters/pipelines/c_scrape_wiki_cards.py $ARGS
+        python scrapers/duelmasters/pipelines/c_scrape_wiki_cards.py \
+          --set-url "${{ inputs.set_url }}" \
+          --set-code "${{ inputs.set_code }}"
+
+    - name: Scrape wiki cards (bulk mode)
+      if: ${{ inputs.set_url == '' }}
+      env:
+        MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
+        MONGO_USER: ${{ secrets.MONGO_USER }}
+        MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+        MONGO_CLUSTER: ${{ secrets.MONGO_CLUSTER }}
+        C_DUELMASTERS: ${{vars.C_DUELMASTERS}}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        python scrapers/duelmasters/pipelines/c_scrape_wiki_cards.py
