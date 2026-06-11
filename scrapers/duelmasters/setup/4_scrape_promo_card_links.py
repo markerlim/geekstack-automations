@@ -60,6 +60,72 @@ SKIP_TARGETS = {
     "food product", "regulation",
 }
 
+# Exact non-card wiki page titles (lowercase)
+NON_CARD_TARGETS = {
+    "abyss-over", "abyss revolution",
+    "be☆the_wind", "brand_new_moment",
+    "coro35th",
+    "dm22-rp1 legendary jashin: transcend! winning selection!!",
+    "dmc-32", "dmrp-02", "dmsp-01",
+    "divine evolution saga", "duel creatures",
+    "duel masters: advance", "duel masters: beginner's guide",
+    "duel masters: birth of the super dragon",
+    "duel masters: blazing bonds xx",
+    "duel masters: curse of the death phoenix",
+    "duel masters: entry gate of dragon saga",
+    "duel masters: hamukatsu and dogiragon's great curry bread adventure 3d",
+    "duel masters: here come the jokers!! strategy book",
+    "duel masters: introducing - revolution final! complete guide",
+    "duel masters: introducing - revolution start! complete guide",
+    "duel masters: lunatic god saga",
+    "duel masters: nettou! battle arena",
+    "duel masters: new frontier", "duel masters: perfect rule book",
+    "duel masters: super complete card guide ds",
+    "duel masters: super complete card guide revolution",
+    "duel masters: super complete card guide revolution final",
+    "duel masters: the complete cards file - ultra e1 (wonder life special)",
+    "duel masters: the complete cards file - ultra e2 (wonder life special)",
+    "duel masters: the complete cards file - ultra e3 (wonder life special)",
+    "duel masters: walkthrough e1", "duel masters: walkthrough e2",
+    "duel masters 20th anniversary! the rise of kings start book",
+    "duel masters abyss revolution complete fan book",
+    "duel masters abyss revolution expert fan book",
+    "duel masters card gummy", "duel masters card gummy 2",
+    "duel masters card gummy 3", "duel masters card gummy 4",
+    "duel masters comics",
+    "duel masters god of abyss full complete book",
+    "duel masters gum",
+    "duel masters lost manga ~crystal of remembrance~",
+    "duel masters lost manga ~forgotten sun~",
+    "duel masters new era full complete book",
+    "duel masters new era full complete book 2",
+    "duel masters royal road double full complete book",
+    "duel masters royal road full complete book",
+    "duel masters super gacharange start book",
+    "duel masters the rise of kings full complete book",
+    "duel masters the rise of kings full complete book max",
+    "duel masters the rise of kings max full complete and start win book",
+    "duel road",
+    "episode 1", "episode 2", "episode 3",
+    "fighting spirit saga",
+    "game japan",
+    "god apex saga", "god of abyss",
+    "holy fist saga",
+    "jibun",
+    "phoenix saga",
+    "psychic shock",
+    "reincarnation saga",
+    "royal road", "royal road double",
+    "sengoku saga",
+    "shadowclash collector tin",
+    "story of duel masters code:bestie",
+    "the future is joe! joe!",
+    "the rise of kings", "the rise of kings max",
+    "toys and merchandise",
+    "winner card", "weekly shonen sunday",
+    "wizards of the coast",
+}
+
 # Skip targets that look like packs/decks/etc. rather than individual cards
 SET_KEYWORDS = (" pack", " deck", " box", " edition", " volume", " series",
                 "block", "gallery", "tournament", "campaign", "fest",
@@ -94,6 +160,8 @@ def extract_card_links(wikitext: str) -> list[str]:
             continue
         lowered = target.lower()
         if lowered in SKIP_TARGETS:
+            continue
+        if lowered in NON_CARD_TARGETS:
             continue
         if any(kw in lowered for kw in SET_KEYWORDS):
             continue

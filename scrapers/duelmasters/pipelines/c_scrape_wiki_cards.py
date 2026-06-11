@@ -26,9 +26,77 @@ load_dotenv()
 WIKI_COLLECTION = "CL_duelmasters_wiki"
 UNIQUE_CARDS_PATH = project_root / "duelmasterdb" / "wiki_unique_cards.json"
 SET_CARDS_PATH = project_root / "duelmasterdb" / "wiki_set_cards.json"
+UPDATE_CARDS_PATH = project_root / "duelmasterdb" / "update.json"
 WIKI_SETS_PATH = project_root / "duelmasterdb" / "wiki_sets.json"
 WIKI_BASE = "https://duelmasters.fandom.com"
 UPLOAD_BATCH_SIZE = 10
+
+# Known non-card wiki page paths (lowercase, for exact skip check)
+NON_CARD_WIKI_PATHS = {
+    "abyss-over", "abyss_revolution",
+    "be☆the_wind", "brand_new_moment",
+    "coro35th",
+    "dm22-rp1_legendary_jashin:_transcend!_winning_selection!!",
+    "dmc-32", "dmrp-02", "dmsp-01",
+    "divine_evolution_saga",
+    "duel_creatures",
+    "duel_masters:_advance", "duel_masters:_beginner's_guide",
+    "duel_masters:_birth_of_the_super_dragon",
+    "duel_masters:_blazing_bonds_xx",
+    "duel_masters:_curse_of_the_death_phoenix",
+    "duel_masters:_entry_gate_of_dragon_saga",
+    "duel_masters:_hamukatsu_and_dogiragon's_great_curry_bread_adventure_3d",
+    "duel_masters:_here_come_the_jokers!!_strategy_book",
+    "duel_masters:_introducing_-_revolution_final!_complete_guide",
+    "duel_masters:_introducing_-_revolution_start!_complete_guide",
+    "duel_masters:_lunatic_god_saga",
+    "duel_masters:_nettou!_battle_arena",
+    "duel_masters:_new_frontier", "duel_masters:_perfect_rule_book",
+    "duel_masters:_super_complete_card_guide_ds",
+    "duel_masters:_super_complete_card_guide_revolution",
+    "duel_masters:_super_complete_card_guide_revolution_final",
+    "duel_masters:_the_complete_cards_file_-_ultra_e1_(wonder_life_special)",
+    "duel_masters:_the_complete_cards_file_-_ultra_e2_(wonder_life_special)",
+    "duel_masters:_the_complete_cards_file_-_ultra_e3_(wonder_life_special)",
+    "duel_masters:_walkthrough_e1", "duel_masters:_walkthrough_e2",
+    "duel_masters_20th_anniversary!_the_rise_of_kings_start_book",
+    "duel_masters_abyss_revolution_complete_fan_book",
+    "duel_masters_abyss_revolution_expert_fan_book",
+    "duel_masters_card_gummy", "duel_masters_card_gummy_2",
+    "duel_masters_card_gummy_3", "duel_masters_card_gummy_4",
+    "duel_masters_comics",
+    "duel_masters_god_of_abyss_full_complete_book",
+    "duel_masters_gum",
+    "duel_masters_lost_manga_~crystal_of_remembrance~",
+    "duel_masters_lost_manga_~forgotten_sun~",
+    "duel_masters_new_era_full_complete_book",
+    "duel_masters_new_era_full_complete_book_2",
+    "duel_masters_royal_road_double_full_complete_book",
+    "duel_masters_royal_road_full_complete_book",
+    "duel_masters_super_gacharange_start_book",
+    "duel_masters_the_rise_of_kings_full_complete_book",
+    "duel_masters_the_rise_of_kings_full_complete_book_max",
+    "duel_masters_the_rise_of_kings_max_full_complete_and_start_win_book",
+    "duel_road",
+    "episode_1", "episode_2", "episode_3",
+    "fighting_spirit_saga",
+    "game_japan",
+    "god_apex_saga", "god_of_abyss",
+    "holy_fist_saga",
+    "jibun",
+    "phoenix_saga",
+    "psychic_shock",
+    "reincarnation_saga",
+    "royal_road", "royal_road_double",
+    "sengoku_saga",
+    "shadowclash_collector_tin",
+    "story_of_duel_masters_code:bestie",
+    "the_future_is_joe!_joe!",
+    "the_rise_of_kings", "the_rise_of_kings_max",
+    "toys_and_merchandise",
+    "winner_card", "weekly_shonen_sunday",
+    "wizards_of_the_coast",
+}
 
 USER_AGENTS = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.6167.85 Safari/537.36",
@@ -75,13 +143,6 @@ def fetch_card_links_from_set(set_url: str) -> list[str]:
         driver.set_page_load_timeout(30)
         driver.get(_safe_url(set_url))
         time.sleep(3)
-        page_source = driver.page_source
-        # Debug: check if page actually loaded
-        if not page_source or len(page_source) < 500:
-            print(f"  WARNING: page source suspiciously short ({len(page_source)} chars)")
-        with open("/tmp/wiki_page_debug.html", "w") as f:
-            f.write(page_source)
-        print(f"  Page source: {len(page_source)} chars (saved to /tmp/wiki_page_debug.html)")
         WebDriverWait(driver, 30).until(
             EC.presence_of_element_located((By.ID, "content"))
         )
@@ -113,6 +174,9 @@ def fetch_card_links_from_set(set_url: str) -> list[str]:
                 path = href[len('/wiki/'):]
                 if ':' in path:
                     continue
+                if path.lower() in NON_CARD_WIKI_PATHS:
+                    print(f"    skipping non-card: {path}")
+                    continue
                 card_urls.add(WIKI_BASE + href)
         current = current.find_next_sibling()
 
@@ -142,11 +206,20 @@ def scrape_bulk(limit=None):
 
     mongo_service = MongoService()
     existing_urls = get_existing_urls(mongo_service)
-    urls_to_scrape = [u for u in all_urls if u not in existing_urls]
+
+    def _is_card_url(url: str) -> bool:
+        path = url.replace(WIKI_BASE + "/wiki/", "")
+        if ':' in path:
+            return False
+        return path.lower() not in NON_CARD_WIKI_PATHS
+
+    urls_to_scrape = [u for u in all_urls if u not in existing_urls and _is_card_url(u)]
+    skipped_non_card = len([u for u in all_urls if u not in existing_urls and not _is_card_url(u)])
     skipped = len(all_urls) - len(urls_to_scrape)
 
     print(f"Total unique URLs : {len(all_urls)}")
-    print(f"Already in MongoDB: {skipped}")
+    print(f"Already in MongoDB: {len(all_urls) - len([u for u in all_urls if u in existing_urls])}")
+    print(f"Skipped non-cards : {skipped_non_card}")
     print(f"To scrape         : {len(urls_to_scrape)}")
 
     if not urls_to_scrape:
@@ -234,19 +307,65 @@ def scrape_from_set_url(set_url: str, set_code: str | None):
         print("No card links found. Exiting.")
         return
 
-    set_cards = json.loads(SET_CARDS_PATH.read_text()) if SET_CARDS_PATH.exists() else {}
-    set_cards[set_code] = {
-        "name": set_code,
+    update_data = {
+        "set_code": set_code,
         "set_url": set_url,
         "card_count": len(card_urls),
         "cards": card_urls,
     }
-    SET_CARDS_PATH.write_text(json.dumps(set_cards, indent=2, ensure_ascii=False))
-    print(f"  wiki_set_cards.json updated ({set_code}: {len(card_urls)} cards)")
+    UPDATE_CARDS_PATH.write_text(json.dumps(update_data, indent=2, ensure_ascii=False))
+    print(f"  update.json written ({len(card_urls)} cards)")
 
-    rebuild_unique_cards()
+    mongo_service = MongoService()
+    existing_urls = get_existing_urls(mongo_service)
+    urls_to_scrape = [u for u in card_urls if u not in existing_urls]
 
-    scrape_bulk()
+    print(f"  Cards in set     : {len(card_urls)}")
+    print(f"  Already in MongoDB: {len(card_urls) - len(urls_to_scrape)}")
+    print(f"  To scrape        : {len(urls_to_scrape)}")
+
+    if not urls_to_scrape:
+        print("Nothing to scrape.")
+        return
+
+    batch = []
+    failed = []
+    scraped = 0
+
+    for idx, url in enumerate(urls_to_scrape, 1):
+        print(f"  [{idx}/{len(urls_to_scrape)}] {url}")
+        driver = create_driver()
+        try:
+            card_obj = DuelMastersCardWikiScraper(driver).scrape_card(url)
+            if card_obj:
+                batch.append(card_obj)
+                scraped += 1
+                forms = [c.get('name', '?') for c in card_obj.get('cards', [])]
+                print(f"    -> {' / '.join(forms)}")
+            else:
+                print(f"    -> no data returned")
+                failed.append(url)
+        except Exception as e:
+            print(f"    -> ERROR: {e}")
+            failed.append(url)
+        finally:
+            try:
+                driver.quit()
+            except Exception:
+                pass
+
+        if len(batch) >= UPLOAD_BATCH_SIZE:
+            flush_batch(mongo_service, batch)
+
+    flush_batch(mongo_service, batch)
+
+    print(f"\nDone scraping set {set_code}.")
+    print(f"  Scraped & uploaded : {scraped}")
+    print(f"  Failed            : {len(failed)}")
+    if failed:
+        print("  Failed URLs:")
+        for u in failed:
+            print(f"    {u}")
 
 
 if __name__ == "__main__":
