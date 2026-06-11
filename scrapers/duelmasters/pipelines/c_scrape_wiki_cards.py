@@ -72,11 +72,20 @@ def fetch_card_links_from_set(set_url: str) -> list[str]:
     print(f"  Fetching card links from set page: {set_url}")
     driver = create_driver()
     try:
+        driver.set_page_load_timeout(30)
         driver.get(_safe_url(set_url))
-        WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.TAG_NAME, "ul"))
+        time.sleep(3)
+        page_source = driver.page_source
+        # Debug: check if page actually loaded
+        if not page_source or len(page_source) < 500:
+            print(f"  WARNING: page source suspiciously short ({len(page_source)} chars)")
+        with open("/tmp/wiki_page_debug.html", "w") as f:
+            f.write(page_source)
+        print(f"  Page source: {len(page_source)} chars (saved to /tmp/wiki_page_debug.html)")
+        WebDriverWait(driver, 30).until(
+            EC.presence_of_element_located((By.ID, "content"))
         )
-        time.sleep(1)
+        time.sleep(2)
         soup = BeautifulSoup(driver.page_source, 'html.parser')
     finally:
         driver.quit()
