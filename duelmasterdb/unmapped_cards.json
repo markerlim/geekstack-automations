@@ -1,98 +1,60 @@
 [
   {
-    "cardName": "滝川るる＆ラフルル ー閃光のヒロインー",
-    "cardNameJP": "滝川るる＆ラフルル ー閃光のヒロインー(DM25EX1 SPR㊙1超/SPR㊙5)",
+    "cardName": "燃える禁断 ドルマゲドンW",
+    "cardNameJP": "燃える禁断 ドルマゲドンW(DM26RP2 ㊙1/㊙24)",
     "civilization": [
-      "Light"
+      "Darkness",
+      "Fire"
     ],
-    "type": "NEO Creature"
+    "type": "Creature"
   },
   {
-    "cardName": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー",
-    "cardNameJP": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー(DM25EX1 SPR㊙2超/SPR㊙5)",
+    "cardName": "燃える禁断 ドルマゲドンW",
+    "cardNameJP": "燃える禁断 ドルマゲドンW(DM26RP2 OR1/OR1)",
     "civilization": [
-      "Water"
+      "Darkness",
+      "Fire"
     ],
-    "type": "NEO Creature"
+    "type": "Creature"
   },
   {
-    "cardName": "本能寺カレン＆カオスマントラ ー裏切のヒロインー",
-    "cardNameJP": "本能寺カレン＆カオスマントラ ー裏切のヒロインー(DM25EX1 SPR㊙3超/SPR㊙5)",
+    "cardName": "「業流」の頂 ゾロ・ア・スタート",
+    "cardNameJP": "「業流」の頂 ゾロ・ア・スタート(DM26RP2 ㊙2/㊙24)",
+    "civilization": [
+      "Zero"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "「業流」の頂 ゾロ・ア・スタート",
+    "cardNameJP": "「業流」の頂 ゾロ・ア・スタート(DM26RP2 S1/S11)",
+    "civilization": [
+      "Zero"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "サクサク打つべしナウ",
+    "cardNameJP": "サクサク打つべしナウ(DM26RP2 21/77)",
+    "civilization": [
+      "Nature"
+    ],
+    "type": "Spell"
+  },
+  {
+    "cardName": "熱血の星夜 アバター・イン・ザ・ラブ",
+    "cardNameJP": "熱血の星夜 アバター・イン・ザ・ラブ(DM26RP2 36/77)",
     "civilization": [
       "Darkness"
     ],
     "type": "Creature"
   },
   {
-    "cardName": "うららかもも＆ミノマル ー献身のヒロインー",
-    "cardNameJP": "うららかもも＆ミノマル ー献身のヒロインー(DM25EX1 SPR㊙4超/SPR㊙5)",
-    "civilization": [
-      "Nature"
-    ],
-    "type": "NEO Creature"
-  },
-  {
-    "cardName": "滝川るる＆ラフルル ー閃光のヒロインー",
-    "cardNameJP": "滝川るる＆ラフルル ー閃光のヒロインー(DM25EX1 SPR㊙1/SPR㊙5)",
-    "civilization": [
-      "Light"
-    ],
-    "type": "NEO Creature"
-  },
-  {
-    "cardName": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー",
-    "cardNameJP": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー(DM25EX1 SPR㊙2/SPR㊙5)",
-    "civilization": [
-      "Water"
-    ],
-    "type": "NEO Creature"
-  },
-  {
-    "cardName": "本能寺カレン＆カオスマントラ ー裏切のヒロインー",
-    "cardNameJP": "本能寺カレン＆カオスマントラ ー裏切のヒロインー(DM25EX1 SPR㊙3/SPR㊙5)",
+    "cardName": "革命α ドルーター",
+    "cardNameJP": "革命α ドルーター(DM26RP2 64/77)",
     "civilization": [
       "Darkness"
     ],
     "type": "Creature"
-  },
-  {
-    "cardName": "うららかもも＆ミノマル ー献身のヒロインー",
-    "cardNameJP": "うららかもも＆ミノマル ー献身のヒロインー(DM25EX1 SPR㊙4/SPR㊙5)",
-    "civilization": [
-      "Nature"
-    ],
-    "type": "NEO Creature"
-  },
-  {
-    "cardName": "滝川るる＆ラフルル ー閃光のヒロインー",
-    "cardNameJP": "滝川るる＆ラフルル ー閃光のヒロインー(DM25EX1 SPR1/SPR5)",
-    "civilization": [
-      "Light"
-    ],
-    "type": "NEO Creature"
-  },
-  {
-    "cardName": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー",
-    "cardNameJP": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー(DM25EX1 SPR2/SPR5)",
-    "civilization": [
-      "Water"
-    ],
-    "type": "NEO Creature"
-  },
-  {
-    "cardName": "本能寺カレン＆カオスマントラ ー裏切のヒロインー",
-    "cardNameJP": "本能寺カレン＆カオスマントラ ー裏切のヒロインー(DM25EX1 SPR3/SPR5)",
-    "civilization": [
-      "Darkness"
-    ],
-    "type": "Creature"
-  },
-  {
-    "cardName": "うららかもも＆ミノマル ー献身のヒロインー",
-    "cardNameJP": "うららかもも＆ミノマル ー献身のヒロインー(DM25EX1 SPR4/SPR5)",
-    "civilization": [
-      "Nature"
-    ],
-    "type": "NEO Creature"
   }
 ]
