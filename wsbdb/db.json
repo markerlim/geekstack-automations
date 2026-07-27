@@ -1,6 +1,16 @@
 {
   "expansions": [
     {
+      "booster": "FSF/01B",
+      "title": "ブースターパック『Fate/strange Fake』",
+      "category": "expansion",
+      "release_date": "2026-06-12",
+      "url": "/cardlist/cardsearch/?expansion=FSF/01B",
+      "alt": "ブースターパック『Fate/strange Fake』",
+      "expansion_image": "https://ws-blau.com/wordpress/wp-content/uploads/2026/02/26104319/bppackcage_fsf.png",
+      "expansion_image_alt": "ブースターパック『Fate/strange Fake』"
+    },
+    {
       "booster": "CNN/02E",
       "title": "プレミアムパック『名探偵コナン TVアニメ 30th Anniversary』",
       "category": "expansion",
@@ -841,5 +851,5 @@
       "expansion_image_alt": "PRカード（2022年）"
     }
   ],
-  "total_count": 84
+  "total_count": 85
 }

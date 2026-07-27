@@ -1,98 +1,630 @@
 [
   {
-    "cardName": "滝川るる＆ラフルル ー閃光のヒロインー",
-    "cardNameJP": "滝川るる＆ラフルル ー閃光のヒロインー(DM25EX1 SPR㊙1超/SPR㊙5)",
-    "civilization": [
-      "Light"
-    ],
-    "type": "NEO Creature"
-  },
-  {
-    "cardName": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー",
-    "cardNameJP": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー(DM25EX1 SPR㊙2超/SPR㊙5)",
+    "cardName": "水蜃 フカフチノカミ",
+    "cardNameJP": "水蜃 フカフチノカミ(DM26EX2 4/89)",
     "civilization": [
       "Water"
     ],
-    "type": "NEO Creature"
+    "type": "Creature"
   },
   {
-    "cardName": "本能寺カレン＆カオスマントラ ー裏切のヒロインー",
-    "cardNameJP": "本能寺カレン＆カオスマントラ ー裏切のヒロインー(DM25EX1 SPR㊙3超/SPR㊙5)",
+    "cardName": "嵐神 ミヅハノクエビコ",
+    "cardNameJP": "嵐神 ミヅハノクエビコ(DM26EX2 5/89)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "邪眼破壊神R・R・R",
+    "cardNameJP": "邪眼破壊神R・R・R(DM26EX2 6/89)",
+    "civilization": [
+      "Darkness"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "夢の轟速 ザ・ランド",
+    "cardNameJP": "夢の轟速 ザ・ランド(DM26EX2 8/89)",
+    "civilization": [
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "邪眼破壊神デスアポロヌス・ドラゲリオン",
+    "cardNameJP": "邪眼破壊神デスアポロヌス・ドラゲリオン(DM26EX2 10/89)",
+    "civilization": [
+      "Darkness",
+      "Fire"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "禁鬼機関 ジャオウガ-8",
+    "cardNameJP": "禁鬼機関 ジャオウガ-8(DM26EX2 12/89)",
+    "civilization": [
+      "Darkness",
+      "Nature"
+    ],
+    "type": "Star Evolution Creature"
+  },
+  {
+    "cardName": "ボルシャック・ゴルギーニ",
+    "cardNameJP": "ボルシャック・ゴルギーニ(DM26EX2 13/89)",
+    "civilization": [
+      "Light",
+      "Water",
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "ボルシャック・カクメイジン",
+    "cardNameJP": "ボルシャック・カクメイジン(DM26EX2 14/89)",
+    "civilization": [
+      "Light",
+      "Water",
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "S級原始 レッドマッド",
+    "cardNameJP": "S級原始 レッドマッド(DM26EX2 15/89)",
+    "civilization": [
+      "Water",
+      "Fire",
+      "Nature"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "鬼黒皇グレイテスト・ジャオウガ",
+    "cardNameJP": "鬼黒皇グレイテスト・ジャオウガ(DM26EX2 16/89)",
+    "civilization": [
+      "Darkness",
+      "Fire",
+      "Nature"
+    ],
+    "type": "Star Evolution Creature"
+  },
+  {
+    "cardName": "パルフェ・ルピア",
+    "cardNameJP": "パルフェ・ルピア (DM26EX2 17/89)",
+    "civilization": [
+      "Light"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "邪眼左神エンドレス",
+    "cardNameJP": "邪眼左神エンドレス(DM26EX2 18/89)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "ワダエビノミコト",
+    "cardNameJP": "ワダエビノミコト(DM26EX2 19/89)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "轟速 ザ・ドック",
+    "cardNameJP": "轟速 ザ・ドック(DM26EX2 20/89)",
+    "civilization": [
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "邪眼龍神メタル・アポロヌス",
+    "cardNameJP": "邪眼龍神メタル・アポロヌス(DM26EX2 22/89)",
+    "civilization": [
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "ボルシャック・ゴルファンタジスタ",
+    "cardNameJP": "ボルシャック・ゴルファンタジスタ(DM26EX2 24/89)",
+    "civilization": [
+      "Light",
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "「鬼情」の極 ジャオウグリラ",
+    "cardNameJP": "「鬼情」の極 ジャオウグリラ (DM26EX2 26/89)",
+    "civilization": [
+      "Darkness",
+      "Fire"
+    ],
+    "type": "Star Evolution Creature"
+  },
+  {
+    "cardName": "轟速 ザ・ロウィン",
+    "cardNameJP": "轟速 ザ・ロウィン(DM26EX2 28/89)",
+    "civilization": [
+      "Fire",
+      "Nature"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "ワダユメ＝縛＝ノミコト",
+    "cardNameJP": "ワダユメ＝縛＝ノミコト(DM26EX2 29/89)",
+    "civilization": [
+      "Light",
+      "Water",
+      "Darkness"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "宿命の決闘",
+    "cardNameJP": "宿命の決闘(DM26EX2 30/89)",
+    "civilization": [
+      "Light",
+      "Water",
+      "Darkness"
+    ],
+    "type": "Spell"
+  },
+  {
+    "cardName": "覚悟の決闘",
+    "cardNameJP": "覚悟の決闘(DM26EX2 31/89)",
+    "civilization": [
+      "Light",
+      "Water",
+      "Fire"
+    ],
+    "type": "Spell"
+  },
+  {
+    "cardName": "野望の決闘",
+    "cardNameJP": "野望の決闘(DM26EX2 32/89)",
+    "civilization": [
+      "Water",
+      "Darkness",
+      "Fire"
+    ],
+    "type": "Spell"
+  },
+  {
+    "cardName": "覇道の決闘",
+    "cardNameJP": "覇道の決闘(DM26EX2 33/89)",
+    "civilization": [
+      "Water",
+      "Fire",
+      "Nature"
+    ],
+    "type": "Spell"
+  },
+  {
+    "cardName": "一王二命三眼槍の封",
+    "cardNameJP": "一王二命三眼槍の封(DM26EX2 34/89)",
+    "civilization": [
+      "Darkness",
+      "Fire",
+      "Nature"
+    ],
+    "type": "Tamashii Seed"
+  },
+  {
+    "cardName": "孤高の決闘",
+    "cardNameJP": "孤高の決闘(DM26EX2 35/89)",
+    "civilization": [
+      "Darkness",
+      "Fire",
+      "Nature"
+    ],
+    "type": "Spell"
+  },
+  {
+    "cardName": "シンクロ・ルピア",
+    "cardNameJP": "シンクロ・ルピア (DM26EX2 38/89)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "ワダカニノミコト",
+    "cardNameJP": "ワダカニノミコト(DM26EX2 40/89)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "カンゴク入道の巻",
+    "cardNameJP": "カンゴク入道の巻(DM26EX2 42/89)",
+    "civilization": [
+      "Darkness"
+    ],
+    "type": "Tamashii Seed"
+  },
+  {
+    "cardName": "プライマル・サーガ",
+    "cardNameJP": "プライマル・サーガ(DM26EX2 43/89)",
+    "civilization": [
+      "Darkness"
+    ],
+    "type": "Spell"
+  },
+  {
+    "cardName": "轟速 ザ・リフル",
+    "cardNameJP": "轟速 ザ・リフル(DM26EX2 44/89)",
+    "civilization": [
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "「オレたちのZEROの世界を造るまで」",
+    "cardNameJP": "「オレたちのZEROの世界を造るまで」(DM26EX2 45/89)",
+    "civilization": [
+      "Fire"
+    ],
+    "type": "Spell"
+  },
+  {
+    "cardName": "断罪のロスト・サイン",
+    "cardNameJP": "断罪のロスト・サイン(DM26EX2 46/89)",
+    "civilization": [
+      "Light",
+      "Water"
+    ],
+    "type": "Spell"
+  },
+  {
+    "cardName": "希望の太陽 マイハマタワー",
+    "cardNameJP": "希望の太陽 マイハマタワー(DM26EX2 47/89)",
+    "civilization": [
+      "Light",
+      "Fire"
+    ],
+    "type": "G城"
+  },
+  {
+    "cardName": "邪眼神オール",
+    "cardNameJP": "邪眼神オール(DM26EX2 49/89)",
+    "civilization": [
+      "Water",
+      "Darkness",
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "鬼核アトム・ジャオウガ",
+    "cardNameJP": "鬼核アトム・ジャオウガ(DM26EX2 51/89)",
+    "civilization": [
+      "Darkness",
+      "Fire",
+      "Nature"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "カイザー・ルピア",
+    "cardNameJP": "カイザー・ルピア(DM26EX2 52/89)",
+    "civilization": [
+      "Light"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "邪眼右神デリート",
+    "cardNameJP": "邪眼右神デリート(DM26EX2 53/89)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "ワダシストノミコト",
+    "cardNameJP": "ワダシストノミコト(DM26EX2 54/89)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "邪眼龍神ヘヴィ・アポロヌス",
+    "cardNameJP": "邪眼龍神ヘヴィ・アポロヌス(DM26EX2 58/89)",
     "civilization": [
       "Darkness"
     ],
     "type": "Creature"
   },
   {
-    "cardName": "うららかもも＆ミノマル ー献身のヒロインー",
-    "cardNameJP": "うららかもも＆ミノマル ー献身のヒロインー(DM25EX1 SPR㊙4超/SPR㊙5)",
+    "cardName": "轟速 ザ・ダラー",
+    "cardNameJP": "轟速 ザ・ダラー (DM26EX2 60/89)",
+    "civilization": [
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "悪霊鬼王ジャオディオス",
+    "cardNameJP": "悪霊鬼王ジャオディオス(DM26EX2 61/89)",
+    "civilization": [
+      "Fire"
+    ],
+    "type": "Star Evolution Creature"
+  },
+  {
+    "cardName": "バクロ法師の封",
+    "cardNameJP": "バクロ法師の封(DM26EX2 65/89)",
     "civilization": [
       "Nature"
     ],
-    "type": "NEO Creature"
+    "type": "Tamashii Seed"
   },
   {
-    "cardName": "滝川るる＆ラフルル ー閃光のヒロインー",
-    "cardNameJP": "滝川るる＆ラフルル ー閃光のヒロインー(DM25EX1 SPR㊙1/SPR㊙5)",
+    "cardName": "ボルシャック・マントラ",
+    "cardNameJP": "ボルシャック・マントラ(DM26EX2 67/89)",
     "civilization": [
-      "Light"
+      "Light",
+      "Water"
     ],
-    "type": "NEO Creature"
+    "type": "Creature"
   },
   {
-    "cardName": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー",
-    "cardNameJP": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー(DM25EX1 SPR㊙2/SPR㊙5)",
+    "cardName": "ワダウザノミコト",
+    "cardNameJP": "ワダウザノミコト(DM26EX2 68/89)",
+    "civilization": [
+      "Light",
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "超轟速 レッドランチャー",
+    "cardNameJP": "超轟速 レッドランチャー(DM26EX2 69/89)",
+    "civilization": [
+      "Fire",
+      "Nature"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "ワダチエノミコト",
+    "cardNameJP": "ワダチエノミコト(DM26EX2 74/89)",
     "civilization": [
       "Water"
     ],
-    "type": "NEO Creature"
+    "type": "Creature"
   },
   {
-    "cardName": "本能寺カレン＆カオスマントラ ー裏切のヒロインー",
-    "cardNameJP": "本能寺カレン＆カオスマントラ ー裏切のヒロインー(DM25EX1 SPR㊙3/SPR㊙5)",
+    "cardName": "ワダゲコノミコト",
+    "cardNameJP": "ワダゲコノミコト(DM26EX2 75/89)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "邪眼右神C・ロマノフ",
+    "cardNameJP": "邪眼右神C・ロマノフ(DM26EX2 77/89)",
     "civilization": [
       "Darkness"
     ],
     "type": "Creature"
   },
   {
-    "cardName": "うららかもも＆ミノマル ー献身のヒロインー",
-    "cardNameJP": "うららかもも＆ミノマル ー献身のヒロインー(DM25EX1 SPR㊙4/SPR㊙5)",
-    "civilization": [
-      "Nature"
-    ],
-    "type": "NEO Creature"
-  },
-  {
-    "cardName": "滝川るる＆ラフルル ー閃光のヒロインー",
-    "cardNameJP": "滝川るる＆ラフルル ー閃光のヒロインー(DM25EX1 SPR1/SPR5)",
-    "civilization": [
-      "Light"
-    ],
-    "type": "NEO Creature"
-  },
-  {
-    "cardName": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー",
-    "cardNameJP": "黄昏ミミ＆トワイライトMk.3 ー挑戦のヒロインー(DM25EX1 SPR2/SPR5)",
-    "civilization": [
-      "Water"
-    ],
-    "type": "NEO Creature"
-  },
-  {
-    "cardName": "本能寺カレン＆カオスマントラ ー裏切のヒロインー",
-    "cardNameJP": "本能寺カレン＆カオスマントラ ー裏切のヒロインー(DM25EX1 SPR3/SPR5)",
+    "cardName": "鬼火の守護者ジャオウガ・メルキス",
+    "cardNameJP": "鬼火の守護者ジャオウガ・メルキス(DM26EX2 78/89)",
     "civilization": [
       "Darkness"
     ],
     "type": "Creature"
   },
   {
-    "cardName": "うららかもも＆ミノマル ー献身のヒロインー",
-    "cardNameJP": "うららかもも＆ミノマル ー献身のヒロインー(DM25EX1 SPR4/SPR5)",
+    "cardName": "鶏と蛙 ケローラ&ルピア",
+    "cardNameJP": "鶏と蛙 ケローラ&ルピア(DM26EX2 80/89)",
+    "civilization": [
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "邪眼左神M・ロマノフ",
+    "cardNameJP": "邪眼左神M・ロマノフ(DM26EX2 81/89)",
+    "civilization": [
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "轟速 ザ・ジオ",
+    "cardNameJP": "轟速 ザ・ジオ (DM26EX2 82/89)",
     "civilization": [
       "Nature"
     ],
-    "type": "NEO Creature"
+    "type": "Creature"
+  },
+  {
+    "cardName": "鬼覇 ザ=デッドジャオウガ",
+    "cardNameJP": "鬼覇 ザ=デッドジャオウガ(DM26EX2 83/89)",
+    "civilization": [
+      "Nature"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "マントラ・ルピア",
+    "cardNameJP": "マントラ・ルピア(DM26EX2 87/89)",
+    "civilization": [
+      "Light",
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "轟速 ザ・トリング",
+    "cardNameJP": "轟速 ザ・トリング(DM26EX2 89/89)",
+    "civilization": [
+      "Fire",
+      "Nature"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "瀑水神 ミヅハノオオミカミ",
+    "cardNameJP": "瀑水神 ミヅハノオオミカミ(DM26EX2 SPR㊙1/SPR㊙5)",
+    "civilization": [
+      "Light",
+      "Water",
+      "Darkness"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "瀑水神 ミヅハノオオミカミ",
+    "cardNameJP": "瀑水神 ミヅハノオオミカミ(DM26EX2 SPR㊙1超/SPR㊙5)",
+    "civilization": [
+      "Light",
+      "Water",
+      "Darkness"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "世界竜皇 ボルシャック・ヒカリスマ",
+    "cardNameJP": "世界竜皇 ボルシャック・ヒカリスマ(DM26EX2 SPR㊙2/SPR㊙5)",
+    "civilization": [
+      "Light",
+      "Water",
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "世界竜皇 ボルシャック・ヒカリスマ",
+    "cardNameJP": "世界竜皇 ボルシャック・ヒカリスマ(DM26EX2 SPR㊙2超/SPR㊙5)",
+    "civilization": [
+      "Light",
+      "Water",
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "邪眼魔凰デス・フェニックス",
+    "cardNameJP": "邪眼魔凰デス・フェニックス(DM26EX2 SPR㊙3/SPR㊙5)",
+    "civilization": [
+      "Water",
+      "Darkness",
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "邪眼魔凰デス・フェニックス",
+    "cardNameJP": "邪眼魔凰デス・フェニックス(DM26EX2 SPR㊙3超/SPR㊙5)",
+    "civilization": [
+      "Water",
+      "Darkness",
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "SSS級侵略 カリスマゾーン",
+    "cardNameJP": "SSS級侵略 カリスマゾーン(DM26EX2 SPR㊙4/SPR㊙5)",
+    "civilization": [
+      "Water",
+      "Fire",
+      "Nature"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "SSS級侵略 カリスマゾーン",
+    "cardNameJP": "SSS級侵略 カリスマゾーン(DM26EX2 SPR㊙4超/SPR㊙5)",
+    "civilization": [
+      "Water",
+      "Fire",
+      "Nature"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "CRY-S-MAX ジャオウガ",
+    "cardNameJP": "CRY-S-MAX ジャオウガ(DM26EX2 SPR㊙5/SPR㊙5)",
+    "civilization": [
+      "Darkness",
+      "Fire",
+      "Nature"
+    ],
+    "type": "S-MAX Evolution Creature"
+  },
+  {
+    "cardName": "CRY-S-MAX ジャオウガ",
+    "cardNameJP": "CRY-S-MAX ジャオウガ(DM26EX2 SPR㊙5超/SPR㊙5)",
+    "civilization": [
+      "Darkness",
+      "Fire",
+      "Nature"
+    ],
+    "type": "S-MAX Evolution Creature"
+  },
+  {
+    "cardName": "瀑水神 ミヅハノオオミカミ",
+    "cardNameJP": "瀑水神 ミヅハノオオミカミ(DM26EX2 SPR1/SPR5)",
+    "civilization": [
+      "Light",
+      "Water",
+      "Darkness"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "世界竜皇 ボルシャック・ヒカリスマ",
+    "cardNameJP": "世界竜皇 ボルシャック・ヒカリスマ(DM26EX2 SPR2/SPR5)",
+    "civilization": [
+      "Light",
+      "Water",
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "邪眼魔凰デス・フェニックス",
+    "cardNameJP": "邪眼魔凰デス・フェニックス(DM26EX2 SPR3/SPR5)",
+    "civilization": [
+      "Water",
+      "Darkness",
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "SSS級侵略 カリスマゾーン",
+    "cardNameJP": "SSS級侵略 カリスマゾーン(DM26EX2 SPR4/SPR5)",
+    "civilization": [
+      "Water",
+      "Fire",
+      "Nature"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "CRY-S-MAX ジャオウガ",
+    "cardNameJP": "CRY-S-MAX ジャオウガ(DM26EX2 SPR5/SPR5)",
+    "civilization": [
+      "Darkness",
+      "Fire",
+      "Nature"
+    ],
+    "type": "S-MAX Evolution Creature"
   }
 ]
