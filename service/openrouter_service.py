@@ -875,8 +875,13 @@ class OpenRouterService:
         system_prompt = """You are an expert TCG translator for the Haikyu!! Volleyball Card Game.
 The card effects have already had standard terminology replaced with English equivalents.
 Your job is to translate the remaining Japanese text while maintaining a professional TCG rulebook tone.
-Ensure the final translation is clear and follows card game conventions."""
-        
+Ensure the final translation is clear and follows card game conventions.
+
+Any text already wrapped in square brackets, e.g. [Block Phase], [Turn 01], [Serve Area],
+is a pre-resolved game tag and is already in its final English form. Copy these bracketed
+tags into your output byte-for-byte, in the same position, with no re-wording, no
+re-translating, and no substituting a different but similar-sounding term."""
+
         payload = {
             "model": self.model,
             "messages": [
@@ -889,6 +894,7 @@ Ensure the final translation is clear and follows card game conventions."""
                     "content": f"""Translate these {len(texts)} Japanese card texts to English.
 Return ONLY the translations, numbered 1-{len(texts)}.
 Maintain a professional TCG rulebook tone.
+Leave any [Bracketed Tag] exactly as given — do not translate or reword it.
 
 {input_text}"""
                 }

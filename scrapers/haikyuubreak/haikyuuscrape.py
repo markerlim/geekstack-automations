@@ -334,22 +334,34 @@ def scrape_card_details(selenium, detail_url, card_id):
     Returns:
         Dictionary with card details
     """
-    try:        
-        # Use Selenium to load the page and let JavaScript render
-        selenium.driver.get(detail_url)
-        
-        # Wait for the content to load
-        import time
-        time.sleep(2)
-        
-        # Get the rendered HTML
-        page_source = selenium.driver.page_source
-        soup = BeautifulSoup(page_source, 'html.parser')
-        
-        # Find main card section
-        main_sec = soup.find('div', class_='main_sec_inner_card')
+    import time
+
+    main_sec = None
+    soup = None
+    max_attempts = 3
+    for attempt in range(1, max_attempts + 1):
+        try:
+            # Use Selenium to load the page and let JavaScript render
+            selenium.driver.get(detail_url)
+
+            # Wait longer on each retry to give a degraded session more time to render
+            time.sleep(2 * attempt)
+
+            # Get the rendered HTML
+            page_source = selenium.driver.page_source
+            soup = BeautifulSoup(page_source, 'html.parser')
+
+            # Find main card section
+            main_sec = soup.find('div', class_='main_sec_inner_card')
+            if main_sec:
+                break
+
+            print(f"      ⚠️ Could not find main_sec_inner_card for {card_id} (attempt {attempt}/{max_attempts})")
+        except Exception as e:
+            print(f"      ⚠️ Error loading detail page for {card_id} (attempt {attempt}/{max_attempts}): {e}")
+
+    try:
         if not main_sec:
-            print(f"      ⚠️ Could not find main_sec_inner_card for {card_id}")
             return {}
         
         details = {}
@@ -634,10 +646,18 @@ def start_scraping(booster_list=None):
             if cards:
                 all_cards.extend(cards)
         
+        # Process icon placeholders into readable tags BEFORE translation, so the
+        # LLM sees clean text like "[Block Phase]" instead of raw "[icon_blockphase]"
+        # tokens it would otherwise have to guess how to translate.
+        if all_cards:
+            print(f"\n🎨 Processing icons in card data...")
+            all_cards = preprocess_icons_in_cards(all_cards)
+            print(f"✅ Icon processing completed")
+
         # Translate card data if we have cards
         if all_cards:
             print(f"\n🌐 Translating {len(all_cards)} cards...")
-            
+
             try:
                 openrouter = OpenRouterService()
                 
@@ -668,11 +688,7 @@ def start_scraping(booster_list=None):
         
         # Save all cards to MongoDB
         if all_cards:
-            print(f"\n� Processing icons in card data...")
-            all_cards = preprocess_icons_in_cards(all_cards)
-            print(f"✅ Icon processing completed")
-            
-            print(f"\n Saving {len(all_cards)} cards to MongoDB...")
+            print(f"\n💾 Saving {len(all_cards)} cards to MongoDB...")
             save_cards_to_mongodb(all_cards)
             
     except KeyboardInterrupt:
