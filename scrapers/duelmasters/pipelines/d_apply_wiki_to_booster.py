@@ -188,7 +188,11 @@ class ProcessWikiMapping:
         return cards
     
 if __name__ == "__main__":
-    booster_id = "dm25ex4"
+    import argparse
+    parser = argparse.ArgumentParser(description="Apply wiki data to an already-scraped booster in CL_duelmasters.")
+    parser.add_argument("booster_id", help="Booster code (e.g. dm26ex2)")
+    args = parser.parse_args()
+    booster_id = args.booster_id
     processor = ProcessWikiMapping()
     
     # Step 1: Get all cards for the booster

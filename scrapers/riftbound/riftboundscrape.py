@@ -381,9 +381,21 @@ def extract_card_data(driver, card_code, booster):
         if ability_elem:
             ability_text_elem = ability_elem.find('div', class_=re.compile('sc-4225abdc'))
             if ability_text_elem:
-                # Extract plain text from HTML
-                p_tags = ability_text_elem.find_all('p')
-                ability_text = ' '.join([p.get_text(strip=True) for p in p_tags])
+                ability_html = str(ability_text_elem)
+                def replace_glyph(match):
+                    name = match.group(1)
+                    if name.startswith('rune_'):
+                        name = name[5:]
+                    parts = name.replace('_', ' ').split()
+                    return '{' + ' '.join(p.capitalize() for p in parts) + '}'
+                ability_html = re.sub(
+                    r'<img[^>]*src="[^"]*/([a-z0-9_]+)\.svg"[^>]*>',
+                    replace_glyph,
+                    ability_html
+                )
+                ability_html = re.sub(r'\s*<br\s*/?>\s*', '\n', ability_html)
+                p_tags = BeautifulSoup(ability_html, 'html.parser').find_all('p')
+                ability_text = '\n'.join(p.get_text() for p in p_tags)
                 if ability_text:
                     card_data['ability'] = ability_text
         

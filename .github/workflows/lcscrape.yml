@@ -1,15 +1,11 @@
-name: Rescrape Duel Master Booster
+name: Run Lorcana Scraper
 
 on:
   workflow_dispatch:
-    inputs:
-      boosters:
-        description: 'Booster code(s) to rescrape, space-separated (e.g. "25ex4" or "25ex4 25ex5")'
-        required: true
-        type: string
-
+  schedule:
+    - cron: '0 10 * * 0' # Runs weekly at 6:00PM SGT on Sundays
 jobs:
-  rescrape:
+  scrape:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,13 +27,17 @@ jobs:
         echo '${{ secrets.GCP_CREDENTIALS }}' > gcp-credentials.json
         echo "GOOGLE_APPLICATION_CREDENTIALS=$(pwd)/gcp-credentials.json" >> $GITHUB_ENV
 
-    - name: Rescrape booster(s)
+    - name: Run scraper
       env:
         MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
         MONGO_USER: ${{ secrets.MONGO_USER }}
         MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
         MONGO_CLUSTER: ${{ secrets.MONGO_CLUSTER }}
-        C_DUELMASTERS: ${{vars.C_DUELMASTERS}}
+        C_LORCANA: ${{vars.C_LORCANA}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SMTP_HOST: ${{ vars.SMTP_HOST }}
+        SMTP_PORT: ${{ vars.SMTP_PORT }}
+        SMTP_USER: ${{ secrets.SMTP_USER }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
       run: |
-        python scrapers/duelmasters/scripts/rescrape_booster.py ${{ inputs.boosters }}
+        python scrapers/lorcana/lccheckscrape.py
