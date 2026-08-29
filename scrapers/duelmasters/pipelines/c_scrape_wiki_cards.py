@@ -151,34 +151,40 @@ def fetch_card_links_from_set(set_url: str) -> list[str]:
     finally:
         driver.quit()
 
-    contents_h2 = None
-    for h2 in soup.find_all('h2'):
-        if h2.find('span', {'id': 'Contents'}):
-            contents_h2 = h2
-            break
+    SECTION_KEYWORDS = ('content', 'treasure', 'secret')
 
-    if not contents_h2:
-        print("  -> No 'Contents' section found on set page")
+    section_h2s = []
+    for h2 in soup.find_all('h2'):
+        span = h2.find('span', {'class': 'mw-headline'}) or h2.find('span', id=True)
+        if not span:
+            continue
+        label = (span.get('id') or span.get_text() or '').replace('_', ' ').lower()
+        if any(kw in label for kw in SECTION_KEYWORDS):
+            section_h2s.append(h2)
+
+    if not section_h2s:
+        print("  -> No 'Contents'/'Treasures'/'Secrets' section found on set page")
         return []
 
     card_urls = set()
-    current = contents_h2.find_next_sibling()
-    while current:
-        if current.name == 'h2':
-            break
-        if current.name == 'ul':
-            for a in current.find_all('a', href=True):
-                href = a['href']
-                if not href.startswith('/wiki/'):
-                    continue
-                path = href[len('/wiki/'):]
-                if ':' in path:
-                    continue
-                if path.lower() in NON_CARD_WIKI_PATHS:
-                    print(f"    skipping non-card: {path}")
-                    continue
-                card_urls.add(WIKI_BASE + href)
-        current = current.find_next_sibling()
+    for section_h2 in section_h2s:
+        current = section_h2.find_next_sibling()
+        while current:
+            if current.name == 'h2':
+                break
+            if current.name == 'ul':
+                for a in current.find_all('a', href=True):
+                    href = a['href']
+                    if not href.startswith('/wiki/'):
+                        continue
+                    path = href[len('/wiki/'):]
+                    if ':' in path:
+                        continue
+                    if path.lower() in NON_CARD_WIKI_PATHS:
+                        print(f"    skipping non-card: {path}")
+                        continue
+                    card_urls.add(WIKI_BASE + href)
+            current = current.find_next_sibling()
 
     result = sorted(card_urls)
     print(f"  -> {len(result)} card links found")
