@@ -3,31 +3,31 @@
     {
       "code": "VEN",
       "name": "Vendetta",
-      "detected_at": "2026-07-24T15:32:33.826115",
-      "card_count": 228
+      "detected_at": "2026-08-28T23:54:22.402044",
+      "card_count": 237
     },
     {
       "code": "UNL",
       "name": "Unleashed",
-      "detected_at": "2026-07-24T15:32:33.826140",
+      "detected_at": "2026-08-28T23:54:22.402071",
       "card_count": 288
     },
     {
       "code": "SFD",
       "name": "Spiritforged",
-      "detected_at": "2026-07-24T15:32:33.826148",
+      "detected_at": "2026-08-28T23:54:22.402079",
       "card_count": 288
     },
     {
       "code": "OGN",
       "name": "Origins - Main Set",
-      "detected_at": "2026-07-24T15:32:33.826154",
+      "detected_at": "2026-08-28T23:54:22.402086",
       "card_count": 352
     },
     {
       "code": "OGS",
       "name": "Origins - Proving Grounds",
-      "detected_at": "2026-07-24T15:32:33.826160",
+      "detected_at": "2026-08-28T23:54:22.402092",
       "card_count": 24
     }
   ]
