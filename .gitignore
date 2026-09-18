@@ -4,8 +4,17 @@
 venv
 __pycache__
 /ua-html/
-/jihuanshe/JHSUPDATED.apk
+/jihuanshe/JHS.apk
 /jihuanshe/jihuanshe-api-notes.md
 # Duel Masters: ephemeral/generated outputs
 scrapers/duelmasters/unmapped_cards.json
 scrapers/duelmasters/geekstack.CL_duelmasters_wiki.json
+
+# pricescraper: generated normalised feeds / reports
+/pricescraper/out/
+
+# jihuanshe: per-run outputs + live scratch (canonical union_arena_boosters_all_sets.json stays tracked)
+/jihuanshe/work/
+/jihuanshe/runs/
+/jihuanshe/out/
+/jihuanshe/union_arena_fresh_*.json

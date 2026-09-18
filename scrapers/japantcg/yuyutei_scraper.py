@@ -450,6 +450,13 @@ def run_cli(description, scraper_factory, script_path, argv=None):
         action='store_true',
         help='Load from most recent backup file and upload to MongoDB'
     )
+    parser.add_argument(
+        '--no-upload',
+        action='store_true',
+        help='Scrape and write the dated backup only; skip the legacy '
+             'cardprices_yyt MongoDB write (use when the normalise/upload '
+             'pipeline owns the price collections)'
+    )
 
     args = parser.parse_args(argv)
 
@@ -474,12 +481,16 @@ def run_cli(description, scraper_factory, script_path, argv=None):
         cleanup_old_backups(scraper.backup_dir, scraper.backup_prefix, days=7)
 
         # Upload directly to MongoDB
-        upload_success = scraper.upload_to_mongo()
+        if args.no_upload:
+            print("\n⏭️  --no-upload: skipping the legacy cardprices_yyt write "
+                  f"(backup saved: {backup_file})")
+        else:
+            upload_success = scraper.upload_to_mongo()
 
-        if not upload_success and backup_file:
-            print(f"⚠️ Upload failed, but your data is saved in: {backup_file}")
-            print(f"You can retry the upload without re-scraping using:")
-            print(f"  python3 {script_path} --upload-backup={os.path.basename(backup_file)}")
+            if not upload_success and backup_file:
+                print(f"⚠️ Upload failed, but your data is saved in: {backup_file}")
+                print(f"You can retry the upload without re-scraping using:")
+                print(f"  python3 {script_path} --upload-backup={os.path.basename(backup_file)}")
 
         # Print summary
         print(f"\n📊 Summary:")

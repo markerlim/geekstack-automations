@@ -383,13 +383,14 @@ def extract_card_data(driver, card_code, booster):
             if ability_text_elem:
                 ability_html = str(ability_text_elem)
                 def replace_glyph(match):
-                    name = match.group(1)
-                    if name.startswith('rune_'):
-                        name = name[5:]
-                    parts = name.replace('_', ' ').split()
-                    return '{' + ' '.join(p.capitalize() for p in parts) + '}'
+                    class_attr = match.group(1)
+                    match_icon = re.search(r'rb_([a-z0-9_]+)', class_attr)
+                    if match_icon:
+                        icon_name = match_icon.group(1)
+                        return f'[icon_{icon_name}]'
+                    return ''
                 ability_html = re.sub(
-                    r'<img[^>]*src="[^"]*/([a-z0-9_]+)\.svg"[^>]*>',
+                    r'<img[^>]*class="([^"]*)"[^>]*>',
                     replace_glyph,
                     ability_html
                 )

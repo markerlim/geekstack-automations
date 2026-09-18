@@ -359,12 +359,11 @@ def scrape_unionarena_cards(series_value):
                     "energycost": int(energycost) if energycost != "-" and energycost.isdigit() else 0,
                     "energygen": str(energygenerate) if energygenerate != "none" else "",
                     "image": f"/UD/{processedCardUid}.webp",
-                    "rarity": "ALT" if rarity != "-" and "★" in rarity else (rarity if rarity != "-" else ""),
+                    "rarity": rarity if rarity != "-" else "",
                     "traits": traits,
                     "trigger": triggerEN,
                     "triggerState": triggerState,
                     "urlimage": urlimage,
-                    "rarityAct": rarity,
                     "cardcode": card_no,
                 }
                 
