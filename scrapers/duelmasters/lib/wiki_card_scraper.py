@@ -7,6 +7,16 @@ import time
 import re
 
 
+def _is_name_header_style(style: str) -> bool:
+    """True for the inline style the Cardtable template puts on a card-name div.
+
+    The wiki flipped that div from "color: white" to "color: black" on
+    2026-09-05 for the first card form, while a twinpact's second form kept
+    white — so match either, or every page parses as zero cards.
+    """
+    return bool(style) and ('color: white' in style or 'color: black' in style)
+
+
 class DuelMastersCardWikiScraper:
     """Scrapes card information from Duel Masters wiki pages."""
     
@@ -157,7 +167,7 @@ class DuelMastersCardWikiScraper:
     def is_twinpact_card(self, soup: BeautifulSoup) -> bool:
         """Check if the card is a twinpact (dual) card by counting major sections."""
         # Look for multiple card name sections (indicated by header rows)
-        header_divs = soup.find_all('div', style=lambda x: x and 'color: white' in x)
+        header_divs = soup.find_all('div', style=_is_name_header_style)
         card_name_headers = [div for div in header_divs if div and 'br' in str(div)]
         return len(card_name_headers) >= 2
     
@@ -174,7 +184,7 @@ class DuelMastersCardWikiScraper:
         # Find the next major section header (card name)
         section_header = None
         for i in range(start_index, len(rows)):
-            header_div = rows[i].find('div', style=lambda x: x and 'color: white' in x if x else False)
+            header_div = rows[i].find('div', style=_is_name_header_style)
             if header_div and 'br' in str(header_div):
                 section_header = rows[i]
                 start_row = i + 1
@@ -184,7 +194,7 @@ class DuelMastersCardWikiScraper:
             return None
         
         # Extract card name (English and Japanese) from the header div
-        header_div = section_header.find('div', style=lambda x: x and 'color: white' in x if x else False)
+        header_div = section_header.find('div', style=_is_name_header_style)
         if header_div:
             english_name, japanese_name = self.extract_english_and_japanese_name_from_header(header_div)
             card_info['name'] = english_name
@@ -208,7 +218,7 @@ class DuelMastersCardWikiScraper:
             row = rows[current_row]
             
             # Check if this is another major section header
-            next_header = row.find('div', style=lambda x: x and 'color: white' in x if x else False)
+            next_header = row.find('div', style=_is_name_header_style)
             if next_header and 'br' in str(next_header) and row != section_header:
                 break
             
@@ -278,19 +288,18 @@ class DuelMastersCardWikiScraper:
             'cards': []
         }
         
-        # Extract all card sections
+        # Extract one section per card-name header row. Stepping a fixed
+        # "approximately 10 rows" instead used to re-read one face twice, or
+        # skip a twinpact's second face, depending on how tall the first was.
         rows = card_table.find_all('tr')
-        current_index = 0
-        
-        while current_index < len(rows):
-            card_data = self.extract_card_section(card_table, current_index)
+        for index, row in enumerate(rows):
+            header_div = row.find('div', style=_is_name_header_style)
+            if not header_div or 'br' not in str(header_div):
+                continue
+            card_data = self.extract_card_section(card_table, index)
             if card_data:
                 result['cards'].append(card_data)
-                # Move to next section (rough estimate - refine based on actual structure)
-                current_index += 10  # Approximate rows per card section
-            else:
-                current_index += 1
-        
+
         return result
     
     def scrape_booster_page(self, url: str) -> Dict[str, str]:

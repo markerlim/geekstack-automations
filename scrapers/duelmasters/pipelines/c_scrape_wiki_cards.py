@@ -95,7 +95,15 @@ NON_CARD_WIKI_PATHS = {
     "the_rise_of_kings", "the_rise_of_kings_max",
     "toys_and_merchandise",
     "winner_card", "weekly_shonen_sunday",
+    "winner_award",
     "wizards_of_the_coast",
+    # Article pages that carry a wikitable of their own, so nothing in the
+    # page structure distinguishes them from a card page.
+    "card_gamer", "choco_crunch", "choco_snack",
+    "darkness_civilization", "dragon_saga",
+    "fabulous_art", "fire_civilization",
+    "revolution", "revolution_final",
+    "rock-paper-scissors", "ten_kings",
 }
 
 USER_AGENTS = [
@@ -123,6 +131,21 @@ def create_driver():
         service=Service(ChromeDriverManager().install()),
         options=chrome_options,
     )
+
+
+def is_card_path(path: str) -> bool:
+    """False for wiki pages that are not individual cards.
+
+    "(Battle Card)" pages belong to the Duel Masters board game and render a
+    wikitable just like a real card, so they parse to zero card sections and
+    would otherwise be re-scraped on every run.
+    """
+    path = path.lower()
+    if ':' in path:
+        return False
+    if path.endswith('_(battle_card)') or path.endswith(' (battle card)'):
+        return False
+    return path not in NON_CARD_WIKI_PATHS
 
 
 def _safe_url(url: str) -> str:
@@ -178,9 +201,7 @@ def fetch_card_links_from_set(set_url: str) -> list[str]:
                     if not href.startswith('/wiki/'):
                         continue
                     path = href[len('/wiki/'):]
-                    if ':' in path:
-                        continue
-                    if path.lower() in NON_CARD_WIKI_PATHS:
+                    if not is_card_path(path):
                         print(f"    skipping non-card: {path}")
                         continue
                     card_urls.add(WIKI_BASE + href)
@@ -192,8 +213,22 @@ def fetch_card_links_from_set(set_url: str) -> list[str]:
 
 
 def get_existing_urls(mongo_service):
-    existing = mongo_service.get_unique_values(WIKI_COLLECTION, "url")
-    return set(existing) if existing else set()
+    """URLs already scraped WITH card data.
+
+    Docs that landed with an empty `cards` list (a parser break against a
+    changed wiki template) are deliberately left out so they get re-scraped
+    instead of being skipped forever.
+    """
+    collection = mongo_service._get_collection(WIKI_COLLECTION)
+    return {d["url"] for d in collection.find({"cards.0": {"$exists": True}}, {"url": 1})}
+
+
+def purge_empty_docs(mongo_service, urls):
+    """Drop card-less docs for `urls` so a re-scrape doesn't duplicate them."""
+    collection = mongo_service._get_collection(WIKI_COLLECTION)
+    result = collection.delete_many({"url": {"$in": list(urls)}, "cards.0": {"$exists": False}})
+    if result.deleted_count:
+        print(f"  Purged {result.deleted_count} card-less docs for re-scrape")
 
 
 def flush_batch(mongo_service, batch):
@@ -214,10 +249,7 @@ def scrape_bulk(limit=None):
     existing_urls = get_existing_urls(mongo_service)
 
     def _is_card_url(url: str) -> bool:
-        path = url.replace(WIKI_BASE + "/wiki/", "")
-        if ':' in path:
-            return False
-        return path.lower() not in NON_CARD_WIKI_PATHS
+        return is_card_path(url.replace(WIKI_BASE + "/wiki/", ""))
 
     urls_to_scrape = [u for u in all_urls if u not in existing_urls and _is_card_url(u)]
     skipped_non_card = len([u for u in all_urls if u not in existing_urls and not _is_card_url(u)])
@@ -232,6 +264,8 @@ def scrape_bulk(limit=None):
         print("Nothing to scrape.")
         return
 
+    purge_empty_docs(mongo_service, urls_to_scrape)
+
     batch = []
     failed = []
     scraped = 0
@@ -241,13 +275,13 @@ def scrape_bulk(limit=None):
         driver = create_driver()
         try:
             card_obj = DuelMastersCardWikiScraper(driver).scrape_card(url)
-            if card_obj:
+            if card_obj and card_obj.get('cards'):
                 batch.append(card_obj)
                 scraped += 1
                 forms = [c.get('name', '?') for c in card_obj.get('cards', [])]
                 print(f"  -> {' / '.join(forms)}")
             else:
-                print(f"  -> no data returned")
+                print(f"  -> no card data parsed")
                 failed.append(url)
         except Exception as e:
             print(f"  -> ERROR: {e}")
@@ -284,8 +318,15 @@ def rebuild_unique_cards():
 
 
 def derive_set_code_from_url(set_url: str) -> str | None:
+    """Pull the set code off the front of a set page name.
+
+    Codes run DM-01, DMR-08S, DMX-19, DMART極-1, DM26-RP3 — so: word chars up
+    to the hyphen, then the block letters + number and an optional suffix
+    letter. Underscores are excluded so the rest of the page title (and any
+    digits in it, e.g. "Super_Rare_100%") can't be swallowed.
+    """
     page = set_url.rstrip('/').rsplit('/', 1)[-1]
-    m = re.match(r'^(DM\d+-\d+\S*|[A-Za-z]+-\d+\S*)', page)
+    m = re.match(r'^([^\W_]+-[^\W_]*\d+[A-Z]?)', page)
     return m.group(1) if m else None
 
 
@@ -334,6 +375,8 @@ def scrape_from_set_url(set_url: str, set_code: str | None):
         print("Nothing to scrape.")
         return
 
+    purge_empty_docs(mongo_service, urls_to_scrape)
+
     batch = []
     failed = []
     scraped = 0
@@ -343,13 +386,13 @@ def scrape_from_set_url(set_url: str, set_code: str | None):
         driver = create_driver()
         try:
             card_obj = DuelMastersCardWikiScraper(driver).scrape_card(url)
-            if card_obj:
+            if card_obj and card_obj.get('cards'):
                 batch.append(card_obj)
                 scraped += 1
                 forms = [c.get('name', '?') for c in card_obj.get('cards', [])]
                 print(f"    -> {' / '.join(forms)}")
             else:
-                print(f"    -> no data returned")
+                print(f"    -> no card data parsed")
                 failed.append(url)
         except Exception as e:
             print(f"    -> ERROR: {e}")
