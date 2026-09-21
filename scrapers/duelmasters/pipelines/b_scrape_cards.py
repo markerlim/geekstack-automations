@@ -45,21 +45,59 @@ def fetch_with_retry(url: str, max_retries: int = 3, timeout: int = 30):
     raise last_exc
 
 
+# Symbol folds for chars that render identically but are distinct codepoints
+# (NFKC does not fold them). Verified against gap-cards missed in earlier runs:
+# ∑龍 (takaratomy U+2211) vs Σ龍 (wiki U+03A3), ×マドギワ親父 (U+00D7) vs
+# ✕マドギワ親父 (wiki U+2715).
+_SYMBOL_FOLD = {'∑': 'Σ', '✕': '×', '☓': '×'}
+# Simplified ↔ traditional kanji + katakana spellings of Greek letters
+# (mirrors datacleaning/clean_duelmasters_with_wiki.py, verified collision-safe).
+_KANJI_FOLD = {'竜': '龍'}
+_GREEK_KATA = {
+    'デルタ': 'Δ', 'アルファ': 'Α', 'ベータ': 'Β',
+    'ガンマ': 'Γ', 'カイ': 'Χ',
+    'イプシロン': 'Ε', 'ゼータ': 'Ζ',
+}
+# All dash/wave variants → '-' (wiki and takaratomy disagree on dash forms).
+_DASH_VARIANTS_RE = re.compile(r'[ー~\-–—]')
+# Small kana → regular kana; hiragana → katakana.
+_SMALL_TO_BIG = str.maketrans({
+    'ァ': 'ア', 'ィ': 'イ', 'ゥ': 'ウ', 'ェ': 'エ', 'ォ': 'オ',
+    'ャ': 'ヤ', 'ュ': 'ユ', 'ョ': 'ヨ', 'ヮ': 'ワ',
+    'ぁ': 'あ', 'ぃ': 'い', 'ぅ': 'う', 'ぇ': 'え', 'ぉ': 'お',
+    'ゃ': 'や', 'ゅ': 'ゆ', 'ょ': 'よ', 'ゎ': 'わ',
+})
+_HIRA_TO_KATA = str.maketrans({chr(c): chr(c + 0x60) for c in range(0x3041, 0x3097)})
+
+
 def normalize_jp_name(s: str) -> str:
     """Normalize a JP card name for cross-source matching.
 
     Wiki and takaratomy use inconsistent variants — NFKC handles fullwidth↔
-    halfwidth (covers ＝→=, ～→~, etc.) but not wave dash (U+301C) or quote
-    chars, which we fold manually.
+    halfwidth (covers ＝→=, ～→~, etc.) but not wave dash (U+301C), quote
+    chars, kana width, or symbol lookalikes (∑/Σ, ×/✕), which we fold manually.
     """
     if not s:
         return ''
     s = unicodedata.normalize('NFKC', s)
+    for k, v in _SYMBOL_FOLD.items():
+        s = s.replace(k, v)
+    for k, v in _KANJI_FOLD.items():
+        s = s.replace(k, v)
+    for k, v in _GREEK_KATA.items():
+        s = s.replace(k, v)
     s = s.replace('〜', '~')
     s = (s.replace('“', '"').replace('”', '"')
            .replace('‘', "'").replace('’', "'"))
+    # Strip quote chars entirely — DM and wiki disagree on whether tags are
+    # quoted (`ラウド NYZ` vs `ラウド "NYZ"`), and backtick vs apostrophe.
+    s = s.replace('"', '').replace("'", '').replace('`', '')
     # Fold separator dots: wiki tends to use ASCII '.', takaratomy uses '・' or '·'
     s = s.replace('・', '.').replace('·', '.').replace('•', '.')
+    # Fold dash/wave variants used as subtitle brackets.
+    s = _DASH_VARIANTS_RE.sub('-', s)
+    s = s.translate(_SMALL_TO_BIG)
+    s = s.translate(_HIRA_TO_KATA)
     return s.replace(' ', '').replace('　', '').casefold()
 
 def _build_chrome_options():

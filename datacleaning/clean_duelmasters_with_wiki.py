@@ -74,6 +74,9 @@ LATIN_ONLY_RE = re.compile(r'[\x00-\x7F\s]+')
 # add zero new wiki-side collision groups and zero reroutes of already-matched
 # DM cards under the existing dataset.
 _KANJI_FOLD = {'竜': '龍'}                       # simplified ↔ traditional
+# Symbol lookalikes NFKC does not fold (gap-cards missed in earlier runs:
+# ∑龍 takaratomy U+2211 vs Σ龍 wiki U+03A3; × U+00D7 vs ✕ U+2715).
+_SYMBOL_FOLD = {'∑': 'Σ', '✕': '×', '☓': '×'}
 _GREEK_KATA = {                                  # katakana spelling ↔ Greek letter
     'デルタ': 'Δ', 'アルファ': 'Α', 'ベータ': 'Β',
     'ガンマ': 'Γ', 'カイ': 'Χ',
@@ -97,6 +100,8 @@ def normalize_jp_name(s: str) -> str:
     if not s:
         return ''
     s = unicodedata.normalize('NFKC', s)
+    for k, v in _SYMBOL_FOLD.items():
+        s = s.replace(k, v)
     for k, v in _KANJI_FOLD.items():
         s = s.replace(k, v)
     for k, v in _GREEK_KATA.items():
