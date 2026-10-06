@@ -818,6 +818,9 @@ def _tab_scroller_box(root: ET.Element) -> tuple[int, int, int, int] | None:
     return None
 
 
+_EDGE_SAFE_X = 120     # clear of the gesture-nav back zone (24dp @ 440dpi ~= 66px)
+
+
 def _swipe_tab_bar(root: ET.Element, direction: str):
     """Scroll the tab bar. "left" reveals tabs off the RIGHT edge
     (现场活动, PR, 其他 & 周边); "right" reveals tabs off the LEFT edge
@@ -825,10 +828,13 @@ def _swipe_tab_bar(root: ET.Element, direction: str):
     gesture never touches the 分类 button beyond its right edge."""
     box = _tab_scroller_box(root)
     if box:
-        lo, hi = box[0] + 40, box[2] - 40
+        # The scroller starts at x=0, and with gesture navigation a drag that
+        # begins in the ~66px screen-edge zone is the system BACK gesture --
+        # a few of those back straight out of the app to the launcher.
+        lo, hi = max(box[0] + 40, _EDGE_SAFE_X), box[2] - 40
         y = (box[1] + box[3]) // 2
     else:
-        lo, hi, y = 60, 800, _tab_row_y(root)
+        lo, hi, y = _EDGE_SAFE_X, 800, _tab_row_y(root)
     x1, x2 = (hi, lo) if direction == "left" else (lo, hi)
     _adb("shell", "input", "swipe", str(x1), str(y), str(x2), str(y), "300", check=True)
     time.sleep(0.6)
@@ -864,7 +870,11 @@ def _guess_sweep_order(root: ET.Element, tab_text: str) -> list[str]:
     not just at the leftmost start -- so a fixed "always sweep left first"
     guess walks AWAY from the target whenever it resumes right of it."""
     target = _ANY_TAB.index(tab_text)
-    visible = [_ANY_TAB.index(t) for t in _ANY_TAB if find_tab_bounds(root, t)]
+    # 分类 is the fixed categoryBtn, always on screen past the scroller's
+    # right edge -- counting it made every off-screen tab (PR) look like it
+    # sat to the LEFT, so the sweep walked the wrong way.
+    visible = [_ANY_TAB.index(t) for t in _ANY_TAB
+               if t != "分类" and find_tab_bounds(root, t)]
     if visible and max(visible) > target:
         return ["right"] * 8 + ["left"] * 10   # target sits to the left -> reveal it
     return ["left"] * 8 + ["right"] * 10        # default: target sits to the right (or unknown)
