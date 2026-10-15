@@ -31,6 +31,7 @@ import argparse
 import json
 import os
 import re
+from collections import Counter
 import shutil
 import subprocess
 import sys
@@ -165,9 +166,14 @@ def _relaunch_app(tries: int = 3, settle: float = 2.5) -> bool:
 
 def _kill_ondevice_uiautomator() -> None:
     """A wedged on-device uiautomator server never recovers on its own and
-    hangs every subsequent `dump`. Kill it so the next call re-spawns."""
-    _adb("shell", "pkill", "-f", "uiautomator", check=False,
-         capture_output=True, timeout=8)
+    hangs every subsequent `dump`. Kill it so the next call re-spawns.
+    Best-effort: on a loaded host the pkill itself can time out, and that
+    used to escape adb_dump()'s own except and crash the whole chunk."""
+    try:
+        _adb("shell", "pkill", "-f", "uiautomator", check=False,
+             capture_output=True, timeout=8)
+    except (subprocess.SubprocessError, OSError):
+        pass
 
 
 def adb_dump(retries: int | None = None) -> str:
@@ -413,6 +419,7 @@ _AD_CLOSE_RID_TOKENS = ("ivclose", "iv_close", "closeiv", "close_iv", "btnclose"
                         "dialogclose", "dialog_close", "imgclose", "img_close",
                         "iconclose", "icon_close", "close")
 _AD_CLOSE_LABELS = ("关闭", "跳过", "关闭广告", "close", "skip", "✕", "×", "x")
+_AD_CLOSE_MAX_W = 200
 
 
 def _find_ad_close_bounds(root: ET.Element) -> str | None:
@@ -423,7 +430,10 @@ def _find_ad_close_bounds(root: ET.Element) -> str | None:
             return n.get("bounds")
     for n in root.iter("node"):
         label = (n.get("text", "") or n.get("content-desc", "")).strip().lower()
-        if label in _AD_CLOSE_LABELS and n.get("bounds"):
+        # icon-sized only: a card NAMED "X" (SMD-1-041) is a ~270px-wide
+        # grid label, and tapping it as an ad close opened the card instead
+        if label in _AD_CLOSE_LABELS and n.get("bounds") \
+                and _bounds_width(n.get("bounds")) <= _AD_CLOSE_MAX_W:
             return n.get("bounds")
     return None
 
@@ -1059,6 +1069,11 @@ def scrape_current_set_price_grid(set_code: str, max_idle_swipes: int = 8) -> li
         prev_keys = cur_keys
         swipe_up_page()
         swipes += 1
+        if swipes % 10 == 0:
+            # heartbeat: rows only hit disk when the set finishes, so without
+            # this a slow-but-healthy set looks frozen to the orchestrator's
+            # watchdog and gets killed mid-scrape
+            print(f"    ... {len(seen)} cards so far ({swipes} swipes)", flush=True)
         time.sleep(_SETTLE_S)
     if not hit_bottom and idle_streak >= max_idle_swipes:
         print(f"    stopped on {idle_streak} idle swipes (no end marker seen) "
@@ -1123,10 +1138,21 @@ def merge_union(inputs: list[str], canonical: str) -> tuple[int, int]:
     (prices move). Output is sorted deterministically and written atomically.
     Returns (rows_before, rows_after)."""
     before = len(_load_rows(canonical))
+    if not _EXPECT:
+        _load_expectations()
     merged: dict = {}
+    dropped = 0
     for path in [canonical, *sorted(inputs)]:
         for row in _load_rows(path):
+            # never let a misclicked / stale-grid row (another set's cards
+            # under this code) back in -- old run snapshots still carry some
+            want = (_EXPECT.get(row.jhs_code) or (None, 0))[0]
+            if want and _card_prefix(row.cardId) != want:
+                dropped += 1
+                continue
             merged[_MERGE_KEY(row)] = row
+    if dropped:
+        print(f"  merge: dropped {dropped} row(s) filed under the wrong set code", flush=True)
     out = sorted(merged.values(), key=_SORT_KEY)
     _atomic_write_json(canonical, [asdict(r) for r in out])
     return before, len(out)
@@ -1403,6 +1429,41 @@ def open_set(tab_text: str, code: str, max_swipes: int = 90, known_codes=None):
     return got
 
 
+# {set code: (dominant card-id prefix or None, rows last time)} from the
+# canonical file -- lets _scrape_one() spot a grid that belongs to another set
+# (stale grid still showing while the new one loads, or a misclick) and a set
+# that ended far short of what it had before. Filled by main().
+_EXPECT: dict[str, tuple[str | None, int]] = {}
+_CANONICAL = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "union_arena_boosters_all_sets.json")
+_PARTIAL_RATIO = 0.7     # fewer than this share of last time's rows = partial
+
+
+def _card_prefix(card_id: str) -> str:
+    return re.split(r"[-(\[]", card_id or "", maxsplit=1)[0].strip()
+
+
+def _load_expectations(path: str = _CANONICAL) -> None:
+    by_code: dict[str, Counter] = {}
+    for r in _load_rows(path):
+        by_code.setdefault(r.jhs_code, Counter())[_card_prefix(r.cardId)] += 1
+    for code, c in by_code.items():
+        suffix = code.split("/")[-1] if "/" in code else None
+        if suffix and c.get(suffix):
+            # X/YYY sets hold YYY-* cards; rows with other prefixes in the
+            # canonical are leftovers of earlier misclicks -- don't count them
+            _EXPECT[code] = (suffix, c[suffix])
+            continue
+        total = sum(c.values())
+        top, n = c.most_common(1)[0]
+        # otherwise only enforce a prefix when the set is essentially
+        # single-series (bare UAPR / event sets span many prefixes). The
+        # partial baseline is the dominant series either way: the total
+        # counts misclick leftovers (UA48ST: 27 KGD + 14 strays) and flagged
+        # a complete scrape as PARTIAL.
+        _EXPECT[code] = (top if top and n / total >= 0.8 else None, n)
+
+
 def _scrape_one(tab_text: str, code: str, codes: list[str],
                 all_rows: list[CardRow], visited_codes: set[str], out_path: str) -> str:
     """Open + scrape one set. Returns an outcome tag:
@@ -1435,7 +1496,7 @@ def _scrape_one(tab_text: str, code: str, codes: list[str],
     # the revisit pass retry -- otherwise those rows get saved under the wrong
     # jhs_code (this is how 27 IMC cards ended up tagged UA21BT/YYH).
     want = code.split("/")[-1] if "/" in code else None
-    if want:
+    if want and not (_EXPECT.get(code) or (None, 0))[0]:
         try:
             first = parse_price_grid(get_root(adb_dump()))
         except RuntimeError:
@@ -1457,7 +1518,29 @@ def _scrape_one(tab_text: str, code: str, codes: list[str],
         _safe_recover()
         return "error"
 
+    # The grid is below the fold right after opening, so check what was
+    # actually scraped: rows of another set are a stale grid (still showing
+    # the previous set while this one loads) or a misclick.
+    exp = (_EXPECT.get(code) or (None, 0))[0]
+    if exp and rows:
+        good = [r for r in rows if _card_prefix(r.cardId) == exp]
+        if len(good) < len(rows) / 2:
+            seen_pfx = Counter(_card_prefix(r.cardId) for r in rows).most_common(2)
+            print(f"    !! {code}: grid held {seen_pfx} cards, expected {exp!r} "
+                  f"(stale grid or wrong set) -- not saving", flush=True)
+            _safe_recover()
+            return "no_grid"
+        if len(good) < len(rows):
+            print(f"    dropped {len(rows) - len(good)} stale row(s) of another set",
+                  flush=True)
+            rows = good
     print(f"    -> {len(rows)} cards", flush=True)
+    last_n = (_EXPECT.get(code) or (None, 0))[1]
+    if last_n >= 20 and len(rows) < _PARTIAL_RATIO * last_n:
+        print(f"    !! {code}: PARTIAL -- {len(rows)} cards vs {last_n} last time; "
+              f"not counting it as captured", flush=True)
+        _safe_recover()
+        return "partial"
     all_rows.extend(rows)
     visited_codes.add(code)
     save(all_rows, out_path)
@@ -1843,6 +1926,15 @@ def _wait_network(serial: str, timeout_s: float = 75) -> bool:
     return False
 
 
+def clear_proxy(serial: str | None) -> None:
+    """The jp_library snapshot carried a global http_proxy (10.0.2.2:8081,
+    from an old traffic-capture session) with nothing listening behind it --
+    any request that honours it hangs. Clear it on every boot."""
+    pfx = _adb_pfx(serial) if serial else ADB
+    subprocess.run([*pfx, "shell", "settings", "put", "global", "http_proxy", ":0"],
+                   check=False, capture_output=True, timeout=15)
+
+
 def ensure_emulator_instance(avd: str, apk: str | None, console_port: int, *,
                              snapshot: str | None = None, boot_timeout: float = 300,
                              no_window: bool = False, net_retries: int = 1) -> str:
@@ -1873,6 +1965,7 @@ def ensure_emulator_instance(avd: str, apk: str | None, console_port: int, *,
             raise RuntimeError(f"{serial} didn't finish booting in {boot_timeout:.0f}s")
         time.sleep(3)
         subprocess.run([*_adb_pfx(serial), "shell", "input", "keyevent", "82"], check=False)
+        clear_proxy(serial)
         if _wait_network(serial):
             print(f"[{serial}] booted, network up", flush=True)
             break
@@ -1954,6 +2047,7 @@ def main():
     if args.serial:
         global ADB
         ADB = ["adb", "-s", args.serial]
+    _load_expectations()
 
     if args.merge:
         before, after = merge_union(args.merge_inputs, args.canonical)

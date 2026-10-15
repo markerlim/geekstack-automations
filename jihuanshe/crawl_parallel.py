@@ -47,6 +47,10 @@ import crawl_union_arena_all_sets as C
 HERE = os.path.dirname(os.path.abspath(__file__))
 CRAWLER = os.path.join(HERE, "crawl_union_arena_all_sets.py")
 
+# missed-set placeholder for a tab whose strip never enumerated and had no
+# fallback list -- a targeted retry drops it so JOB 1 re-enumerates the tab.
+ENUM_FAILED = "<strip not enumerated>"
+
 # stable, filesystem-friendly names for the per-tab output files
 TAB_SLUG = {"补充包": "booster", "构筑": "structure", "现场活动": "event", "PR": "pr", "其他＆周边":"others"}
 
@@ -155,7 +159,7 @@ def _spawn_watched(tag: str, cmd: list[str], outp: str, args,
         last_rows = before
         last_progress = time.monotonic()
         warmup = t + (warmup_s if warmup_s is not None
-                      else max(args.stall_timeout * 2, 900))
+                      else max(args.row_stall_timeout, 900))
         while p.poll() is None:
             time.sleep(20)
             if track_rows:
@@ -164,7 +168,7 @@ def _spawn_watched(tag: str, cmd: list[str], outp: str, args,
                     last_rows, last_progress = rows, time.monotonic()
             no_progress = time.monotonic() - last_progress
             frozen = time.monotonic() - activity[0]
-            row_stall = (track_rows and no_progress >= args.stall_timeout
+            row_stall = (track_rows and no_progress >= args.row_stall_timeout
                          and time.monotonic() > warmup)
             if row_stall or frozen >= args.stall_timeout:
                 killed.set()
@@ -226,8 +230,17 @@ def build_parser() -> argparse.ArgumentParser:
     ap.add_argument("--canonical", default="union_arena_boosters_all_sets.json")
     ap.add_argument("--boot-timeout", type=float, default=300)
     ap.add_argument("--stall-timeout", type=float, default=480,
-                    help="kill+recover a worker with no stdout AND no output-file growth "
-                         "for this many seconds (degraded emulator)")
+                    help="kill+recover a worker whose stdout is fully frozen for this "
+                         "many seconds (degraded emulator)")
+    ap.add_argument("--row-stall-timeout", type=float, default=1800,
+                    help="kill+recover a worker that saved no new card row for this many "
+                         "seconds. Rows only land when a whole set finishes, and a deep "
+                         "set (strip sweep + ~130-card grid) was measured at ~17 min, so "
+                         "this must sit well above one set's time")
+    ap.add_argument("--fallback-manifest", default=None,
+                    help="JSON {tab: [codes]} of the last good enumeration. A tab whose "
+                         "strip fails to enumerate is scraped from this list instead of "
+                         "being dropped; refreshed after every successful enumeration")
     ap.add_argument("--boot-stagger", type=float, default=20,
                     help="seconds between starting each emulator "
                          "(concurrent starts break one instance's networking)")
@@ -259,7 +272,9 @@ def run(args) -> dict:
     total_secs."""
     os.makedirs(args.out_dir, exist_ok=True)
     tabs = list(args.tabs)
-    n_slots = min(max(1, args.workers), len(tabs))
+    # JOB 2 queues individual sets, so several slots can share one tab --
+    # don't cap the emulator count at the number of tabs.
+    n_slots = max(1, args.workers)
     ports = [args.base_port + 2 * i for i in range(n_slots)]
     preflight(ports, args.avd)
 
@@ -334,6 +349,10 @@ def run(args) -> dict:
         except (FileNotFoundError, json.JSONDecodeError):
             manifest = {}
     enum_queue = [t for t in tabs if not manifest.get(t)]
+    enumerated_now: dict[str, list[str]] = {}   # fresh, complete strips only
+    enum_tries: dict[str, int] = {}
+    ENUM_MAX_TRIES = 4      # then fall back to the last good list (below) --
+                            # an unbounded re-queue once burned hours on PR
     if enum_queue:
         print(f"[orchestrator] JOB 1: enumerating {enum_queue}", flush=True)
 
@@ -369,12 +388,19 @@ def run(args) -> dict:
                 with q_lock:
                     if got:
                         manifest[tab] = got
+                        enumerated_now[tab] = got
                         C._atomic_write_json(manifest_path, manifest)
                         print(f"[orchestrator] JOB 1: {tab} -> {len(got)} sets", flush=True)
                     else:
-                        print(f"[orchestrator] JOB 1: {tab} enumeration FAILED "
-                              f"(rc={rc}) -- re-queueing", flush=True)
-                        enum_queue.append(tab)
+                        enum_tries[tab] = enum_tries.get(tab, 0) + 1
+                        if enum_tries[tab] < ENUM_MAX_TRIES:
+                            print(f"[orchestrator] JOB 1: {tab} enumeration FAILED "
+                                  f"(rc={rc}, try {enum_tries[tab]}/{ENUM_MAX_TRIES}) "
+                                  f"-- re-queueing", flush=True)
+                            enum_queue.append(tab)
+                        else:
+                            print(f"[orchestrator] JOB 1: {tab} enumeration FAILED "
+                                  f"{ENUM_MAX_TRIES}x -- giving up on its strip", flush=True)
                 if not got and can_reboot and reboots[0] < 6:
                     reboots[0] += 1
                     _reboot(serial, port)
@@ -385,6 +411,33 @@ def run(args) -> dict:
             th.start()
         for th in threads:
             th.join()
+    # a tab whose strip never enumerated: scrape it from the last good list
+    # rather than silently dropping it (PR's tab-bar swipe is the usual
+    # failure, and a dropped tab used to vanish from missed.json entirely).
+    fallback: dict[str, list[str]] = {}
+    if args.fallback_manifest:
+        try:
+            with open(args.fallback_manifest, "r", encoding="utf-8") as f:
+                fallback = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            fallback = {}
+        if enumerated_now:
+            C._atomic_write_json(args.fallback_manifest, {**fallback, **enumerated_now})
+    unenumerated: list[str] = []
+    for t in tabs:
+        if manifest.get(t):
+            continue
+        if fallback.get(t):
+            manifest[t] = list(fallback[t])
+            print(f"[orchestrator] JOB 1: {t} never enumerated -- using the last good "
+                  f"list ({len(manifest[t])} sets; new sets on this tab won't be "
+                  f"picked up today)", flush=True)
+        else:
+            unenumerated.append(t)
+            print(f"[orchestrator] JOB 1: {t} never enumerated and no fallback list "
+                  f"-- reporting it missing", flush=True)
+    if any(t not in enumerated_now and manifest.get(t) for t in tabs):
+        C._atomic_write_json(manifest_path, manifest)   # crawler reads --manifest
     tabs = [t for t in tabs if manifest.get(t)]
     print(f"[orchestrator] manifest: "
           f"{ {t: len(manifest[t]) for t in tabs} }", flush=True)
@@ -560,8 +613,14 @@ def run(args) -> dict:
         results["counts"][t][1] = len(C._load_rows(outp_by_tab[t]))
         leftover = {c: "unclaimed" for c in pending.get(t, [])}
         results["missed"][t] = {**_read_missed(outp_by_tab[t]), **gave_up[t], **leftover}
-        if results["missed"][t]:
-            results["rc"][t] = results["rc"][t] or 1
+        # a chunk that crashed / was stall-killed is re-queued, so the tab's
+        # final status is whether anything is STILL missing -- not the worst
+        # chunk exit code (that used to block the merge of a fully captured run)
+        results["rc"][t] = 1 if results["missed"][t] else 0
+
+    for t in unenumerated:
+        results["missed"][t] = {ENUM_FAILED: "enumeration_failed"}
+        results["rc"][t] = 1
 
     if args.merge:
         inputs = [outp_by_tab[t] for t in tabs if os.path.exists(outp_by_tab[t])]

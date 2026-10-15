@@ -309,6 +309,7 @@ def _build_p_args(*, tabs, snapshot, out_dir, seed_flag, game_snapshot,
         "--canonical", snapshot,
         "--out-dir", out_dir,
         "--boot-timeout", str(args.boot_timeout),
+        "--fallback-manifest", os.path.join(_runs_dir(args.game), "last_manifest.json"),
         seed_flag,
     ]
     if args.chunk:
@@ -361,6 +362,10 @@ def _prep_targeted(targets: dict, work: str, snapshot: str,
     scratch = os.path.join(work, "_targeted")
     shutil.rmtree(scratch, ignore_errors=True)
     os.makedirs(scratch, exist_ok=True)
+    # a tab that failed to enumerate carries only a placeholder code; leave
+    # its list empty so JOB 1 re-enumerates it instead of hunting the
+    # placeholder on the strip.
+    targets = {t: [c for c in codes if c != P.ENUM_FAILED] for t, codes in targets.items()}
     C._atomic_write_json(_manifest_path(scratch), targets)
     if not os.path.exists(snapshot):
         prev = _latest_run_dir(game, exclude=exclude_run_date)
@@ -580,20 +585,9 @@ def main() -> None:
         r_scratch = _prep_targeted(retry_targets, work, snapshot,
                                    args.game, live_canonical)
         r_tabs = list(retry_targets)
-        # Every set reaching auto-retry already failed once under the main
-        # pass's --workers concurrency -- 2 workers means 2 emulators sharing
-        # host RAM/CPU, and a tab needing tab-bar swipes (PR is the classic
-        # case) degrades badly under that contention: swipes get dropped or
-        # mistimed, the app gets knocked off-screen, and recovering means a
-        # full cold restart, which is itself slow under the same contention --
-        # a death spiral that just re-fails the identical sets every pass (see
-        # --workers help text; this used to need `--workers 1` typed by hand
-        # after the fact). Auto-retry has far fewer sets left than the main
-        # pass, so the throughput lost by going to 1 worker here is small --
-        # drop to it automatically instead of repeating a known-bad config.
         r_pargs = _build_p_args(tabs=r_tabs, snapshot=snapshot, out_dir=r_scratch,
                                 seed_flag="--no-seed", game_snapshot=g["snapshot"],
-                                args=args, re_enumerate=False, workers=1)
+                                args=args, re_enumerate=False)
         res = P.run(r_pargs)
         ok, still_missing = _finalize(tabs=r_tabs, res=res,
                                       mode_label=f"{mode_label}+retry{passes}", **_fin)
@@ -618,7 +612,7 @@ def main() -> None:
         print(f">>> {total} set(s) still missing after {passes} auto-retr"
               f"{'y' if passes == 1 else 'ies'}: {still_missing}", flush=True)
         print(f">>> manual retry:  python main.py {args.game} --retry "
-              f"--categories {' '.join(cats)} --workers 1", flush=True)
+              f"--categories {' '.join(cats)}", flush=True)
         if not args.resume:
             print(f">>> or resume:     python main.py {args.game} --resume", flush=True)
     raise SystemExit(0 if ok else 1)

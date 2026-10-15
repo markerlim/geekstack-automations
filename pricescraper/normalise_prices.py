@@ -98,8 +98,19 @@ def _resolve_jhs() -> str:
         status = json.load(open(os.path.join(os.path.dirname(snap), "status.json"))) \
             if os.path.exists(os.path.join(os.path.dirname(snap), "status.json")) else None
         if status is None:
-            print(f"  note: {snap} has no status.json (pre-guard run) -- using it")
-            return snap
+            # a run that never wrote status.json (crashed / killed mid-run, or
+            # a targeted retry that died) is not known to be clean -- using it
+            # once pinned prices to a weeks-old partial retry snapshot
+            print(f"  skip: {os.path.dirname(snap)} has no status.json -- not a known-clean run")
+            continue
+        mode = str(status.get("mode", ""))
+        if status.get("ok") and not mode.split("+")[0] in ("daily", "fresh", "resume"):
+            # a --retry / --sets run's snapshot is seeded from an earlier
+            # (possibly incomplete) run, so it isn't a full picture -- its
+            # results were merged into the canonical, which is newer anyway
+            print(f"  skip: {os.path.dirname(snap)} is a targeted '{mode}' run, "
+                  f"not a full scrape")
+            continue
         if status.get("ok"):
             return snap
         print(f"  skip: {os.path.dirname(snap)} run was incomplete "

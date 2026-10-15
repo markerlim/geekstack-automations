@@ -139,6 +139,7 @@ def main() -> int:
               file=sys.stderr)
         _kill()
         return 1
+    C.clear_proxy(SERIAL)          # never bake a dead proxy into the snapshot
     print("on the card-library screen -- saving snapshot", flush=True)
 
     # 4. persist it.
