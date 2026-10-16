@@ -6,7 +6,10 @@ import json
 from PIL import Image
 from service.googlecredentials import get_google_credentials
 
-def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geekstack.dev", skip_if_exists=True):
+def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geekstack.dev", skip_if_exists=True,
+                        rotate_landscape=False):
+    """rotate_landscape: turn a landscape image 90 degrees clockwise before saving
+    (Riftbound battlefields are stored portrait, title reading top to bottom)."""
 
     try:
         # Get credentials and setup GCS client early to check for existing file
@@ -58,6 +61,8 @@ def upload_image_to_gcs(image_url, filename, filepath, bucket_name="images.geeks
 
         # Convert to WebP
         image = Image.open(temp_file_path).convert("RGBA")
+        if rotate_landscape and image.width > image.height:
+            image = image.rotate(-90, expand=True)   # clockwise
         with tempfile.NamedTemporaryFile(delete=False, suffix=".webp") as webp_file:
             image.save(webp_file.name, format="WEBP")
             webp_file_path = webp_file.name

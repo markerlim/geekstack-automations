@@ -336,7 +336,8 @@ def extract_card_data(driver, card_code, booster):
                     card_data['urlimage'] = upload_image_to_gcs(
                         image_url=src_clean,
                         filename=card_code,
-                        filepath=f'riftbound/{booster}/'
+                        filepath=f'riftbound/{booster}/',
+                        rotate_landscape=True  # battlefields arrive landscape; store portrait like the other sets
                     )
                 except Exception as e:
                     print(f"    ⚠️ Failed to upload image: {str(e)}")
