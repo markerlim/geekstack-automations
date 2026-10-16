@@ -1,70 +1,18 @@
 [
   {
-    "cardName": "∑龍",
-    "cardNameJP": "∑龍(DM26RP3 ㊙1/㊙24)",
+    "cardName": "堕ちし龍魂珠",
+    "cardNameJP": "堕ちし龍魂珠(DM26EX4 49/99)",
+    "civilization": [
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "幽傀 マグナム",
+    "cardNameJP": "幽傀 マグナム(DM26EX4 64/99)",
     "civilization": [
       "Darkness"
     ],
-    "type": "Creature"
-  },
-  {
-    "cardName": "∑龍",
-    "cardNameJP": "∑龍(DM26RP3 OR1/OR1)",
-    "civilization": [
-      "Darkness"
-    ],
-    "type": "Creature"
-  },
-  {
-    "cardName": "「正義と正義と正義と正義」",
-    "cardNameJP": "「正義と正義と正義と正義」(DM26RP3 ㊙8/㊙24)",
-    "civilization": [
-      "Light",
-      "Water",
-      "Darkness"
-    ],
-    "type": "Creature"
-  },
-  {
-    "cardName": "「正義と正義と正義と正義」",
-    "cardNameJP": "「正義と正義と正義と正義」(DM26RP3 S7/S11)",
-    "civilization": [
-      "Light",
-      "Water",
-      "Darkness"
-    ],
-    "type": "Creature"
-  },
-  {
-    "cardName": "鉄初逆夢 ザ・ウィニー",
-    "cardNameJP": "鉄初逆夢 ザ・ウィニー (DM26RP3 28/77)",
-    "civilization": [
-      "Light"
-    ],
-    "type": "Creature"
-  },
-  {
-    "cardName": "×マドギワ親父",
-    "cardNameJP": "×マドギワ親父(DM26RP3 38/77)",
-    "civilization": [
-      "Darkness"
-    ],
-    "type": "Creature"
-  },
-  {
-    "cardName": "ビーチボーイズ・Ⅱ・メン",
-    "cardNameJP": "ビーチボーイズ・Ⅱ・メン(DM26RP3 60/77)",
-    "civilization": [
-      "Water"
-    ],
-    "type": "Creature"
-  },
-  {
-    "cardName": "バイナラベーター",
-    "cardNameJP": "バイナラベーター(DM26RP3 62/77)",
-    "civilization": [
-      "Darkness"
-    ],
-    "type": "Creature"
+    "type": "Orega Aura"
   }
 ]
