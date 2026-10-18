@@ -30,6 +30,8 @@ UPDATE_CARDS_PATH = project_root / "duelmasterdb" / "update.json"
 WIKI_SETS_PATH = project_root / "duelmasterdb" / "wiki_sets.json"
 WIKI_BASE = "https://duelmasters.fandom.com"
 UPLOAD_BATCH_SIZE = 10
+# Bump when the wiki text format changes; --rescrape redoes every doc below this.
+SCRAPE_FORMAT_VERSION = 2
 
 # Known non-card wiki page paths (lowercase, for exact skip check)
 NON_CARD_WIKI_PATHS = {
@@ -106,6 +108,14 @@ NON_CARD_WIKI_PATHS = {
     "rock-paper-scissors", "ten_kings",
 }
 
+# MediaWiki / Fandom namespace prefixes (lowercase) that are never card pages.
+NON_CARD_NAMESPACES = {
+    "category", "file", "template", "special", "help", "user", "talk", "forum",
+    "mediawiki", "module", "blog", "message_wall", "thread", "board", "project",
+    "duelmasters_wiki", "duel_masters_wiki", "fandom", "user_blog", "gadget",
+    "image", "media", "portal", "draft",
+}
+
 USER_AGENTS = [
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.6167.85 Safari/537.36",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.94 Safari/537.36",
@@ -141,7 +151,9 @@ def is_card_path(path: str) -> bool:
     would otherwise be re-scraped on every run.
     """
     path = path.lower()
-    if ':' in path:
+    # Only real wiki namespaces are non-cards. A bare ':' is NOT enough: real
+    # card names contain one (Energy Re:Light, A:Enu:Makua, Ga:Nateha, ...).
+    if ':' in path and path.split(':', 1)[0] in NON_CARD_NAMESPACES:
         return False
     if path.endswith('_(battle_card)') or path.endswith(' (battle card)'):
         return False
@@ -236,6 +248,84 @@ def flush_batch(mongo_service, batch):
         print(f"  Uploading {len(batch)} cards to MongoDB...")
         mongo_service.upload_data(batch, WIKI_COLLECTION)
         batch.clear()
+
+
+def get_current_format_urls(mongo_service):
+    """URLs already scraped with the current text format (skipped by --rescrape)."""
+    collection = mongo_service._get_collection(WIKI_COLLECTION)
+    return {d["url"] for d in collection.find(
+        {"scrape_format": {"$gte": SCRAPE_FORMAT_VERSION}, "cards.0": {"$exists": True}}, {"url": 1})}
+
+
+def upsert_batch(mongo_service, batch):
+    """Replace each doc in place by url (keeps its _id); inserts if it is new."""
+    if not batch:
+        return
+    from pymongo import ReplaceOne
+    collection = mongo_service._get_collection(WIKI_COLLECTION)
+    result = collection.bulk_write(
+        [ReplaceOne({"url": d["url"]}, d, upsert=True) for d in batch], ordered=False)
+    print(f"  Upserted {len(batch)} docs (matched {result.matched_count}, new {result.upserted_count})")
+    batch.clear()
+
+
+def _scrape_one(url):
+    """Scrape a single url with its own driver. Returns (url, card_obj | None, error | None)."""
+    driver = None
+    try:
+        driver = create_driver()
+        card_obj = DuelMastersCardWikiScraper(driver).scrape_card(url)
+        if card_obj and card_obj.get('cards'):
+            card_obj['scrape_format'] = SCRAPE_FORMAT_VERSION
+            return url, card_obj, None
+        return url, None, "no card data parsed"
+    except Exception as e:
+        return url, None, str(e)
+    finally:
+        try:
+            if driver:
+                driver.quit()
+        except Exception:
+            pass
+
+
+def rescrape_all(limit=None, workers=1):
+    """Re-scrape every wiki card page and replace its doc in place.
+
+    Resumable: docs already tagged with the current SCRAPE_FORMAT_VERSION are
+    skipped. A page that fails to scrape leaves its existing doc untouched.
+    """
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    with open(UNIQUE_CARDS_PATH, encoding='utf-8') as f:
+        all_urls = [u for u in json.load(f)['urls'] if is_card_path(u.replace(WIKI_BASE + "/wiki/", ""))]
+
+    mongo_service = MongoService()
+    done = get_current_format_urls(mongo_service)
+    todo = [u for u in all_urls if u not in done]
+    if limit:
+        todo = todo[:limit]
+    print(f"Card URLs: {len(all_urls)} | already current format: {len(done)} | to rescrape: {len(todo)} | workers: {workers}")
+
+    batch, failed, ok = [], [], 0
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = [pool.submit(_scrape_one, u) for u in todo]
+        for i, fut in enumerate(as_completed(futures), 1):
+            url, obj, err = fut.result()
+            if obj:
+                batch.append(obj)
+                ok += 1
+                print(f"[{i}/{len(todo)}] {' / '.join(c.get('name', '?') for c in obj['cards'])}")
+            else:
+                failed.append((url, err))
+                print(f"[{i}/{len(todo)}] FAILED {url}: {err}")
+            if len(batch) >= UPLOAD_BATCH_SIZE:
+                upsert_batch(mongo_service, batch)
+    upsert_batch(mongo_service, batch)
+
+    print(f"\nDone. Rescraped: {ok} | Failed: {len(failed)}")
+    for u, e in failed:
+        print(f"  {u}  ({e})")
 
 
 def scrape_bulk(limit=None):
@@ -423,9 +513,14 @@ if __name__ == "__main__":
     parser.add_argument('--test', action='store_true', help='Scrape only the first 3 cards')
     parser.add_argument('--set-url', type=str, help='Scrape cards from a specific wiki set page URL')
     parser.add_argument('--set-code', type=str, help='Set code for wiki_set_cards.json (auto-derived if omitted)')
+    parser.add_argument('--rescrape', action='store_true', help='Re-scrape ALL cards and replace docs in place (resumable)')
+    parser.add_argument('--workers', type=int, default=1, help='Parallel Chrome workers for --rescrape')
+    parser.add_argument('--limit', type=int, help='Max cards for --rescrape')
     args = parser.parse_args()
 
-    if args.set_url:
+    if args.rescrape:
+        rescrape_all(limit=args.limit, workers=args.workers)
+    elif args.set_url:
         scrape_from_set_url(args.set_url, args.set_code)
     else:
         scrape_bulk(limit=3 if args.test else None)

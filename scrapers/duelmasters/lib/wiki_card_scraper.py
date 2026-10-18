@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 from typing import Dict, Any
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,6 +15,12 @@ def _is_name_header_style(style: str) -> bool:
     white — so match either, or every page parses as zero cards.
     """
     return bool(style) and ('color: white' in style or 'color: black' in style)
+
+
+# Invisible format characters the wiki leaves in card text (U+200B zero-width
+# space, U+200E/F direction marks, U+2060-206F word joiner / shape controls such
+# as U+206F, U+FEFF BOM). U+200C/D joiners are kept.
+_INVISIBLE_CHARS = re.compile('[\u200b\u200e\u200f\u2060-\u206f\ufeff]')
 
 
 class DuelMastersCardWikiScraper:
@@ -40,45 +46,71 @@ class DuelMastersCardWikiScraper:
         
         return ' '.join(text_parts)
     
+    @staticmethod
+    def _image_token(img) -> str:
+        """`[Key]` for an inline <img>, from its data-image-key minus the extension.
+
+        e.g. data-image-key="Kirifudash.png" -> "[Kirifudash]". Falls back to
+        alt text when the key is missing; returns "" if neither is usable.
+        """
+        key = (img.get('data-image-key') or '').strip()
+        if key:
+            key = re.sub(r'\.[A-Za-z0-9]{2,5}$', '', key)
+        else:
+            key = (img.get('alt') or '').strip()
+        return f"[{key}]" if key else ""
+
+    _BLOCK_TAGS = {'p', 'div', 'ul', 'ol', 'li', 'table', 'tr', 'dl', 'dd', 'dt', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'}
+
     def extract_text_with_newlines(self, element) -> str:
-        """Extract text while preserving intentional newlines from <br> and <p> tags."""
+        """Extract text with one line per <br> / block element (<p>, <div>, <li>, ...).
+
+        Inline pieces on the same line (text nodes, links, <i>) are joined by a
+        single space. Inline icons (<img>) are kept as `[ImageKey]` tokens,
+        e.g. "[Blocker] Blocker". Works whether or not the cell wraps its first
+        line in a <p> (twinpact second forms often don't).
+        """
         if not element:
             return ""
-        
-        # Recursively extract text, treating <p> and <br> as separators
-        parts = []
-        for child in element.children:
-            if isinstance(child, str):
-                text = child.strip()
-                if text:
-                    parts.append(text)
-            elif getattr(child, 'name', None) == 'br':
-                parts.append('\n')
-            elif getattr(child, 'name', None) == 'p':
-                # Extract text from paragraph, add newline after
-                p_text = child.get_text(separator=' ').strip()
-                if p_text:
-                    parts.append(p_text)
-                    parts.append('\n')
-            else:
-                # Recurse into child elements, joining with space
-                inner_text = child.get_text(separator=' ').strip()
-                if inner_text:
-                    parts.append(inner_text)
-        
-        # Join parts
-        text = ''.join(parts)
-        
-        # Clean up excessive spaces within lines, but preserve newlines
-        lines = text.split('\n')
-        cleaned_lines = [' '.join(line.split()) for line in lines]  # Normalize spaces per line
-        text = '\n'.join(cleaned_lines)
-        
-        # Remove leading/trailing newlines
-        text = text.strip()
-        
-        return text
-    
+
+        lines = []
+        current = []
+
+        def flush():
+            line = ' '.join(' '.join(current).split())
+            current.clear()
+            if line:
+                lines.append(line)
+
+        def walk(node):
+            for child in node.children:
+                if isinstance(child, NavigableString):
+                    if type(child).__name__ in ('Comment', 'Doctype', 'CData'):
+                        continue
+                    text = _INVISIBLE_CHARS.sub('', str(child)).strip()
+                    if text:
+                        current.append(text)
+                    continue
+                name = getattr(child, 'name', None)
+                if name == 'br':
+                    flush()
+                elif name == 'img':
+                    token = self._image_token(child)
+                    if token:
+                        current.append(token)
+                elif name in ('script', 'style'):
+                    continue
+                elif name in self._BLOCK_TAGS:
+                    flush()
+                    walk(child)
+                    flush()
+                else:
+                    walk(child)
+
+        walk(element)
+        flush()
+        return '\n'.join(lines)
+
     def _text_with_img_alts(self, element) -> str:
         """get_text variant that substitutes <img alt="X"> with X.
 
