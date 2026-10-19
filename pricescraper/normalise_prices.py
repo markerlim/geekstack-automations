@@ -131,25 +131,45 @@ _FINISH_RE = re.compile(r"(（闪）|\(闪\)|（平）|\(平\)|闪)+$")
 SEALED_RARITIES = {"原盒", "卡套", "卡垫", "收纳盒"}          # not singles -> drop
 
 
+def _norm_set_code(code: str) -> str:
+    # JHS files EX15BT as "UAEX15BT"; YYT (and the rest of the EX sets) use "EX15BT".
+    return re.sub(r"^UA(EX\d+BT)$", r"\1", code.strip())
+
+
 def _norm_card_number(cid: str) -> str:
     # Spelling only -- upper-case + drop inner whitespace. Trailing "★" and
     # "-パラレル/特別仕様" markers are LEFT ON: they distinguish a real alt-art
     # printing with its own price, and the identity key is
     # (set_code, card_number, rarity). Over-stripping just manufactures dup keys.
-    return re.sub(r"\s+", "", cid).upper()
+    return _WINNER_ID_RE.sub("", re.sub(r"\s+", "", cid)).upper()
 
 
-def _norm_rarity_jhs(rarity: str) -> str | None:
+# WINNER-prize printings share a card number with the base card and differ only
+# by a marker: JHS puts it on the cardId ("BLC-1-053(WINNER)") or the rarity
+# ("UR(Winner)", "OBC[Winner]"); YYT on the name ("...(WINNERver.)"). All are
+# folded into one spelling -- rarity "<base>(Winner)", plain card number -- so
+# the two sources line up and neither collides with the base printing.
+_WINNER_ID_RE = re.compile(r"[(\[（]winner[)\]）]$", re.I)
+_WINNER_RARITY_RE = re.compile(r"[(\[（]winner[)\]）]$", re.I)
+_WINNER_NAME_RE = re.compile(r"winner\s*ver", re.I)
+WINNER_SUFFIX = "(Winner)"
+
+
+def _norm_rarity_jhs(rarity: str, card_id: str = "") -> str | None:
     if rarity in SEALED_RARITIES:
         return None
-    base = _FINISH_RE.sub("", rarity).strip()
-    return base or rarity
+    base = _FINISH_RE.sub("", rarity).strip() or rarity
+    winner = bool(_WINNER_ID_RE.search(card_id.strip()))
+    if _WINNER_RARITY_RE.search(base):
+        base = _WINNER_RARITY_RE.sub("", base).strip()
+        winner = True
+    return base + WINNER_SUFFIX if winner else base
 
 
-def _norm_rarity_yyt(rarity: str, card_id: str) -> str | None:
+def _norm_rarity_yyt(rarity: str, card_id: str, name: str = "") -> str | None:
     if rarity == "-":
         return "AP" if re.search(r"-AP\d+$", card_id) else None
-    return rarity
+    return rarity + WINNER_SUFFIX if _WINNER_NAME_RE.search(name or "") else rarity
 
 
 def _key(set_code: str, card_number: str, rarity: str) -> str:
@@ -189,16 +209,17 @@ def _series_code(set_code: str, card_number: str, jhs_code: str | None,
 def normalise_jhs(rows: list[dict], observed_at: int) -> tuple[list[dict], Counter]:
     out, dropped = [], Counter()
     for o in rows:
-        rarity = _norm_rarity_jhs(o["rarity"])
+        rarity = _norm_rarity_jhs(o["rarity"], o["cardId"])
         if rarity is None:
             dropped[o["rarity"]] += 1
             continue
+        set_code = _norm_set_code(o["booster"])
         num = _norm_card_number(o["cardId"])
         amount, price_raw = _parse_jhs_price(o.get("price"))
         ext = {
             "card_number_raw": o["cardId"],
             "rarity_raw": o["rarity"],
-            "series_code": _series_code(o["booster"], num, o.get("jhs_code"),
+            "series_code": _series_code(set_code, num, o.get("jhs_code"),
                                         o.get("animeCode")),
             "jhs_code": o.get("jhs_code"),
         }
@@ -208,11 +229,11 @@ def normalise_jhs(rows: list[dict], observed_at: int) -> tuple[list[dict], Count
         # the one point we can record. The uploader merges points across runs.
         history = {str(observed_at): {"price": amount}} if amount is not None else {}
         out.append({
-            "key": _key(o["booster"], num, rarity),
+            "key": _key(set_code, num, rarity),
             "game": GAME,
             "source": "jhs",
             "source_name": SOURCE_NAME["jhs"],
-            "set_code": o["booster"],
+            "set_code": set_code,
             "card_number": num,
             "rarity": rarity,
             "name": o.get("name"),
@@ -233,7 +254,7 @@ def normalise_yyt(rows: list[dict]) -> tuple[list[dict], Counter]:
         if o["cardId"].strip() in ("", "-"):
             dropped["<junk cardId>"] += 1
             continue
-        rarity = _norm_rarity_yyt(o["rarity"], o["cardId"])
+        rarity = _norm_rarity_yyt(o["rarity"], o["cardId"], o.get("card_name") or "")
         if rarity is None:
             dropped[o["rarity"]] += 1
             continue

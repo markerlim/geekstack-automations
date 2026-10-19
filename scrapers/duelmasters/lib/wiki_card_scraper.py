@@ -23,6 +23,11 @@ def _is_name_header_style(style: str) -> bool:
 _INVISIBLE_CHARS = re.compile('[\u200b\u200e\u200f\u2060-\u206f\ufeff]')
 
 
+# A missing wiki image renders as the literal text "File:KEY.png" instead of an
+# <img>. Treat it like any other icon: [KEY].
+_FILE_REF = re.compile(r'File:\s*([^\s\[\]|]+?)\.(?:png|gif|jpe?g|svg|webp)\b', re.I)
+
+
 class DuelMastersCardWikiScraper:
     """Scrapes card information from Duel Masters wiki pages."""
     
@@ -78,6 +83,7 @@ class DuelMastersCardWikiScraper:
 
         def flush():
             line = ' '.join(' '.join(current).split())
+            line = _FILE_REF.sub(lambda m: f"[{m.group(1)}]", line)
             current.clear()
             if line:
                 lines.append(line)

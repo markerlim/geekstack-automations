@@ -29,8 +29,19 @@
 #   make prices-nodb     scrape + normalise, skip the DB upload
 #   make prices-refresh  re-normalise + re-upload from data already on disk
 #   make yyt             YYT scrape only (writes dated backup, no legacy cardprices_yyt write)
+#
+# Duel Masters prices (fullahead-dm.com -> match to CL_duelmasters -> MongoDB price_fau)
+#
+#   make dm-prices            scrape every DB booster the shop has + upload
+#   make dm-prices-nodb       scrape + match only, write pricescraper/out/fau_*.json (no DB write)
+#   make dm-prices-set SET=DM26-EX4    one booster, scrape + match only
+#   make dm-prices-upload     upload the fau_normalised.json already on disk
+#
+#     MIN_SET  skip boosters older than dm<N> (default 22)
 
 PY      := $(CURDIR)/venv/bin/python3
+MIN_SET ?= 22
+SET     ?=
 GAME    ?= union_arena
 CAT     ?=
 SETS    ?=
@@ -49,7 +60,8 @@ _tune    = $(_workers) $(_chunk) $(_retries)
 
 .PHONY: help \
         jhs-daily jhs-retry jhs-resume jhs-sets jhs-incremental jhs-coverage jhs-refresh-apk \
-        prices prices-resume prices-nodb prices-refresh yyt
+        prices prices-resume prices-nodb prices-refresh yyt \
+        dm-prices dm-prices-nodb dm-prices-set dm-prices-upload
 
 help:
 	@awk '/^#/{sub(/^# ?/,"");print;next}{exit}' $(firstword $(MAKEFILE_LIST))
@@ -104,3 +116,18 @@ prices-refresh:
 
 yyt:
 	$(PY) pricescraper/run.py --only yyt
+
+# ----------------------------------------------------------------------------- #
+# Duel Masters prices (fullahead)
+# ----------------------------------------------------------------------------- #
+dm-prices: dm-prices-nodb dm-prices-upload
+
+dm-prices-nodb:
+	$(PY) scrapers/duelmasters/scripts/match_fullahead.py --all --min-set $(MIN_SET)
+
+dm-prices-set:
+	@test -n "$(SET)" || { echo 'usage: make dm-prices-set SET=DM26-EX4'; exit 2; }
+	$(PY) scrapers/duelmasters/scripts/match_fullahead.py $(SET)
+
+dm-prices-upload:
+	$(PY) pricescraper/upload_normalised.py --only fau

@@ -41,6 +41,7 @@ OUT_DIR = os.path.join(HERE, "out")
 FEEDS = {
     "jhs": ("jhs_normalised.json", "price_jhs"),
     "yyt": ("yyt_normalised.json", "price_yyt"),
+    "fau": ("fau_normalised.json", "price_fau"),   # Duel Masters, fullahead-dm.com
 }
 
 
@@ -124,6 +125,9 @@ def main() -> None:
     feeds = [args.only] if args.only else list(FEEDS)
     for name in feeds:
         fname, coll = FEEDS[name]
+        if not args.only and not os.path.exists(os.path.join(OUT_DIR, fname)):
+            print(f"\n{coll}: {fname} not found, skipping")
+            continue
         upload(mongo, os.path.join(OUT_DIR, fname), coll,
                dry_run=args.dry_run, replace=args.replace)
 
