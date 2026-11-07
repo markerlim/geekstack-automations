@@ -1,18 +1,253 @@
 [
   {
-    "cardName": "堕ちし龍魂珠",
-    "cardNameJP": "堕ちし龍魂珠(DM26EX4 49/99)",
+    "cardName": "クリスタル・ツヴァイランサーP’S",
+    "cardNameJP": "クリスタル・ツヴァイランサーP’S(DM26EX5 ㊙1/㊙5)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "フェリックス・ミザリィ",
+    "cardNameJP": "フェリックス・ミザリィ(DM26EX5 ㊙2/㊙5)",
+    "civilization": [
+      "Darkness"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "ダイヤモンド・ブリザードP’S",
+    "cardNameJP": "ダイヤモンド・ブリザードP’S(DM26EX5 ㊙3/㊙5)",
+    "civilization": [
+      "Nature"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "龍聖霊マギア・デル・フィン",
+    "cardNameJP": "龍聖霊マギア・デル・フィン(DM26EX5 ㊙4/㊙5)",
+    "civilization": [
+      "Light",
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "無限龍王ボルシャック・ライジングNEX",
+    "cardNameJP": "無限龍王ボルシャック・ライジングNEX(DM26EX5 ㊙5/㊙5)",
+    "civilization": [
+      "Light",
+      "Fire",
+      "Nature"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "八重の精霊パーフェクト・エイティー",
+    "cardNameJP": "八重の精霊パーフェクト・エイティー(DM26EX5 S1/S10)",
+    "civilization": [
+      "Light"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "超閃機 ジャバジャックP’S",
+    "cardNameJP": "超閃機 ジャバジャックP’S(DM26EX5 S2/S10)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "クリスタル・ツヴァイランサーP’S",
+    "cardNameJP": "クリスタル・ツヴァイランサーP’S(DM26EX5 S3/S10)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "フェリックス・ミザリィ",
+    "cardNameJP": "フェリックス・ミザリィ(DM26EX5 S4/S10)",
+    "civilization": [
+      "Darkness"
+    ],
+    "type": "NEO Creature"
+  },
+  {
+    "cardName": "超神星ヴァルカン・アンチャンス",
+    "cardNameJP": "超神星ヴァルカン・アンチャンス(DM26EX5 S5/S10)",
+    "civilization": [
+      "Nature"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "ダイヤモンド・ブリザードP’S",
+    "cardNameJP": "ダイヤモンド・ブリザードP’S(DM26EX5 S6/S10)",
+    "civilization": [
+      "Nature"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "龍聖霊マギア・デル・フィン",
+    "cardNameJP": "龍聖霊マギア・デル・フィン(DM26EX5 S7/S10)",
+    "civilization": [
+      "Light",
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "暗黒神羅凰ゼロ・フェニックス",
+    "cardNameJP": "暗黒神羅凰ゼロ・フェニックス(DM26EX5 S8/S10)",
+    "civilization": [
+      "Darkness",
+      "Fire"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "超天星ライゾウ「灼」",
+    "cardNameJP": "超天星ライゾウ「灼」(DM26EX5 S9/S10)",
+    "civilization": [
+      "Fire",
+      "Nature"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "無限龍王ボルシャック・ライジングNEX",
+    "cardNameJP": "無限龍王ボルシャック・ライジングNEX(DM26EX5 S10/S10)",
+    "civilization": [
+      "Light",
+      "Fire",
+      "Nature"
+    ],
+    "type": "Evolution Creature"
+  },
+  {
+    "cardName": "アクア・エリート",
+    "cardNameJP": "アクア・エリート(DM26EX5 4/40)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "大獄の封殺ディアス Z",
+    "cardNameJP": "大獄の封殺ディアス Z(DM26EX5 6/40)",
+    "civilization": [
+      "Darkness"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "翔竜提督アークピッチ",
+    "cardNameJP": "翔竜提督アークピッチ(DM26EX5 7/40)",
     "civilization": [
       "Fire"
     ],
     "type": "Creature"
   },
   {
-    "cardName": "幽傀 マグナム",
-    "cardNameJP": "幽傀 マグナム(DM26EX4 64/99)",
+    "cardName": "幻想妖精カチュア",
+    "cardNameJP": "幻想妖精カチュア(DM26EX5 8/40)",
+    "civilization": [
+      "Nature"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "アクア・ヘッドガール",
+    "cardNameJP": "アクア・ヘッドガール(DM26EX5 13/40)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "アクア・スターガール",
+    "cardNameJP": "アクア・スターガール(DM26EX5 14/40)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "剛撃妖精ユキハナ",
+    "cardNameJP": "剛撃妖精ユキハナ(DM26EX5 17/40)",
+    "civilization": [
+      "Nature"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "亡禍医 ヘモグロ",
+    "cardNameJP": "亡禍医 ヘモグロ(DM26EX5 DP22/DP40)",
     "civilization": [
       "Darkness"
     ],
-    "type": "Orega Aura"
+    "type": "Creature"
+  },
+  {
+    "cardName": "ヒメギャ・ルピア",
+    "cardNameJP": "ヒメギャ・ルピア(DM26EX5 DP27/DP40)",
+    "civilization": [
+      "Light",
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "ノワー・ルピア",
+    "cardNameJP": "ノワー・ルピア(DM26EX5 DP29/DP40)",
+    "civilization": [
+      "Darkness",
+      "Fire"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "アクア・インフォーマー",
+    "cardNameJP": "アクア・インフォーマー(DM26EX5 22/40)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "浄域の精霊ウルソフィア",
+    "cardNameJP": "浄域の精霊ウルソフィア(DM26EX5 28/40)",
+    "civilization": [
+      "Light",
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "究極・チャージャー",
+    "cardNameJP": "究極・チャージャー(DM26EX5 31/40)",
+    "civilization": [
+      "Light"
+    ],
+    "type": "Spell"
+  },
+  {
+    "cardName": "アクア・フラッガー",
+    "cardNameJP": "アクア・フラッガー(DM26EX5 32/40)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Creature"
+  },
+  {
+    "cardName": "ディザスター・チャージャー",
+    "cardNameJP": "ディザスター・チャージャー(DM26EX5 35/40)",
+    "civilization": [
+      "Water"
+    ],
+    "type": "Spell"
   }
 ]
