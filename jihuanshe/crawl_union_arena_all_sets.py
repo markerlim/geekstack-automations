@@ -46,7 +46,7 @@ CODE_RE = re.compile(r"^[A-Z]+[A-Z0-9]*(?:[/-][A-Z0-9]+)*$")
 # optional single "/ABBR" or "-ABBR" suffix. Deliberately rejects card
 # numbers like "UA55BT/IMC-1-004" (extra separators + digit groups) and
 # anything with a "-N-" card infix.
-STRIP_CODE_RE = re.compile(r"^[A-Z]{2}[A-Z0-9]{1,6}(?:[/-][A-Z]{2,5})?$")
+STRIP_CODE_RE = re.compile(r"^[A-Z]{2}[A-Z0-9]{1,6}(?:[/-][A-Z]{2,5}(?:-\d{1,2})?)?$")
 TAB_LABELS = ("近期更新", "补充包", "简中版", "构筑", "现场活动", "PR", "其他 & 周边", "分类")
 # Tabs that carry a set-icon strip worth crawling (JP Union Arena).
 # The tab bar is a horizontal scroller -- switch_tab() scrolls to find
@@ -1502,7 +1502,12 @@ def _scrape_one(tab_text: str, code: str, codes: list[str],
         except RuntimeError:
             first = []
         if first:
-            got = re.split(r"[-(\[]", first[0].get("number", ""), maxsplit=1)[0].strip()
+            number = first[0].get("number", "")
+            got = re.split(r"[-(\[]", number, maxsplit=1)[0].strip()
+            if re.search(r"-\d{1,2}$", want):
+                # versioned set ("BLC-2"): vol.1/vol.2 share the "BLC" prefix,
+                # so compare the first two card-number segments ("BLC-2-001")
+                got = "-".join(re.split(r"[(\[]", number, maxsplit=1)[0].split("-")[:2])
             others = {c.split("/")[-1] for c in codes if c != code and "/" in c}
             if got and got != want and got in others:
                 print(f"    !! {code}: MISCLICK -- opened the {got} set instead; "

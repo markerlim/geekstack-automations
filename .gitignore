@@ -21,3 +21,11 @@ scrapers/duelmasters/geekstack.CL_duelmasters_wiki.json
 
 # one-time: throwaway cleanup scripts / one-off tasks (never committed)
 /one-time/
+
+# unionarena: raw Discord card_list exports (the parsed cache discord_translations.json is separate)
+/unionarenadb/discord_exports/*
+!/unionarenadb/discord_exports/.gitkeep
+/unionarenadb/discord_translations.json
+
+# DB backups taken before bulk updates
+/backup/

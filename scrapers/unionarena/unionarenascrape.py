@@ -16,6 +16,7 @@ from service.api_service import ApiService
 from service.openrouter_service import OpenRouterService
 from service.googlecloudservice import upload_image_to_gcs
 from service.translationservice import translate_data
+from service import discord_translation_service
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -335,12 +336,28 @@ def scrape_unionarena_cards(series_value):
                 
                 # Use existing DB fields if doc exists, otherwise use scraped values
                 needs_translation = True
+                translate_fields = ["cardName", "effect", "traits"]
+                translation_source = "ai"
                 if doc:
                     cardname = doc.get("cardName", "-")
                     effects_jp = doc.get("effect", "-")
                     traits = doc.get("traits", "-")
                     needs_translation = False
+                    translation_source = "existing"
                     print(f"Using existing DB data for cardId {cardId}, skipping translation")
+                elif (dc := discord_translation_service.lookup(cardId)):
+                    # Community translation from the Discord card_list forum; the AI
+                    # only fills what the post doesn't carry (usually just traits).
+                    cardname = dc["cardName"]
+                    effects_jp = dc["effect"]
+                    translation_source = "discord"
+                    if dc.get("traits"):
+                        traits = dc["traits"]
+                        needs_translation = False
+                    else:
+                        translate_fields = ["traits"]
+                    print(f"Using Discord translation for cardId {cardId}"
+                          + ("" if not needs_translation else " (traits via AI)"))
                 
                 # Create card object structure
                 card_object = {
@@ -369,6 +386,8 @@ def scrape_unionarena_cards(series_value):
                 
                 # Track separately which cards need translation
                 card_object["_needs_translation"] = needs_translation
+                card_object["_translate_fields"] = translate_fields
+                card_object["translationSource"] = translation_source
                 
                 print(f"Scraped card {card_no}: {category}")
                 card_objects.append(card_object)
@@ -399,15 +418,27 @@ def scrape_unionarena_cards(series_value):
     print(f"Cards to translate: {len(to_translate)}, Cards skipped (from DB): {len(skipped)}")
 
     translated_list = []
-    if to_translate:
-        translation_result = openrouter_service.translate_fields_unionarena(to_translate, fields_to_translate=["cardName","effect","traits"], source_lang="ja", target_lang="en", keep_original=False, context=series_value)
+    # Group by which fields each card still needs (Discord hits may need only traits)
+    groups: dict[tuple, list] = {}
+    for o in to_translate:
+        groups.setdefault(tuple(o.get("_translate_fields", ["cardName", "effect", "traits"])), []).append(o)
+    for fields, group in groups.items():
+        translation_result = openrouter_service.translate_fields_unionarena(group, fields_to_translate=list(fields), source_lang="ja", target_lang="en", keep_original=False, context=series_value)
 
         if translation_result['success']:
-            translated_list = translation_result['translated_data']
-            print(f"✅ Translation successful: {len(translated_list)} objects translated")
+            translated_list.extend(translation_result['translated_data'])
+            print(f"✅ Translation successful ({', '.join(fields)}): {len(translation_result['translated_data'])} objects translated")
         else:
             print(f"❌ Translation failed: {translation_result.get('error', 'Unknown error')}, falling back to translation service")
-            translated_list = translate_data(to_translate, fields_to_translate=["cardName","effect","traits"], src_lang="ja", dest_lang="en", keep_original=False)
+            translated_list.extend(translate_data(group, fields_to_translate=list(fields), src_lang="ja", dest_lang="en", keep_original=False))
+
+    ai_ids = sorted({o["cardId"] for o in to_translate if o.get("translationSource") == "ai"})
+    by_source = {}
+    for o in card_objects:
+        by_source[o.get("translationSource")] = by_source.get(o.get("translationSource"), 0) + 1
+    print(f"Translation sources: {by_source}")
+    if ai_ids:
+        print(f"AI-translated (no Discord/existing entry): {', '.join(ai_ids)}")
 
     # Merge translated items with skipped items
     final_json = []
@@ -415,6 +446,8 @@ def scrape_unionarena_cards(series_value):
     
     for obj in card_objects:
         obj.pop("_needs_translation", None)  # Remove internal tracking flag
+        obj.pop("_translate_fields", None)
+        obj.pop("translationSource", None)   # run-summary only; not stored on the card doc
         
         if obj["cardUid"] in translated_by_uid:
             # Use translated version
@@ -422,6 +455,9 @@ def scrape_unionarena_cards(series_value):
         else:
             # Use original (either skipped or fallback)
             final_json.append(obj)
+        final_json[-1].pop("_needs_translation", None)
+        final_json[-1].pop("_translate_fields", None)
+        final_json[-1].pop("translationSource", None)
     
     # Validate and normalize null values to "-" for critical fields
     for item in final_json:

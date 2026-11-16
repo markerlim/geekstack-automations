@@ -1,5 +1,57 @@
 # Duel Masters Scrapers
 
+## Quick commands
+
+Run everything from the repo root (`geekstack-automations/`) with the venv (`venv/bin/python3`, shown below as `python`).
+
+**Weekly card/cover check** (what the cron runs — Pipeline A + B):
+
+```
+python scrapers/duelmasters/main.py
+```
+
+Also runs on GitHub Actions every Sat 18:00 SGT (`.github/workflows/dmscrape.yml`, can be triggered manually).
+It only scrapes boosters that are on the takaratomy dropdown but missing from `series.json`.
+
+**Re-scrape a booster** (code is the dropdown value, no `dm` prefix; overwrites that booster in Mongo, with backup):
+
+```
+python scrapers/duelmasters/scripts/rescrape_booster.py 26ex1
+python scrapers/duelmasters/scripts/rescrape_booster.py 25ex4 26rp1 26sd1
+```
+
+**Wiki data** (English text; run before B for a new set, so wiki lookups hit):
+
+```
+python scrapers/duelmasters/pipelines/c_scrape_wiki_cards.py                    # all cards not yet in CL_duelmasters_wiki
+python scrapers/duelmasters/pipelines/c_scrape_wiki_cards.py --test             # first 3 cards only
+python scrapers/duelmasters/pipelines/c_scrape_wiki_cards.py --set-url <wiki set page URL> [--set-code CODE]
+python scrapers/duelmasters/pipelines/c_scrape_wiki_cards.py --rescrape --workers 3 [--limit N]   # redo every doc, resumable
+python scrapers/duelmasters/pipelines/d_apply_wiki_to_booster.py dm26ex2        # apply wiki to an already-scraped booster
+```
+
+**Prices** (fullahead-dm.com -> match to `CL_duelmasters` -> Mongo `price_fau`), via the root Makefile:
+
+```
+make dm-prices                    # scrape every DB booster the shop has + upload
+make dm-prices-nodb               # scrape + match only; writes pricescraper/out/fau_*.json, no DB write
+make dm-prices-set SET=DM26-EX4   # one booster, scrape + match only
+make dm-prices-upload             # upload the fau_normalised.json already on disk
+make dm-prices MIN_SET=24         # skip boosters older than dm24 (default 22)
+```
+
+Review `pricescraper/out/fau_match_report.json` (unmatched / ambiguous / fuzzy) before uploading.
+Direct equivalent: `python scrapers/duelmasters/scripts/match_fullahead.py --all --min-set 22`
+(also `--db-json FILE`, `--no-write`, `--delay SECS`).
+
+**Retry failed wiki link scrapes** (setup step 2 backlog):
+
+```
+python scrapers/duelmasters/scripts/retry_backlog_card_links.py
+```
+
+---
+
 Folder layout:
 
 ```
@@ -138,6 +190,8 @@ startscraping(booster_list)
   │
   └─ driver.quit()
 ```
+
+**Wiki pre-fetch.** After the "new cards" filter and before the wiki lookup, `startscraping()` calls `ensure_wiki_for_booster()` (in `pipelines/c_scrape_wiki_cards.py`). It maps the booster code (`26ex5` / `dm26ex5` -> `DM26-EX5`), opens `https://duelmasters.fandom.com/wiki/DM26-EX5` (redirects to the full set page; `wiki_sets.json` URL is the fallback), and upserts any card pages not yet in `CL_duelmasters_wiki`, so the JP-name match below hits for a brand-new set. It never raises: a missing, blocked or half-filled set page just means fewer wiki hits, and the next run retries. Irregular legacy codes (`9`, `ex08`, `c66`, `promoy*`) are skipped.
 
 To rescrape one booster manually: `python scrapers/duelmasters/scripts/rescrape_booster.py 26ex1`.
 

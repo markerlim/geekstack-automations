@@ -314,10 +314,6 @@ class DuelMastersCardWikiScraper:
             if all_tables:
                 for i, table in enumerate(all_tables[:3]):
                     print(f"Table {i}: classes={table.get('class')}")
-            # Save HTML for inspection
-            with open('debug_page.html', 'w') as f:
-                f.write(html_content[:5000])
-            print("Saved first 5000 chars to debug_page.html")
             return None
         
         result = {

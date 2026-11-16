@@ -171,9 +171,15 @@ def _safe_url(url: str) -> str:
     ))
 
 
-def fetch_card_links_from_set(set_url: str) -> list[str]:
+def fetch_card_links_from_set(set_url: str, driver=None) -> list[str]:
+    """Card page URLs listed on a wiki set page.
+
+    Pass `driver` to reuse a caller's Chrome (it is left open); otherwise a
+    throwaway driver is created and quit."""
     print(f"  Fetching card links from set page: {set_url}")
-    driver = create_driver()
+    own_driver = driver is None
+    if own_driver:
+        driver = create_driver()
     try:
         driver.set_page_load_timeout(30)
         driver.get(_safe_url(set_url))
@@ -184,7 +190,8 @@ def fetch_card_links_from_set(set_url: str) -> list[str]:
         time.sleep(2)
         soup = BeautifulSoup(driver.page_source, 'html.parser')
     finally:
-        driver.quit()
+        if own_driver:
+            driver.quit()
 
     SECTION_KEYWORDS = ('content', 'treasure', 'secret')
 
@@ -418,6 +425,110 @@ def derive_set_code_from_url(set_url: str) -> str | None:
     page = set_url.rstrip('/').rsplit('/', 1)[-1]
     m = re.match(r'^([^\W_]+-[^\W_]*\d+[A-Z]?)', page)
     return m.group(1) if m else None
+
+
+_BOOSTER_CODE_RE = re.compile(r'^(\d{2})(ex|rp|sd|bd|sp)(\d+)$', re.IGNORECASE)
+
+
+def booster_to_wiki_code(booster_code: str) -> str | None:
+    """takaratomy / DB booster code -> fandom set code: 26ex5 / dm26ex5 -> DM26-EX5.
+
+    Only the regular post-2020 shape is handled; legacy and irregular codes
+    (9, ex08, c66, promoy20, ...) return None so the caller skips the pre-fetch."""
+    code = booster_code.strip().lower()
+    if code.startswith('dm'):
+        code = code[2:]
+    m = _BOOSTER_CODE_RE.match(code)
+    if not m:
+        return None
+    return f"DM{m.group(1)}-{m.group(2).upper()}{m.group(3)}"
+
+
+def wiki_set_url_candidates(wiki_code: str) -> list[str]:
+    """Set page URLs to try, best first.
+
+    The bare-code page (https://duelmasters.fandom.com/wiki/DM26-EX5) redirects
+    to the full title and is checked first. wiki_sets.json URLs are the fallback:
+    they are title slugs, can be null, and are not always a set page (DM26-RP1
+    points at a card page), so they are never trusted over the code."""
+    urls = [f"{WIKI_BASE}/wiki/{wiki_code}"]
+    if WIKI_SETS_PATH.exists():
+        with open(WIKI_SETS_PATH, encoding='utf-8') as f:
+            for s in json.load(f).get('sets', []):
+                u = s.get('url')
+                if (s.get('set_code') or '').upper() == wiki_code and u and u not in urls:
+                    urls.append(u)
+    return urls
+
+
+def ensure_wiki_for_booster(booster_code: str, mongo_service) -> dict:
+    """Make sure CL_duelmasters_wiki holds the cards of a booster's fandom set page.
+
+    Run before the takaratomy scrape so its JP-name -> wiki matching hits for a
+    brand-new set. Never raises: a missing/blocked/partial set page just means
+    fewer wiki hits (unmatched cards go through translation as before), and the
+    next run retries because only docs that already have card data are skipped.
+    Uses one Chrome for the set page and every card page.
+
+    Returns {"wiki_code", "found", "new", "failed"} (zeros when skipped)."""
+    result = {"wiki_code": None, "found": 0, "new": 0, "failed": 0}
+    wiki_code = booster_to_wiki_code(booster_code)
+    if not wiki_code:
+        print(f"  wiki pre-fetch: no fandom set code for '{booster_code}' -- skipping")
+        return result
+    result["wiki_code"] = wiki_code
+
+    driver = None
+    try:
+        driver = create_driver()
+        card_urls = []
+        for set_url in wiki_set_url_candidates(wiki_code):
+            try:
+                card_urls = fetch_card_links_from_set(set_url, driver=driver)
+            except Exception as e:                    # noqa: BLE001 -- try the next candidate
+                print(f"  wiki pre-fetch: {set_url} failed ({type(e).__name__})")
+                card_urls = []
+            if card_urls:
+                break
+        result["found"] = len(card_urls)
+        if not card_urls:
+            print(f"  wiki pre-fetch: no cards found for {wiki_code} (page missing, blocked or not filled in yet)")
+            return result
+
+        existing = get_existing_urls(mongo_service)
+        todo = [u for u in card_urls if u not in existing]
+        print(f"  wiki pre-fetch {wiki_code}: {len(card_urls)} cards on page, {len(todo)} not in wiki DB yet")
+        if not todo:
+            return result
+        purge_empty_docs(mongo_service, todo)
+
+        scraper = DuelMastersCardWikiScraper(driver)
+        batch = []
+        for idx, url in enumerate(todo, 1):
+            print(f"    [{idx}/{len(todo)}] {url}")
+            try:
+                card_obj = scraper.scrape_card(url)
+            except Exception as e:                    # noqa: BLE001 -- keep going
+                print(f"      -> ERROR: {e}")
+                card_obj = None
+            if card_obj and card_obj.get('cards'):
+                card_obj['scrape_format'] = SCRAPE_FORMAT_VERSION
+                batch.append(card_obj)
+                result["new"] += 1
+            else:
+                result["failed"] += 1
+            if len(batch) >= UPLOAD_BATCH_SIZE:
+                upsert_batch(mongo_service, batch)
+        upsert_batch(mongo_service, batch)
+    except Exception as e:                            # noqa: BLE001 -- must stay non-fatal
+        print(f"  wiki pre-fetch {wiki_code} failed: {type(e).__name__}: {e} -- continuing without it")
+    finally:
+        if driver:
+            try:
+                driver.quit()
+            except Exception:
+                pass
+    return result
 
 
 def scrape_from_set_url(set_url: str, set_code: str | None):

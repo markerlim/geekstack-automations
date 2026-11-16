@@ -38,9 +38,31 @@
 #   make dm-prices-upload     upload the fau_normalised.json already on disk
 #
 #     MIN_SET  skip boosters older than dm<N> (default 22)
+#
+# Union Arena new-set flow: scrape + rough AI translation first, then days later
+# pull the community (Discord card_list) translations and overwrite the booster's
+# cardName / effect / traits.
+#
+#   make ua-scrape                          scrape new sets (rough AI translation) into the DB
+#   make ua-discord BOOSTER=EX17BT          export + import, print the diff, then apply (no pause; backup is automatic)
+#   ... or step by step:
+#   make ua-discord-export                  export recent card_list posts, import to the cache
+#   make ua-discord-diff  BOOSTER=EX17BT    preview what would change in the DB (writes nothing)
+#   make ua-discord-apply BOOSTER=EX17BT    write it (backs up that booster's docs to backup/ first)
+#   make ua-discord-import                  re-import files already in unionarenadb/discord_exports/
+#                                           (e.g. posts you pasted into a .txt by hand)
+#
+#     BOOSTER  booster code as stored in the DB (EX17BT, UA57BT, ...)
+#     SINCE    export posts newer than this date (default: 14 days ago)
+#     needs    DISCORD_TOKEN in .env (or your shell) and the DiscordChatExporter CLI at DCE
+#              (default ~/dce/DiscordChatExporter.Cli)
 
 PY      := $(CURDIR)/venv/bin/python3
 MIN_SET ?= 22
+BOOSTER ?=
+DCE     ?= $(HOME)/dce/DiscordChatExporter.Cli
+UA_CHANNEL ?= 1089711876130226236
+SINCE   ?= $(shell date -v-14d +%Y-%m-%d)
 SET     ?=
 GAME    ?= union_arena
 CAT     ?=
@@ -61,7 +83,8 @@ _tune    = $(_workers) $(_chunk) $(_retries)
 .PHONY: help \
         jhs-daily jhs-retry jhs-resume jhs-sets jhs-incremental jhs-coverage jhs-refresh-apk \
         prices prices-resume prices-nodb prices-refresh yyt \
-        dm-prices dm-prices-nodb dm-prices-set dm-prices-upload
+        dm-prices dm-prices-nodb dm-prices-set dm-prices-upload \
+        ua-scrape ua-discord ua-discord-export ua-discord-import ua-discord-diff ua-discord-apply
 
 help:
 	@awk '/^#/{sub(/^# ?/,"");print;next}{exit}' $(firstword $(MAKEFILE_LIST))
@@ -131,3 +154,30 @@ dm-prices-set:
 
 dm-prices-upload:
 	$(PY) pricescraper/upload_normalised.py --only fau
+
+# ----------------------------------------------------------------------------- #
+# Union Arena: scrape, then Discord translations
+# ----------------------------------------------------------------------------- #
+ua-scrape:
+	$(PY) scrapers/unionarena/uacheckscrape.py
+
+ua-discord-export:
+	$(PY) scrapers/unionarena/export_discord.py --dce "$(DCE)" --channel $(UA_CHANNEL) --since $(SINCE)
+	$(PY) -m service.discord_translation_service import
+
+ua-discord-import:
+	$(PY) -m service.discord_translation_service import
+
+ua-discord-diff:
+	@test -n "$(BOOSTER)" || { echo 'usage: make ua-discord-diff BOOSTER=EX17BT'; exit 2; }
+	$(PY) scrapers/unionarena/apply_discord_translations.py --booster $(BOOSTER)
+
+ua-discord-apply:
+	@test -n "$(BOOSTER)" || { echo 'usage: make ua-discord-apply BOOSTER=EX17BT'; exit 2; }
+	$(PY) scrapers/unionarena/apply_discord_translations.py --booster $(BOOSTER) --apply
+
+ua-discord:
+	@test -n "$(BOOSTER)" || { echo 'usage: make ua-discord BOOSTER=EX17BT'; exit 2; }
+	$(MAKE) ua-discord-export
+	$(MAKE) ua-discord-diff BOOSTER=$(BOOSTER)
+	$(MAKE) ua-discord-apply BOOSTER=$(BOOSTER)

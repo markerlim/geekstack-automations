@@ -19,6 +19,7 @@ from service.googlecloudservice import upload_image_to_gcs
 from service.mongo_service import MongoService
 from service.translationservice import translate_data
 from service.github_service import GitHubService
+from scrapers.duelmasters.pipelines.c_scrape_wiki_cards import ensure_wiki_for_booster
 
 # Initialize Service Layer
 github_service = GitHubService()
@@ -599,6 +600,13 @@ def startscraping(booster_list):
             if not card_data:
                 print(f"✓ All cards for booster '{booster}' already in DB. Nothing to fetch.")
                 continue
+
+            # Pull the booster's fandom set page into CL_duelmasters_wiki first, so
+            # the JP-name lookup below hits for a brand-new set (non-fatal).
+            wiki_booster = card_data[0][0].split("-")[0]
+            print(f"📚 Pre-fetching fandom wiki cards for {wiki_booster}...")
+            wiki_result = ensure_wiki_for_booster(wiki_booster, mongo_service)
+            print(f"   wiki pre-fetch: {wiki_result}")
 
             detailed_card_data = scrape_card_details(card_data)
 
