@@ -77,7 +77,6 @@ class OpenRouterService:
         self.api_key = api_key or os.getenv('OPENROUTER_API_KEY')
         if self.api_key:
             print("✓ OpenRouter API key loaded")
-            print(self.api_key)
         else:
             raise ValueError("OpenRouter API key is required. Set OPENROUTER_API_KEY environment variable or pass api_key parameter.")
         

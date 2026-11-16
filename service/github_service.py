@@ -5,6 +5,8 @@ import json
 import requests
 import base64
 
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 class GitHubService:
     """GitHub API service for file operations and repository management"""
@@ -17,7 +19,18 @@ class GitHubService:
         
         # Load environment variables
         self.github_token = os.getenv("GITHUB_TOKEN")
-        print(f"🔧 GitHub service initialized for {repo_owner}/{repo_name}")
+        # Local mode: read/write the repo's own files instead of the GitHub API.
+        # On when LOCAL_FILES=1, or automatically when there is no GITHUB_TOKEN
+        # (running a scraper on your machine). You commit the changes yourself.
+        self.local = os.getenv("LOCAL_FILES") == "1" or not self.github_token
+        if self.local:
+            print(f"🔧 GitHub service in LOCAL mode (files under {REPO_ROOT}; no GitHub API)")
+        else:
+            print(f"🔧 GitHub service initialized for {repo_owner}/{repo_name}")
+
+    def _local_path(self, file_path):
+        """Repo-relative path -> absolute path under the repo root (independent of cwd)."""
+        return file_path if os.path.isabs(file_path) else os.path.join(REPO_ROOT, file_path)
     
     def _validate_github_config(self):
         """Validate that all required GitHub environment variables are set"""
@@ -45,6 +58,20 @@ class GitHubService:
         """Load JSON file from GitHub or local filesystem"""
         if file_path:
             self.set_file_path(file_path)
+
+        if self.local and file_path:
+            path = self._local_path(file_path)
+            try:
+                with open(path, 'r', encoding='utf-8') as f:
+                    json_data = json.load(f)
+                print(f"📂 Loaded JSON from local file: {path}")
+                return json_data, None
+            except FileNotFoundError:
+                print(f"📄 Local file not found: {path}")
+                return None, None
+            except Exception as e:
+                print(f"❌ Error loading local file {path}: {e}")
+                return None, None
         
         # Check if file exists locally first
         if file_path and local_fallback and os.path.exists(file_path):
@@ -112,6 +139,14 @@ class GitHubService:
     
     def get_file_content(self, file_path, local_fallback=False):
         """Get raw file content from GitHub or local filesystem"""
+        if self.local:
+            try:
+                with open(self._local_path(file_path), 'r', encoding='utf-8') as f:
+                    return f.read()
+            except Exception as e:
+                print(f"❌ Error reading local file {file_path}: {e}")
+                return None
+
         # Check if file exists locally first
         if local_fallback and os.path.exists(file_path):
             try:
@@ -149,7 +184,18 @@ class GitHubService:
             return None
     
     def update_file(self, file_path, content, commit_message, file_sha=None, branch=None):
-        """Update a file directly on GitHub via API"""
+        """Update a file directly on GitHub via API (or on disk in local mode)"""
+        if self.local:
+            try:
+                path = self._local_path(file_path)
+                os.makedirs(os.path.dirname(path), exist_ok=True)
+                with open(path, 'w', encoding='utf-8') as f:
+                    f.write(content)
+                print(f"✅ Wrote {path} locally (not pushed) -- commit it when you're happy: {commit_message}")
+                return True
+            except Exception as e:
+                print(f"❌ Error writing local file {file_path}: {e}")
+                return False
         try:
             if not self.github_token:
                 print("❌ GITHUB_TOKEN not found in environment variables")

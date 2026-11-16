@@ -1,7 +1,7 @@
 """
 Run DiscordChatExporter against the Union Arena card_list forum.
 
-Reads DISCORD_TOKEN from the environment or the repo's .env (never from the
+Reads DISCORD_TOKEN from the repo's .env (falling back to the environment) (never from the
 command line, never printed). Used by `make ua-discord-export`.
 
     python scrapers/unionarena/export_discord.py --since 2026-11-01
@@ -15,7 +15,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 
 from dotenv import load_dotenv  # noqa: E402
 
-load_dotenv(os.path.join(ROOT, ".env"))
+load_dotenv(os.path.join(ROOT, ".env"), override=True)   # .env wins over a stale `export DISCORD_TOKEN` in the shell
 
 
 def main():

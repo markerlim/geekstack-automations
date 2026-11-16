@@ -39,6 +39,15 @@
 #
 #     MIN_SET  skip boosters older than dm<N> (default 22)
 #
+# Duel Masters: a booster was scraped before its wiki English existed (cards with no wikiurl)
+#
+#   make dm-wiki BOOSTER=dm26ex5         fetch the fandom set page, preview, then apply (backs up first)
+#   make dm-wiki-diff BOOSTER=dm26ex5    preview only: which cards would get wiki data (writes nothing)
+#   make dm-wiki-apply BOOSTER=dm26ex5   write it
+#   make dm-wiki-fetch BOOSTER=dm26ex5   only pull the fandom set page into CL_duelmasters_wiki
+#
+#     BOOSTER  DB booster code, lower case (dm26ex5)
+#
 # Union Arena new-set flow: scrape + rough AI translation first, then days later
 # pull the community (Discord card_list) translations and overwrite the booster's
 # cardName / effect / traits.
@@ -53,7 +62,8 @@
 #                                           (e.g. posts you pasted into a .txt by hand)
 #
 #     BOOSTER  booster code as stored in the DB (EX17BT, UA57BT, ...)
-#     SINCE    export posts newer than this date (default: 14 days ago)
+#     SINCE    export threads/posts newer than this date (default: 14 days ago). Forum threads are
+#              filtered by when the THREAD was created, so keep this wider than the set's release gap.
 #     needs    DISCORD_TOKEN in .env (or your shell) and the DiscordChatExporter CLI at DCE
 #              (default ~/dce/DiscordChatExporter.Cli)
 
@@ -84,6 +94,7 @@ _tune    = $(_workers) $(_chunk) $(_retries)
         jhs-daily jhs-retry jhs-resume jhs-sets jhs-incremental jhs-coverage jhs-refresh-apk \
         prices prices-resume prices-nodb prices-refresh yyt \
         dm-prices dm-prices-nodb dm-prices-set dm-prices-upload \
+        dm-wiki dm-wiki-fetch dm-wiki-diff dm-wiki-apply \
         ua-scrape ua-discord ua-discord-export ua-discord-import ua-discord-diff ua-discord-apply
 
 help:
@@ -154,6 +165,22 @@ dm-prices-set:
 
 dm-prices-upload:
 	$(PY) pricescraper/upload_normalised.py --only fau
+
+dm-wiki-fetch:
+	@test -n "$(BOOSTER)" || { echo 'usage: make dm-wiki-fetch BOOSTER=dm26ex5'; exit 2; }
+	$(PY) scrapers/duelmasters/scripts/apply_wiki_to_existing.py $(BOOSTER) --fetch
+
+dm-wiki-diff:
+	@test -n "$(BOOSTER)" || { echo 'usage: make dm-wiki-diff BOOSTER=dm26ex5'; exit 2; }
+	$(PY) scrapers/duelmasters/scripts/apply_wiki_to_existing.py $(BOOSTER)
+
+dm-wiki-apply:
+	@test -n "$(BOOSTER)" || { echo 'usage: make dm-wiki-apply BOOSTER=dm26ex5'; exit 2; }
+	$(PY) scrapers/duelmasters/scripts/apply_wiki_to_existing.py $(BOOSTER) --apply
+
+dm-wiki:
+	@test -n "$(BOOSTER)" || { echo 'usage: make dm-wiki BOOSTER=dm26ex5'; exit 2; }
+	$(PY) scrapers/duelmasters/scripts/apply_wiki_to_existing.py $(BOOSTER) --fetch --apply
 
 # ----------------------------------------------------------------------------- #
 # Union Arena: scrape, then Discord translations
